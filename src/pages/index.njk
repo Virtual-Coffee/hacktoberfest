@@ -30,33 +30,39 @@
           header: "Contributors",
           intro: "Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? We'd love to help! Come join our community and get paired with a mentor who will help you complete the Hacktoberfest challenge!",
           items: [
-            "Pariatur quod similique "
+            "Learn OSS essentials",
+            "Complete Hacktoberfest Challenge",
+            "Join a great community of developers"
           ],
           button: {
-            text: "Get Started",
-            link: "#"
+            text: "I Want to Hack!",
+            link: "/contributors"
           }
         },
         {
           header: "Maintainers",
           intro: "Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey.",
           items: [
-            "Pariatur quod similique "
+            "Find some excited contributors for your project",
+            "Improve your community",
+            "Join a great community of developers"
           ],
           button: {
-            text: "Get Started",
-            link: "#"
+            text: "I Have Issues!",
+            link: "/maintainers"
           }
         },
         {
           header: "Mentors",
           intro: "Have a few Pull Requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest event is a great place to provide high-impact help to a few early-career Contributors.",
           items: [
-            "Pariatur quod similique "
+            "Give back to the community",
+            "Have some fun",
+            "Join a great community of developers"
           ],
           button: {
-            text: "Get Started",
-            link: "#"
+            text: "I'd Love to Help!",
+            link: "/mentors"
           }
         }
         ]
@@ -73,74 +79,51 @@
   <div class="bg-white">
     <div class="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
       <h2 class="text-3xl leading-9 font-extrabold text-gray-900">
-        Frequently asked questions
+        Questions:
       </h2>
       <div class="mt-6 border-t-2 border-gray-100 pt-10">
-        <dl class="md:grid md:grid-cols-2 md:gap-8">
-          <div>
-            <div>
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                What's the best thing about Switzerland?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-            <div class="mt-12">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                How do you make holy water?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-            <div class="mt-12">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                What do you call someone with no body and no nose?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-          </div>
-          <div class="mt-12 md:mt-0">
-            <div>
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Why do you never see elephants hiding in trees?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  Because they're so good at it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-            <div class="mt-12">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Why can't you hear a pterodactyl go to the bathroom?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  Because the pee is silent. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-            <div class="mt-12">
-              <dt class="text-lg leading-6 font-medium text-gray-900">
-                Why did the invisible man turn down the job offer?
-              </dt>
-              <dd class="mt-2">
-                <p class="text-base leading-6 text-gray-500">
-                  He couldn't see himself doing it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
-                </p>
-              </dd>
-            </div>
-          </div>
+        {% set questions = [
+          {
+            q: "What is Virtual Coffee?",
+            a: "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          },
+          {
+            q: "What is Hacktoberfest?",
+            a: "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          },
+          {
+            q: "What do you call someone with no body and no nose?",
+            a: "Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          },
+          {
+            q: "Why do you never see elephants hiding in trees?",
+            a: "Because they're so good at it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          },
+          {
+            q: "Why can't you hear a pterodactyl go to the bathroom?",
+            a: "Because the pee is silent. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          },
+          {
+            q: "Why did the invisible man turn down the job offer?",
+            a: "He couldn't see himself doing it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat."
+          }
+        ] %}
+
+        <dl class="md:grid md:grid-cols-2 md:gap-x-8">
+          {% set cls = cycler("col-start-1", "col-start-2") %}
+          {% for question in questions %}
+            {% set col = cls.next() %}
+            {% set rowDt = 'md:row-start-' + (loop.index0//2 * 2 + 1) %}
+            {% set rowDd = 'md:row-start-' + (loop.index0//2 * 2 + 2) %}
+            <dt class="text-lg leading-6 font-medium text-gray-900 {{ col }} {{ rowDt }}">
+             {{question.q}}
+            </dt>
+            <dd class="mt-2 mb-8 {{ col }} {{ rowDd }}">
+              <p class="text-base leading-6 text-gray-500">
+                {{question.a}}
+              </p>
+            </dd>
+          {% endfor %}
         </dl>
       </div>
     </div>
