@@ -1,0 +1,60 @@
+{% extends "src/_includes/layout.njk" %}
+
+{% block title %}Become a Contributor: Virtual Coffee Hacktoberfest Event{% endblock %}
+
+{% block content %}
+<div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+  <div class="relative max-w-2xl mx-auto">
+    <div class="text-center">
+      <h2 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+        Become a Contributor
+      </h2>
+      <p class="mt-4 text-lg leading-6 text-gray-500">
+        Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? We'd love to help! Come join our community and get paired with a mentor who will help you complete the Hacktoberfest challenge.
+      </p>
+    </div>
+    <div class="mt-12">
+      <form action="#" method="POST">
+        <div class="mb-6">
+          <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name:</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <input id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email:</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <input id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="experience" class="block text-sm font-medium leading-5 text-gray-700">Tell us about your experience level so far:</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <textarea id="experience" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label for="interests" class="block text-sm font-medium leading-5 text-gray-700">What kinds of things are you interested in?</label>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <textarea id="interests" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+          </div>
+        </div>
+        <div class="mb-6">
+           <label class="inline-flex items-center">
+            <input type="checkbox" class="form-checkbox">
+            <span class="ml-2">By selecting this, I agree to abide by the <a href="#" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a></span>
+          </label>
+        </div>
+        <div class="mb-6">
+          <span class="w-full inline-flex rounded-md shadow-sm">
+            <button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+              Let's talk
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
