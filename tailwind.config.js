@@ -6,7 +6,7 @@ module.exports = {
     purgeLayersByDefault: true,
   },
   purge: {
-    content: ['./public/**/*.html'],
+    content: ['./src/**/*.njk'],
   },
   theme: {
     extend: {

@@ -17,7 +17,7 @@
     "tailwindcss": "^1.8.4"
   },
   "scripts": {
-    "build-css": "postcss ./src/css/main.css -o public/css/index.css",
+    "build-css": "postcss ./src/css/main.css -o _site/css/index.css",
     "start": "eleventy --serve & postcss ./src/css/main.css --o _site/css/index.css  --watch",
     "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production postcss ./src/css/main.css --o _site/css/index.css"
   }
