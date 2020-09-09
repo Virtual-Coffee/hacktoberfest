@@ -110,17 +110,17 @@
         ] %}
         {# have to do this nonsense so tailwind doesn't purge these styles #}
         {% set rowlist = {
-          1: 'md:row-start-1',
-          2: 'md:row-start-2',
-          3: 'md:row-start-3',
-          4: 'md:row-start-4',
-          5: 'md:row-start-5',
-          6: 'md:row-start-6',
-          7: 'md:row-start-7',
-          8: 'md:row-start-8',
-          9: 'md:row-start-9',
-          10: 'md:row-start-10',
-        }}
+          '1': 'md:row-start-1',
+          '2': 'md:row-start-2',
+          '3': 'md:row-start-3',
+          '4': 'md:row-start-4',
+          '5': 'md:row-start-5',
+          '6': 'md:row-start-6',
+          '7': 'md:row-start-7',
+          '8': 'md:row-start-8',
+          '9': 'md:row-start-9',
+          '10': 'md:row-start-10'
+        } %}
 
         <dl class="md:grid md:grid-cols-2 md:gap-x-8">
           {% set cls = cycler("md:col-start-1", "md:col-start-2") %}
