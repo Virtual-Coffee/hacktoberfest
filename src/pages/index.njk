@@ -10,7 +10,7 @@
       <span class="text-orange-500">Hacktoberfest Edition</span>
     </h2>
     <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-      Virtual Coffee is gearing up for <a class="text-orange-500" href="https://hacktoberfest.digitalocean.com">Hacktoberfest 2020</a> and want you to join us!
+      Virtual Coffee is gearing up for <a class="text-orange-500 underline" href="https://hacktoberfest.digitalocean.com">Hacktoberfest 2020</a> and want you to join us!
     </p>
     <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
       Our plan is to harness the power in our community to help developers become excited about contributing to Open Source Software, and to contribute to some of our favorite Open Source repositories along the way.
@@ -82,53 +82,43 @@
         Questions:
       </h2>
       <div class="mt-6 border-t-2 border-gray-100 pt-10">
-        {% set questions = [
-          {
-            q: "What is Virtual Coffee?",
-            a: "Virtual Coffee is a supportive community of developers at all stages of the journey, that includes a thriving slack group, special events, mentoring sessions, twice-weekly zoom chats about life and tech, and good people."
-          },
-          {
-            q: "What is Hacktoberfest?",
-            a: "Hacktoberfest is a month-long virtual event that encourages and supports open-source contributions. Sponsored by Digital Ocean and DEV, a contributor can qualify for the official Hacktoberfest swag by [registering](https://hacktoberfest.digitalocean.com/) and making four pull requests between October 1-31"
-          },
-          {
-            q: "Why should I partner with Virtual Coffee for Hacktoberfest?",
-            a: "Our goal is to provide support for contributors and maintainers. We want everyone to have an opportunity to contribute, regardless of their experience. Likewise, we want to provide maintainers with support to create projects that are contributor-friendly and will lead to repeat contributions beyond Hacktoberfest"
-          },
-          {
-            q: "What type of support will there be?",
-            a: "Because not everyone will need the same level or type of support, we're working to accommodate as many needs as possible. This could include 1:1 mentorship for one issue or all the issues you're working on, access to private slack channels, a group coding session, a review of the project you're using for Hacktoberfest, or general community support. We're also here to cheer you on throughout the month, whether on social media, through our events, or slack."
-          }
-        ] %}
-        {# have to do this nonsense so tailwind doesn't purge these styles #}
-        {% set rowlist = {
-          '1': 'md:row-start-1',
-          '2': 'md:row-start-2',
-          '3': 'md:row-start-3',
-          '4': 'md:row-start-4',
-          '5': 'md:row-start-5',
-          '6': 'md:row-start-6',
-          '7': 'md:row-start-7',
-          '8': 'md:row-start-8',
-          '9': 'md:row-start-9',
-          '10': 'md:row-start-10'
-        } %}
-
         <dl class="md:grid md:grid-cols-2 md:gap-x-8">
-          {% set cls = cycler("md:col-start-1", "md:col-start-2") %}
-          {% for question in questions %}
-            {% set col = cls.next() %}
-            {% set rowDt = rowlist[(loop.index0//2 * 2 + 1)] %}
-            {% set rowDd = rowlist[(loop.index0//2 * 2 + 2)] %}
-            <dt class="text-lg leading-6 font-medium text-gray-900 {{ col }} {{ rowDt }}">
-             {{question.q}}
+
+            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
+             What is Virtual Coffee?
             </dt>
-            <dd class="mt-2 mb-8 {{ col }} {{ rowDd }}">
+            <dd class="mt-2 mb-8 md:col-start-1 md:row-start-2">
               <p class="text-base leading-6 text-gray-500">
-                {{question.a}}
+                Virtual Coffee is a supportive community of developers at all stages of the journey, that includes a thriving slack group, special events, mentoring sessions, twice-weekly zoom chats about life and tech, and good people.
               </p>
             </dd>
-          {% endfor %}
+
+            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
+             What is Hacktoberfest?
+            </dt>
+            <dd class="mt-2 mb-8 md:col-start-2 md:row-start-2">
+              <p class="text-base leading-6 text-gray-500">
+                Hacktoberfest is a month-long virtual event that encourages and supports open-source contributions. Sponsored by Digital Ocean and DEV, a contributor can qualify for the official Hacktoberfest swag by <a href="https://hacktoberfest.digitalocean.com" class="text-orange-500 underline">registering</a> and making four pull requests between October 1-31
+              </p>
+            </dd>
+
+            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
+             Why should I partner with Virtual Coffee for Hacktoberfest?
+            </dt>
+            <dd class="mt-2 mb-8 md:col-start-1 md:row-start-4">
+              <p class="text-base leading-6 text-gray-500">
+                Our goal is to provide support for contributors and maintainers. We want everyone to have an opportunity to contribute, regardless of their experience. Likewise, we want to provide maintainers with support to create projects that are contributor-friendly and will lead to repeat contributions beyond Hacktoberfest
+              </p>
+            </dd>
+
+            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
+             What type of support will there be?
+            </dt>
+            <dd class="mt-2 mb-8 md:col-start-2 md:row-start-4">
+              <p class="text-base leading-6 text-gray-500">
+                Because not everyone will need the same level or type of support, we're working to accommodate as many needs as possible. This could include 1:1 mentorship for one issue or all the issues you're working on, access to private slack channels, a group coding session, a review of the project you're using for Hacktoberfest, or general community support. We're also here to cheer you on throughout the month, whether on social media, through our events, or slack.
+              </p>
+            </dd>
         </dl>
       </div>
     </div>
