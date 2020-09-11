@@ -2,6 +2,9 @@
 
 {% block title %}Maintainers: Virtual Coffee Hacktoberfest Event{% endblock %}
 
+{% set labelClass = "block text-lg leading-6 text-gray-700" %}
+{% set helpClass = "text-sm leading-6 text-gray-500" %}
+
 {% block content %}
   <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
     <div class="relative max-w-2xl mx-auto">
@@ -16,36 +19,36 @@
       </div>
       <div class="mt-12">
         <form action="/maintainers-thankyou" method="POST" netlify="true" name="maintainers">
-          <div class="mb-6">
+          <div class="mb-12">
             <div class="flex justify-between">
-              <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name: </label>
-              <span class="text-sm leading-5 text-gray-500">Required</span>
+              <label for="name" class="{{labelClass}}">Name: </label>
+              <span class="{{helpClass}}">Required</span>
             </div>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
             </div>
           </div>
-          <div class="mb-6">
+          <div class="mb-12">
             <div class="flex justify-between">
-              <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email:</label>
-              <span class="text-sm leading-5 text-gray-500">Required</span>
+              <label for="email" class="{{labelClass}}">Email:</label>
+              <span class="{{helpClass}}">Required</span>
             </div>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
             </div>
           </div>
-          <div class="mb-6">
-            <label for="repoLink" class="block text-sm font-medium leading-5 text-gray-700">Repository Link (if available):</label>
+          <div class="mb-12">
+            <label for="repoLink" class="{{labelClass}}">Repository Link (if available):</label>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input name="repoLink"  id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
             </div>
           </div>
-          <fieldset class="mb-6" x-data="{ stackOtherOpen: false }">
+          <fieldset class="mb-12" x-data="{ stackOtherOpen: false }">
             <div class="flex justify-between">
-              <legend class="block text-sm font-medium leading-5 text-gray-700">Project Tech Stack/Interests:</legend>
-              <span class="text-sm leading-5 text-gray-500">Check all that apply</span>
+              <legend class="{{labelClass}}">Project Tech Stack/Interests:</legend>
+              <span class="{{helpClass}}">Check all that apply</span>
             </div>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               {% set list = [
                 'Javascript - React',
                 'Javascript - Other',
@@ -62,14 +65,14 @@
                 <div class="flex items-center">
                   <input id="stack_{{loop.index}}" name="techStack[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                   <label for="stack_{{loop.index}}" class="ml-3">
-                    <span class="block text-sm leading-5 text-gray-700">{{item}}</span>
+                    <span class="block leading-5 text-gray-700">{{item}}</span>
                   </label>
                 </div>
               {% endfor %}
               <div class="flex items-center">
                 <input x-model="stackOtherOpen" id="stack_other" name="techStack[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="stack_other" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Other</span>
+                  <span class="block leading-5 text-gray-700">Other</span>
                 </label>
               </div>
 
@@ -87,77 +90,77 @@
             </div>
           </fieldset>
 
-          <div class="mb-6">
-            <label for="experience" class="block text-sm font-medium leading-5 text-gray-700">Tell us about your OSS project(s):</label>
+          <div class="mb-12">
+            <label for="experience" class="{{labelClass}}">Tell us about your OSS project(s):</label>
             <div class="mt-1 relative rounded-md shadow-sm">
               <textarea name="experience" id="experience" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
             </div>
           </div>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
                 How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?
               </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="hours_1" name="hours" value="1-3" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="hours_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">1-3</span>
+                  <span class="block leading-5 text-gray-700">1-3</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="hours_2" name="hours" value="4-9" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="hours_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">4-9</span>
+                  <span class="block leading-5 text-gray-700">4-9</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="hours_3" name="hours" value="10+" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="hours_3" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">10+</span>
+                  <span class="block leading-5 text-gray-700">10+</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
                 What is your preferred method(s) of communication for collaboration?
               </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="communication_1" name="communication[]" value="github" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="communication_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Directly through Github issues</span>
+                  <span class="block leading-5 text-gray-700">Directly through Github issues</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="communication_2" name="communication[]" value="Direct messaging" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="communication_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Direct messaging (Async) e.g. Slack, WhatsApp</span>
+                  <span class="block leading-5 text-gray-700">Direct messaging (Async) e.g. Slack, WhatsApp</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="communication_3" name="communication[]" value="Email" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="communication_3" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Email</span>
+                  <span class="block leading-5 text-gray-700">Email</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="communication_3" name="communication[]" value="Zoom" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="communication_3" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)</span>
+                  <span class="block leading-5 text-gray-700">Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6" x-data="{ helpWantedOpen: false }">
+          <fieldset class="mb-12" x-data="{ helpWantedOpen: false }">
             <div class="flex justify-between">
-              <legend class="block text-sm font-medium leading-5 text-gray-700">What areas do you feel like you need/want help on the most?</legend>
-              <span class="text-sm leading-5 text-gray-500">Check all that apply</span>
+              <legend class="{{labelClass}}">What areas do you feel like you need/want help on the most?</legend>
+              <span class="{{helpClass}}">Check all that apply</span>
             </div>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               {% set list = [
                 'User Testing',
                 'Documentation',
@@ -171,14 +174,14 @@
                 <div class="flex items-center">
                   <input id="helpwanted_{{loop.index}}" name="helpWanted[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                   <label for="helpwanted_{{loop.index}}" class="ml-3">
-                    <span class="block text-sm leading-5 text-gray-700">{{item}}</span>
+                    <span class="block leading-5 text-gray-700">{{item}}</span>
                   </label>
                 </div>
               {% endfor %}
               <div class="flex items-center">
                 <input x-model="helpWantedOpen" id="helpwanted_other" name="helpWanted[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="helpwanted_other" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Other</span>
+                  <span class="block leading-5 text-gray-700">Other</span>
                 </label>
               </div>
 
@@ -196,32 +199,32 @@
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
                 Would you be willing to attend a zoom seminar for sharing maintainer best practices?
               </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="attend_1" name="willingToAttendSeminar" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="attend_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Yes</span>
+                  <span class="block leading-5 text-gray-700">Yes</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="attend_2" name="willingToAttendSeminar" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="attend_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">No</span>
+                  <span class="block leading-5 text-gray-700">No</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6" x-data="{ goalsOpen: false }">
+          <fieldset class="mb-12" x-data="{ goalsOpen: false }">
             <div class="flex justify-between">
-              <legend class="block text-sm font-medium leading-5 text-gray-700">What are your goals with this project?</legend>
-              <span class="text-sm leading-5 text-gray-500">Check all that apply</span>
+              <legend class="{{labelClass}}">What are your goals with this project?</legend>
+              <span class="{{helpClass}}">Check all that apply</span>
             </div>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               {% set list = [
                 'Chance to learn and develop new skills',
                 'Portfolio piece to land a tech job',
@@ -234,14 +237,14 @@
                 <div class="flex items-center">
                   <input id="goals_{{loop.index}}" name="projectGoals[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                   <label for="goals_{{loop.index}}" class="ml-3">
-                    <span class="block text-sm leading-5 text-gray-700">{{item}}</span>
+                    <span class="block leading-5 text-gray-700">{{item}}</span>
                   </label>
                 </div>
               {% endfor %}
               <div class="flex items-center">
                 <input x-model="goalsOpen" id="goals_other" name="projectGoals[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="goals_other" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Other</span>
+                  <span class="block leading-5 text-gray-700">Other</span>
                 </label>
               </div>
 
@@ -259,123 +262,127 @@
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
                 How much do you want to prioritise your efforts as a project maintainer?
               </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="priority_1" name="hours" value="High priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="priority_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">High priority (heavily invested in project completion/maturation)</span>
+                  <span class="block leading-5 text-gray-700">High priority (heavily invested in project completion/maturation)</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="priority_2" name="hours" value="Medium priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="priority_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Medium priority (would like to finish project, but it's not critical)</span>
+                  <span class="block leading-5 text-gray-700">Medium priority (would like to finish project, but it's not critical)</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="priority_3" name="hours" value="Low priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="priority_3" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Low priority (very casual endeavour, no explicit goals/timelines)</span>
+                  <span class="block leading-5 text-gray-700">Low priority (very casual endeavour, no explicit goals/timelines)</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
               Are you comfortable working hands-on with your contributors (pair programming sessions, code review sessions, etc.?)
             </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="handson_1" name="comfortableWorkingHandsOn" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="handson_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Yes</span>
+                  <span class="block leading-5 text-gray-700">Yes</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="handson_2" name="comfortableWorkingHandsOn" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="handson_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">No</span>
+                  <span class="block leading-5 text-gray-700">No</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
               Have you attended a Virtual Coffee Meetup?
             </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="attendedMeetup_1" name="attendedAMeetup" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="attendedMeetup_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Yes</span>
+                  <span class="block leading-5 text-gray-700">Yes</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="attendedMeetup_2" name="attendedAMeetup" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="attendedMeetup_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">No</span>
+                  <span class="block leading-5 text-gray-700">No</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
               Are you a Virtual Coffee Slack Member?
             </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="slack_1" name="VCSlackMember" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="slack_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Yes</span>
+                  <span class="block leading-5 text-gray-700">Yes</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="slack_2" name="VCSlackMember" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="slack_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">No</span>
+                  <span class="block leading-5 text-gray-700">No</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <fieldset class="mb-6">
-            <legend class="block text-sm font-medium leading-5 text-gray-700">
+          <fieldset class="mb-12">
+            <legend class="{{labelClass}}">
               Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)
             </legend>
-            <div class="mt-1 grid grid-cols-1 row-gap-4">
+            <div class="mt-4 grid grid-cols-1 gap-y-4">
               <div class="flex items-center">
                 <input id="allowHighlighting_1" name="AllowSocialSharing" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="allowHighlighting_1" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">Yes</span>
+                  <span class="block leading-5 text-gray-700">Yes</span>
                 </label>
               </div>
               <div class="flex items-center">
                 <input id="allowHighlighting_2" name="AllowSocialSharing" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                 <label for="allowHighlighting_2" class="ml-3">
-                  <span class="block text-sm leading-5 text-gray-700">No</span>
+                  <span class="block leading-5 text-gray-700">No</span>
                 </label>
               </div>
             </div>
           </fieldset>
 
-          <div class="mb-6">
+          <div class="mb-12">
             <label class="inline-flex items-center">
               <input type="checkbox" class="form-checkbox" name="agree" required>
               <span class="ml-2">By selecting this, I agree to abide by the <a href="#" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
               </span>
             </label>
           </div>
-          <div class="mb-6">
+
+          <div class="mt-8 border-t border-gray-200 pt-12">
+            <p class="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+              Thank you for showing interest in the Virtual Coffee Hacktober Initiative!
+            </p>
             <span class="w-full inline-flex rounded-md shadow-sm">
               <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-              Let's talk
+              Submit
             </button>
             </span>
           </div>
