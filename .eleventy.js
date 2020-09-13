@@ -11,6 +11,8 @@ module.exports = function (eleventyConfig) {
     'src/images': 'images',
   });
 
+  eleventyConfig.addWatchTarget('./src/');
+
   eleventyConfig.addShortcode('version', function () {
     return String(Date.now());
   });
