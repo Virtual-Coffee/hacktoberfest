@@ -7,6 +7,10 @@ module.exports = function (eleventyConfig) {
     './node_modules/alpinejs/dist/alpine.js': './js/alpine.js',
   });
 
+  eleventyConfig.addPassthroughCopy({
+    'src/images': 'images',
+  });
+
   eleventyConfig.addShortcode('version', function () {
     return String(Date.now());
   });
