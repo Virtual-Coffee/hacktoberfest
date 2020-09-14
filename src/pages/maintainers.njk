@@ -1,6 +1,6 @@
 {% extends "src/_includes/layout.njk" %}
 
-{% block title %}Maintainers: Virtual Coffee Hacktoberfest Event{% endblock %}
+{% block title %}Maintainers: Virtual Coffee Hacktoberfest Initiative{% endblock %}
 
 {% from "src/_includes/forms.njk" import
 fieldGroup,
@@ -30,8 +30,8 @@ radioList %}
           <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
           {% endcall %}
 
-          {% call fieldGroup('repoLink', 'Repository Link (if available):') %}
-          <input name="repoLink"  id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          {% call fieldGroup('repoLink', 'Repository/Repositories Link', 'Required') %}
+          <input name="repoLink" required id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
           {% endcall %}
 
           {{ checkboxList({
@@ -97,7 +97,7 @@ radioList %}
 
           {{ radioList({
             id: 'willingToAttendSeminar',
-            label: 'Would you be willing to attend a zoom seminar for sharing maintainer best practices?',
+            label: 'Would you be willing to watch a Virtual Coffee video that shares maintainer best practices?',
             items: [
               'Yes',
               'No'
@@ -120,18 +120,26 @@ radioList %}
           }) }}
 
           {{ radioList({
-            id: 'prioritiseEfforts',
-            label: 'How much do you want to prioritise your efforts as a project maintainer?',
+            id: 'prioritizeEfforts',
+            label: 'How much do you want to prioritize your efforts as a project maintainer?',
             items: [
               'High priority (heavily invested in project completion/maturation)',
               "Medium priority (would like to finish project, but it's not critical)",
               'Low priority (very casual endeavour, no explicit goals/timelines)'
             ]
           })}}
+            {{ radioList({
+            id: 'interestedInMentoring',
+            label: 'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
           {{ radioList({
             id: 'comfortableWorkingHandsOn',
-            label: 'Are you comfortable working hands-on with your contributors (pair programming sessions, code review sessions, etc.?)',
+            label: 'Are you comfortable working hands-on with your contributors?',
             items: [
               'Yes',
               'No'
