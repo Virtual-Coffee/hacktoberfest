@@ -2,8 +2,10 @@
 
 {% block title %}Maintainers: Virtual Coffee Hacktoberfest Event{% endblock %}
 
-{% set labelClass = "block text-lg leading-6 text-gray-700" %}
-{% set helpClass = "text-sm leading-6 text-gray-500" %}
+{% from "src/_includes/forms.njk" import
+fieldGroup,
+checkboxList,
+radioList %}
 
 {% block content %}
   <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
@@ -19,354 +21,149 @@
       </div>
       <div class="mt-12">
         <form action="/maintainers-thankyou" method="POST" netlify="true" name="maintainers">
-          <div class="mb-12">
-            <div class="flex justify-between">
-              <label for="name" class="{{labelClass}}">Name: </label>
-              <span class="{{helpClass}}">Required</span>
-            </div>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-            </div>
-          </div>
-          <div class="mb-12">
-            <div class="flex justify-between">
-              <label for="email" class="{{labelClass}}">Email:</label>
-              <span class="{{helpClass}}">Required</span>
-            </div>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-            </div>
-          </div>
-          <div class="mb-12">
-            <label for="repoLink" class="{{labelClass}}">Repository Link (if available):</label>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <input name="repoLink"  id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-            </div>
-          </div>
-          <fieldset class="mb-12" x-data="{ stackOtherOpen: false }">
-            <div class="flex justify-between">
-              <legend class="{{labelClass}}">Project Tech Stack/Interests:</legend>
-              <span class="{{helpClass}}">Check all that apply</span>
-            </div>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              {% set list = [
-                'Javascript - React',
-                'Javascript - Other',
-                'HTML/CSS',
-                'Python',
-                'Swift',
-                'Functional Programming (Haskell, Elm, Scala, Closure)',
-                'Java/Kotlin',
-                '.Net (C#, F#, VB.Net)',
-                'PHP',
-                'Ruby'
-                ] %}
-              {% for item in list %}
-                <div class="flex items-center">
-                  <input id="stack_{{loop.index}}" name="techStack[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="stack_{{loop.index}}" class="ml-3">
-                    <span class="block leading-5 text-gray-700">{{item}}</span>
-                  </label>
-                </div>
-              {% endfor %}
-              <div class="flex items-center">
-                <input x-model="stackOtherOpen" id="stack_other" name="techStack[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="stack_other" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Other</span>
-                </label>
-              </div>
 
-              <div class="mt-1 relative rounded-md shadow-sm"
-                x-show="stackOtherOpen"
-                x-transition:enter="transition ease-out duration-100 transform"
-                x-transition:enter-start="opacity-0 scale-95"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition ease-in duration-75 transform"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-95"
-              >
-                <input name="techStackOther" aria-label="Tech stack: other" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-              </div>
-            </div>
-          </fieldset>
+          {% call fieldGroup('name', 'Name:', 'Required') %}
+          <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          {% endcall %}
 
-          <div class="mb-12">
-            <label for="experience" class="{{labelClass}}">Tell us about your OSS project(s):</label>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <textarea name="experience" id="experience" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
-            </div>
-          </div>
+          {% call fieldGroup('email', 'Email:', 'Required') %}
+          <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          {% endcall %}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-                How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?
-              </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="hours_1" name="hours" value="1-3" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="hours_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">1-3</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="hours_2" name="hours" value="4-9" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="hours_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">4-9</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="hours_3" name="hours" value="10+" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="hours_3" class="ml-3">
-                  <span class="block leading-5 text-gray-700">10+</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {% call fieldGroup('repoLink', 'Repository Link (if available):', 'Required') %}
+          <input name="repoLink"  id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+          {% endcall %}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-                What is your preferred method(s) of communication for collaboration?
-              </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="communication_1" name="communication[]" value="github" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="communication_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Directly through Github issues</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="communication_2" name="communication[]" value="Direct messaging" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="communication_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Direct messaging (Async) e.g. Slack, WhatsApp</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="communication_3" name="communication[]" value="Email" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="communication_3" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Email</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="communication_3" name="communication[]" value="Zoom" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="communication_3" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {{ checkboxList({
+            id: 'techStack',
+            label: 'Project Tech Stack/Interests',
+            help: 'Check all that apply',
+            items: [
+              'Javascript - React',
+              'Javascript - Other',
+              'HTML/CSS',
+              'Python',
+              'Swift',
+              'Functional Programming (Haskell, Elm, Scala, Closure)',
+              'Java/Kotlin',
+              '.Net (C#, F#, VB.Net)',
+              'PHP',
+              'Ruby'
+              ],
+              hasOther: true
+          }) }}
 
-          <fieldset class="mb-12" x-data="{ helpWantedOpen: false }">
-            <div class="flex justify-between">
-              <legend class="{{labelClass}}">What areas do you feel like you need/want help on the most?</legend>
-              <span class="{{helpClass}}">Check all that apply</span>
-            </div>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              {% set list = [
-                'User Testing',
+          {% call fieldGroup('aboutProjects', 'Tell us about your OSS project(s):') %}
+          <textarea name="aboutProjects" id="aboutProjects" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+          {% endcall %}
+
+          {{ radioList({
+            id: 'availability',
+            label: 'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
+            items: [
+              '1-3',
+              '4-9',
+              '10+'
+            ]
+          })}}
+
+          {{ checkboxList({
+            id: 'communicationPreference',
+            label: 'What is your preferred method(s) of communication for collaboration?',
+            help: 'Check all that apply',
+            items: [
+              'Directly through Github issues',
+              'Direct messaging (Async) e.g. Slack, WhatsApp',
+              'Email',
+              'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)'
+              ]
+          }) }}
+
+          {{ checkboxList({
+            id: 'helpWanted',
+            label: 'What areas do you feel like you need/want help on the most?',
+            help: 'Check all that apply',
+            items: [
+              'User Testing',
                 'Documentation',
                 'Front End Development',
                 'Back End Development',
                 'Project Management/Planning',
                 'Unit Testing',
                 'Git flow and automation'
-              ] %}
-              {% for item in list %}
-                <div class="flex items-center">
-                  <input id="helpwanted_{{loop.index}}" name="helpWanted[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="helpwanted_{{loop.index}}" class="ml-3">
-                    <span class="block leading-5 text-gray-700">{{item}}</span>
-                  </label>
-                </div>
-              {% endfor %}
-              <div class="flex items-center">
-                <input x-model="helpWantedOpen" id="helpwanted_other" name="helpWanted[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="helpwanted_other" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Other</span>
-                </label>
-              </div>
+              ],
+              hasOther: true
+          }) }}
 
-              <div class="mt-1 relative rounded-md shadow-sm"
-                x-show="helpWantedOpen"
-                x-transition:enter="transition ease-out duration-100 transform"
-                x-transition:enter-start="opacity-0 scale-95"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition ease-in duration-75 transform"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-95"
-              >
-                <input name="helpWantedOther" aria-label="Help wanted: other" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'willingToAttendSeminar',
+            label: 'Would you be willing to attend a zoom seminar for sharing maintainer best practices?',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-                Would you be willing to attend a zoom seminar for sharing maintainer best practices?
-              </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="attend_1" name="willingToAttendSeminar" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="attend_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Yes</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="attend_2" name="willingToAttendSeminar" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="attend_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="mb-12" x-data="{ goalsOpen: false }">
-            <div class="flex justify-between">
-              <legend class="{{labelClass}}">What are your goals with this project?</legend>
-              <span class="{{helpClass}}">Check all that apply</span>
-            </div>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              {% set list = [
-                'Chance to learn and develop new skills',
+          {{ checkboxList({
+            id: 'goals',
+            label: 'What are your goals with this project?',
+            help: 'Check all that apply',
+            items: [
+              'Chance to learn and develop new skills',
                 'Portfolio piece to land a tech job',
                 'Social/benefit the community',
                 'Proof of concept for current/future business',
                 'Solve a specific problem',
                 'Just having fun'
-              ] %}
-              {% for item in list %}
-                <div class="flex items-center">
-                  <input id="goals_{{loop.index}}" name="projectGoals[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="goals_{{loop.index}}" class="ml-3">
-                    <span class="block leading-5 text-gray-700">{{item}}</span>
-                  </label>
-                </div>
-              {% endfor %}
-              <div class="flex items-center">
-                <input x-model="goalsOpen" id="goals_other" name="projectGoals[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="goals_other" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Other</span>
-                </label>
-              </div>
+              ],
+              hasOther: true
+          }) }}
 
-              <div class="mt-1 relative rounded-md shadow-sm"
-                x-show="goalsOpen"
-                x-transition:enter="transition ease-out duration-100 transform"
-                x-transition:enter-start="opacity-0 scale-95"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition ease-in duration-75 transform"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-95"
-              >
-                <input name="projectGoalsOther" aria-label="Project Goals: other" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'prioritiseEfforts',
+            label: 'How much do you want to prioritise your efforts as a project maintainer?',
+            items: [
+              'High priority (heavily invested in project completion/maturation)',
+              "Medium priority (would like to finish project, but it's not critical)",
+              'Low priority (very casual endeavour, no explicit goals/timelines)'
+            ]
+          })}}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-                How much do you want to prioritise your efforts as a project maintainer?
-              </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="priority_1" name="hours" value="High priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="priority_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">High priority (heavily invested in project completion/maturation)</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="priority_2" name="hours" value="Medium priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="priority_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Medium priority (would like to finish project, but it's not critical)</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="priority_3" name="hours" value="Low priority" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="priority_3" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Low priority (very casual endeavour, no explicit goals/timelines)</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'comfortableWorkingHandsOn',
+            label: 'Are you comfortable working hands-on with your contributors (pair programming sessions, code review sessions, etc.?)',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-              Are you comfortable working hands-on with your contributors (pair programming sessions, code review sessions, etc.?)
-            </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="handson_1" name="comfortableWorkingHandsOn" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="handson_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Yes</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="handson_2" name="comfortableWorkingHandsOn" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="handson_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'attendedAMeetup',
+            label: 'Have you attended a Virtual Coffee Meetup?',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-              Have you attended a Virtual Coffee Meetup?
-            </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="attendedMeetup_1" name="attendedAMeetup" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="attendedMeetup_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Yes</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="attendedMeetup_2" name="attendedAMeetup" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="attendedMeetup_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'slackMember',
+            label: 'Are you a Virtual Coffee Slack Member?',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-              Are you a Virtual Coffee Slack Member?
-            </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="slack_1" name="VCSlackMember" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="slack_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Yes</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="slack_2" name="VCSlackMember" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="slack_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="mb-12">
-            <legend class="{{labelClass}}">
-              Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)
-            </legend>
-            <div class="mt-4 grid grid-cols-1 gap-y-4">
-              <div class="flex items-center">
-                <input id="allowHighlighting_1" name="AllowSocialSharing" value="Yes" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="allowHighlighting_1" class="ml-3">
-                  <span class="block leading-5 text-gray-700">Yes</span>
-                </label>
-              </div>
-              <div class="flex items-center">
-                <input id="allowHighlighting_2" name="AllowSocialSharing" value="No" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                <label for="allowHighlighting_2" class="ml-3">
-                  <span class="block leading-5 text-gray-700">No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          {{ radioList({
+            id: 'allowSocialSharing',
+            label: 'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
+            items: [
+              'Yes',
+              'No'
+            ]
+          })}}
 
           <div class="mb-12">
             <label class="inline-flex items-center">
