@@ -128,7 +128,7 @@ radioList %}
               'Low priority (very casual endeavour, no explicit goals/timelines)'
             ]
           })}}
-            {{ radioList({
+          {{ radioList({
             id: 'interestedInMentoring',
             label: 'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
             items: [
@@ -176,7 +176,7 @@ radioList %}
           <div class="mb-12">
             <label class="inline-flex items-center">
               <input type="checkbox" class="form-checkbox" name="agree" required>
-              <span class="ml-2">By selecting this, I agree to abide by the <a href="#" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
+              <span class="ml-2">By selecting this, I agree to abide by the <a href="{{links.codeOfConduct}}" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
               </span>
             </label>
           </div>
