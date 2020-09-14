@@ -1,0 +1,80 @@
+{% set labelClass = "block text-lg leading-6 text-gray-700" %}
+{% set helpClass = "text-sm leading-6 text-gray-500" %}
+
+{% macro fieldGroup(id, label, help) %}
+  <div class="mb-12">
+    <div class="flex justify-between">
+      <label for="name" class="{{labelClass}}">{{label}}</label>
+      {% if help %}
+        <span class="{{helpClass}}">{{help}}</span>
+      {% endif %}
+    </div>
+    <div class="mt-1 relative rounded-md shadow-sm">
+      {{ caller() }}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro checkboxList(options = {}) %}
+  <fieldset class="mb-12" x-data="{ {{options.id}}OtherOpen: false }">
+    <div class="flex justify-between">
+      <legend class="{{labelClass}}">{{options.label}}</legend>
+      {% if options.help %}
+        <span class="{{helpClass}}">{{options.help}}</span>
+      {% endif %}
+    </div>
+    <div class="mt-4 grid grid-cols-1 gap-y-4">
+      {% for item in options.items %}
+        <div class="flex items-center">
+          <input id="{{options.id}}_{{loop.index}}" name="{{options.id}}[]" value="{{item}}" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+          <label for="{{options.id}}_{{loop.index}}" class="ml-3">
+            <span class="block leading-5 text-gray-700">{{item}}</span>
+          </label>
+        </div>
+      {% endfor %}
+
+      {% if options.hasOther %}
+
+        <div class="flex items-center">
+          <input x-model="{{options.id}}OtherOpen" id="{{options.id}}_other" name="{{options.id}}[]" value="Other" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+          <label for="{{options.id}}_other" class="ml-3">
+            <span class="block leading-5 text-gray-700">Other</span>
+          </label>
+        </div>
+
+        <div class="mt-1 relative rounded-md shadow-sm"
+          x-show="{{options.id}}OtherOpen"
+          x-transition:enter="transition ease-out duration-100 transform"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-100 scale-100"
+          x-transition:leave="transition ease-in duration-75 transform"
+          x-transition:leave-start="opacity-100 scale-100"
+          x-transition:leave-end="opacity-0 scale-95"
+        >
+          <input name="{{options.id}}Other" aria-label="Other" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+        </div>
+      {% endif %}
+    </div>
+  </fieldset>
+{% endmacro %}
+
+{% macro radioList(options = {}) %}
+  <fieldset class="mb-12">
+    <div class="flex justify-between">
+      <legend class="{{labelClass}}">{{options.label}}</legend>
+      {% if options.help %}
+        <span class="{{helpClass}}">{{options.help}}</span>
+      {% endif %}
+    </div>
+    <div class="mt-4 grid grid-cols-1 gap-y-4">
+      {% for item in options.items %}
+        <div class="flex items-center">
+          <input id="{{options.id}}_{{loop.index}}" name="{{options.id}}" value="{{item}}" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+          <label for="{{options.id}}_{{loop.index}}" class="ml-3">
+            <span class="block leading-5 text-gray-700">{{item}}</span>
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+{% endmacro %}
