@@ -3,7 +3,7 @@
 
 {% macro fieldGroup(id, label, help) %}
   <div class="mb-12">
-    <div class="flex justify-between">
+    <div class="flex justify-between flex-wrap">
       <label for="name" class="{{labelClass}}">{{label}}</label>
       {% if help %}
         <span class="{{helpClass}}">{{help}}</span>
@@ -17,7 +17,7 @@
 
 {% macro checkboxList(options = {}) %}
   <fieldset class="mb-12" x-data="{ {{options.id}}OtherOpen: false }">
-    <div class="flex justify-between">
+    <div class="flex justify-between flex-wrap">
       <legend class="{{labelClass}}">{{options.label}}</legend>
       {% if options.help %}
         <span class="{{helpClass}}">{{options.help}}</span>
@@ -58,7 +58,7 @@
 
 {% macro radioList(options = {}) %}
   <fieldset class="mb-12">
-    <div class="flex justify-between">
+    <div class="flex justify-between flex-wrap">
       <legend class="{{labelClass}}">{{options.label}}</legend>
       {% if options.help %}
         <span class="{{helpClass}}">{{options.help}}</span>

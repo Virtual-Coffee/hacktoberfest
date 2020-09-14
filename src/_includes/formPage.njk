@@ -1,0 +1,11 @@
+{% extends "src/_includes/layout.njk" %}
+
+{% block content %}
+  <div class="bg-white px-4 overflow-hidden sm:px-6 lg:px-8">
+    <div class="relative max-w-2xl mx-auto">
+      {% block formContent %}
+        {{ formContent | safe }}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}

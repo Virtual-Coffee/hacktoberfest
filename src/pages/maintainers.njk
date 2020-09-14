@@ -1,4 +1,4 @@
-{% extends "src/_includes/layout.njk" %}
+{% extends "src/_includes/formPage.njk" %}
 
 {% block title %}Maintainers: Virtual Coffee Hacktoberfest Initiative{% endblock %}
 
@@ -7,193 +7,189 @@ fieldGroup,
 checkboxList,
 radioList %}
 
-{% block content %}
-  <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
-    <div class="relative max-w-2xl mx-auto">
-      <div class="text-center">
-        <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-        Calling All Maintainers
-      </h1>
-        <p class="mt-4 text-lg leading-6 text-gray-500">
-        Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey.
-      </p>
+{% block formContent %}
 
+  <div class="text-center">
+    <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+      Calling All Maintainers
+    </h1>
+    <p class="mt-4 text-lg leading-6 text-gray-500">
+      Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey.
+    </p>
+  </div>
+  <div class="mt-12">
+    <form action="/maintainers-thankyou" method="POST" netlify="true" name="maintainers">
+
+      {% call fieldGroup('name', 'Name:', 'Required') %}
+      <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+      {% endcall %}
+
+      {% call fieldGroup('email', 'Email:', 'Required') %}
+      <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+      {% endcall %}
+
+      {% call fieldGroup('repoLink', 'Repository/Repositories Link', 'Required') %}
+      <input name="repoLink" required id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+      {% endcall %}
+
+      {{ checkboxList({
+        id: 'techStack',
+        label: 'Project Tech Stack/Interests',
+        help: 'Check all that apply',
+        items: [
+          'Javascript - React',
+          'Javascript - Other',
+          'HTML/CSS',
+          'Python',
+          'Swift',
+          'Functional Programming (Haskell, Elm, Scala, Closure)',
+          'Java/Kotlin',
+          '.Net (C#, F#, VB.Net)',
+          'PHP',
+          'Ruby'
+          ],
+          hasOther: true
+      }) }}
+
+      {% call fieldGroup('aboutProjects', 'Tell us about your OSS project(s):') %}
+      <textarea name="aboutProjects" id="aboutProjects" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
+      {% endcall %}
+
+      {{ radioList({
+        id: 'availability',
+        label: 'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
+        items: [
+          '1-3',
+          '4-9',
+          '10+'
+        ]
+      })}}
+
+      {{ checkboxList({
+        id: 'communicationPreference',
+        label: 'What is your preferred method(s) of communication for collaboration?',
+        help: 'Check all that apply',
+        items: [
+          'Directly through Github issues',
+          'Direct messaging (Async) e.g. Slack, WhatsApp',
+          'Email',
+          'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)'
+          ]
+      }) }}
+
+      {{ checkboxList({
+        id: 'helpWanted',
+        label: 'What areas do you feel like you need/want help on the most?',
+        help: 'Check all that apply',
+        items: [
+          'User Testing',
+            'Documentation',
+            'Front End Development',
+            'Back End Development',
+            'Project Management/Planning',
+            'Unit Testing',
+            'Git flow and automation'
+          ],
+          hasOther: true
+      }) }}
+
+      {{ radioList({
+        id: 'willingToAttendSeminar',
+        label: 'Would you be willing to watch a Virtual Coffee video that shares maintainer best practices?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ checkboxList({
+        id: 'goals',
+        label: 'What are your goals with this project?',
+        help: 'Check all that apply',
+        items: [
+          'Chance to learn and develop new skills',
+            'Portfolio piece to land a tech job',
+            'Social/benefit the community',
+            'Proof of concept for current/future business',
+            'Solve a specific problem',
+            'Just having fun'
+          ],
+          hasOther: true
+      }) }}
+
+      {{ radioList({
+        id: 'prioritizeEfforts',
+        label: 'How much do you want to prioritize your efforts as a project maintainer?',
+        items: [
+          'High priority (heavily invested in project completion/maturation)',
+          "Medium priority (would like to finish project, but it's not critical)",
+          'Low priority (very casual endeavour, no explicit goals/timelines)'
+        ]
+      })}}
+      {{ radioList({
+        id: 'interestedInMentoring',
+        label: 'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'comfortableWorkingHandsOn',
+        label: 'Are you comfortable working hands-on with your contributors?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'attendedAMeetup',
+        label: 'Have you attended a Virtual Coffee Meetup?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'slackMember',
+        label: 'Are you a Virtual Coffee Slack Member?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'allowSocialSharing',
+        label: 'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      <div class="mb-12">
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox" name="agree" required>
+          <span class="ml-2">By selecting this, I agree to abide by the <a href="{{links.codeOfConduct}}" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
+          </span>
+        </label>
       </div>
-      <div class="mt-12">
-        <form action="/maintainers-thankyou" method="POST" netlify="true" name="maintainers">
 
-          {% call fieldGroup('name', 'Name:', 'Required') %}
-          <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-          {% endcall %}
-
-          {% call fieldGroup('email', 'Email:', 'Required') %}
-          <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-          {% endcall %}
-
-          {% call fieldGroup('repoLink', 'Repository/Repositories Link', 'Required') %}
-          <input name="repoLink" required id="repoLink" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
-          {% endcall %}
-
-          {{ checkboxList({
-            id: 'techStack',
-            label: 'Project Tech Stack/Interests',
-            help: 'Check all that apply',
-            items: [
-              'Javascript - React',
-              'Javascript - Other',
-              'HTML/CSS',
-              'Python',
-              'Swift',
-              'Functional Programming (Haskell, Elm, Scala, Closure)',
-              'Java/Kotlin',
-              '.Net (C#, F#, VB.Net)',
-              'PHP',
-              'Ruby'
-              ],
-              hasOther: true
-          }) }}
-
-          {% call fieldGroup('aboutProjects', 'Tell us about your OSS project(s):') %}
-          <textarea name="aboutProjects" id="aboutProjects" rows="4" class="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"></textarea>
-          {% endcall %}
-
-          {{ radioList({
-            id: 'availability',
-            label: 'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
-            items: [
-              '1-3',
-              '4-9',
-              '10+'
-            ]
-          })}}
-
-          {{ checkboxList({
-            id: 'communicationPreference',
-            label: 'What is your preferred method(s) of communication for collaboration?',
-            help: 'Check all that apply',
-            items: [
-              'Directly through Github issues',
-              'Direct messaging (Async) e.g. Slack, WhatsApp',
-              'Email',
-              'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)'
-              ]
-          }) }}
-
-          {{ checkboxList({
-            id: 'helpWanted',
-            label: 'What areas do you feel like you need/want help on the most?',
-            help: 'Check all that apply',
-            items: [
-              'User Testing',
-                'Documentation',
-                'Front End Development',
-                'Back End Development',
-                'Project Management/Planning',
-                'Unit Testing',
-                'Git flow and automation'
-              ],
-              hasOther: true
-          }) }}
-
-          {{ radioList({
-            id: 'willingToAttendSeminar',
-            label: 'Would you be willing to watch a Virtual Coffee video that shares maintainer best practices?',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          {{ checkboxList({
-            id: 'goals',
-            label: 'What are your goals with this project?',
-            help: 'Check all that apply',
-            items: [
-              'Chance to learn and develop new skills',
-                'Portfolio piece to land a tech job',
-                'Social/benefit the community',
-                'Proof of concept for current/future business',
-                'Solve a specific problem',
-                'Just having fun'
-              ],
-              hasOther: true
-          }) }}
-
-          {{ radioList({
-            id: 'prioritizeEfforts',
-            label: 'How much do you want to prioritize your efforts as a project maintainer?',
-            items: [
-              'High priority (heavily invested in project completion/maturation)',
-              "Medium priority (would like to finish project, but it's not critical)",
-              'Low priority (very casual endeavour, no explicit goals/timelines)'
-            ]
-          })}}
-          {{ radioList({
-            id: 'interestedInMentoring',
-            label: 'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          {{ radioList({
-            id: 'comfortableWorkingHandsOn',
-            label: 'Are you comfortable working hands-on with your contributors?',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          {{ radioList({
-            id: 'attendedAMeetup',
-            label: 'Have you attended a Virtual Coffee Meetup?',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          {{ radioList({
-            id: 'slackMember',
-            label: 'Are you a Virtual Coffee Slack Member?',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          {{ radioList({
-            id: 'allowSocialSharing',
-            label: 'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
-            items: [
-              'Yes',
-              'No'
-            ]
-          })}}
-
-          <div class="mb-12">
-            <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox" name="agree" required>
-              <span class="ml-2">By selecting this, I agree to abide by the <a href="{{links.codeOfConduct}}" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
-              </span>
-            </label>
-          </div>
-
-          <div class="mt-8 border-t border-gray-200 pt-12">
-            <p class="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-              Thank you for showing interest in the Virtual Coffee Hacktober Initiative!
-            </p>
-            <span class="w-full inline-flex rounded-md shadow-sm">
-              <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
-              Submit
-            </button>
-            </span>
-          </div>
-        </form>
+      <div class="mt-8 border-t border-gray-200 pt-12">
+        <p class="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+          Thank you for showing interest in the Virtual Coffee Hacktober Initiative!
+        </p>
+        <span class="w-full inline-flex rounded-md shadow-sm">
+          <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+          Submit
+        </button>
+        </span>
       </div>
-    </div>
+    </form>
   </div>
 
 {% endblock %}
