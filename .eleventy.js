@@ -11,6 +11,10 @@ module.exports = function (eleventyConfig) {
     'src/images': 'images',
   });
 
+  eleventyConfig.addPassthroughCopy({
+    _redirects: '_redirects',
+  });
+
   eleventyConfig.addWatchTarget('./src/');
 
   eleventyConfig.addShortcode('version', function () {

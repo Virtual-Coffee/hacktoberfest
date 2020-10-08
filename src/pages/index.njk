@@ -17,61 +17,16 @@
     </p>
   </div>
 
-
   <div class="mt-12 lg:mt-20 py-12 bg-white">
     <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
       <h2 class="text-3xl leading-9 font-extrabold text-gray-900">
         Join us for Hacktoberfest:
       </h2>
 
-      <div class="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
-      {% set choices = [
-        {
-          header: "Contributors",
-          intro: "Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
-          items: [
-            "Learn OSS essentials",
-            "Complete Hacktoberfest Challenge",
-            "Join a great community of developers"
-          ],
-          button: {
-            text: "I Want to Hack!",
-            link: "/contributors"
-          }
-        },
-        {
-          header: "Maintainers",
-          intro: "Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start or continue their open source journey.",
-          items: [
-            "Find some excited contributors for your project",
-            "Grow your community",
-            "Join a great community of developers"
-          ],
-          button: {
-            text: "I Have Issues!",
-            link: "/maintainers"
-          }
-        },
-        {
-          header: "Mentors",
-          intro: "Have a few Pull Requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors.",
-          items: [
-            "Give back to the community",
-            "Have some fun",
-            "Join a great community of developers"
-          ],
-          button: {
-            text: "I'd Love to Help!",
-            link: "/mentors"
-          }
-        }
-        ]
-      %}
-      {% for choice in choices %}
-        {% include "src/_includes/choiceCard.njk" %}
-      {% endfor %}
+      <div class="mt-6 border-t-2 border-gray-100 pt-10 text-base text-gray-500 sm:text-lg md:text-xl italic">
+        <p class="mb-3 md:mb-5">We've closed our submissions for Hacktoberfest 2020.</p>
+        <p class="mb-3 md:mb-5">Thank you for your interest, and catch up with us at <a class="text-orange-500 underline" href="https://virtualcoffee.io/">Virtual Coffee!</a>!</p>
       </div>
-
 
     </div>
   </div>
@@ -84,60 +39,60 @@
       <div class="mt-6 border-t-2 border-gray-100 pt-10">
         <dl class="md:grid md:grid-cols-2 md:gap-x-8">
 
-            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
              What is Virtual Coffee?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-1 md:row-start-2">
-              <p class="text-base leading-6 text-gray-500">
+          <dd class="mt-2 mb-8 md:col-start-1 md:row-start-2">
+            <p class="text-base leading-6 text-gray-500">
                 Virtual Coffee is a supportive community of developers at all stages of the journey. It started as a twice-weekly zoom chat about life and tech, but we've grown a lot in the last five months! We do a little bit of everything, which includes a thriving slack group, special events, mentoring sessions, and good people. If you're interested in joining, you can come to an event by signing up <a href="https://meetingplace.io/virtual-coffee" class="text-orange-500 underline">here</a>.
               </p>
-            </dd>
+          </dd>
 
-            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
              What is Hacktoberfest?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-2 md:row-start-2">
-              <p class="text-base leading-6 text-gray-500">
+          <dd class="mt-2 mb-8 md:col-start-2 md:row-start-2">
+            <p class="text-base leading-6 text-gray-500">
                 Hacktoberfest is a month-long virtual event that encourages and supports open-source contributions. Open Source Software (OSS) is code that the public can view, contribute to, and use. Sponsored by Digital Ocean and DEV, a contributor can qualify for the official Hacktoberfest swag by <a href="https://hacktoberfest.digitalocean.com" class="text-orange-500 underline">registering</a> and making four pull requests (PRs) between October 1-31.
               </p>
-            </dd>
+          </dd>
 
-             <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
              What is a Maintainer?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-1 md:row-start-4">
-              <p class="text-base leading-6 text-gray-500">
-              Maintainers are the owners of the open source project. They keep track of the work, review incoming PR requests and issues, and make sure things get merged. They keep the project up to date and when possible connect developers to issues. Good maintainers aren't necessarily the best coders or reviewers, but they 
+          <dd class="mt-2 mb-8 md:col-start-1 md:row-start-4">
+            <p class="text-base leading-6 text-gray-500">
+              Maintainers are the owners of the open source project. They keep track of the work, review incoming PR requests and issues, and make sure things get merged. They keep the project up to date and when possible connect developers to issues. Good maintainers aren't necessarily the best coders or reviewers, but they
               help others navigate the project and anticipate and remove difficulties when they can.
               </p>
-            </dd>
+          </dd>
 
-             <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
              What is a Contributor and what do I need to get started?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-2 md:row-start-4">
-              <p class="text-base leading-6 text-gray-500">
+          <dd class="mt-2 mb-8 md:col-start-2 md:row-start-4">
+            <p class="text-base leading-6 text-gray-500">
                A contributor is someone who submits code or documentation to an open source project as a pull request on Github but usually does not have the ability to merge their contributions. Contributors can find issues to work on in open source repositories. To get started as an open source contributor for Hacktoberfest, all you need to do is to <a href="https://hacktoberfest.digitalocean.com/" class="text-orange-500 underline">sign up</a> and have/create a <a href="https://github.com/" class="text-orange-500 underline">Github account</a>.
               </p>
-            </dd>
+          </dd>
 
-            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
              Why should I partner with Virtual Coffee for Hacktoberfest?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-1 md:row-start-6">
-              <p class="text-base leading-6 text-gray-500">
+          <dd class="mt-2 mb-8 md:col-start-1 md:row-start-6">
+            <p class="text-base leading-6 text-gray-500">
                 Our goal is to provide support for contributors and maintainers. We want everyone to have an opportunity to contribute, regardless of their experience. Likewise, we want to provide maintainers with support to create projects that are contributor-friendly and will lead to repeat contributions beyond Hacktoberfest. Our goal is to make tech a friendly place for everyone.
               </p>
-            </dd>
+          </dd>
 
-            <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+          <dt class="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
              What type of support will there be?
             </dt>
-            <dd class="mt-2 mb-8 md:col-start-2 md:row-start-6">
-              <p class="text-base leading-6 text-gray-500">
+          <dd class="mt-2 mb-8 md:col-start-2 md:row-start-6">
+            <p class="text-base leading-6 text-gray-500">
                 Because not everyone will need the same level or type of support, we're working to accommodate as many needs as possible. This could include 1:1 mentorship, access to private slack channels, a group coding session, a review of the project you're using for Hacktoberfest, or general community support. We're also here to cheer you on throughout the month, whether on social media, through our events, or slack.
               </p>
-            </dd>
+          </dd>
         </dl>
       </div>
     </div>
