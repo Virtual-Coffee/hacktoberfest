@@ -1,0 +1,175 @@
+{% extends "src/_includes/formPage.njk" %}
+
+{% block title %}Become a Hacktoberfest Mentor: Virtual Coffee Hacktoberfest Initiative{% endblock %}
+
+{% from "src/_includes/forms.njk" import
+fieldGroup,
+checkboxList,
+radioList %}
+
+{% block formContent %}
+  <div class="text-center">
+    <h1 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+    Become a Hacktoberfest Mentor
+  </h1>
+    <p class="mt-4 text-lg leading-6 text-gray-500">
+    Thank you for expressing your interest in mentoring a Virtual Coffee member participating the Virtual Coffee Hacktoberfest Initiative. We would really appreciate it if you took the time to fill out this short questionnaire.
+  </p>
+  </div>
+  <div class="mt-12">
+    <form action="/mentors-thankyou" method="POST" netlify="true" name="mentors">
+
+      {% call fieldGroup('name', 'Name:', 'Required') %}
+      <input name="name" required id="name" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+      {% endcall %}
+
+      {% call fieldGroup('email', 'Email:', 'Required') %}
+      <input name="email" required id="email" type="email" class="form-input py-3 px-4 block w-full transition ease-in-out duration-150">
+      {% endcall %}
+
+      {{ radioList({
+      id: 'availability',
+      label: 'How many hours do you think you can dedicate to open source contributions for the month?',
+      items: [
+        '1-3',
+        '4-9',
+        '10+'
+      ]
+    })}}
+
+      {{ checkboxList({
+        id: 'communicationPreference',
+        label: 'What type of communication style is best for you?',
+        help: 'Check all that apply',
+        items: [
+          "Scheduled weekly calls",
+          "Async instant messaging",
+          "Email",
+          "Daily update and response"
+          ],
+          hasOther: true
+      }) }}
+
+      {{ checkboxList({
+        id: 'skillz',
+        label: 'What skills/talents would you be willing to provide mentorship with?',
+        help: 'Check all that apply',
+        items: [
+          "General",
+          "Testing",
+          "Documentation",
+          "UI/UX",
+          "Server/Database",
+          "API/Business Logic Development",
+          "Reporting and Analysis",
+          "Project Management/Planning",
+          "CI/CD",
+          "Accessibility",
+          "Design"
+          ],
+          hasOther: true
+      }) }}
+
+      {{ radioList({
+        id: 'willingToReadMentorshipDoc',
+        label: 'Would you be willing to read a short document on effective mentorship?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+      <div x-data="{ mentorshipStyleOtherOpen: false }">
+        <fieldset class="mb-12">
+          <div class="flex justify-between">
+            <legend class="block text-lg leading-6 text-gray-700">What type of mentorship do you prefer:</legend>
+
+            <span class="text-sm leading-6 text-gray-500">Check all that apply</span>
+
+          </div>
+          <div class="mt-4 grid grid-cols-1 gap-y-4">
+
+            <div class="flex items-center">
+              <input id="mentorshipStyle_1" x-model="mentorshipStyleOtherOpen" name="mentorshipStyle[]" value="One-on-One" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+              <label for="mentorshipStyle_1" class="ml-3">
+                <span class="block leading-5 text-gray-700">One-on-One</span>
+              </label>
+            </div>
+
+            <div class="flex items-center">
+              <input id="mentorshipStyle_2" name="mentorshipStyle[]" value="General (Will answer questions in the slack channel, offer open office hours for OSS questions, etc.)" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+              <label for="mentorshipStyle_2" class="ml-3">
+                <span class="block leading-5 text-gray-700">General (Will answer questions in the slack channel, offer open office hours for OSS questions, etc.)</span>
+              </label>
+            </div>
+
+            <div class="flex items-center">
+              <input id="mentorshipStyle_3" name="mentorshipStyle[]" value="Project-based (I'm willing to work as a mentor to those working on my OSS project)" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+              <label for="mentorshipStyle_3" class="ml-3">
+                <span class="block leading-5 text-gray-700">Project-based (I'm willing to work as a mentor to those working on my OSS project)</span>
+              </label>
+            </div>
+
+          </div>
+        </fieldset>
+        <div x-show="mentorshipStyleOtherOpen" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" style="display: none;">
+          {{ radioList({
+            id: '1to1MentorshipCapacity',
+            label: 'How many One-to-one mentees would you feel comfortable working with?',
+            items: [
+              '1',
+              '2-3',
+              '4-5'
+            ]
+          })}}
+
+        </div>
+      </div>
+
+      {{ radioList({
+        id: 'attendedAMeetup',
+        label: 'Have you attended a Virtual Coffee Meetup?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'slackMember',
+        label: 'Are you a Virtual Coffee Slack Member?',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      {{ radioList({
+        id: 'allowSocialSharing',
+        label: 'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
+        items: [
+          'Yes',
+          'No'
+        ]
+      })}}
+
+      <div class="mb-6">
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox" name="agree" required>
+          <span class="ml-2">By selecting this, I agree to abide by the <a href="{{links.codeOfConduct}}" class="font-medium text-gray-700 underline">Virtual Coffee Code of Conduct</a>
+          </span>
+        </label>
+      </div>
+      <div class="mt-8 border-t border-gray-200 pt-12">
+        <p class="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+          Thank you for showing interest in the Virtual Coffee Hacktober Initiative!
+        </p>
+        <span class="w-full inline-flex rounded-md shadow-sm">
+          <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+          Submit
+        </button>
+        </span>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}
