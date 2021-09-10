@@ -1,0 +1,44 @@
+{
+	"name": "next-auth-example",
+	"version": "0.0.0",
+	"private": true,
+	"description": "An example project for NextAuth.js",
+	"repository": "https://github.com/nextauthjs/next-auth-example.git",
+	"bugs": {
+		"url": "https://github.com/nextauthjs/next-auth/issues"
+	},
+	"homepage": "http://next-auth-example.now.sh",
+	"main": "",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"lint": "prettier --check --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+		"lint:fix": "prettier --write --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+	},
+	"author": "Iain Collins <me@iaincollins.com>",
+	"contributors": [
+		"Balázs Orbán <info@balazsorban.com>"
+	],
+	"license": "ISC",
+	"dependencies": {
+		"@headlessui/react": "^1.4.1",
+		"@heroicons/react": "^1.0.4",
+		"@tailwindcss/forms": "^0.3.3",
+		"airtable": "^0.11.1",
+		"formidable": "^2.0.0-canary.20200504.1",
+		"next": "^11.0.0",
+		"next-auth": "beta",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-hook-form": "^7.15.1",
+		"react-query": "^3.23.1",
+		"sqlite3": "^5.0.2"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.3.3",
+		"postcss": "^8.3.6",
+		"prettier": "2.3.2",
+		"tailwindcss": "^2.2.9"
+	}
+}
