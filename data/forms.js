@@ -25,14 +25,11 @@ export const profile = [
 		name: 'TwitterUsername',
 		type: 'Text',
 		label: 'Twitter Username',
-		help: 'Optional',
 	},
 	{
 		name: 'Pronouns',
 		type: 'Text',
 		label: 'Pronouns',
-		required: true,
-		help: 'Required',
 	},
 	{
 		name: 'IsMember',
