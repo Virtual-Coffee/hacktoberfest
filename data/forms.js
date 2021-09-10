@@ -72,6 +72,7 @@ export const contributors = [
 			'Improving social/communication skills',
 			'Having fun',
 		],
+		otherFieldName: 'ReasonsOther',
 	},
 	{ name: 'auth_id', type: 'lookup' },
 
@@ -101,14 +102,7 @@ export const contributors = [
 			'Git flow and automation',
 			'Accessibility',
 		],
-	},
-
-	{
-		name: 'WillingToAttendSeminar',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label:
-			'Would you be willing to attend a zoom seminar for learning how to be an effective contributor?',
+		otherFieldName: 'SkillsOther',
 	},
 
 	{
@@ -178,15 +172,6 @@ export const mentors = [
 		],
 		otherFieldName: 'SkillsOther',
 	},
-
-	{
-		name: 'WillingToReadDoc',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label:
-			'Would you be willing to read a short document on effective mentorship?',
-	},
-
 	{
 		name: 'MentorshipStyles',
 		type: 'Multiple select',
@@ -281,15 +266,6 @@ export const maintainers = [
 		],
 		otherFieldName: 'HelpNeededOther',
 	},
-
-	{
-		name: 'WillingToWatchMaintainerVideo',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label:
-			'Would you be willing to watch a Virtual Coffee video that shares maintainer best practices?',
-	},
-
 	{
 		name: 'Goals',
 		type: 'Multiple select',
