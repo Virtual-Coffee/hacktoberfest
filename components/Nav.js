@@ -8,8 +8,7 @@ import classNames from '../util/classNames'
 import Container from './Container'
 
 const userNavigation = [
-	{ name: 'Your Profile', props: { href: '#' } },
-	{ name: 'Settings', props: { href: '#' } },
+	{ name: 'Dashboard', props: { href: '/dashboard' } },
 	{
 		name: 'Sign out',
 		props: {
@@ -23,10 +22,10 @@ const userNavigation = [
 ]
 
 const navigation = [
-	{ name: 'VC Hacktoberfest', href: '#' },
-	{ name: 'FAQ', href: '#' },
-	{ name: 'Virtual Coffee', href: '#' },
-	{ name: 'Code of Conduct', href: '#' },
+	{ name: 'VC Hacktoberfest', href: '/' },
+	{ name: 'FAQ', href: '/#questions' },
+	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
+	{ name: 'Code of Conduct', href: 'https://virtualcoffee.io/code-of-conduct' },
 ]
 
 export default function Nav() {
@@ -50,30 +49,32 @@ export default function Nav() {
 									<div className="flex-shrink-0 flex items-center">
 										<img
 											className="block lg:hidden h-8 w-auto"
-											src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-											alt="Workflow"
+											src="https://virtualcoffee.io/assets/images/virtual-coffee-mug.svg"
+											alt="Virtual Coffee"
 										/>
 										<img
 											className="hidden lg:block h-8 w-auto"
-											src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-											alt="Workflow"
+											src="https://virtualcoffee.io/assets/images/virtual-coffee-full.svg"
+											alt="Virtual Coffee"
 										/>
 									</div>
 									<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-										{navigation.map((item) => (
-											<a
-												key={item.name}
-												href={item.href}
-												className={classNames(
-													item.current
-														? 'border-indigo-500 text-gray-900'
-														: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-													'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-												)}
-												aria-current={item.current ? 'page' : undefined}
-											>
-												{item.name}
-											</a>
+										{navigation.map(({ name, current, href, ...rest }) => (
+											<Link href={href}>
+												<a
+													key={name}
+													className={classNames(
+														current
+															? 'border-indigo-500 text-gray-900'
+															: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+														'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+													)}
+													aria-current={current ? 'page' : undefined}
+													{...rest}
+												>
+													{name}
+												</a>
+											</Link>
 										))}
 									</div>
 								</div>
@@ -108,18 +109,20 @@ export default function Nav() {
 													leaveTo="transform opacity-0 scale-95"
 												>
 													<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-														{userNavigation.map((item) => (
-															<Menu.Item key={item.name}>
+														{userNavigation.map(({ name, href, ...rest }) => (
+															<Menu.Item key={name}>
 																{({ active }) => (
-																	<a
-																		className={classNames(
-																			active ? 'bg-gray-100' : '',
-																			'block px-4 py-2 text-sm text-gray-700'
-																		)}
-																		{...item.props}
-																	>
-																		{item.name}
-																	</a>
+																	<Link href={href}>
+																		<a
+																			className={classNames(
+																				active ? 'bg-gray-100' : '',
+																				'block px-4 py-2 text-sm text-gray-700'
+																			)}
+																			{...rest}
+																		>
+																			{name}
+																		</a>
+																	</Link>
 																)}
 															</Menu.Item>
 														))}
@@ -145,20 +148,22 @@ export default function Nav() {
 
 						<Disclosure.Panel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
-								{navigation.map((item) => (
-									<a
-										key={item.name}
-										href={item.href}
-										className={classNames(
-											item.current
-												? 'bg-indigo-50 border-indigo-500 text-indigo-700'
-												: 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
-											'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
-										)}
-										aria-current={item.current ? 'page' : undefined}
-									>
-										{item.name}
-									</a>
+								{navigation.map(({ name, current, href, ...rest }) => (
+									<Link href={href}>
+										<a
+											key={name}
+											className={classNames(
+												current
+													? 'bg-indigo-50 border-indigo-500 text-indigo-700'
+													: 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
+												'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+											)}
+											aria-current={current ? 'page' : undefined}
+											{...rest}
+										>
+											{name}
+										</a>
+									</Link>
 								))}
 							</div>
 							{sessionStatus === 'loading' && <div>Loading</div>}
@@ -186,14 +191,16 @@ export default function Nav() {
 										</div>
 									</div>
 									<div className="mt-3 space-y-1">
-										{userNavigation.map((item) => (
-											<a
-												key={item.name}
-												className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-												{...item.props}
-											>
-												{item.name}
-											</a>
+										{userNavigation.map(({ name, href, ...rest }) => (
+											<Link href={href}>
+												<a
+													key={name}
+													className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+													{...rest}
+												>
+													{name}
+												</a>
+											</Link>
 										))}
 									</div>
 								</div>
