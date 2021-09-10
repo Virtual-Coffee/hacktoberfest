@@ -105,9 +105,13 @@ export async function createOrUpdateForm(auth_id, formKey, fields) {
 			case 'Text':
 			case 'Single select':
 			case 'Multiple select':
+			case 'Long text':
 				return {
 					...vals,
 					[field.name]: fields[field.name],
+					...(field.otherFieldName
+						? { [field.otherFieldName]: fields[field.otherFieldName] }
+						: {}),
 				}
 
 			case 'Checkbox':

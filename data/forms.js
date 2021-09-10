@@ -164,11 +164,18 @@ export const repos = [
 ]
 
 export const maintainers = [
+	// {
+	// 	name: 'Projects',
+	// 	type: 'SubForm',
+	// 	formKey: 'repos',
+	// 	multiple: true,
+	// },
 	{
 		name: 'Projects',
-		type: 'SubForm',
-		formKey: 'repos',
-		multiple: true,
+		type: 'Long text',
+		label: 'Tell us about your project(s)',
+		help: 'Required, make sure to add links!',
+		required: true,
 	},
 	{
 		name: 'HowManyHours',
@@ -215,7 +222,7 @@ export const maintainers = [
 	},
 
 	{
-		name: 'HelpNeeded',
+		name: 'Goals',
 		type: 'Multiple select',
 		label: 'What are your goals with this project?',
 		help: 'Check all that apply',

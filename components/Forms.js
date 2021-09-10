@@ -3,13 +3,43 @@ import { useCallback, useEffect, useReducer } from 'react'
 import * as formData from '../data/forms'
 import Alert from './Alert'
 import Button from './Button'
+import Layout from './Layout'
 
-const labelClass = 'block text-lg leading-6 text-gray-700'
+const labelClass = 'block text-sm font-medium text-gray-700'
 const helpClass = 'text-sm leading-6 text-gray-500'
+
+export function FormLayout({ title, description, children }) {
+	return (
+		<Layout title={title} description={description}>
+			<div className="relative max-w-3xl mx-auto">
+				<div className="mt-12">{children}</div>
+			</div>
+		</Layout>
+	)
+}
+
+export function FieldSet({ legend, legendDesc, children, ...rest }) {
+	return (
+		<fieldset className="space-y-8 py-8" {...rest}>
+			{legend && (
+				<div>
+					<legend className="text-lg leading-6 font-medium text-gray-900">
+						{legend}
+					</legend>
+					{legendDesc && (
+						<p className="mt-1 text-sm text-gray-500">{legendDesc}</p>
+					)}
+				</div>
+			)}
+
+			{children}
+		</fieldset>
+	)
+}
 
 export function FieldGroup({ id, label, help, children, errors }) {
 	return (
-		<div className="mb-12">
+		<div>
 			<div className="flex justify-between flex-wrap">
 				<label htmlFor={id} className={labelClass}>
 					{label}
@@ -21,8 +51,28 @@ export function FieldGroup({ id, label, help, children, errors }) {
 	)
 }
 
+// TODO
+// export function SubForm({ field, values }) {
+// 	return (
+// 		<div className="my-8">
+// 			<h3 className="bold text-lg">{field.name}</h3>
+// 			<div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 mt-8">
+// 				<div className="px-4 py-5 sm:p-6">
+// 					{formData[field.formKey].map((subField) => (
+// 						<Field key={subField.name} values={{}} field={subField} />
+// 					))}
+// 				</div>
+// 				<div className="px-4 py-4 sm:px-6">Remove</div>
+// 			</div>
+// 		</div>
+// 	)
+// }
+
 export function Field({ field, values }) {
 	switch (field.type) {
+		// case 'SubForm':
+		// 	return <SubForm field={field} values={values} />
+
 		case 'Text':
 		case 'URL':
 			return (
@@ -32,7 +82,7 @@ export function Field({ field, values }) {
 						type={field.type === 'URL' ? 'url' : field.inputType || 'text'}
 						required={!!field.required}
 						id={field.name}
-						className="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+						className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
 						defaultValue={values[field.name]}
 					/>
 				</FieldGroup>
@@ -43,7 +93,7 @@ export function Field({ field, values }) {
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<textarea
 						rows="4"
-						className="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"
+						className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
 						name={field.name}
 						required={!!field.required}
 						id={field.name}
@@ -71,6 +121,7 @@ export function Field({ field, values }) {
 					help={field.help}
 					defaultValues={values[field.name]}
 					otherFieldName={field.otherFieldName}
+					defaultOtherValue={values[field.otherFieldName]}
 				/>
 			)
 
@@ -103,9 +154,10 @@ export function CheckboxList({
 	id,
 	otherFieldName,
 	defaultValues = [],
+	defaultOtherValue,
 }) {
 	return (
-		<fieldset className="mb-12">
+		<fieldset>
 			<div className="flex justify-between flex-wrap">
 				<legend className={labelClass}>{label}</legend>
 				{help && <span className={helpClass}>{help}</span>}
@@ -125,13 +177,13 @@ export function CheckboxList({
 				))}
 
 				{otherFieldName && (
-					<Disclosure>
+					<Disclosure defaultOpen={!!defaultOtherValue}>
 						<label className="flex items-center">
 							<Disclosure.Button
 								as="input"
-								name={`${id}[]`}
 								value="Other"
 								type="checkbox"
+								defaultChecked={!!defaultOtherValue}
 								className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
 							/>
 							<span className="block leading-5 text-gray-700">Other</span>
@@ -149,8 +201,10 @@ export function CheckboxList({
 								<div className="mt-1 relative rounded-md shadow-sm">
 									<input
 										name={otherFieldName}
+										type="text"
 										aria-label="Other"
-										className="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
+										defaultValue={defaultOtherValue}
+										className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
 									/>
 								</div>
 							</Disclosure.Panel>
@@ -164,7 +218,7 @@ export function CheckboxList({
 
 export function RadioList({ label, help, items, id, defaultValue }) {
 	return (
-		<fieldset className="mb-12">
+		<fieldset>
 			<div className="flex justify-between flex-wrap">
 				<legend className={labelClass}>{label}</legend>
 				{help && <span className={helpClass}>{help}</span>}
@@ -293,6 +347,7 @@ export default function Form({
 	successView,
 	intro,
 	formKey,
+	fieldsetLegend,
 }) {
 	const [state, dispatch] = useReducer(
 		reducer,
@@ -363,100 +418,105 @@ export default function Form({
 			)}
 			<div className="mt-12">
 				<form
+					className="space-y-8 divide-y divide-gray-200"
 					action={`/api/forms/${formKey}`}
 					method="POST"
 					name={formKey}
 					onSubmit={onSubmit}
 				>
-					<fieldset disabled={state.status === 'loading'}>
-						<legend>Your Personal Information</legend>
+					<div className="space-y-8 divide-y divide-gray-200">
+						<FieldSet
+							legend="Your Personal Information"
+							disabled={state.status === 'loading'}
+						>
+							{formData.profile.map((field) => (
+								<Field key={field.name} values={state.fields} field={field} />
+							))}
+						</FieldSet>
 
-						{formData.profile.map((field) => (
-							<Field key={field.name} values={state.fields} field={field} />
-						))}
-					</fieldset>
+						<FieldSet
+							legend={fieldsetLegend}
+							disabled={state.status === 'loading'}
+						>
+							{formData[formKey].map((field) => (
+								<Field key={field.name} values={state.fields} field={field} />
+							))}
 
-					<fieldset disabled={state.status === 'loading'}>
-						<legend>Tell us about yourself!</legend>
+							<div className="mb-6">
+								<label className="inline-flex items-center">
+									<input
+										type="checkbox"
+										className="form-checkbox"
+										name="agree"
+										required
+										defaultChecked={!!previousFormSubmission}
+									/>
+									<span className="ml-2">
+										By selecting this, I agree to abide by the{' '}
+										<a
+											href="https://virtualcoffee.io/code-of-conduct"
+											className="font-medium text-gray-700 underline"
+										>
+											Virtual Coffee Code of Conduct
+										</a>
+									</span>
+								</label>
+							</div>
 
-						{formData[formKey].map((field) => (
-							<Field key={field.name} values={state.fields} field={field} />
-						))}
-
-						<div className="mb-6">
-							<label className="inline-flex items-center">
-								<input
-									type="checkbox"
-									className="form-checkbox"
-									name="agree"
-									required
-									defaultChecked={!!previousFormSubmission}
-								/>
-								<span className="ml-2">
-									By selecting this, I agree to abide by the{' '}
-									<a
-										href="https://virtualcoffee.io/code-of-conduct"
-										className="font-medium text-gray-700 underline"
-									>
-										Virtual Coffee Code of Conduct
-									</a>
-								</span>
-							</label>
-						</div>
-
-						<div className="rounded-md bg-blue-50 p-4">
-							<div className="flex">
-								<div className="flex-shrink-0">
-									<svg
-										className="h-5 w-5 text-blue-400"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fillRule="evenodd"
-											d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-											clipRule="evenodd"
-										/>
-									</svg>
-								</div>
-								<div className="ml-3">
-									<h3 className="text-sm leading-5 font-medium text-blue-800">
-										Please note:
-									</h3>
-									<div className="mt-2 text-sm leading-5 text-blue-700">
-										<p>
-											Although we would love to support everyone in their Open
-											Source journey, we're still a very small team with limited
-											resources. Priority for pairings will be given to Virtual
-											Coffee Community members (attended at least one of the
-											Virtual Coffee Zoom calls)
-										</p>
+							<div className="rounded-md bg-blue-50 p-4">
+								<div className="flex">
+									<div className="flex-shrink-0">
+										<svg
+											className="h-5 w-5 text-blue-400"
+											viewBox="0 0 20 20"
+											fill="currentColor"
+										>
+											<path
+												fillRule="evenodd"
+												d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+												clipRule="evenodd"
+											/>
+										</svg>
+									</div>
+									<div className="ml-3">
+										<h3 className="text-sm leading-5 font-medium text-blue-800">
+											Please note:
+										</h3>
+										<div className="mt-2 text-sm leading-5 text-blue-700">
+											<p>
+												Although we would love to support everyone in their Open
+												Source journey, we're still a very small team with
+												limited resources. Priority for pairings will be given
+												to Virtual Coffee Community members (attended at least
+												one of the Virtual Coffee Zoom calls)
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="mt-8 border-t border-gray-200 pt-12">
-							<p className="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-								Thank you for showing interest in the Virtual Coffee Hacktober
-								Initiative!
-							</p>
-							<div>
-								<Button
-									size="lg"
-									type="submit"
-									className="w-full"
-									// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
-								>
-									{state.status === 'loading'
-										? 'Loading...'
-										: previousFormSubmission
-										? 'Save'
-										: 'Sign Up!'}
-								</Button>
+							<div className="mt-8 border-t border-gray-200 pt-12">
+								<p className="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+									Thank you for showing interest in the Virtual Coffee Hacktober
+									Initiative!
+								</p>
+								<div>
+									<Button
+										size="lg"
+										type="submit"
+										className="w-full"
+										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+									>
+										{state.status === 'loading'
+											? 'Loading...'
+											: previousFormSubmission
+											? 'Save'
+											: 'Sign Up!'}
+									</Button>
+								</div>
 							</div>
-						</div>
-					</fieldset>
+						</FieldSet>
+					</div>
 				</form>
 			</div>
 		</>

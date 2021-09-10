@@ -51,7 +51,7 @@ export default async (req, res) => {
 					} else {
 						res.redirect(
 							303,
-							'/contributors?error=1&message=Please fill out all required fields.'
+							'/maintainers?error=1&message=Please fill out all required fields.'
 						)
 					}
 					return
@@ -67,7 +67,7 @@ export default async (req, res) => {
 
 				const formRowResult = await createOrUpdateForm(
 					token.auth_id,
-					'contributors',
+					'maintainers',
 					data
 				)
 
@@ -82,7 +82,7 @@ export default async (req, res) => {
 						},
 					})
 				} else {
-					res.redirect(303, '/contributors-thanks')
+					res.redirect(303, '/maintainers-thanks')
 				}
 
 				break
@@ -93,7 +93,7 @@ export default async (req, res) => {
 					return
 				}
 
-				const result = await findFormResult(token.auth_id, 'contributors')
+				const result = await findFormResult(token.auth_id, 'maintainers')
 
 				if (result) {
 					res.send({

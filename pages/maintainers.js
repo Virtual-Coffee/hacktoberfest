@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import Head from 'next/head'
+import Layout from '../components/Layout'
 import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
 import { useQuery } from 'react-query'
 import Button from '../components/Button'
-import { getContributorSubmission } from '../util/api'
+import { getMaintainersSubmission } from '../util/api'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -12,22 +14,18 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Become a Hacktoberfest Contributor
+				Calling All Maintainers
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you interested in participating in Hacktoberfest (or Open Source in
-				general), but don't know where to start? Or are you an experienced
-				developer looking to do this as part of the Virtual Coffee Community?
+				Are you an Open Source maintainer who is interested in participating in
+				Hacktoberfest? We're looking for some OSS maintainers to partner with in
+				order to provide a welcoming environment to our Contributors as they
+				start their open source journey.
 			</p>
 		</div>
 	</>
 )
 
-{
-	/* <Head>
-			<title>Thank you for your interest!</title>
-		</Head> */
-}
 const successView = (
 	<div className="py-16 px-4  sm:px-6 lg:px-8 lg:py-24">
 		<div className="relative max-w-2xl mx-auto">
@@ -65,8 +63,8 @@ export default function Page() {
 	const { error, message: errorMessage } = router.query
 
 	const previousFormSubmission = useQuery(
-		'contributors-form',
-		getContributorSubmission,
+		'maintainers-form',
+		getMaintainersSubmission,
 		{ enabled: sessionStatus === 'authenticated' }
 	)
 
@@ -77,8 +75,8 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Become a Hacktoberfest Contributor"
-				description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+				title="Calling All Maintainers"
+				description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
 			>
 				<SignIn />
 			</FormLayout>
@@ -91,8 +89,8 @@ export default function Page() {
 
 	return (
 		<FormLayout
-			title="Become a Hacktoberfest Contributor"
-			description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+			title="Calling All Maintainers"
+			description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
 		>
 			<Form
 				session={session}
@@ -104,8 +102,8 @@ export default function Page() {
 				errorMessage={error ? errorMessage : undefined}
 				successView={successView}
 				intro={intro}
-				formKey="contributors"
-				fieldsetLegend="Contributor Details"
+				formKey="maintainers"
+				fieldsetLegend="Maintainer Details"
 			/>
 		</FormLayout>
 	)
