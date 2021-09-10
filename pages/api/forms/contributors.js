@@ -27,7 +27,7 @@ export default async (req, res) => {
 					...formData.profile
 						.filter((field) => !!field.required)
 						.map((field) => field.name),
-					...formData.maintainers
+					...formData.contributors
 						.filter((field) => !!field.required)
 						.map((field) => field.name),
 				]
