@@ -1,13 +1,13 @@
 {
-	"name": "next-auth-example",
-	"version": "0.0.0",
+	"name": "virtualcoffeehacktoberfest",
+	"version": "2.0.0",
 	"private": true,
-	"description": "An example project for NextAuth.js",
-	"repository": "https://github.com/nextauthjs/next-auth-example.git",
+	"description": "Virtual Coffee Hacktoberfest Site",
+	"repository": "https://github.com/Virtual-Coffee/hacktoberfest.git",
 	"bugs": {
-		"url": "https://github.com/nextauthjs/next-auth/issues"
+		"url": "https://github.com/Virtual-Coffee/hacktoberfest/issues"
 	},
-	"homepage": "http://next-auth-example.now.sh",
+	"homepage": "https://github.com/Virtual-Coffee/hacktoberfest",
 	"main": "",
 	"scripts": {
 		"dev": "next",
@@ -16,11 +16,9 @@
 		"lint": "prettier --check --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
 		"lint:fix": "prettier --write --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
 	},
-	"author": "Iain Collins <me@iaincollins.com>",
-	"contributors": [
-		"Balázs Orbán <info@balazsorban.com>"
-	],
-	"license": "ISC",
+	"author": "Dan Ott",
+	"contributors": [],
+	"license": "CC-BY-3.0",
 	"dependencies": {
 		"@headlessui/react": "^1.4.1",
 		"@heroicons/react": "^1.0.4",
