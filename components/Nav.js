@@ -109,23 +109,25 @@ export default function Nav() {
 													leaveTo="transform opacity-0 scale-95"
 												>
 													<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-														{userNavigation.map(({ name, href, ...rest }) => (
-															<Menu.Item key={name}>
-																{({ active }) => (
-																	<Link href={href}>
-																		<a
-																			className={classNames(
-																				active ? 'bg-gray-100' : '',
-																				'block px-4 py-2 text-sm text-gray-700'
-																			)}
-																			{...rest}
-																		>
-																			{name}
-																		</a>
-																	</Link>
-																)}
-															</Menu.Item>
-														))}
+														{userNavigation.map(
+															({ name, props: { href, ...rest } }) => (
+																<Menu.Item key={name}>
+																	{({ active }) => (
+																		<Link href={href}>
+																			<a
+																				className={classNames(
+																					active ? 'bg-gray-100' : '',
+																					'block px-4 py-2 text-sm text-gray-700'
+																				)}
+																				{...rest}
+																			>
+																				{name}
+																			</a>
+																		</Link>
+																	)}
+																</Menu.Item>
+															)
+														)}
 													</Menu.Items>
 												</Transition>
 											</Menu>
@@ -191,17 +193,19 @@ export default function Nav() {
 										</div>
 									</div>
 									<div className="mt-3 space-y-1">
-										{userNavigation.map(({ name, href, ...rest }) => (
-											<Link href={href}>
-												<a
-													key={name}
-													className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
-													{...rest}
-												>
-													{name}
-												</a>
-											</Link>
-										))}
+										{userNavigation.map(
+											({ name, props: { href, ...rest } }) => (
+												<Link href={href}>
+													<a
+														key={name}
+														className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+														{...rest}
+													>
+														{name}
+													</a>
+												</Link>
+											)
+										)}
 									</div>
 								</div>
 							)}
