@@ -77,7 +77,6 @@ export async function updateUserProfile(auth_id, profile_id, fields) {
 }
 
 export async function findFormResult(auth_id, formKey) {
-	console.log({ auth_id, formKey, TABLES })
 	const table = TABLES[formKey]
 	if (!table) {
 		throw new Error('no table')

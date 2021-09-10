@@ -57,8 +57,6 @@ export default function Page() {
 		)
 	}
 
-	console.log({ contributorsSubmission })
-
 	return (
 		<Layout title="VC Hacktoberfest Dashboard">
 			<Container>
