@@ -139,6 +139,78 @@ export const contributors = [
 	},
 ]
 
+export const mentors = [
+	{
+		name: 'Availability',
+		label:
+			'How many hours do you think you can dedicate to open source contributions for the month?',
+		type: 'Single select',
+		possibleValues: ['1-3', '4-9', '10+'],
+	},
+
+	{
+		name: 'CommunicationPreferences',
+		type: 'Multiple select',
+		label:
+			'What is your preferred method(s) of communication for collaboration?',
+		help: 'Check all that apply',
+		possibleValues: [
+			'Directly through Github issues',
+			'Direct messaging (Async) e.g. Slack, WhatsApp',
+			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+		],
+	},
+
+	{
+		name: 'Skills',
+		label:
+			'What skills/talents would you be willing to provide mentorship with?',
+		type: 'Multiple select',
+		help: 'Check all that apply',
+		possibleValues: [
+			'User Testing',
+			'Documentation',
+			'Front End Development',
+			'Back End Development',
+			'API/Business Logic',
+			'Reporting and Analysis',
+			'Project Management/Planning',
+			'Unit Testing',
+			'Git flow and automation',
+			'Accessibility',
+		],
+		otherFieldName: 'SkillsOther',
+	},
+
+	{
+		name: 'WillingToReadDoc',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		label:
+			'Would you be willing to read a short document on effective mentorship?',
+	},
+
+	{
+		name: 'MentorshipStyles',
+		type: 'Multiple select',
+		label: 'What type of mentorship do you prefer?',
+		help: 'Check all that apply',
+		possibleValues: [
+			'One-on-One',
+			'General (Will answer questions in the slack channel, offer open office hours for OSS questions, etc.)',
+			"Project-based (I'm willing to work as a mentor to those working on my OSS project)",
+		],
+	},
+
+	{
+		name: 'HowManyMentees',
+		type: 'Single select',
+		possibleValues: ['1', '2-3', '4-5'],
+		label:
+			'How many One-to-one mentees would you feel comfortable working with?',
+	},
+]
+
 export const repos = [
 	{
 		name: 'RepoName',

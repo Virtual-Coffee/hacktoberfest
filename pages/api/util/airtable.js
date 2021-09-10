@@ -8,6 +8,7 @@ var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 const TABLES = {
 	contributors: 'hacktoberfest_contributor',
 	maintainers: 'hacktoberfest_maintainer',
+	mentors: 'hacktoberfest_mentor',
 }
 
 export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {

@@ -1,12 +1,10 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import Head from 'next/head'
-import Layout from '../components/Layout'
 import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
 import { useQuery } from 'react-query'
 import Button from '../components/Button'
-import { getMaintainersSubmission } from '../util/api'
+import { getMentorsSubmission } from '../util/api'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -14,13 +12,13 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Calling All Maintainers
+				Become a Hacktoberfest Mentor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you an Open Source maintainer who is interested in participating in
-				Hacktoberfest? We're looking for some OSS maintainers to partner with in
-				order to provide a welcoming environment to our Contributors as they
-				start their open source journey.
+				Thank you for expressing your interest in mentoring a Virtual Coffee
+				member participating the Virtual Coffee Hacktoberfest Initiative. We
+				would really appreciate it if you took the time to fill out this short
+				questionnaire.
 			</p>
 		</div>
 	</>
@@ -56,8 +54,8 @@ export default function Page() {
 	const { error, message: errorMessage } = router.query
 
 	const previousFormSubmission = useQuery(
-		'maintainers-form',
-		getMaintainersSubmission,
+		'mentors-form',
+		getMentorsSubmission,
 		{ enabled: sessionStatus === 'authenticated' }
 	)
 
@@ -68,8 +66,8 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Calling All Maintainers"
-				description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
+				title="Become a Hacktoberfest Mentor"
+				description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
 			>
 				<SignIn />
 			</FormLayout>
@@ -82,8 +80,8 @@ export default function Page() {
 
 	return (
 		<FormLayout
-			title="Calling All Maintainers"
-			description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
+			title="Become a Hacktoberfest Mentor"
+			description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
 		>
 			<Form
 				session={session}
@@ -95,8 +93,8 @@ export default function Page() {
 				errorMessage={error ? errorMessage : undefined}
 				successView={successView}
 				intro={intro}
-				formKey="maintainers"
-				fieldsetLegend="Maintainer Details"
+				formKey="mentors"
+				fieldsetLegend="Mentor Details"
 			/>
 		</FormLayout>
 	)

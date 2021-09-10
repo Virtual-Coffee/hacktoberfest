@@ -23,3 +23,16 @@ export async function getMaintainersSubmission() {
 	}
 	return response.json()
 }
+
+export async function getMentorsSubmission() {
+	const response = await fetch('/api/forms/mentors', {
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+	})
+	if (!response.ok) {
+		return null
+	}
+	return response.json()
+}

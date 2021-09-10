@@ -15,7 +15,11 @@ import Container from '../components/Container'
 import Button from '../components/Button'
 import Loader from '../components/Loader'
 import { CheckCircleIcon } from '@heroicons/react/outline'
-import { getContributorSubmission, getMaintainersSubmission } from '../util/api'
+import {
+	getContributorSubmission,
+	getMaintainersSubmission,
+	getMentorsSubmission,
+} from '../util/api'
 import { useQuery } from 'react-query'
 import SignIn from '../components/SignIn'
 
@@ -33,6 +37,11 @@ export default function Page() {
 		getMaintainersSubmission,
 		{ enabled: sessionStatus === 'authenticated', retry: false }
 	)
+
+	const mentorsSubmission = useQuery('mentors-form', getMentorsSubmission, {
+		enabled: sessionStatus === 'authenticated',
+		retry: false,
+	})
 
 	if (sessionStatus === 'loading') {
 		return null
@@ -128,11 +137,11 @@ export default function Page() {
 									<Loader />
 								) : maintainersSubmission.status === 'success' &&
 								  maintainersSubmission.data ? (
-									<Button size="md" href="/contributors">
+									<Button size="md" href="/maintainers">
 										Update your submission
 									</Button>
 								) : (
-									<Button size="md" href="/contributors">
+									<Button size="md" href="/maintainers">
 										I Have Issues!
 									</Button>
 								)}
@@ -157,6 +166,60 @@ export default function Page() {
 										<Loader />
 									) : maintainersSubmission.status === 'success' &&
 									  maintainersSubmission.data ? (
+										<>
+											<span className="inline-flex items-center px-5 py-2 rounded-md text-sm font-medium bg-green-100 text-green-800">
+												<CheckCircleIcon className="w-5 h-5 mr-1" /> Submitted!
+											</span>{' '}
+										</>
+									) : (
+										<span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+											Open
+										</span>
+									)}
+								</CardListItemValue>
+							</CardListItem>
+						</CardList>
+					</Card>
+					<Card>
+						<CardHeader>
+							<CardHeaderHeader
+								title="Mentor"
+								description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
+							/>
+							<CardHeaderActions>
+								{mentorsSubmission.status === 'idle' ||
+								mentorsSubmission.status === 'loading' ? (
+									<Loader />
+								) : mentorsSubmission.status === 'success' &&
+								  mentorsSubmission.data ? (
+									<Button size="md" href="/mentors">
+										Update your submission
+									</Button>
+								) : (
+									<Button size="md" href="/mentors">
+										I'd Love to Help!
+									</Button>
+								)}
+							</CardHeaderActions>
+						</CardHeader>
+						<CardList>
+							<CardListItem>
+								<CardListItemKey>About</CardListItemKey>
+								<CardListItemValue>
+									Have a few Pull Requests under your belt, and are looking for
+									ways to give back to the community? Virtual Coffee's
+									Hacktoberfest Initiative is a great place to provide
+									high-impact help to a few early-career Contributors.
+								</CardListItemValue>
+							</CardListItem>
+							<CardListItem>
+								<CardListItemKey>Status</CardListItemKey>
+								<CardListItemValue>
+									{mentorsSubmission.status === 'idle' ||
+									mentorsSubmission.status === 'loading' ? (
+										<Loader />
+									) : mentorsSubmission.status === 'success' &&
+									  mentorsSubmission.data ? (
 										<>
 											<span className="inline-flex items-center px-5 py-2 rounded-md text-sm font-medium bg-green-100 text-green-800">
 												<CheckCircleIcon className="w-5 h-5 mr-1" /> Submitted!
