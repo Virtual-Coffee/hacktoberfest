@@ -10,3 +10,16 @@ export async function getContributorSubmission() {
 	}
 	return response.json()
 }
+
+export async function getMaintainersSubmission() {
+	const response = await fetch('/api/forms/maintainers', {
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+	})
+	if (!response.ok) {
+		return null
+	}
+	return response.json()
+}

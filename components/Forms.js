@@ -24,16 +24,31 @@ export function FieldGroup({ id, label, help, children, errors }) {
 export function Field({ field, values }) {
 	switch (field.type) {
 		case 'Text':
+		case 'URL':
 			return (
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<input
 						name={field.name}
-						type={field.inputType || 'text'}
+						type={field.type === 'URL' ? 'url' : field.inputType || 'text'}
 						required={!!field.required}
 						id={field.name}
 						className="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
 						defaultValue={values[field.name]}
 					/>
+				</FieldGroup>
+			)
+
+		case 'Long text':
+			return (
+				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
+					<textarea
+						rows="4"
+						className="form-textarea py-3 px-4 block w-full transition ease-in-out duration-150"
+						name={field.name}
+						required={!!field.required}
+						id={field.name}
+						defaultValue={values[field.name]}
+					></textarea>
 				</FieldGroup>
 			)
 		case 'Single select':
@@ -55,6 +70,7 @@ export function Field({ field, values }) {
 					items={field.possibleValues}
 					help={field.help}
 					defaultValues={values[field.name]}
+					otherFieldName={field.otherFieldName}
 				/>
 			)
 
@@ -85,7 +101,7 @@ export function CheckboxList({
 	label,
 	items,
 	id,
-	hasOther,
+	otherFieldName,
 	defaultValues = [],
 }) {
 	return (
@@ -108,7 +124,7 @@ export function CheckboxList({
 					</label>
 				))}
 
-				{hasOther && (
+				{otherFieldName && (
 					<Disclosure>
 						<label className="flex items-center">
 							<Disclosure.Button
@@ -132,7 +148,7 @@ export function CheckboxList({
 							<Disclosure.Panel>
 								<div className="mt-1 relative rounded-md shadow-sm">
 									<input
-										name={`${id}Other`}
+										name={otherFieldName}
 										aria-label="Other"
 										className="form-input py-3 px-4 block w-full transition ease-in-out duration-150"
 									/>

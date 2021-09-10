@@ -2,17 +2,12 @@
 import { getSession } from 'next-auth/react'
 import { getToken } from 'next-auth/jwt'
 import {
-	createOrUpdateContributorForm,
-	findContributorFormResult,
+	createOrUpdateForm,
+	findFormResult,
 	updateUserProfile,
 } from '../util/airtable'
 
 const secret = process.env.SECRET
-
-export async function getSubmission(req) {
-	const token = await getToken({ req, secret })
-	return token ? findContributorFormResult(token.auth_id) : null
-}
 
 export default async (req, res) => {
 	const session = await getSession({ req })
@@ -67,8 +62,9 @@ export default async (req, res) => {
 
 				// console.log(updateProfileResult)
 
-				const formRowResult = await createOrUpdateContributorForm(
+				const formRowResult = await createOrUpdateForm(
 					token.auth_id,
+					'contributors',
 					data
 				)
 
@@ -94,7 +90,7 @@ export default async (req, res) => {
 					return
 				}
 
-				const result = await getSubmission(req)
+				const result = await findFormResult(token.auth_id, 'contributors')
 
 				if (result) {
 					res.send({

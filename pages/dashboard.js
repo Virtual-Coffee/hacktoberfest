@@ -45,10 +45,7 @@ export default function Page() {
 	console.log({ contributorsSubmission })
 
 	return (
-		<Layout
-			title="Thank you for your interest!"
-			description="You'll hear from a Virtual Coffee member soon with next steps."
-		>
+		<Layout title="VC Hacktoberfest Dashboard">
 			<Container>
 				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
 					Virtual Coffee Hacktoberfest Dashboard

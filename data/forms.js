@@ -138,3 +138,119 @@ export const contributors = [
 		],
 	},
 ]
+
+export const repos = [
+	{
+		name: 'RepoName',
+		type: 'Text',
+		label: 'Repository Name',
+		help: 'Required',
+		required: true,
+	},
+	{
+		name: 'RepoUrl',
+		type: 'URL',
+		label: 'Repository URL',
+		help: 'Required',
+		required: true,
+	},
+	{
+		name: 'Description',
+		type: 'Long text',
+		label: 'Tell us about your project',
+		help: 'Required',
+		required: true,
+	},
+]
+
+export const maintainers = [
+	{
+		name: 'Projects',
+		type: 'SubForm',
+		formKey: 'repos',
+		multiple: true,
+	},
+	{
+		name: 'HowManyHours',
+		type: 'Single select',
+		possibleValues: ['1-3', '4-9', '10+'],
+		label:
+			'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
+	},
+	{
+		name: 'CommunicationPreferences',
+		type: 'Multiple select',
+		label:
+			'What is your preferred method(s) of communication for collaboration?',
+		help: 'Check all that apply',
+		possibleValues: [
+			'Directly through Github issues',
+			'Direct messaging (Async) e.g. Slack, WhatsApp',
+			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+		],
+	},
+	{
+		name: 'HelpNeeded',
+		type: 'Multiple select',
+		label: 'What areas do you feel like you need/want help on the most?',
+		help: 'Check all that apply',
+		possibleValues: [
+			'User Testing',
+			'Documentation',
+			'Front End Development',
+			'Back End Development',
+			'Project Management/Planning',
+			'Unit Testing',
+			'Git flow and automation',
+		],
+		otherFieldName: 'HelpNeededOther',
+	},
+
+	{
+		name: 'WillingToWatchMaintainerVideo',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		label:
+			'Would you be willing to watch a Virtual Coffee video that shares maintainer best practices?',
+	},
+
+	{
+		name: 'HelpNeeded',
+		type: 'Multiple select',
+		label: 'What are your goals with this project?',
+		help: 'Check all that apply',
+		possibleValues: [
+			'Chance to learn and develop new skills',
+			'Portfolio piece to land a tech job',
+			'Social/benefit the community',
+			'Solve a specific problem',
+			'Proof of concept for current/future business',
+			'Just having fun',
+		],
+		otherFieldName: 'GoalsOther',
+	},
+	{
+		name: 'EffortPriority',
+		type: 'Single select',
+		possibleValues: [
+			'High priority (heavily invested in project completion/maturation)',
+			"Medium priority (would like to finish project, but it's not critical)",
+			'Low priority (very casual endeavour, no explicit goals/timelines)',
+		],
+		label:
+			'How much do you want to prioritize your efforts as a project maintainer?',
+	},
+	{
+		name: 'MentoringContributors',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		label:
+			'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
+	},
+	{
+		name: 'ComfortableWorkingWithContributors',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		label: 'Are you comfortable working hands-on with your contributors?',
+	},
+]

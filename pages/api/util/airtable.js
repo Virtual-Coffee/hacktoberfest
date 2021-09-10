@@ -1,9 +1,14 @@
-import { contributors } from '../../../data/forms'
+import * as formData from '../../../data/forms'
 
 var Airtable = require('airtable')
 var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 	'appGHm8ztVWug6UxH'
 )
+
+const TABLES = {
+	contributors: 'hacktoberfest_contributor',
+	maintainers: 'hacktoberfest_maintainer',
+}
 
 export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
 	const results = await base('members_auth')
@@ -70,8 +75,13 @@ export async function updateUserProfile(auth_id, profile_id, fields) {
 	return results
 }
 
-export async function findContributorFormResult(auth_id) {
-	const findResults = await base('hacktoberfest_contributor')
+export async function findFormResult(auth_id, formKey) {
+	console.log({ auth_id, formKey, TABLES })
+	const table = TABLES[formKey]
+	if (!table) {
+		throw new Error('no table')
+	}
+	const findResults = await base(table)
 		.select({
 			filterByFormula: `{auth_id}='${auth_id}'`,
 		})
@@ -84,8 +94,13 @@ export async function findContributorFormResult(auth_id) {
 	return null
 }
 
-export async function createOrUpdateContributorForm(auth_id, fields) {
-	const values = contributors.reduce((vals, field) => {
+export async function createOrUpdateForm(auth_id, formKey, fields) {
+	const table = TABLES[formKey]
+	if (!table) {
+		throw new Error('no table')
+	}
+
+	const values = formData[formKey].reduce((vals, field) => {
 		switch (field.type) {
 			case 'Text':
 			case 'Single select':
@@ -108,15 +123,12 @@ export async function createOrUpdateContributorForm(auth_id, fields) {
 		}
 	}, {})
 
-	const previousResult = await findContributorFormResult(auth_id)
+	const previousResult = await findFormResult(auth_id, formKey)
 
 	if (previousResult) {
-		return await base('hacktoberfest_contributor').update(
-			previousResult.id,
-			values
-		)
+		return await base(table).update(previousResult.id, values)
 	} else {
-		return await base('hacktoberfest_contributor').create({
+		return await base(table).create({
 			...values,
 			member: [auth_id],
 		})
