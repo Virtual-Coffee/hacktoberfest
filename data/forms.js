@@ -279,6 +279,8 @@ export const maintainers = [
 	{
 		name: 'ProjectsRequirementsStatus',
 		type: 'Single select',
+		required,
+		help: 'Required',
 		possibleValues: [
 			'My project meets these requirements',
 			"I'm in the process of updating my project",
