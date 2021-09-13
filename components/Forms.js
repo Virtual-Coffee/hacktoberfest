@@ -1,7 +1,7 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { useCallback, useEffect, useReducer } from 'react'
 import * as formData from '../data/forms'
-import Alert from './Alert'
+import Alert, { ErrorAlert } from './Alert'
 import Button from './Button'
 import Layout from './Layout'
 
@@ -72,6 +72,15 @@ export function Field({ field, values }) {
 	switch (field.type) {
 		// case 'SubForm':
 		// 	return <SubForm field={field} values={values} />
+
+		case 'alert':
+			return (
+				<Alert
+					alertType={field.alertType}
+					title={field.title}
+					children={field.body}
+				/>
+			)
 
 		case 'Text':
 		case 'URL':
@@ -348,6 +357,7 @@ export default function Form({
 	intro,
 	formKey,
 	fieldsetLegend,
+	formFooter = null,
 }) {
 	const [state, dispatch] = useReducer(
 		reducer,
@@ -414,7 +424,7 @@ export default function Form({
 		<>
 			{intro && intro}
 			{state.status === 'error' && (
-				<Alert message={state.errorMessage} errors={state.errors} />
+				<ErrorAlert title={state.errorMessage} errors={state.errors} />
 			)}
 			<div className="mt-12">
 				<form
@@ -463,37 +473,7 @@ export default function Form({
 								</label>
 							</div>
 
-							<div className="rounded-md bg-blue-50 p-4">
-								<div className="flex">
-									<div className="flex-shrink-0">
-										<svg
-											className="h-5 w-5 text-blue-400"
-											viewBox="0 0 20 20"
-											fill="currentColor"
-										>
-											<path
-												fillRule="evenodd"
-												d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-												clipRule="evenodd"
-											/>
-										</svg>
-									</div>
-									<div className="ml-3">
-										<h3 className="text-sm leading-5 font-medium text-blue-800">
-											Please note:
-										</h3>
-										<div className="mt-2 text-sm leading-5 text-blue-700">
-											<p>
-												Although we would love to support everyone in their Open
-												Source journey, we're still a very small team with
-												limited resources. Priority for pairings will be given
-												to Virtual Coffee Community members (attended at least
-												one of the Virtual Coffee Zoom calls)
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
+							{formFooter}
 
 							<div className="mt-8 border-t border-gray-200 pt-12">
 								<p className="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
