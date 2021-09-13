@@ -1,6 +1,3 @@
-_site/
-_tmp/
-
 # Logs
 logs
 *.log
@@ -105,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+.vercel
+.now
+.env.local
+
+.DS_Store
