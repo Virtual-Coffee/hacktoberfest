@@ -60,9 +60,8 @@ export default function Nav() {
 									</div>
 									<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
 										{navigation.map(({ name, current, href, ...rest }) => (
-											<Link href={href}>
+											<Link href={href} key={name}>
 												<a
-													key={name}
 													className={classNames(
 														current
 															? 'border-indigo-500 text-gray-900'
@@ -151,9 +150,8 @@ export default function Nav() {
 						<Disclosure.Panel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
 								{navigation.map(({ name, current, href, ...rest }) => (
-									<Link href={href}>
+									<Link href={href} key={name}>
 										<a
-											key={name}
 											className={classNames(
 												current
 													? 'bg-indigo-50 border-indigo-500 text-indigo-700'
@@ -195,9 +193,8 @@ export default function Nav() {
 									<div className="mt-3 space-y-1">
 										{userNavigation.map(
 											({ name, props: { href, ...rest } }) => (
-												<Link href={href}>
+												<Link href={href} key={name}>
 													<a
-														key={name}
 														className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
 														{...rest}
 													>
