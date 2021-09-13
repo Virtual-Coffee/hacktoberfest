@@ -157,6 +157,21 @@ export default function Page() {
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
+								<CardListItemKey>Resources</CardListItemKey>
+								<CardListItemValue>
+									<ul className="list-disc">
+										<li>
+											<a
+												href="https://virtualcoffee.io/member-resources/oss-maintainer-checklist/"
+												className="font-medium underline text-blue-700 hover:text-blue-600"
+											>
+												Maintainer's Checklist
+											</a>
+										</li>
+									</ul>
+								</CardListItemValue>
+							</CardListItem>
+							<CardListItem>
 								<CardListItemKey>Status</CardListItemKey>
 								<CardListItemValue>
 									{maintainersSubmission.status === 'idle' ||
