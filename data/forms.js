@@ -128,6 +128,20 @@ export const contributors = [
 			'Git/Github flow coaching',
 		],
 	},
+	{
+		name: 'Note',
+		type: 'alert',
+		alertType: 'info',
+		title: 'Please note:',
+		body: (
+			<p>
+				Although we would love to support everyone in their Open Source journey,
+				we're still a very small team with limited resources. Priority for
+				pairings will be given to Virtual Coffee Community members (attended at
+				least one of the Virtual Coffee Zoom calls)
+			</p>
+		),
+	},
 ]
 
 export const mentors = [
@@ -224,12 +238,53 @@ export const maintainers = [
 	// 	formKey: 'repos',
 	// 	multiple: true,
 	// },
+
 	{
 		name: 'Projects',
 		type: 'Long text',
 		label: 'Tell us about your project(s)',
 		help: 'Required, make sure to add links!',
 		required: true,
+	},
+	{
+		type: 'alert',
+		alertType: 'warning',
+		name: 'projectnote',
+		title: 'Please note:',
+		body: (
+			<>
+				<p>
+					All projects and repositories are evaluated by Virtual Coffee staff
+					before being shared with our members.{' '}
+				</p>
+				<p>
+					Please take a look at our{' '}
+					<a
+						href="https://virtualcoffee.io/member-resources/oss-maintainer-checklist/"
+						className="font-medium underline text-yellow-700 hover:text-yellow-600"
+					>
+						Maintainer's Checklist
+					</a>{' '}
+					to ensure your project has everything it needs to support Open Source
+					Contributions.
+				</p>
+				<p>
+					If your project needs some work to meet these requirements, please
+					still fill out this form, and we may be able to support your efforts
+					to prepare for Hacktoberfest!
+				</p>
+			</>
+		),
+	},
+	{
+		name: 'ProjectsRequirementsStatus',
+		type: 'Single select',
+		possibleValues: [
+			'My project meets these requirements',
+			"I'm in the process of updating my project",
+			'I would like some help updating my project ',
+		],
+		label: 'Are your projects ready for Open Source Contributors?',
 	},
 	{
 		name: 'HowManyHours',
@@ -298,11 +353,5 @@ export const maintainers = [
 		possibleValues: ['Yes', 'No'],
 		label:
 			'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
-	},
-	{
-		name: 'ComfortableWorkingWithContributors',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label: 'Are you comfortable working hands-on with your contributors?',
 	},
 ]
