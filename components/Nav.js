@@ -6,6 +6,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Button from './Button'
 import classNames from '../util/classNames'
 import Container from './Container'
+import { useRouter } from 'next/router'
 
 const userNavigation = [
 	{ name: 'Dashboard', props: { href: '/dashboard' } },
@@ -26,12 +27,13 @@ const navigation = [
 	{ name: 'FAQ', href: '/#questions' },
 	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
 	{ name: 'Code of Conduct', href: 'https://virtualcoffee.io/code-of-conduct' },
+	{ name: 'Dashboard', href: '/dashboard', authOnly: true },
 ]
 
 export default function Nav() {
 	const { data: session, status: sessionStatus } = useSession()
+	const { pathname } = useRouter()
 
-	// console.log({ session })
 	return (
 		<>
 			<noscript>
@@ -59,22 +61,30 @@ export default function Nav() {
 										/>
 									</div>
 									<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-										{navigation.map(({ name, current, href, ...rest }) => (
-											<Link href={href} key={name}>
-												<a
-													className={classNames(
-														current
-															? 'border-indigo-500 text-gray-900'
-															: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-														'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-													)}
-													aria-current={current ? 'page' : undefined}
-													{...rest}
-												>
-													{name}
-												</a>
-											</Link>
-										))}
+										{navigation.map(({ name, authOnly, href, ...rest }) => {
+											if (authOnly && sessionStatus !== 'authenticated') {
+												return null
+											}
+
+											return (
+												<Link href={href} key={name}>
+													<a
+														className={classNames(
+															href === pathname
+																? 'border-indigo-500 text-gray-900'
+																: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+															'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+														)}
+														aria-current={
+															href === pathname ? 'page' : undefined
+														}
+														{...rest}
+													>
+														{name}
+													</a>
+												</Link>
+											)
+										})}
 									</div>
 								</div>
 								<div className="hidden sm:ml-6 sm:flex sm:items-center">
