@@ -129,6 +129,12 @@ export const contributors = [
 		],
 	},
 	{
+		name: 'RequestedMentor',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		label: 'I would like to be paired with a mentor for Hacktoberfest',
+	},
+	{
 		name: 'Note',
 		type: 'alert',
 		alertType: 'info',
