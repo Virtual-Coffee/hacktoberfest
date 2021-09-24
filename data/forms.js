@@ -310,7 +310,8 @@ export const maintainers = [
 		possibleValues: [
 			'Directly through Github issues',
 			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Email',
+			'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
 		],
 	},
 	{
