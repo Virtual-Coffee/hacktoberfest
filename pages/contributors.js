@@ -89,6 +89,51 @@ export default function Page() {
 		return null
 	}
 
+	if (!previousFormSubmission.data) {
+		return (
+			<FormLayout
+				title="We've ended submissions for 2021"
+				description="Thank you for your interest, but we've ended submissions for this year. See you next year!"
+			>
+				<div className="text-center">
+					<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+						We've ended submissions for 2021
+					</h1>
+					<p className="mt-4 text-lg leading-6 text-gray-500">
+						Thank you for your interest, but we've ended submissions for this
+						year.
+					</p>
+					<p className="mt-4 text-lg leading-6 text-gray-500">
+						See you next year!
+					</p>
+				</div>
+			</FormLayout>
+		)
+	}
+
+	if (previousFormSubmission.isError) {
+		return (
+			<FormLayout
+				title="We've ended submissions for 2021"
+				description="Thank you for your interest, but we've ended submissions for this year. See you next year!"
+			>
+				<div className="mt-12">
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin augue
+					nisi, fermentum vitae, imperdiet a, auctor eu, mi. Nulla imperdiet
+					molestie purus. Duis arcu dui, pretium in, molestie id, convallis
+					eget, orci. Praesent eget purus. Nullam sed nunc. Etiam quis orci ac
+					metus consectetuer consequat. Sed pulvinar aliquam sem. Vestibulum
+					convallis. Pellentesque vestibulum dapibus est. Morbi iaculis. Morbi
+					molestie molestie libero. Ut metus. Phasellus pulvinar. Aenean rutrum
+					tristique neque. Morbi vulputate. Curabitur pretium, arcu a accumsan
+					pretium, augue mi ullamcorper ligula, at tristique ligula purus quis
+					mi. Etiam blandit arcu et lorem. Nam ligula. Aliquam nisi sem, euismod
+					id, pharetra vitae, ullamcorper et, pede.
+				</div>
+			</FormLayout>
+		)
+	}
+
 	return (
 		<FormLayout
 			title="Become a Hacktoberfest Contributor"

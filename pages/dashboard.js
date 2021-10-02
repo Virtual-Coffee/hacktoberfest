@@ -22,6 +22,7 @@ import {
 } from '../util/api'
 import { useQuery } from 'react-query'
 import SignIn from '../components/SignIn'
+import classNames from '../util/classNames'
 
 export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()
@@ -83,9 +84,18 @@ export default function Page() {
 										Update your submission
 									</Button>
 								) : (
-									<Button size="md" href="/contributors">
-										I Want to Hack!
-									</Button>
+									<span
+										className={classNames(
+											'text-orange-600 bg-gray-50 ',
+											'text-base px-5 py-3',
+											'inline-block border border-transparent leading-6 font-medium rounded-md '
+										)}
+									>
+										All Full!
+									</span>
+									// <Button size="md" href="/contributors">
+									// 	I Want to Hack!
+									// </Button>
 								)}
 							</CardHeaderActions>
 						</CardHeader>
@@ -116,7 +126,7 @@ export default function Page() {
 										</>
 									) : (
 										<span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-											Open
+											Submissions closed for the year
 										</span>
 									)}
 								</CardListItemValue>
@@ -139,9 +149,18 @@ export default function Page() {
 										Update your submission
 									</Button>
 								) : (
-									<Button size="md" href="/maintainers">
-										I Have Issues!
-									</Button>
+									<span
+										className={classNames(
+											'text-orange-600 bg-gray-50 ',
+											'text-base px-5 py-3',
+											'inline-block border border-transparent leading-6 font-medium rounded-md '
+										)}
+									>
+										All Full!
+									</span>
+									// <Button size="md" href="/maintainers">
+									// 	I Have Issues!
+									// </Button>
 								)}
 							</CardHeaderActions>
 						</CardHeader>
@@ -186,7 +205,7 @@ export default function Page() {
 										</>
 									) : (
 										<span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-											Open
+											Submissions closed for the year
 										</span>
 									)}
 								</CardListItemValue>

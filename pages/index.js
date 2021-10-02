@@ -13,7 +13,9 @@ const choices = [
 			'Join a great community of developers',
 		],
 		button: {
-			text: 'I Want to Hack!',
+			// text: 'I Want to Hack!',
+			text: 'All full!',
+			disabled: true,
 			link: '/contributors',
 		},
 	},
@@ -41,7 +43,9 @@ const choices = [
 			'Join a great community of developers',
 		],
 		button: {
-			text: "I'd Love to Help!",
+			// text: "I'd Love to Help!",
+			text: 'All Full!',
+			disabled: true,
 			link: '/mentors',
 		},
 	},

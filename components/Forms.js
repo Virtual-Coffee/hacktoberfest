@@ -11,7 +11,7 @@ const helpClass = 'text-sm leading-6 text-gray-500'
 export function FormLayout({ title, description, children }) {
 	return (
 		<Layout title={title} description={description}>
-			<div className="relative max-w-3xl mx-auto">
+			<div className="relative max-w-3xl mx-auto px-4">
 				<div className="mt-12">{children}</div>
 			</div>
 		</Layout>
