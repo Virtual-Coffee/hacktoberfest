@@ -29,7 +29,9 @@ const choices = [
 			'Join a great community of developers',
 		],
 		button: {
-			text: 'I Have Issues!',
+			// text: 'I Have Issues!',
+			text: 'All Full!',
+			disabled: true,
 			link: '/maintainers',
 		},
 	},
@@ -43,9 +45,7 @@ const choices = [
 			'Join a great community of developers',
 		],
 		button: {
-			// text: "I'd Love to Help!",
-			text: 'All Full!',
-			disabled: true,
+			text: "I'd Love to Help!",
 			link: '/mentors',
 		},
 	},
