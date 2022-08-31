@@ -23,9 +23,11 @@ import {
 import { useQuery } from 'react-query'
 import SignIn from '../components/SignIn'
 import classNames from '../util/classNames'
+import { useNewSubmissionsClosed } from '../util/globals'
 
 export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()
+	const newSubmissionsClosed = useNewSubmissionsClosed()
 
 	const contributorsSubmission = useQuery(
 		'contributors-form',
@@ -83,7 +85,7 @@ export default function Page() {
 									<Button size="md" href="/contributors">
 										Update your submission
 									</Button>
-								) : (
+								) : newSubmissionsClosed ? (
 									<span
 										className={classNames(
 											'text-orange-600 bg-gray-50 ',
@@ -93,9 +95,10 @@ export default function Page() {
 									>
 										All Full!
 									</span>
-									// <Button size="md" href="/contributors">
-									// 	I Want to Hack!
-									// </Button>
+								) : (
+									<Button size="md" href="/contributors">
+										I Want to Hack!
+									</Button>
 								)}
 							</CardHeaderActions>
 						</CardHeader>
@@ -126,7 +129,9 @@ export default function Page() {
 										</>
 									) : (
 										<span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-											Submissions closed for the year
+											{newSubmissionsClosed
+												? 'Submissions closed for the year'
+												: 'Open'}
 										</span>
 									)}
 								</CardListItemValue>
@@ -148,7 +153,7 @@ export default function Page() {
 									<Button size="md" href="/maintainers">
 										Update your submission
 									</Button>
-								) : (
+								) : newSubmissionsClosed ? (
 									<span
 										className={classNames(
 											'text-orange-600 bg-gray-50 ',
@@ -158,9 +163,10 @@ export default function Page() {
 									>
 										All Full!
 									</span>
-									// <Button size="md" href="/maintainers">
-									// 	I Have Issues!
-									// </Button>
+								) : (
+									<Button size="md" href="/maintainers">
+										I Have Issues!
+									</Button>
 								)}
 							</CardHeaderActions>
 						</CardHeader>
@@ -205,7 +211,9 @@ export default function Page() {
 										</>
 									) : (
 										<span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-											Submissions closed for the year
+											{newSubmissionsClosed
+												? 'Submissions closed for the year'
+												: 'Open'}
 										</span>
 									)}
 								</CardListItemValue>

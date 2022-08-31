@@ -1,64 +1,81 @@
 import ChoiceCard from '../components/ChoiceCard'
 import Layout from '../components/Layout'
 import Head from 'next/head'
+import { useNewSubmissionsClosed } from '../util/globals'
+import { useMemo } from 'react'
 
-const choices = [
-	{
-		header: 'Contributors',
-		intro:
-			"Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
-		items: [
-			'Learn OSS essentials',
-			'Complete Hacktoberfest Challenge',
-			'Join a great community of developers',
-		],
-		button: {
-			text: 'I Want to Hack!',
-			// text: 'All full!',
-			// disabled: true,
-			link: '/contributors',
+const getChoices = function (newSubmissionsClosed) {
+	return [
+		{
+			header: 'Contributors',
+			intro:
+				"Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+			items: [
+				'Learn OSS essentials',
+				'Complete Hacktoberfest Challenge',
+				'Join a great community of developers',
+			],
+			button: newSubmissionsClosed
+				? {
+						text: 'All full!',
+						disabled: true,
+						link: '/contributors',
+				  }
+				: {
+						text: 'I Want to Hack!',
+						link: '/contributors',
+				  },
 		},
-	},
-	{
-		header: 'Maintainers',
-		intro:
-			"Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start or continue their open source journey.",
-		items: [
-			'Find some excited contributors for your project',
-			'Grow your community',
-			'Join a great community of developers',
-		],
-		button: {
-			text: 'I Have Issues!',
-			// text: 'All Full!',
-			// disabled: true,
-			link: '/maintainers',
+		{
+			header: 'Maintainers',
+			intro:
+				"Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start or continue their open source journey.",
+			items: [
+				'Find some excited contributors for your project',
+				'Grow your community',
+				'Join a great community of developers',
+			],
+			button: newSubmissionsClosed
+				? {
+						text: 'All Full!',
+						disabled: true,
+						link: '/maintainers',
+				  }
+				: {
+						text: 'I Have Issues!',
+						link: '/maintainers',
+				  },
 		},
-	},
-	{
-		header: 'Mentors',
-		intro:
-			"Have a few Pull Requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors.",
-		items: [
-			'Give back to the community',
-			'Have some fun',
-			'Join a great community of developers',
-		],
-		button: {
-			text: "I'd Love to Help!",
-			link: '/mentors',
+		{
+			header: 'Mentors',
+			intro:
+				"Have a few Pull Requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors.",
+			items: [
+				'Give back to the community',
+				'Have some fun',
+				'Join a great community of developers',
+			],
+			button: {
+				text: "I'd Love to Help!",
+				link: '/mentors',
+			},
 		},
-	},
-]
+	]
+}
 
 export default function Page() {
+	const newSubmissionsClosed = useNewSubmissionsClosed()
+	const choices = useMemo(
+		() => getChoices(newSubmissionsClosed),
+		[newSubmissionsClosed]
+	)
 	return (
 		<Layout>
 			<Head>
 				<title>Virtual Coffee Hacktoberfest Initiative</title>
 				<meta
 					name="description"
-					content="Virtual Coffee is gearing up for Hacktoberfest 2021 and we want you to join us!"
+					content="Virtual Coffee is gearing up for Hacktoberfest 2022 and we want you to join us!"
 				/>
 			</Head>
 			<div className="text-center">
@@ -73,7 +90,7 @@ export default function Page() {
 						className="text-orange-500 underline"
 						href="https://hacktoberfest.digitalocean.com"
 					>
-						Hacktoberfest 2021
+						Hacktoberfest 2022
 					</a>{' '}
 					and we want you to join us!
 				</p>

@@ -7,6 +7,7 @@ import SignIn from '../components/SignIn'
 import { useQuery } from 'react-query'
 import Button from '../components/Button'
 import { getMaintainersSubmission } from '../util/api'
+import { useNewSubmissionsClosed } from '../util/globals'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -54,6 +55,7 @@ export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
+	const newSubmissionsClosed = useNewSubmissionsClosed()
 
 	const previousFormSubmission = useQuery(
 		'maintainers-form',
@@ -80,15 +82,15 @@ export default function Page() {
 		return null
 	}
 
-	if (!previousFormSubmission.data) {
+	if (!previousFormSubmission.data && newSubmissionsClosed) {
 		return (
 			<FormLayout
-				title="We've ended submissions for 2021"
+				title="We've ended submissions for 2022"
 				description="Thank you for your interest, but we've ended submissions for this year. See you next year!"
 			>
 				<div className="text-center">
 					<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-						We've ended submissions for 2021
+						We've ended submissions for 2022
 					</h1>
 					<p className="mt-4 text-lg leading-6 text-gray-500">
 						Thank you for your interest, but we've ended submissions for this
