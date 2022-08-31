@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Button from './Button'
 import classNames from '../util/classNames'
 import Container from './Container'
@@ -148,9 +148,9 @@ export default function Nav() {
 									<Disclosure.Button className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 										<span className="sr-only">Open main menu</span>
 										{open ? (
-											<XIcon className="block h-6 w-6" aria-hidden="true" />
+											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
 										) : (
-											<MenuIcon className="block h-6 w-6" aria-hidden="true" />
+											<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
 										)}
 									</Disclosure.Button>
 								</div>

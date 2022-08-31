@@ -1,9 +1,9 @@
 import {
 	XCircleIcon,
-	ExclamationIcon,
+	ExclamationTriangleIcon,
 	CheckCircleIcon,
 	InformationCircleIcon,
-} from '@heroicons/react/solid'
+} from '@heroicons/react/24/solid'
 import classNames from '../util/classNames'
 
 const alertTypes = {
@@ -16,10 +16,9 @@ const alertTypes = {
 	},
 	warning: {
 		bodyBg: 'bg-yellow-50',
-		Icon: ExclamationIcon,
+		Icon: ExclamationTriangleIcon,
 		iconColor: 'text-yellow-400',
 		titleColor: 'text-yellow-800',
-		bodyColor: 'text-yellow-700',
 	},
 	success: {
 		bodyBg: 'bg-green-50',

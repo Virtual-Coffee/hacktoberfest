@@ -14,7 +14,7 @@ import {
 import Container from '../components/Container'
 import Button from '../components/Button'
 import Loader from '../components/Loader'
-import { CheckCircleIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import {
 	getContributorSubmission,
 	getMaintainersSubmission,
