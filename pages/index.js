@@ -92,7 +92,7 @@ export default function Page() {
 					>
 						Hacktoberfest 2022
 					</a>{' '}
-					and we want you to join us!
+					and we want our Virtual Coffee members to join us!
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 					Our plan is to harness the power in our community to help developers
@@ -129,19 +129,10 @@ export default function Page() {
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
 									Virtual Coffee is a supportive community of developers at all
-									stages of the journey. It started as a twice-weekly zoom chat
-									about life and tech, but we've grown a lot in the last five
-									months! We do a little bit of everything, which includes a
-									thriving slack group, special events, mentoring sessions, and
-									good people. If you're interested in joining, you can come to
-									an event by signing up{' '}
-									<a
-										href="https://meetingplace.io/virtual-coffee"
-										className="text-orange-500 underline"
-									>
-										here
-									</a>
-									.
+									stages of the journey. Our mission is to be a welcoming tech community that allows room for growth and mentorship at all levels, and to create meaningful opportunities for learning, leadership, and contribution for everyone.  We do a little bit of everything, which includes a
+									thriving slack group, special events, twice-weekly meetings, a podcast and newsletter, and
+									good people. All new members are invite only from our active volunteers.
+								
 								</p>
 							</dd>
 
@@ -153,7 +144,7 @@ export default function Page() {
 									Hacktoberfest is a month-long virtual event that encourages
 									and supports open-source contributions. Open Source Software
 									(OSS) is code that the public can view, contribute to, and
-									use. Sponsored by Digital Ocean and DEV, a contributor can
+									use. Sponsored by Digital Ocean, a contributor can
 									qualify for the official Hacktoberfest swag by{' '}
 									<a
 										href="https://hacktoberfest.digitalocean.com"
@@ -186,7 +177,7 @@ export default function Page() {
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
 									A contributor is someone who submits code or documentation to
-									an open source project as a pull request on Github but usually
+									an open source project as a pull request on GitHub but usually
 									does not have the ability to merge their contributions.
 									Contributors can find issues to work on in open source
 									repositories. To get started as an open source contributor for
