@@ -228,14 +228,14 @@ export default function Page() {
 									whether on social media, through our events, or slack.
 								</p>
 							</dd>
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+							{/* <dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
 								How many roles can I take on?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
 									The short answer is as many as you want! If you want to be a maintainer, mentor, and contributor, you can. But we know that this can be really time consuming, so we ask that you carefully consider how much you can take on, especially as a mentor and maintainer as you'll have other people to support.
 								</p>
-							</dd>
+							</dd> */}
 						</dl>
 					</div>
 				</div>
