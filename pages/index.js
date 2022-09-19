@@ -9,7 +9,7 @@ const getChoices = function (newSubmissionsClosed) {
 		{
 			header: 'Contributors',
 			intro:
-				"Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
 			items: [
 				'Learn OSS essentials',
 				'Complete Hacktoberfest Challenge',
@@ -107,7 +107,7 @@ export default function Page() {
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for Hacktoberfest:
 					</h2>
-					<div className="text-base leading-6 text-gray-500">*Choose as many roles as you like.</div>
+					<div className="text-base leading-6 text-gray-500">*Choose as many roles as you like. Mentorship only guaranteed if you're a Virtual Coffee member who registers before September 28th.</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
@@ -228,14 +228,14 @@ export default function Page() {
 									whether on social media, through our events, or slack.
 								</p>
 							</dd>
-							{/* <dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
 								How many roles can I take on?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									The short answer is as many as you want! If you want to be a maintainer, mentor, and contributor, you can. But we know that this can be really time consuming, so we ask that you carefully consider how much you can take on, especially as a mentor and maintainer as you'll have other people to support.
+									The short answer is as many as you want! If you want to be a maintainer, mentor, and contributor, you can. But we know that this can be really time consuming, so we ask that you carefully consider how much you can take on, especially as a mentor and maintainer who will be supporting others.
 								</p>
-							</dd> */}
+							</dd>
 						</dl>
 					</div>
 				</div>
