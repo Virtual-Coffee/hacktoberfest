@@ -9,7 +9,7 @@ const getChoices = function (newSubmissionsClosed) {
 		{
 			header: 'Contributors',
 			intro:
-				"Are you interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
 			items: [
 				'Learn OSS essentials',
 				'Complete Hacktoberfest Challenge',
@@ -107,7 +107,7 @@ export default function Page() {
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for Hacktoberfest:
 					</h2>
-					<div className="text-base leading-6 text-gray-500">*Choose as many roles as you like.</div>
+					<div className="text-base leading-6 text-gray-500">*Choose as many roles as you like. Mentorship only guaranteed if you're a Virtual Coffee member who registers before September 28th.</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
