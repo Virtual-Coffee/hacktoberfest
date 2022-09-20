@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth'
-import GitHub from 'next-auth/providers/github'
+import GitHub, { GithubProfile } from 'next-auth/providers/github'
 import {
 	findOrCreateUserAuthIdByGitHubAccount,
 	findOrCreateUserProfile,
@@ -10,20 +10,23 @@ import {
 export default NextAuth({
 	// https://next-auth.js.org/configuration/providers
 	providers: [
-		GitHub({
-			clientId: process.env.GITHUB_ID,
-			clientSecret: process.env.GITHUB_SECRET,
+		GitHub<GithubProfile>({
+			clientId: process.env.GITHUB_ID || '',
+			clientSecret: process.env.GITHUB_SECRET || '',
 			// https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
-			scope: 'read:user,user:email',
+			authorization: {
+				url: 'https://github.com/login/oauth/authorize',
+				params: { scope: 'read:user user:email' },
+			},
 			profile(profile) {
 				// console.log(profile)
 				return {
-					id: profile.id,
+					id: `gh${profile.id}`,
 					name: profile.name || profile.login,
 					email: profile.email,
 					image: profile.avatar_url,
 					login: profile.login,
-					twitter_username: profile.twitter_username,
+					twitter_username: profile.twitter_username || undefined,
 				}
 			},
 		}),
@@ -45,7 +48,7 @@ export default NextAuth({
 		// Use JSON Web Tokens for session instead of database sessions.
 		// This option can be used with or without a database for users/accounts.
 		// Note: `jwt` is automatically set to `true` if no database is specified.
-		jwt: true,
+		strategy: 'jwt',
 
 		// Seconds - How long until an idle session expires and is no longer valid.
 		// maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -141,10 +144,6 @@ export default NextAuth({
 	// Events are useful for logging
 	// https://next-auth.js.org/configuration/events
 	events: {},
-
-	// You can set the theme to 'light', 'dark' or use 'auto' to default to the
-	// whatever prefers-color-scheme is set to in the browser. Default is 'auto'
-	theme: 'light',
 
 	// Enable debug messages in the console if you are having problems
 	debug: false,
