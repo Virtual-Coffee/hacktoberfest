@@ -44,6 +44,8 @@ export const profile = [
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
 		label: 'Are you a current Virtual Coffee Member?',
+		required: true,
+		help: 'You must be a VC member to participate in our Virtual Coffee Hacktoberfest Initiative as a Contributor or Mentor.',
 	},
 	{
 		name: 'AllowSocialSharing',
@@ -150,9 +152,8 @@ export const contributors = [
 		body: (
 			<p>
 				Although we would love to support everyone in their Open Source journey,
-				we're still a very small team with limited resources. Priority for
-				pairings will be given to Virtual Coffee Community members (attended at
-				least one of the Virtual Coffee Zoom calls)
+				we're still a very small team with limited resources. We will do our
+				best to pair you with a mentor, but we can't guarantee it.
 			</p>
 		),
 	},
@@ -274,7 +275,7 @@ export const maintainers = [
 				<p>
 					Please take a look at our{' '}
 					<a
-						href="https://virtualcoffee.io/member-resources/oss-maintainer-checklist/"
+						href="https://virtualcoffee.io/resources/open-source/maintainer-guide"
 						className="font-medium underline text-yellow-700 hover:text-yellow-600"
 					>
 						Maintainer's Checklist
