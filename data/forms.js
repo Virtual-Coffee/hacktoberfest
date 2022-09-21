@@ -15,6 +15,14 @@ export const profile = [
 		help: 'Required',
 	},
 	{
+		name: 'PreferredTimeZone',
+		type: 'Text',
+		inputType: 'email',
+		label: 'Preferred Time Zone',
+		required: true,
+		help: 'Required',
+	},
+	{
 		name: 'GitHubUsername',
 		type: 'Text',
 		label: 'GitHub Username',
