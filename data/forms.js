@@ -17,7 +17,6 @@ export const profile = [
 	{
 		name: 'PreferredTimeZone',
 		type: 'Text',
-		inputType: 'email',
 		label: 'Preferred Time Zone',
 		required: true,
 		help: 'Required',
