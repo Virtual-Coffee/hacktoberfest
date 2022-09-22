@@ -1,6 +1,8 @@
 import * as formData from '../../../data/forms'
+import NextAuth, { DefaultSession, User } from 'next-auth'
+import Airtable from 'airtable'
+import { AirtableMembersAuthFieldSet } from './types'
 
-var Airtable = require('airtable')
 var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 	'appGHm8ztVWug6UxH'
 )
@@ -11,8 +13,10 @@ const TABLES = {
 	mentors: 'hacktoberfest_mentor',
 }
 
-export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
-	const results = await base('members_auth')
+export async function findOrCreateUserAuthIdByGitHubAccount(
+	githubAccount: User
+) {
+	const results = await base<AirtableMembersAuthFieldSet>('members_auth')
 		.select({
 			filterByFormula: `{GitHub ID}='${githubAccount.id}'`,
 		})
@@ -22,7 +26,9 @@ export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
 		const userRow = results[0]
 		return userRow.id
 	} else {
-		const created = await base('members_auth').create({
+		const created = await base<AirtableMembersAuthFieldSet>(
+			'members_auth'
+		).create({
 			github: githubAccount.login,
 			// casting id as a string because i can't find any docs that promise user id will always be a number
 			'GitHub ID': `${githubAccount.id}`,
