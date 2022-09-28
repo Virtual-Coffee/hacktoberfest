@@ -278,6 +278,8 @@ function createInitialState({
 		session?.profile?.Username || session?.githubUser?.login || undefined
 	state.fields['TwitterUsername'] =
 		session?.profile?.['TwitterUsername'] || undefined
+	state.fields['PreferredTimeZone'] =
+		session?.profile?.['PreferredTimeZone'] || undefined
 	state.fields.Pronouns = session?.profile?.Pronouns || undefined
 	state.fields.Email =
 		session?.profile?.Email || session?.githubUser?.email || undefined

@@ -128,6 +128,7 @@ export default NextAuth({
 				profile_id: profile.profile_id,
 				GitHubUsername: profile['GitHubUsername'],
 				TwitterUsername: profile['TwitterUsername'],
+				PreferredTimeZone: profile['PreferredTimeZone'],
 				Pronouns: profile.Pronouns,
 				Email: profile.Email,
 				IsMember: profile.IsMember,

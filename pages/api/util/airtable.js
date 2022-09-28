@@ -65,6 +65,7 @@ export async function updateUserProfile(auth_id, profile_id, fields) {
 
 	const results = await base('member_profiles').update(profile_id, {
 		GitHubUsername: fields.GitHubUsername,
+		PreferredTimeZone: fields.PreferredTimeZone,
 		TwitterUsername: fields.TwitterUsername,
 		Name: fields.Name,
 		Pronouns: fields.Pronouns,
