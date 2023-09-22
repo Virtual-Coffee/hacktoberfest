@@ -9,6 +9,10 @@
 	},
 	"homepage": "https://github.com/Virtual-Coffee/hacktoberfest",
 	"main": "",
+	"engines": {
+		"node": "^18.16"
+	},
+	"packageManager": "pnpm@8.6.12",
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
