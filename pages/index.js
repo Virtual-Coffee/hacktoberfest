@@ -102,7 +102,7 @@ export default function Page() {
 				</p>
 			</div>
 
-			<div className="mt-12 lg:mt-20 py-12 bg-white">
+			<div className="mt-12 lg:mt-20 py-12">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for Hacktoberfest:
@@ -119,7 +119,7 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="bg-white" id="questions">
+			<div className="" id="questions">
 				<div className="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Questions:
