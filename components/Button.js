@@ -34,11 +34,7 @@ export default function Button({
 		if (external) {
 			return <a href={href} {...props} />
 		}
-		return (
-			<Link href={href}>
-				<a {...props} />
-			</Link>
-		)
+		return <Link href={href} {...props} />
 	}
 
 	return <button {...props} />

@@ -7,7 +7,7 @@ import {
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-export default NextAuth({
+export const nextAuthOptions = {
 	// https://next-auth.js.org/configuration/providers
 	providers: [
 		GitHub({
@@ -16,7 +16,6 @@ export default NextAuth({
 			// https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
 			scope: 'read:user,user:email',
 			profile(profile) {
-				// console.log(profile)
 				return {
 					id: profile.id,
 					name: profile.name || profile.login,
@@ -100,8 +99,8 @@ export default NextAuth({
 		 * @return {object}            JSON Web Token that will be saved
 		 */
 		async jwt({ token, user, account, profile, isNewUser }) {
-			// console.log({ token, user, account, profile, isNewUser })
 			// Add github login to the token right after signin
+
 			if (user?.login) {
 				token.githubUser = user
 				const auth_id = await findOrCreateUserAuthIdByGitHubAccount(user)
@@ -149,4 +148,6 @@ export default NextAuth({
 
 	// Enable debug messages in the console if you are having problems
 	debug: false,
-})
+}
+
+export default NextAuth(nextAuthOptions)

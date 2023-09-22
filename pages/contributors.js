@@ -94,12 +94,12 @@ export default function Page() {
 	if (!previousFormSubmission.data && newSubmissionsClosed) {
 		return (
 			<FormLayout
-				title="We've ended submissions for 2022"
+				title="We've ended submissions for 2023"
 				description="Thank you for your interest, but we've ended submissions for this year. See you next year!"
 			>
 				<div className="text-center">
 					<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-						We've ended submissions for 2022
+						We've ended submissions for 2023
 					</h1>
 					<p className="mt-4 text-lg leading-6 text-gray-500">
 						Thank you for your interest, but we've ended submissions for this
