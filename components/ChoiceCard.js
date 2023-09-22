@@ -38,13 +38,12 @@ export default function ChoiceCard({ choice }) {
 							{choice.button.text}
 						</span>
 					) : (
-						<Link href={choice.button.link}>
-							<a
-								className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-none focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
-								aria-describedby="tier-standard"
-							>
-								{choice.button.text}
-							</a>
+						<Link
+							href={choice.button.link}
+							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-none focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
+							aria-describedby="tier-standard"
+						>
+							{choice.button.text}
 						</Link>
 					)}
 				</div>
