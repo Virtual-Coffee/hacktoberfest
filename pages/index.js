@@ -75,7 +75,7 @@ export default function Page() {
 				<title>Virtual Coffee Hacktoberfest Initiative</title>
 				<meta
 					name="description"
-					content="Virtual Coffee is gearing up for Hacktoberfest 2022 and we want you to join us!"
+					content="Virtual Coffee is gearing up for Hacktoberfest 2023 and we want you to join us!"
 				/>
 			</Head>
 			<div className="text-center">
@@ -90,7 +90,7 @@ export default function Page() {
 						className="text-orange-500 underline"
 						href="https://hacktoberfest.digitalocean.com"
 					>
-						Hacktoberfest 2022
+						Hacktoberfest 2023
 					</a>{' '}
 					and we want our Virtual Coffee members to join us!
 				</p>
@@ -107,7 +107,10 @@ export default function Page() {
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for Hacktoberfest:
 					</h2>
-					<div className="text-base leading-6 text-gray-500">*Choose as many roles as you like. Mentorship only guaranteed if you're a Virtual Coffee member who registers before September 28th.</div>
+					<div className="text-base leading-6 text-gray-500">
+						*Choose as many roles as you like. Mentorship only guaranteed if
+						you're a Virtual Coffee member who registers before September 28th.
+					</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
@@ -129,10 +132,14 @@ export default function Page() {
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
 									Virtual Coffee is a supportive community of developers at all
-									stages of the journey. Our mission is to be a welcoming tech community that allows room for growth and mentorship at all levels, and to create meaningful opportunities for learning, leadership, and contribution for everyone.  We do a little bit of everything, which includes a
-									thriving slack group, special events, twice-weekly meetings, a podcast and newsletter, and
-									good people. All new members are invite only from our active volunteers.
-								
+									stages of the journey. Our mission is to be a welcoming tech
+									community that allows room for growth and mentorship at all
+									levels, and to create meaningful opportunities for learning,
+									leadership, and contribution for everyone. We do a little bit
+									of everything, which includes a thriving slack group, special
+									events, twice-weekly meetings, a podcast and newsletter, and
+									good people. All new members are invite only from our active
+									volunteers.
 								</p>
 							</dd>
 
@@ -144,8 +151,8 @@ export default function Page() {
 									Hacktoberfest is a month-long virtual event that encourages
 									and supports open-source contributions. Open Source Software
 									(OSS) is code that the public can view, contribute to, and
-									use. Sponsored by Digital Ocean, a contributor can
-									qualify for the official Hacktoberfest swag by{' '}
+									use. Sponsored by Digital Ocean, a contributor can qualify for
+									the official Hacktoberfest swag by{' '}
 									<a
 										href="https://hacktoberfest.digitalocean.com"
 										className="text-orange-500 underline"
@@ -233,7 +240,11 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									The short answer is as many as you want! If you want to be a maintainer, mentor, and contributor, you can. But we know that this can be really time consuming, so we ask that you carefully consider how much you can take on, especially as a mentor and maintainer who will be supporting others.
+									The short answer is as many as you want! If you want to be a
+									maintainer, mentor, and contributor, you can. But we know that
+									this can be really time consuming, so we ask that you
+									carefully consider how much you can take on, especially as a
+									mentor and maintainer who will be supporting others.
 								</p>
 							</dd>
 						</dl>
