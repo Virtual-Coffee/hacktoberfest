@@ -1,5 +1,3 @@
-// This is an example of to protect an API route
-import { getSession } from 'next-auth/react'
 import { getToken } from 'next-auth/jwt'
 import {
 	createOrUpdateForm,
@@ -7,11 +5,13 @@ import {
 	updateUserProfile,
 } from '../util/airtable'
 import * as formData from '../../../data/forms'
+import { nextAuthOptions } from '../auth/[...nextauth]'
+import { getServerSession } from 'next-auth/next'
 
 const secret = process.env.SECRET
 
 export default async (req, res) => {
-	const session = await getSession({ req })
+	const session = await getServerSession(req, res, nextAuthOptions)
 	const token = await getToken({ req, secret })
 
 	if (session && token?.auth_id) {
