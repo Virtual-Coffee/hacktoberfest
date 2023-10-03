@@ -9,7 +9,7 @@ const getChoices = function (newSubmissionsClosed) {
 		{
 			header: 'Contributors',
 			intro:
-				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or Open Source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or open source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
 			items: [
 				'Learn OSS essentials',
 				'Complete Hacktoberfest Challenge',
@@ -29,7 +29,7 @@ const getChoices = function (newSubmissionsClosed) {
 		{
 			header: 'Maintainers',
 			intro:
-				"Are you an Open Source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start or continue their open source journey.",
+				"Are you an open source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our contributors as they start or continue their open source journey.",
 			items: [
 				'Find some excited contributors for your project',
 				'Grow your community',
@@ -49,7 +49,7 @@ const getChoices = function (newSubmissionsClosed) {
 		{
 			header: 'Mentors',
 			intro:
-				"Have a few Pull Requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors.",
+				"Have a few pull requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors.",
 			items: [
 				'Give back to the community',
 				'Have some fun',
@@ -87,8 +87,8 @@ export default function Page() {
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 					Virtual Coffee is gearing up for{' '}
 					<a
+						href="https://hacktoberfest.com"
 						className="text-orange-500 underline"
-						href="https://hacktoberfest.digitalocean.com"
 					>
 						Hacktoberfest 2023
 					</a>{' '}
@@ -136,7 +136,7 @@ export default function Page() {
 									community that allows room for growth and mentorship at all
 									levels, and to create meaningful opportunities for learning,
 									leadership, and contribution for everyone. We do a little bit
-									of everything, which includes a thriving slack group, special
+									of everything, which includes a thriving Slack group, special
 									events, twice-weekly meetings, a podcast and newsletter, and
 									good people. All new members are invite only from our active
 									volunteers.
@@ -148,18 +148,20 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
-									Hacktoberfest is a month-long virtual event that encourages
-									and supports open-source contributions. Open Source Software
-									(OSS) is code that the public can view, contribute to, and
-									use. Sponsored by Digital Ocean, a contributor can qualify for
-									the official Hacktoberfest swag by{' '}
+									Hacktoberfest is a month-long virtual event encouraging and
+									supporting open-source contributions sponsored by Digital
+									Ocean. Open Source Software (OSS) is code the public can view,
+									contribute to, and use. A contributor can complete
+									Hacktoberfest by{' '}
 									<a
-										href="https://hacktoberfest.digitalocean.com"
+										href="https://hacktoberfest.com/"
 										className="text-orange-500 underline"
 									>
 										registering
 									</a>{' '}
-									and making four pull requests (PRs) between October 1-31.
+									and getting four pull requests (PRs) accepted by maintainers
+									in repositories with the "Hacktoberfest" topic or labeled
+									"hacktoberfest-accepted" between October 1-31.
 								</p>
 							</dd>
 
@@ -190,7 +192,7 @@ export default function Page() {
 									repositories. To get started as an open source contributor for
 									Hacktoberfest, all you need to do is to{' '}
 									<a
-										href="https://hacktoberfest.digitalocean.com/"
+										href="https://hacktoberfest.com/"
 										className="text-orange-500 underline"
 									>
 										sign up
@@ -229,10 +231,10 @@ export default function Page() {
 									Because not everyone will need the same level or type of
 									support, we're working to accommodate as many needs as
 									possible. This could include 1:1 mentorship, access to private
-									slack channels, a group coding session, a review of the
+									Slack channels, a group coding session, a review of the
 									project you're using for Hacktoberfest, or general community
 									support. We're also here to cheer you on throughout the month,
-									whether on social media, through our events, or slack.
+									whether on social media, through our events, or Slack.
 								</p>
 							</dd>
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
