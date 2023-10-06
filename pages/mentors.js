@@ -67,7 +67,7 @@ export default function Page() {
 		return (
 			<FormLayout
 				title="Become a Hacktoberfest Mentor"
-				description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
+				description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 			>
 				<SignIn />
 			</FormLayout>
@@ -81,7 +81,7 @@ export default function Page() {
 	return (
 		<FormLayout
 			title="Become a Hacktoberfest Mentor"
-			description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
+			description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 		>
 			<Form
 				session={session}

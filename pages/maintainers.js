@@ -18,9 +18,9 @@ const intro = (
 				Calling All Maintainers
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you an Open Source maintainer who is interested in participating in
+				Are you an open source maintainer who is interested in participating in
 				Hacktoberfest? We're looking for some OSS maintainers to partner with in
-				order to provide a welcoming environment to our Contributors as they
+				order to provide a welcoming environment to our contributors as they
 				start their open source journey.
 			</p>
 		</div>
@@ -71,7 +71,7 @@ export default function Page() {
 		return (
 			<FormLayout
 				title="Calling All Maintainers"
-				description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
+				description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our contributors as they start their open source journey."
 			>
 				<SignIn />
 			</FormLayout>
@@ -107,7 +107,7 @@ export default function Page() {
 	return (
 		<FormLayout
 			title="Calling All Maintainers"
-			description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey."
+			description="We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our contributors as they start their open source journey."
 		>
 			<Form
 				session={session}
