@@ -174,10 +174,10 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Are you an Open Source maintainer who is interested in
+									Are you an open source maintainer who is interested in
 									participating in Hacktoberfest? We're looking for some OSS
 									maintainers to partner with in order to provide a welcoming
-									environment to our Contributors as they start or continue
+									environment to our contributors as they start or continue
 									their open source journey.
 								</CardListItemValue>
 							</CardListItem>
@@ -187,7 +187,7 @@ export default function Page() {
 									<ul className="list-disc">
 										<li>
 											<a
-												href="https://virtualcoffee.io/member-resources/oss-maintainer-checklist/"
+												href="https://virtualcoffee.io/resources/developer-resources/open-source/maintainer-guide#repository-checklist"
 												className="font-medium underline text-blue-700 hover:text-blue-600"
 											>
 												Maintainer's Checklist
@@ -224,7 +224,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Mentor"
-								description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career Contributors."
+								description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 							/>
 							<CardHeaderActions>
 								{mentorsSubmission.status === 'idle' ||
@@ -246,10 +246,10 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Have a few Pull Requests under your belt, and are looking for
-									ways to give back to the community? Virtual Coffee's
+									Have a few pull requests under your belt and are looking
+									for ways to give back to the community? Virtual Coffee's
 									Hacktoberfest Initiative is a great place to provide
-									high-impact help to a few early-career Contributors.
+									high-impact help to a few early-career contributors.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>

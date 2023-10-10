@@ -16,7 +16,7 @@ const intro = (
 				Become a Hacktoberfest Contributor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you interested in participating in Hacktoberfest (or Open Source in
+				Are you interested in participating in Hacktoberfest (or open source in
 				general), but don't know where to start? Or are you an experienced
 				developer looking to do this as part of the Virtual Coffee Community?
 			</p>
@@ -44,8 +44,8 @@ const successView = (
 					</p>
 					<p className="mt-4">
 						In the meantime, make sure you've{' '}
-						<a href="https://hacktoberfest.digitalocean.com/">
-							signed up for Hacktoberfest on Digital Ocean
+						<a href="https://hacktoberfest.com/">
+							signed up for Hacktoberfest on DigitalOcean
 						</a>
 						!
 					</p>
