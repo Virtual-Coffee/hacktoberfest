@@ -245,6 +245,27 @@ export const repos = [
 	},
 ]
 
+export const nonPrContributions = [
+	{
+		name: 'RepoName',
+		type: 'Text',
+		label: 'Repository Name',
+	},
+	{
+		name: 'RepoUrl',
+		type: 'URL',
+		label: 'Repository URL',
+	},
+	{
+		name: 'ContributionDescription',
+		type: 'Long text',
+		label:
+			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open source event, writing a detailed issue.',
+		help: 'Required',
+		required: true,
+	},
+]
+
 export const maintainers = [
 	// {
 	// 	name: 'Projects',
