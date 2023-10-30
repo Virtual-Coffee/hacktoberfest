@@ -108,6 +108,7 @@ export default function Page() {
 				intro={intro}
 				formKey="nonPrContributions"
 				fieldsetLegend="Contribution Details"
+				submitText="Save Contribution"
 			/>
 		</FormLayout>
 	)
