@@ -360,6 +360,8 @@ export default function Form({
 	formKey,
 	fieldsetLegend,
 	formFooter = null,
+	showProfileFields = true,
+	submitText = 'Sign Up!',
 }) {
 	const [state, dispatch] = useReducer(
 		reducer,
@@ -437,14 +439,16 @@ export default function Form({
 					onSubmit={onSubmit}
 				>
 					<div className="space-y-8 divide-y divide-gray-200">
-						<FieldSet
-							legend="Your Personal Information"
-							disabled={state.status === 'loading'}
-						>
-							{formData.profile.map((field) => (
-								<Field key={field.name} values={state.fields} field={field} />
-							))}
-						</FieldSet>
+						{showProfileFields && (
+							<FieldSet
+								legend="Your Personal Information"
+								disabled={state.status === 'loading'}
+							>
+								{formData.profile.map((field) => (
+									<Field key={field.name} values={state.fields} field={field} />
+								))}
+							</FieldSet>
+						)}
 
 						<FieldSet
 							legend={fieldsetLegend}
@@ -493,7 +497,7 @@ export default function Form({
 											? 'Loading...'
 											: previousFormSubmission
 											? 'Save'
-											: 'Sign Up!'}
+											: submitText}
 									</Button>
 								</div>
 							</div>

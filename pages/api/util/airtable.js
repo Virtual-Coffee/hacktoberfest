@@ -9,6 +9,7 @@ const TABLES = {
 	contributors: 'hacktoberfest_contributor',
 	maintainers: 'hacktoberfest_maintainer',
 	mentors: 'hacktoberfest_mentor',
+	nonPrContributions: 'hacktoberfest_contributions',
 }
 
 export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
@@ -95,6 +96,24 @@ export async function findFormResult(auth_id, formKey) {
 	return null
 }
 
+export async function findFormResults(auth_id, formKey) {
+	const table = TABLES[formKey]
+	if (!table) {
+		throw new Error('no table')
+	}
+	const findResults = await base(table)
+		.select({
+			filterByFormula: `{auth_id}='${auth_id}'`,
+		})
+		.all()
+
+	if (findResults && findResults.length) {
+		return findResults
+	}
+
+	return null
+}
+
 export async function createOrUpdateForm(auth_id, formKey, fields) {
 	const table = TABLES[formKey]
 	if (!table) {
@@ -128,7 +147,11 @@ export async function createOrUpdateForm(auth_id, formKey, fields) {
 		}
 	}, {})
 
-	const previousResult = await findFormResult(auth_id, formKey)
+	let previousResult = null
+
+	if (formKey !== 'nonPrContributions') {
+		previousResult = await findFormResult(auth_id, formKey)
+	}
 
 	if (previousResult) {
 		return await base(table).update(previousResult.id, values)

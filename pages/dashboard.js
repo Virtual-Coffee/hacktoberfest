@@ -19,6 +19,7 @@ import {
 	getContributorSubmission,
 	getMaintainersSubmission,
 	getMentorsSubmission,
+	getNonPrContributions,
 } from '../util/api'
 import { useQuery } from 'react-query'
 import SignIn from '../components/SignIn'
@@ -42,6 +43,11 @@ export default function Page() {
 	)
 
 	const mentorsSubmission = useQuery('mentors-form', getMentorsSubmission, {
+		enabled: sessionStatus === 'authenticated',
+		retry: false,
+	})
+
+	const nonPrContributions = useQuery('contribs-form', getNonPrContributions, {
 		enabled: sessionStatus === 'authenticated',
 		retry: false,
 	})
@@ -134,6 +140,49 @@ export default function Page() {
 												: 'Open'}
 										</span>
 									)}
+								</CardListItemValue>
+							</CardListItem>
+							<CardListItem>
+								<CardListItemKey>
+									Non-PR Contributions{' '}
+									{nonPrContributions.status === 'success' && (
+										<>({nonPrContributions.data.results.length})</>
+									)}
+								</CardListItemKey>
+								<CardListItemValue>
+									Not all open source contributions need to be code! If you have
+									contributed to open source this month in other ways, please
+									tell us about it!
+									<div className="mt-2">
+										<Button size="sm" href="/non-pr-contributions">
+											Add your contribution
+										</Button>
+									</div>
+									{nonPrContributions.status === 'success' &&
+										nonPrContributions.data.results.length > 0 && (
+											<>
+												<div className="mt-4">
+													<strong>
+														{nonPrContributions.data.results.length}{' '}
+														Contributions:
+													</strong>
+												</div>
+												<ul className="list-disc mt-2">
+													{nonPrContributions.data.results.map((result) => (
+														<li key={result.id}>
+															<a
+																href={result.RepoUrl}
+																className="font-medium underline text-blue-700 hover:text-blue-600"
+															>
+																{result.RepoName}
+															</a>{' '}
+															submitted on{' '}
+															{new Date(result.created_at).toLocaleDateString()}
+														</li>
+													))}
+												</ul>
+											</>
+										)}
 								</CardListItemValue>
 							</CardListItem>
 						</CardList>
@@ -246,8 +295,8 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Have a few pull requests under your belt and are looking
-									for ways to give back to the community? Virtual Coffee's
+									Have a few pull requests under your belt and are looking for
+									ways to give back to the community? Virtual Coffee's
 									Hacktoberfest Initiative is a great place to provide
 									high-impact help to a few early-career contributors.
 								</CardListItemValue>

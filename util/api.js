@@ -36,3 +36,16 @@ export async function getMentorsSubmission() {
 	}
 	return response.json()
 }
+
+export async function getNonPrContributions() {
+	const response = await fetch('/api/forms/nonPrContributions', {
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+	})
+	if (!response.ok) {
+		return null
+	}
+	return response.json()
+}
