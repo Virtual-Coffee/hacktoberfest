@@ -107,7 +107,7 @@ export async function findFormResults(auth_id, formKey) {
 		})
 		.all()
 
-	if (findResults && findResults.length) {
+	if (findResults) {
 		return findResults
 	}
 
