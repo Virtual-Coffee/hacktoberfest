@@ -75,7 +75,7 @@ export default function Page() {
 				<title>Virtual Coffee Hacktoberfest Initiative</title>
 				<meta
 					name="description"
-					content="Virtual Coffee is gearing up for Hacktoberfest 2023 and we want you to join us!"
+					content="Virtual Coffee is gearing up for Hacktoberfest 2024 and we want you to join us!"
 				/>
 			</Head>
 			<div className="text-center">
@@ -90,7 +90,7 @@ export default function Page() {
 						href="https://hacktoberfest.com"
 						className="text-orange-500 underline"
 					>
-						Hacktoberfest 2023
+						Hacktoberfest 2024
 					</a>{' '}
 					and we want our Virtual Coffee members to join us!
 				</p>
