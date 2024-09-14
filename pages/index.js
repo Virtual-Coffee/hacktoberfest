@@ -149,9 +149,9 @@ export default function Page() {
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
 									Hacktoberfest is a month-long virtual event encouraging and
-									supporting open-source contributions sponsored by Digital
-									Ocean. Open Source Software (OSS) is code the public can view,
-									contribute to, and use. A contributor can complete
+									supporting open-source contributions sponsored by
+									DigitalOcean. Open Source Software (OSS) is code the public
+									can view, contribute to, and use. A contributor can complete
 									Hacktoberfest by{' '}
 									<a
 										href="https://hacktoberfest.com/"
