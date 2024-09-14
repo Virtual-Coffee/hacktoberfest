@@ -102,8 +102,8 @@ export default function Page() {
 				</p>
 			</div>
 
-			<div className=" py-8">
-				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
+			<div className="py-8">
+				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for Hacktoberfest:
 					</h2>
