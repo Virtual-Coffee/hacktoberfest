@@ -29,7 +29,7 @@
 		"@tailwindcss/forms": "^0.5.9",
 		"airtable": "^0.12.2",
 		"next": "^13.5.6",
-		"next-auth": "4.23.1",
+		"next-auth": "^4.24.7",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-hook-form": "^7.53.0",
