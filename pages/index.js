@@ -1,7 +1,7 @@
 import ChoiceCard from '../components/ChoiceCard'
 import Layout from '../components/Layout'
 import Head from 'next/head'
-import { useNewSubmissionsClosed } from '../util/globals'
+import { currentYear, useNewSubmissionsClosed } from '../util/globals'
 import { useMemo } from 'react'
 
 const getChoices = function (newSubmissionsClosed) {
@@ -75,7 +75,7 @@ export default function Page() {
 				<title>Virtual Coffee Hacktoberfest Initiative</title>
 				<meta
 					name="description"
-					content="Virtual Coffee is gearing up for Hacktoberfest 2024 and we want you to join us!"
+					content={`Virtual Coffee is gearing up for Hacktoberfest ${currentYear} and we want you to join us!`}
 				/>
 			</Head>
 			<div className="text-center">
@@ -90,7 +90,7 @@ export default function Page() {
 						href="https://hacktoberfest.com"
 						className="text-orange-500 underline"
 					>
-						Hacktoberfest 2024
+						Hacktoberfest {currentYear}
 					</a>{' '}
 					and we want our Virtual Coffee members to join us!
 				</p>

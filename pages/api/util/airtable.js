@@ -1,4 +1,5 @@
 import * as formData from '../../../data/forms'
+import { currentYear } from '../../../util/globals'
 
 var Airtable = require('airtable')
 var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
@@ -85,7 +86,7 @@ export async function findFormResult(auth_id, formKey) {
 	}
 	const findResults = await base(table)
 		.select({
-			filterByFormula: `{auth_id}='${auth_id}'`,
+			filterByFormula: `AND({auth_id}='${auth_id}',Year=${currentYear})`,
 		})
 		.firstPage()
 
@@ -103,7 +104,7 @@ export async function findFormResults(auth_id, formKey) {
 	}
 	const findResults = await base(table)
 		.select({
-			filterByFormula: `{auth_id}='${auth_id}'`,
+			filterByFormula: `AND({auth_id}='${auth_id}',Year=${currentYear})`,
 		})
 		.all()
 
@@ -158,6 +159,7 @@ export async function createOrUpdateForm(auth_id, formKey, fields) {
 	} else {
 		return await base(table).create({
 			...values,
+			Year: `${currentYear}`,
 			member: [auth_id],
 		})
 	}
