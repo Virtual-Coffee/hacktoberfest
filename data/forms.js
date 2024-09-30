@@ -73,7 +73,7 @@ export const contributors = [
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Helping Others/Giving back',
+			'Helping others/giving back',
 			'Learning new skills/stacks',
 			'Improving my GitHub contributions/resume',
 			'Working on a good cause',
@@ -108,7 +108,7 @@ export const contributors = [
 			'Reporting and Analysis',
 			'Project Management/Planning',
 			'Unit Testing',
-			'Git flow and automation',
+			'Git Flow and Automation',
 			'Accessibility',
 		],
 		otherFieldName: 'SkillsOther',
@@ -134,7 +134,7 @@ export const contributors = [
 		possibleValues: [
 			'Pair Programming Sessions',
 			'Code Review Sessions',
-			'Git/Github flow coaching',
+			'Git/GitHub Flow Coaching',
 		],
 	},
 	{
