@@ -62,7 +62,7 @@ export const contributors = [
 		type: 'Single select',
 		possibleValues: [
 			"I've never contributed to OSS before",
-			"I've done a few contributions before, but I'm no expert.",
+			"I've done a few contributions before, but I'm no expert",
 			"I've done many open source contributions before, very familiar with the process",
 		],
 	},
