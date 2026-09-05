@@ -5,6 +5,14 @@
 [build.environment]
   NODE_VERSION = "24"
 
+  # The Hacktoberfest year the site collects submissions for.
+  #
+  # NEXT_PUBLIC_* vars are inlined into the bundle at build time, so rolling
+  # the year needs a rebuild -- redeploying an existing build will not pick
+  # it up. Keeping it here rather than in the Netlify UI means changing it is
+  # a commit, and a commit always rebuilds.
+  NEXT_PUBLIC_HACKTOBERFEST_YEAR = "2026"
+
 # Auth on deploy previews and branch deploys
 #
 # Those deploys get a different hostname per PR/branch, so NEXTAUTH_URL must
