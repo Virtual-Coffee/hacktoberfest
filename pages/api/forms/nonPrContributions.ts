@@ -1,7 +1,7 @@
 import { fromNodeHeaders } from 'better-auth/node'
 import { findSubmissions, saveSubmission } from '@/util/data'
-import * as formData from '@/data/forms'
 import { auth } from '@/lib/auth'
+import { buildFormSchema, zodIssuesToFieldErrors } from '@/util/formSchema'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,25 +17,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				const data =
 					typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-				const errors: { field: string; message: string }[] = []
+				// Non-PR contributions carry no profile fields.
+				const parsed = buildFormSchema('nonPrContributions', {
+					includeProfile: false,
+				}).safeParse(data)
 
-				const requiredFields = [
-					'agree',
-					...formData.nonPrContributions
-						.filter((field) => !!field.required)
-						.map((field) => field.name),
-				]
+				if (!parsed.success) {
+					const errors = zodIssuesToFieldErrors(parsed.error)
 
-				requiredFields.forEach((field) => {
-					if (!data[field]) {
-						errors.push({
-							field,
-							message: `${field} is required.`,
-						})
-					}
-				})
-
-				if (errors.length) {
 					if (req.headers.accept === 'application/json') {
 						res.status(409).send({
 							success: false,
@@ -51,11 +40,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
+				const { agree: _agree, ...values } = parsed.data
+
 				// Append-only: every submission is a separate contribution.
 				const submission = await saveSubmission(
 					userId,
 					'nonPrContributions',
-					data
+					values
 				)
 
 				if (req.headers.accept === 'application/json') {

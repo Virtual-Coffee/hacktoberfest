@@ -5,8 +5,8 @@ import {
 	saveSubmission,
 	updateProfile,
 } from '@/util/data'
-import * as formData from '@/data/forms'
 import { auth } from '@/lib/auth'
+import { buildFormSchema, zodIssuesToFieldErrors } from '@/util/formSchema'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -22,28 +22,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				const data =
 					typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-				const errors: { field: string; message: string }[] = []
+				const parsed = buildFormSchema('contributors', {
+					includeProfile: true,
+				}).safeParse(data)
 
-				const requiredFields = [
-					'agree',
-					...formData.profile
-						.filter((field) => !!field.required)
-						.map((field) => field.name),
-					...formData.contributors
-						.filter((field) => !!field.required)
-						.map((field) => field.name),
-				]
+				if (!parsed.success) {
+					const errors = zodIssuesToFieldErrors(parsed.error)
 
-				requiredFields.forEach((field) => {
-					if (!data[field]) {
-						errors.push({
-							field,
-							message: `${field} is required.`,
-						})
-					}
-				})
-
-				if (errors.length) {
 					if (req.headers.accept === 'application/json') {
 						res.status(409).send({
 							success: false,
@@ -59,9 +44,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
-				const profile = await updateProfile(userId, data)
+				// `agree` is consent, not a response: saveSubmission records it
+				// as agreedToCocAt rather than storing it among the answers.
+				const { agree: _agree, ...values } = parsed.data
 
-				const submission = await saveSubmission(userId, 'contributors', data)
+				const profile = await updateProfile(userId, values)
+
+				const submission = await saveSubmission(userId, 'contributors', values)
 
 				if (req.headers.accept === 'application/json') {
 					res.send({
