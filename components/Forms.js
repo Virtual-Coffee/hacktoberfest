@@ -1,4 +1,8 @@
-import { Disclosure, Transition } from '@headlessui/react'
+import {
+	Disclosure,
+	DisclosureButton,
+	DisclosurePanel,
+} from '@headlessui/react'
 import { useCallback, useEffect, useReducer } from 'react'
 import * as formData from '../data/forms'
 import Alert, { ErrorAlert } from './Alert'
@@ -188,7 +192,7 @@ export function CheckboxList({
 				{otherFieldName && (
 					<Disclosure defaultOpen={!!defaultOtherValue}>
 						<label className="flex items-center">
-							<Disclosure.Button
+							<DisclosureButton
 								as="input"
 								value="Other"
 								type="checkbox"
@@ -197,27 +201,20 @@ export function CheckboxList({
 							/>
 							<span className="block leading-5 text-gray-700">Other</span>
 						</label>
-
-						<Transition
-							enter="transition ease-out duration-100 transform"
-							enterFrom="opacity-0 scale-95"
-							enterTo="opacity-100 scale-100"
-							leave="transition ease-in duration-75 transform"
-							leaveFrom="opacity-100 scale-100"
-							leaveTo="opacity-0 scale-95"
+						<DisclosurePanel
+							transition
+							className="transition duration-100 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 data-[leave]:duration-75 data-[leave]:ease-in"
 						>
-							<Disclosure.Panel>
-								<div className="mt-1 relative rounded-md shadow-xs">
-									<input
-										name={otherFieldName}
-										type="text"
-										aria-label="Other"
-										defaultValue={defaultOtherValue}
-										className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-									/>
-								</div>
-							</Disclosure.Panel>
-						</Transition>
+							<div className="mt-1 relative rounded-md shadow-xs">
+								<input
+									name={otherFieldName}
+									type="text"
+									aria-label="Other"
+									defaultValue={defaultOtherValue}
+									className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+								/>
+							</div>
+						</DisclosurePanel>
 					</Disclosure>
 				)}
 			</div>

@@ -1,7 +1,14 @@
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import {
+	Disclosure,
+	DisclosureButton,
+	DisclosurePanel,
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuItems,
+} from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Button from './Button'
 import classNames from '../util/classNames'
@@ -97,64 +104,57 @@ export default function Nav() {
 										{sessionStatus === 'authenticated' && (
 											<Menu as="div">
 												<div>
-													<Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+													<MenuButton className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 														<span className="sr-only">Open user menu</span>
 														<img
 															className="h-8 w-8 rounded-full"
 															src={session.user.image}
 															alt=""
 														/>
-													</Menu.Button>
+													</MenuButton>
 												</div>
-												<Transition
-													as={Fragment}
-													enter="transition ease-out duration-200"
-													enterFrom="transform opacity-0 scale-95"
-													enterTo="transform opacity-100 scale-100"
-													leave="transition ease-in duration-75"
-													leaveFrom="transform opacity-100 scale-100"
-													leaveTo="transform opacity-0 scale-95"
+												<MenuItems
+													transition
+													className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black/5 focus:outline-hidden transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 data-[leave]:duration-75 data-[leave]:ease-in"
 												>
-													<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black/5 focus:outline-hidden">
-														{userNavigation.map(
-															({ name, props: { href, ...rest } }) => (
-																<Menu.Item key={name}>
-																	{({ active }) => (
-																		<Link
-																			href={href}
-																			className={classNames(
-																				active ? 'bg-gray-100' : '',
-																				'block px-4 py-2 text-sm text-gray-700'
-																			)}
-																			{...rest}
-																		>
-																			{name}
-																		</Link>
-																	)}
-																</Menu.Item>
-															)
-														)}
-													</Menu.Items>
-												</Transition>
+													{userNavigation.map(
+														({ name, props: { href, ...rest } }) => (
+															<MenuItem key={name}>
+																{({ focus }) => (
+																	<Link
+																		href={href}
+																		className={classNames(
+																			focus ? 'bg-gray-100' : '',
+																			'block px-4 py-2 text-sm text-gray-700'
+																		)}
+																		{...rest}
+																	>
+																		{name}
+																	</Link>
+																)}
+															</MenuItem>
+														)
+													)}
+												</MenuItems>
 											</Menu>
 										)}
 									</div>
 								</div>
 								<div className="-mr-2 flex items-center sm:hidden">
 									{/* Mobile menu button */}
-									<Disclosure.Button className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+									<DisclosureButton className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 										<span className="sr-only">Open main menu</span>
 										{open ? (
 											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
 										) : (
 											<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
 										)}
-									</Disclosure.Button>
+									</DisclosureButton>
 								</div>
 							</div>
 						</Container>
 
-						<Disclosure.Panel className="sm:hidden">
+						<DisclosurePanel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
 								{navigation.map(({ name, current, href, ...rest }) => (
 									<Link
@@ -213,7 +213,7 @@ export default function Nav() {
 									</div>
 								</div>
 							)}
-						</Disclosure.Panel>
+						</DisclosurePanel>
 					</>
 				)}
 			</Disclosure>
