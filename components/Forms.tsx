@@ -12,8 +12,8 @@ import {
 	useReducer,
 } from 'react'
 import type { Session } from 'next-auth'
-import * as formData from '../data/forms'
-import type { FormField, FormKey, FormValues } from '../data/forms'
+import * as formData from '@/data/forms'
+import type { FormField, FormKey, FormValues } from '@/data/forms'
 import Alert, { ErrorAlert } from './Alert'
 import Button from './Button'
 import Layout from './Layout'

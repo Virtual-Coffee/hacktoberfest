@@ -1,7 +1,7 @@
 import { getToken } from 'next-auth/jwt'
 import { createOrUpdateForm, findFormResults } from '@/util/airtable'
-import * as formData from '../../../data/forms'
-import { nextAuthOptions } from '../auth/[...nextauth]'
+import * as formData from '@/data/forms'
+import { nextAuthOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'
 import type { NextApiRequest, NextApiResponse } from 'next'
 

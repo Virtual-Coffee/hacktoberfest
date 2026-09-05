@@ -5,7 +5,7 @@ import {
 	InformationCircleIcon,
 } from '@heroicons/react/24/solid'
 import type { ReactNode } from 'react'
-import type { AlertType } from '../data/forms'
+import type { AlertType } from '@/data/forms'
 import classNames from '@/util/classNames'
 
 type AlertStyle = {

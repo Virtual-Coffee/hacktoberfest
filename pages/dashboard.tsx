@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout from '@/components/Layout'
 import {
 	Card,
 	CardHeader,
@@ -10,10 +10,10 @@ import {
 	CardListItem,
 	CardListItemValue,
 	CardListItemKey,
-} from '../components/Card'
-import Container from '../components/Container'
-import Button from '../components/Button'
-import Loader from '../components/Loader'
+} from '@/components/Card'
+import Container from '@/components/Container'
+import Button from '@/components/Button'
+import Loader from '@/components/Loader'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import {
 	getContributorSubmission,
@@ -22,7 +22,7 @@ import {
 	getNonPrContributions,
 } from '@/util/api'
 import { useQuery } from '@tanstack/react-query'
-import SignIn from '../components/SignIn'
+import SignIn from '@/components/SignIn'
 import classNames from '@/util/classNames'
 import { useNewSubmissionsClosed } from '@/util/globals'
 

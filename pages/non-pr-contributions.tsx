@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import Form, { FormLayout } from '../components/Forms'
-import SignIn from '../components/SignIn'
+import Form, { FormLayout } from '@/components/Forms'
+import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
-import Button from '../components/Button'
+import Button from '@/components/Button'
 import { getContributorSubmission } from '@/util/api'
 import { currentYear, useNewSubmissionsClosed } from '@/util/globals'
 

@@ -1,4 +1,4 @@
-import type { FormValues } from '../data/forms'
+import type { FormValues } from '@/data/forms'
 
 export type FormSubmissionResponse = {
 	success: true

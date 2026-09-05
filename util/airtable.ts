@@ -1,8 +1,8 @@
 import Airtable from 'airtable'
-import * as formData from '../data/forms'
-import type { FormKey, FormValues } from '../data/forms'
+import * as formData from '@/data/forms'
+import type { FormKey, FormValues } from '@/data/forms'
 import { currentYear } from './globals'
-import type { GitHubUser, MemberProfile } from '../types/next-auth'
+import type { GitHubUser, MemberProfile } from '@/types/next-auth'
 
 type FieldSet = Airtable.FieldSet
 type AirtableRecord = Airtable.Record<FieldSet>

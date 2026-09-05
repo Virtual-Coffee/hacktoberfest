@@ -1,4 +1,4 @@
-import { nextAuthOptions } from '../auth/[...nextauth]'
+import { nextAuthOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'
 import { getToken } from 'next-auth/jwt'
 import {
@@ -6,7 +6,7 @@ import {
 	findFormResult,
 	updateUserProfile,
 } from '@/util/airtable'
-import * as formData from '../../../data/forms'
+import * as formData from '@/data/forms'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const secret = process.env.SECRET

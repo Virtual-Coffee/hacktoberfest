@@ -1,6 +1,6 @@
 import { getProviders, signIn } from 'next-auth/react'
 import type { InferGetServerSidePropsType } from 'next'
-import Layout from '../../components/Layout'
+import Layout from '@/components/Layout'
 
 export default function SignIn({
 	providers,

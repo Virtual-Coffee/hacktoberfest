@@ -1,5 +1,5 @@
 import { SessionProvider } from 'next-auth/react'
-import '../styles/globals.css'
+import '@/styles/globals.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
