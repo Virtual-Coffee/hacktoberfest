@@ -1,12 +1,13 @@
 import { getToken } from 'next-auth/jwt'
-import { createOrUpdateForm, findFormResults } from '../util/airtable'
+import { createOrUpdateForm, findFormResults } from '../../../util/airtable'
 import * as formData from '../../../data/forms'
 import { nextAuthOptions } from '../auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const secret = process.env.SECRET
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = await getServerSession(req, res, nextAuthOptions)
 	const token = await getToken({ req, secret })
 
@@ -16,7 +17,7 @@ export default async (req, res) => {
 				const data =
 					typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-				const errors = []
+				const errors: { field: string; message: string }[] = []
 
 				const requiredFields = [
 					'agree',
@@ -72,7 +73,7 @@ export default async (req, res) => {
 				break
 
 			case 'GET':
-				if (!req.headers.accept === 'application/json') {
+				if (req.headers.accept !== 'application/json') {
 					res.status(400).send({ message: 'Bad request' })
 					return
 				}

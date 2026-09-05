@@ -1,23 +1,23 @@
-import NextAuth from 'next-auth'
+import NextAuth, { type NextAuthOptions } from 'next-auth'
 import GitHub from 'next-auth/providers/github'
 import {
 	findOrCreateUserAuthIdByGitHubAccount,
 	findOrCreateUserProfile,
-} from '../util/airtable'
+} from '../../../util/airtable'
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-export const nextAuthOptions = {
+export const nextAuthOptions: NextAuthOptions = {
 	// https://next-auth.js.org/configuration/providers
 	providers: [
 		GitHub({
-			clientId: process.env.GITHUB_ID,
-			clientSecret: process.env.GITHUB_SECRET,
+			clientId: process.env.GITHUB_ID as string,
+			clientSecret: process.env.GITHUB_SECRET as string,
 			// https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
-			scope: 'read:user,user:email',
+			authorization: { params: { scope: 'read:user user:email' } },
 			profile(profile) {
 				return {
-					id: profile.id,
+					id: String(profile.id),
 					name: profile.name || profile.login,
 					email: profile.email,
 					image: profile.avatar_url,
@@ -44,7 +44,7 @@ export const nextAuthOptions = {
 		// Use JSON Web Tokens for session instead of database sessions.
 		// This option can be used with or without a database for users/accounts.
 		// Note: `jwt` is automatically set to `true` if no database is specified.
-		jwt: true,
+		strategy: 'jwt',
 
 		// Seconds - How long until an idle session expires and is no longer valid.
 		// maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -144,7 +144,7 @@ export const nextAuthOptions = {
 
 	// You can set the theme to 'light', 'dark' or use 'auto' to default to the
 	// whatever prefers-color-scheme is set to in the browser. Default is 'auto'
-	theme: 'light',
+	theme: { colorScheme: 'light' },
 
 	// Enable debug messages in the console if you are having problems
 	debug: false,

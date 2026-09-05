@@ -1,16 +1,17 @@
+import { nextAuthOptions } from '../auth/[...nextauth]'
+import { getServerSession } from 'next-auth/next'
 import { getToken } from 'next-auth/jwt'
 import {
 	createOrUpdateForm,
 	findFormResult,
 	updateUserProfile,
-} from '../util/airtable'
+} from '../../../util/airtable'
 import * as formData from '../../../data/forms'
-import { nextAuthOptions } from '../auth/[...nextauth]'
-import { getServerSession } from 'next-auth/next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 const secret = process.env.SECRET
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const session = await getServerSession(req, res, nextAuthOptions)
 	const token = await getToken({ req, secret })
 
@@ -20,14 +21,14 @@ export default async (req, res) => {
 				const data =
 					typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
-				const errors = []
+				const errors: { field: string; message: string }[] = []
 
 				const requiredFields = [
 					'agree',
 					...formData.profile
 						.filter((field) => !!field.required)
 						.map((field) => field.name),
-					...formData.contributors
+					...formData.maintainers
 						.filter((field) => !!field.required)
 						.map((field) => field.name),
 				]
@@ -51,7 +52,7 @@ export default async (req, res) => {
 					} else {
 						res.redirect(
 							303,
-							'/contributors?error=1&message=Please fill out all required fields.'
+							'/maintainers?error=1&message=Please fill out all required fields.'
 						)
 					}
 					return
@@ -67,7 +68,7 @@ export default async (req, res) => {
 
 				const formRowResult = await createOrUpdateForm(
 					token.auth_id,
-					'contributors',
+					'maintainers',
 					data
 				)
 
@@ -82,18 +83,18 @@ export default async (req, res) => {
 						},
 					})
 				} else {
-					res.redirect(303, '/contributors-thanks')
+					res.redirect(303, '/maintainers-thanks')
 				}
 
 				break
 
 			case 'GET':
-				if (!req.headers.accept === 'application/json') {
+				if (req.headers.accept !== 'application/json') {
 					res.status(400).send({ message: 'Bad request' })
 					return
 				}
 
-				const result = await findFormResult(token.auth_id, 'contributors')
+				const result = await findFormResult(token.auth_id, 'maintainers')
 
 				if (result) {
 					res.send({

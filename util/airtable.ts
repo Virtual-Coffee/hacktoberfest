@@ -1,19 +1,27 @@
-import * as formData from '../../../data/forms'
-import { currentYear } from '../../../util/globals'
+import Airtable from 'airtable'
+import * as formData from '../data/forms'
+import type { FormKey, FormValues } from '../data/forms'
+import { currentYear } from './globals'
+import type { GitHubUser, MemberProfile } from '../types/next-auth'
 
-var Airtable = require('airtable')
-var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+type FieldSet = Airtable.FieldSet
+type AirtableRecord = Airtable.Record<FieldSet>
+type MemberProfileFields = FieldSet & MemberProfile
+
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
 	'appGHm8ztVWug6UxH'
 )
 
-const TABLES = {
+const TABLES: Record<FormKey, string> = {
 	contributors: 'hacktoberfest_contributor',
 	maintainers: 'hacktoberfest_maintainer',
 	mentors: 'hacktoberfest_mentor',
 	nonPrContributions: 'hacktoberfest_contributions',
 }
 
-export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
+export async function findOrCreateUserAuthIdByGitHubAccount(
+	githubAccount: GitHubUser
+): Promise<string> {
 	const results = await base('members_auth')
 		.select({
 			filterByFormula: `{GitHub ID}='${githubAccount.id}'`,
@@ -34,7 +42,10 @@ export async function findOrCreateUserAuthIdByGitHubAccount(githubAccount) {
 	}
 }
 
-export async function findOrCreateUserProfile(auth_id, githubAccount) {
+export async function findOrCreateUserProfile(
+	auth_id: string,
+	githubAccount: GitHubUser
+): Promise<MemberProfileFields> {
 	const results = await base('member_profiles')
 		.select({
 			filterByFormula: `{auth_id}='${auth_id}'`,
@@ -43,25 +54,30 @@ export async function findOrCreateUserProfile(auth_id, githubAccount) {
 
 	if (results && results.length) {
 		const userRow = results[0]
-		return userRow.fields
+		return userRow.fields as MemberProfileFields
 	} else {
 		const created = await base('member_profiles').create({
 			Name: githubAccount.name || githubAccount.login,
 			member: [auth_id],
 			// casting id as a string because i can't find any docs that promise user id will always be a number
 			GitHubUsername: githubAccount.login,
-			TwitterUsername: githubAccount.twitter_username,
-			Email: githubAccount.email,
+			TwitterUsername: githubAccount.twitter_username ?? undefined,
+			Email: githubAccount.email ?? undefined,
 		})
 
-		return created.fields
+		return created.fields as MemberProfileFields
 	}
 }
 
-export async function updateUserProfile(auth_id, profile_id, fields) {
+export async function updateUserProfile(
+	auth_id: string,
+	profile_id: string,
+	fields: FormValues
+): Promise<AirtableRecord> {
 	const profile = await base('member_profiles').find(profile_id)
 
-	if (profile.get('auth_id')[0] !== auth_id) {
+	const authIds = profile.get('auth_id')
+	if (!Array.isArray(authIds) || authIds[0] !== auth_id) {
 		throw new Error('Not authorized')
 	}
 
@@ -79,7 +95,10 @@ export async function updateUserProfile(auth_id, profile_id, fields) {
 	return results
 }
 
-export async function findFormResult(auth_id, formKey) {
+export async function findFormResult(
+	auth_id: string,
+	formKey: FormKey
+): Promise<AirtableRecord | null> {
 	const table = TABLES[formKey]
 	if (!table) {
 		throw new Error('no table')
@@ -97,7 +116,10 @@ export async function findFormResult(auth_id, formKey) {
 	return null
 }
 
-export async function findFormResults(auth_id, formKey) {
+export async function findFormResults(
+	auth_id: string,
+	formKey: FormKey
+): Promise<ReadonlyArray<AirtableRecord> | null> {
 	const table = TABLES[formKey]
 	if (!table) {
 		throw new Error('no table')
@@ -115,13 +137,17 @@ export async function findFormResults(auth_id, formKey) {
 	return null
 }
 
-export async function createOrUpdateForm(auth_id, formKey, fields) {
+export async function createOrUpdateForm(
+	auth_id: string,
+	formKey: FormKey,
+	fields: FormValues
+): Promise<AirtableRecord> {
 	const table = TABLES[formKey]
 	if (!table) {
 		throw new Error('no table')
 	}
 
-	const values = formData[formKey].reduce((vals, field) => {
+	const values = formData.forms[formKey].reduce<FormValues>((vals, field) => {
 		switch (field.type) {
 			case 'Text':
 			case 'Single select':
@@ -148,7 +174,7 @@ export async function createOrUpdateForm(auth_id, formKey, fields) {
 		}
 	}, {})
 
-	let previousResult = null
+	let previousResult: AirtableRecord | null = null
 
 	if (formKey !== 'nonPrContributions') {
 		previousResult = await findFormResult(auth_id, formKey)
