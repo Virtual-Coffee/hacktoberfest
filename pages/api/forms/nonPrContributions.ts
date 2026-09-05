@@ -91,8 +91,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				res.status(405).send({ message: 'Requests method not allowed.' })
 		}
 	} else {
-		res.send({
-			error: 'You must be sign in to view the protected content on this page.',
+		// 401, not 200: util/api.ts only checks response.ok, so a 200 here made
+		// an unauthenticated request indistinguishable from a successful one --
+		// the dashboard rendered "Submitted!" for signed-out visitors.
+		res.status(401).send({
+			success: false,
+			message: 'You must be signed in to view this content.',
 		})
 	}
 }
