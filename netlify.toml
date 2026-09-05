@@ -5,12 +5,12 @@
 [build.environment]
   NODE_VERSION = "24"
 
-# Deploy previews and branch deploys get a different hostname per PR/branch,
-# so instead of hard-coding NEXTAUTH_URL, let next-auth derive the origin from
-# the request host. NEXTAUTH_URL must NOT be set for these contexts in the
-# Netlify UI, or it takes precedence over the detected host.
-[context.deploy-preview.environment]
-  AUTH_TRUST_HOST = "true"
-
-[context.branch-deploy.environment]
-  AUTH_TRUST_HOST = "true"
+# Auth on deploy previews and branch deploys
+#
+# Those deploys get a different hostname per PR/branch, so NEXTAUTH_URL must
+# NOT be set for the deploy-preview and branch-deploy contexts. Instead,
+# AUTH_TRUST_HOST=true lets next-auth derive its origin from the request host.
+#
+# That variable has to be set in the Netlify UI (or CLI) with the "Functions"
+# scope for those contexts. Variables declared in this file are only applied
+# at build time and never reach the function runtime, so it cannot live here.
