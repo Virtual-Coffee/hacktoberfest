@@ -3,8 +3,17 @@ import {
 	DisclosureButton,
 	DisclosurePanel,
 } from '@headlessui/react'
-import { useCallback, useEffect, useReducer } from 'react'
+import {
+	type ComponentPropsWithoutRef,
+	type ReactNode,
+	type SubmitEvent,
+	useCallback,
+	useEffect,
+	useReducer,
+} from 'react'
+import type { Session } from 'next-auth'
 import * as formData from '../data/forms'
+import type { FormField, FormKey, FormValues } from '../data/forms'
 import Alert, { ErrorAlert } from './Alert'
 import Button from './Button'
 import Layout from './Layout'
@@ -12,7 +21,23 @@ import Layout from './Layout'
 const labelClass = 'block text-sm font-medium text-gray-700'
 const helpClass = 'text-sm leading-6 text-gray-500'
 
-export function FormLayout({ title, description, children }) {
+function asString(value: FormValues[string]): string | undefined {
+	return typeof value === 'string' ? value : undefined
+}
+
+function asStringArray(value: FormValues[string]): string[] | undefined {
+	return Array.isArray(value) ? value : undefined
+}
+
+export function FormLayout({
+	title,
+	description,
+	children,
+}: {
+	title?: string
+	description?: string
+	children: ReactNode
+}) {
 	return (
 		<Layout title={title} description={description}>
 			<div className="relative max-w-3xl mx-auto px-4">
@@ -22,7 +47,15 @@ export function FormLayout({ title, description, children }) {
 	)
 }
 
-export function FieldSet({ legend, legendDesc, children, ...rest }) {
+export function FieldSet({
+	legend,
+	legendDesc,
+	children,
+	...rest
+}: ComponentPropsWithoutRef<'fieldset'> & {
+	legend?: string
+	legendDesc?: string
+}) {
 	return (
 		<fieldset className="space-y-8 py-8" {...rest}>
 			{legend && (
@@ -41,7 +74,17 @@ export function FieldSet({ legend, legendDesc, children, ...rest }) {
 	)
 }
 
-export function FieldGroup({ id, label, help, children, errors }) {
+export function FieldGroup({
+	id,
+	label,
+	help,
+	children,
+}: {
+	id: string
+	label: string
+	help?: string
+	children: ReactNode
+}) {
 	return (
 		<div>
 			<div className="flex justify-between flex-wrap">
@@ -72,7 +115,13 @@ export function FieldGroup({ id, label, help, children, errors }) {
 // 	)
 // }
 
-export function Field({ field, values }) {
+export function Field({
+	field,
+	values,
+}: {
+	field: FormField
+	values: FormValues
+}) {
 	switch (field.type) {
 		// case 'SubForm':
 		// 	return <SubForm field={field} values={values} />
@@ -96,7 +145,7 @@ export function Field({ field, values }) {
 						required={!!field.required}
 						id={field.name}
 						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-						defaultValue={values[field.name]}
+						defaultValue={asString(values[field.name])}
 					/>
 				</FieldGroup>
 			)
@@ -105,12 +154,12 @@ export function Field({ field, values }) {
 			return (
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<textarea
-						rows="8"
+						rows={8}
 						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
 						name={field.name}
 						required={!!field.required}
 						id={field.name}
-						defaultValue={values[field.name]}
+						defaultValue={asString(values[field.name])}
 					></textarea>
 				</FieldGroup>
 			)
@@ -119,9 +168,9 @@ export function Field({ field, values }) {
 				<RadioList
 					id={field.name}
 					label={field.label}
-					items={field.possibleValues}
+					items={field.possibleValues ?? []}
 					help={field.help}
-					defaultValue={values[field.name]}
+					defaultValue={asString(values[field.name])}
 				/>
 			)
 
@@ -130,11 +179,15 @@ export function Field({ field, values }) {
 				<CheckboxList
 					id={field.name}
 					label={field.label}
-					items={field.possibleValues}
+					items={field.possibleValues ?? []}
 					help={field.help}
-					defaultValues={values[field.name]}
+					defaultValues={asStringArray(values[field.name])}
 					otherFieldName={field.otherFieldName}
-					defaultOtherValue={values[field.otherFieldName]}
+					defaultOtherValue={
+						field.otherFieldName
+							? asString(values[field.otherFieldName])
+							: undefined
+					}
 				/>
 			)
 
@@ -168,6 +221,14 @@ export function CheckboxList({
 	otherFieldName,
 	defaultValues = [],
 	defaultOtherValue,
+}: {
+	help?: string
+	label?: string
+	items: string[]
+	id: string
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
 }) {
 	return (
 		<fieldset>
@@ -222,7 +283,19 @@ export function CheckboxList({
 	)
 }
 
-export function RadioList({ label, help, items, id, defaultValue }) {
+export function RadioList({
+	label,
+	help,
+	items,
+	id,
+	defaultValue,
+}: {
+	label?: string
+	help?: string
+	items: string[]
+	id: string
+	defaultValue?: string
+}) {
 	return (
 		<fieldset>
 			<div className="flex justify-between flex-wrap">
@@ -248,7 +321,39 @@ export function RadioList({ label, help, items, id, defaultValue }) {
 	)
 }
 
-const defaultState = {
+type FormStatus = 'initializing' | 'ready' | 'loading' | 'success' | 'error'
+
+type FieldError = { field: string; message: string }
+
+type FormState = {
+	status: FormStatus
+	fields: FormValues
+	errors?: string[]
+	fieldErrors?: Record<string, string[]>
+	errorMessage?: string
+	error?: unknown
+}
+
+type InitArgs = {
+	defaultState: FormState
+	session: Session | null
+	previousFormSubmission?: FormValues | null
+	errorMessage?: string
+}
+
+type FormAction =
+	| ({ type: 'init' } & InitArgs)
+	| { type: 'submit'; fields: FormValues }
+	| {
+			type: 'finish'
+			status: number
+			fields?: FormValues
+			errors?: FieldError[]
+			message?: string
+	  }
+	| { type: 'error'; error: unknown }
+
+const defaultState: FormState = {
 	status: 'initializing',
 	fields: {},
 }
@@ -258,7 +363,7 @@ function createInitialState({
 	session,
 	previousFormSubmission,
 	errorMessage,
-}) {
+}: InitArgs): FormState {
 	if (!session) {
 		return defaultState
 	}
@@ -269,10 +374,8 @@ function createInitialState({
 
 	state.status = 'ready'
 
-	state.fields.Name =
-		session?.profile?.Name || session?.githubUser.name || undefined
-	state.fields['GitHubUsername'] =
-		session?.profile?.Username || session?.githubUser?.login || undefined
+	state.fields.Name = session?.githubUser.name || undefined
+	state.fields['GitHubUsername'] = session?.githubUser?.login || undefined
 	state.fields['TwitterUsername'] =
 		session?.profile?.['TwitterUsername'] || undefined
 	state.fields['PreferredTimeZone'] =
@@ -303,7 +406,7 @@ function createInitialState({
 	return state
 }
 
-function reducer(state, action) {
+function reducer(state: FormState, action: FormAction): FormState {
 	switch (action.type) {
 		case 'init':
 			return createInitialState(action)
@@ -318,18 +421,21 @@ function reducer(state, action) {
 			if (action.status >= 200 && action.status < 300) {
 				return {
 					status: 'success',
-					fields: action.fields,
+					fields: action.fields ?? state.fields,
 				}
 			}
 			return {
 				status: 'error',
-				errors: action.errors.map((e) => e.message),
-				fieldErrors: action.errors.reduce((obj, err) => {
-					return {
-						...obj,
-						[err.field]: [err.message, ...(obj[err.field] || [])],
-					}
-				}),
+				errors: (action.errors ?? []).map((e) => e.message),
+				fieldErrors: (action.errors ?? []).reduce<Record<string, string[]>>(
+					(obj, err) => {
+						return {
+							...obj,
+							[err.field]: [err.message, ...(obj[err.field] || [])],
+						}
+					},
+					{}
+				),
 
 				errorMessage: action.message,
 				fields: state.fields,
@@ -340,11 +446,12 @@ function reducer(state, action) {
 				status: 'error',
 				fields: state.fields,
 				error: action.error,
-				errorMessage: action.error?.message,
+				errorMessage:
+					action.error instanceof Error ? action.error.message : undefined,
 			}
 
 		default:
-			throw new Error(`Undefined action: ${action.type}`)
+			throw new Error(`Undefined action: ${(action as { type: string }).type}`)
 	}
 }
 
@@ -359,6 +466,17 @@ export default function Form({
 	formFooter = null,
 	showProfileFields = true,
 	submitText = 'Sign Up!',
+}: {
+	session: Session | null
+	errorMessage?: string
+	previousFormSubmission?: FormValues | null
+	successView: ReactNode
+	intro?: ReactNode
+	formKey: FormKey
+	fieldsetLegend: string
+	formFooter?: ReactNode
+	showProfileFields?: boolean
+	submitText?: string
 }) {
 	const [state, dispatch] = useReducer(
 		reducer,
@@ -379,18 +497,17 @@ export default function Form({
 	}, [state.status])
 
 	const onSubmit = useCallback(
-		async function (e) {
+		async function (e: SubmitEvent<HTMLFormElement>) {
 			e.preventDefault()
 
-			const data = new FormData(e.target)
+			const data = new FormData(e.currentTarget)
 
-			const formJson = {}
-			data.forEach((stringValue, inputName, ...rest) => {
+			const formJson: FormValues = {}
+			data.forEach((stringValue, inputName) => {
 				if (inputName.indexOf('[]') === -1) {
-					formJson[inputName] = stringValue
+					formJson[inputName] = String(stringValue)
 				} else {
-					formJson[inputName.substr(0, inputName.length - 2)] =
-						data.getAll(inputName)
+					formJson[inputName.slice(0, -2)] = data.getAll(inputName).map(String)
 				}
 			})
 
@@ -451,7 +568,7 @@ export default function Form({
 							legend={fieldsetLegend}
 							disabled={state.status === 'loading'}
 						>
-							{formData[formKey].map((field) => (
+							{formData.forms[formKey].map((field) => (
 								<Field key={field.name} values={state.fields} field={field} />
 							))}
 

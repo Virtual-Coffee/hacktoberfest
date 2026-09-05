@@ -4,9 +4,25 @@ import {
 	CheckCircleIcon,
 	InformationCircleIcon,
 } from '@heroicons/react/24/solid'
+import type { ReactNode } from 'react'
+import type { AlertType } from '../data/forms'
 import classNames from '../util/classNames'
 
-const alertTypes = {
+type AlertStyle = {
+	bodyBg: string
+	Icon: typeof XCircleIcon
+	iconColor: string
+	titleColor: string
+	bodyColor?: string
+}
+
+type AlertProps = {
+	title?: ReactNode
+	alertType?: AlertType
+	children?: ReactNode
+}
+
+const alertTypes: Record<AlertType, AlertStyle> = {
 	error: {
 		bodyBg: 'bg-red-50',
 		Icon: XCircleIcon,
@@ -36,7 +52,11 @@ const alertTypes = {
 	},
 }
 
-export default function Alert({ title, alertType = 'info', children }) {
+export default function Alert({
+	title,
+	alertType = 'info',
+	children,
+}: AlertProps) {
 	const typeStyles = alertTypes[alertType]
 	return (
 		<div className={classNames('rounded-md p-4 mt-8', typeStyles.bodyBg)}>
@@ -73,7 +93,7 @@ export default function Alert({ title, alertType = 'info', children }) {
 	)
 }
 
-export function InfoAlert({ title, children }) {
+export function InfoAlert({ title, children }: AlertProps) {
 	return (
 		<Alert title={title} alertType="info">
 			{children}
@@ -81,7 +101,7 @@ export function InfoAlert({ title, children }) {
 	)
 }
 
-export function SuccessAlert({ title, children }) {
+export function SuccessAlert({ title, children }: AlertProps) {
 	return (
 		<Alert title={title} alertType="success">
 			{children}
@@ -89,7 +109,7 @@ export function SuccessAlert({ title, children }) {
 	)
 }
 
-export function WarningAlert({ title, children }) {
+export function WarningAlert({ title, children }: AlertProps) {
 	return (
 		<Alert title={title} alertType="warning">
 			{children}
@@ -97,7 +117,11 @@ export function WarningAlert({ title, children }) {
 	)
 }
 
-export function ErrorAlert({ title, errors, children }) {
+export function ErrorAlert({
+	title,
+	errors,
+	children,
+}: AlertProps & { errors?: string[] }) {
 	return (
 		<Alert title={title} alertType="error">
 			<>

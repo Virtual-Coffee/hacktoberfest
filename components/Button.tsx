@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { MouseEventHandler, ReactNode } from 'react'
 import classNames from '../util/classNames'
 
 const defaultClassName =
@@ -15,6 +16,17 @@ const sizes = {
 	lg: 'text-lg px-7 py-5',
 }
 
+type ButtonProps = {
+	href?: string
+	external?: boolean
+	size?: keyof typeof sizes
+	color?: keyof typeof colors
+	className?: string
+	children?: ReactNode
+	type?: 'button' | 'submit' | 'reset'
+	onClick?: MouseEventHandler<HTMLElement>
+}
+
 export default function Button({
 	external,
 	href,
@@ -22,8 +34,8 @@ export default function Button({
 	color = 'primary',
 	className: providedClassname = '',
 	...props
-}) {
-	props.className = classNames(
+}: ButtonProps) {
+	const className = classNames(
 		defaultClassName,
 		sizes[size],
 		colors[color],
@@ -32,10 +44,10 @@ export default function Button({
 
 	if (href) {
 		if (external) {
-			return <a href={href} {...props} />
+			return <a href={href} className={className} {...props} />
 		}
-		return <Link href={href} {...props} />
+		return <Link href={href} className={className} {...props} />
 	}
 
-	return <button {...props} />
+	return <button className={className} {...props} />
 }

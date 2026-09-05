@@ -14,8 +14,24 @@ import Button from './Button'
 import classNames from '../util/classNames'
 import Container from './Container'
 import { useRouter } from 'next/router'
+import type { MouseEvent } from 'react'
 
-const userNavigation = [
+type NavItem = {
+	name: string
+	href: string
+	authOnly?: boolean
+	current?: boolean
+}
+
+type UserNavItem = {
+	name: string
+	props: {
+		href: string
+		onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
+	}
+}
+
+const userNavigation: UserNavItem[] = [
 	{ name: 'Dashboard', props: { href: '/dashboard' } },
 	{
 		name: 'Sign out',
@@ -29,7 +45,7 @@ const userNavigation = [
 	},
 ]
 
-const navigation = [
+const navigation: NavItem[] = [
 	{ name: 'VC Hacktoberfest', href: '/' },
 	{ name: 'FAQ', href: '/#questions' },
 	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
@@ -108,7 +124,7 @@ export default function Nav() {
 														<span className="sr-only">Open user menu</span>
 														<img
 															className="h-8 w-8 rounded-full"
-															src={session.user.image}
+															src={session?.user?.image ?? undefined}
 															alt=""
 														/>
 													</MenuButton>
@@ -187,13 +203,13 @@ export default function Nav() {
 										<div className="shrink-0">
 											<img
 												className="h-10 w-10 rounded-full"
-												src={session.user.image}
+												src={session?.user?.image ?? undefined}
 												alt=""
 											/>
 										</div>
 										<div className="ml-3">
 											<div className="text-base font-medium text-gray-800">
-												{session.user.name}
+												{session?.user?.name}
 											</div>
 										</div>
 									</div>

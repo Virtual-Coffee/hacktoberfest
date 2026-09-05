@@ -1,6 +1,17 @@
 import Link from 'next/link'
 
-export default function ChoiceCard({ choice }) {
+export type Choice = {
+	header: string
+	intro: string
+	items: string[]
+	button: {
+		text: string
+		link: string
+		disabled?: boolean
+	}
+}
+
+export default function ChoiceCard({ choice }: { choice: Choice }) {
 	return (
 		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
 			<div className="flex-1 px-6 py-8 bg-white sm:p-10 sm:pb-6">
