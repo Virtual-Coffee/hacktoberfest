@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Layout from '../components/Layout'
 import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Button from '../components/Button'
 import { getMaintainersSubmission } from '../util/api'
 import { currentYear, useNewSubmissionsClosed } from '../util/globals'
@@ -57,11 +57,11 @@ export default function Page() {
 	const { error, message: errorMessage } = router.query
 	const newSubmissionsClosed = useNewSubmissionsClosed()
 
-	const previousFormSubmission = useQuery(
-		'maintainers-form',
-		getMaintainersSubmission,
-		{ enabled: sessionStatus === 'authenticated' }
-	)
+	const previousFormSubmission = useQuery({
+		queryKey: ['maintainers-form'],
+		queryFn: getMaintainersSubmission,
+		enabled: sessionStatus === 'authenticated',
+	})
 
 	if (sessionStatus === 'loading') {
 		return null

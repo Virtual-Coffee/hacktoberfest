@@ -1,6 +1,6 @@
 import { SessionProvider } from 'next-auth/react'
 import 'tailwindcss/tailwind.css'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Head from 'next/head'
 
 // Create a client

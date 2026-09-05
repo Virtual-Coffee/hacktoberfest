@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Button from '../components/Button'
 import { getMentorsSubmission } from '../util/api'
 
@@ -53,11 +53,11 @@ export default function Page() {
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
 
-	const previousFormSubmission = useQuery(
-		'mentors-form',
-		getMentorsSubmission,
-		{ enabled: sessionStatus === 'authenticated' }
-	)
+	const previousFormSubmission = useQuery({
+		queryKey: ['mentors-form'],
+		queryFn: getMentorsSubmission,
+		enabled: sessionStatus === 'authenticated',
+	})
 
 	if (sessionStatus === 'loading') {
 		return null

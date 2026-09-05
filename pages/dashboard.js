@@ -21,7 +21,7 @@ import {
 	getMentorsSubmission,
 	getNonPrContributions,
 } from '../util/api'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import SignIn from '../components/SignIn'
 import classNames from '../util/classNames'
 import { useNewSubmissionsClosed } from '../util/globals'
@@ -30,24 +30,30 @@ export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()
 	const newSubmissionsClosed = useNewSubmissionsClosed()
 
-	const contributorsSubmission = useQuery(
-		'contributors-form',
-		getContributorSubmission,
-		{ enabled: sessionStatus === 'authenticated', retry: false }
-	)
-
-	const maintainersSubmission = useQuery(
-		'maintainers-form',
-		getMaintainersSubmission,
-		{ enabled: sessionStatus === 'authenticated', retry: false }
-	)
-
-	const mentorsSubmission = useQuery('mentors-form', getMentorsSubmission, {
+	const contributorsSubmission = useQuery({
+		queryKey: ['contributors-form'],
+		queryFn: getContributorSubmission,
 		enabled: sessionStatus === 'authenticated',
 		retry: false,
 	})
 
-	const nonPrContributions = useQuery('contribs-form', getNonPrContributions, {
+	const maintainersSubmission = useQuery({
+		queryKey: ['maintainers-form'],
+		queryFn: getMaintainersSubmission,
+		enabled: sessionStatus === 'authenticated',
+		retry: false,
+	})
+
+	const mentorsSubmission = useQuery({
+		queryKey: ['mentors-form'],
+		queryFn: getMentorsSubmission,
+		enabled: sessionStatus === 'authenticated',
+		retry: false,
+	})
+
+	const nonPrContributions = useQuery({
+		queryKey: ['contribs-form'],
+		queryFn: getNonPrContributions,
 		enabled: sessionStatus === 'authenticated',
 		retry: false,
 	})
@@ -83,8 +89,7 @@ export default function Page() {
 								description="Members interested in contributing to Open Source and completing the Hacktoberfest Challenge"
 							/>
 							<CardHeaderActions>
-								{contributorsSubmission.status === 'idle' ||
-								contributorsSubmission.status === 'loading' ? (
+								{contributorsSubmission.status === 'pending' ? (
 									<Loader />
 								) : contributorsSubmission.status === 'success' &&
 								  contributorsSubmission.data ? (
@@ -123,8 +128,7 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>Status</CardListItemKey>
 								<CardListItemValue>
-									{contributorsSubmission.status === 'idle' ||
-									contributorsSubmission.status === 'loading' ? (
+									{contributorsSubmission.status === 'pending' ? (
 										<Loader />
 									) : contributorsSubmission.status === 'success' &&
 									  contributorsSubmission.data ? (
@@ -198,8 +202,7 @@ export default function Page() {
 								description="OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey"
 							/>
 							<CardHeaderActions>
-								{maintainersSubmission.status === 'idle' ||
-								maintainersSubmission.status === 'loading' ? (
+								{maintainersSubmission.status === 'pending' ? (
 									<Loader />
 								) : maintainersSubmission.status === 'success' &&
 								  maintainersSubmission.data ? (
@@ -252,8 +255,7 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>Status</CardListItemKey>
 								<CardListItemValue>
-									{maintainersSubmission.status === 'idle' ||
-									maintainersSubmission.status === 'loading' ? (
+									{maintainersSubmission.status === 'pending' ? (
 										<Loader />
 									) : maintainersSubmission.status === 'success' &&
 									  maintainersSubmission.data ? (
@@ -280,8 +282,7 @@ export default function Page() {
 								description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 							/>
 							<CardHeaderActions>
-								{mentorsSubmission.status === 'idle' ||
-								mentorsSubmission.status === 'loading' ? (
+								{mentorsSubmission.status === 'pending' ? (
 									<Loader />
 								) : mentorsSubmission.status === 'success' &&
 								  mentorsSubmission.data ? (
@@ -308,8 +309,7 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>Status</CardListItemKey>
 								<CardListItemValue>
-									{mentorsSubmission.status === 'idle' ||
-									mentorsSubmission.status === 'loading' ? (
+									{mentorsSubmission.status === 'pending' ? (
 										<Loader />
 									) : mentorsSubmission.status === 'success' &&
 									  mentorsSubmission.data ? (
