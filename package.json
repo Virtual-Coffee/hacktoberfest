@@ -14,7 +14,8 @@
 	},
 	"packageManager": "pnpm@11.25.0",
 	"scripts": {
-		"dev": "next",
+		"dev": "netlify dev",
+		"dev:next": "next",
 		"build": "next build",
 		"start": "next start",
 		"auth:generate": "auth generate --config lib/auth.ts --output db/schema/auth.ts --yes && prettier --write db/schema/auth.ts",
