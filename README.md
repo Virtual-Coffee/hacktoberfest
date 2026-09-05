@@ -88,5 +88,6 @@ Use ctrl-c to quit the server when you're done.
 ## Uses:
 
 - [NextJS](https://nextjs.org/docs/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind UI](https://tailwindui.com)
 - Hosted on [Netlify](https://www.netlify.com/)
