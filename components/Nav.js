@@ -48,7 +48,7 @@ export default function Nav() {
 						<Container>
 							<div className="flex justify-between h-16">
 								<div className="flex">
-									<div className="flex-shrink-0 flex items-center">
+									<div className="shrink-0 flex items-center">
 										<img
 											className="block lg:hidden h-8 w-auto"
 											src="https://virtualcoffee.io/assets/images/virtual-coffee-mug.svg"
@@ -97,7 +97,7 @@ export default function Nav() {
 										{sessionStatus === 'authenticated' && (
 											<Menu as="div">
 												<div>
-													<Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+													<Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 														<span className="sr-only">Open user menu</span>
 														<img
 															className="h-8 w-8 rounded-full"
@@ -115,7 +115,7 @@ export default function Nav() {
 													leaveFrom="transform opacity-100 scale-100"
 													leaveTo="transform opacity-0 scale-95"
 												>
-													<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+													<Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black/5 focus:outline-hidden">
 														{userNavigation.map(
 															({ name, props: { href, ...rest } }) => (
 																<Menu.Item key={name}>
@@ -142,7 +142,7 @@ export default function Nav() {
 								</div>
 								<div className="-mr-2 flex items-center sm:hidden">
 									{/* Mobile menu button */}
-									<Disclosure.Button className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+									<Disclosure.Button className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 										<span className="sr-only">Open main menu</span>
 										{open ? (
 											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -184,7 +184,7 @@ export default function Nav() {
 							{sessionStatus === 'authenticated' && (
 								<div className="pt-4 pb-3 border-t border-gray-200">
 									<div className="flex items-center px-4">
-										<div className="flex-shrink-0">
+										<div className="shrink-0">
 											<img
 												className="h-10 w-10 rounded-full"
 												src={session.user.image}

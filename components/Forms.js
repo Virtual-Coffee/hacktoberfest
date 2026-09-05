@@ -46,7 +46,7 @@ export function FieldGroup({ id, label, help, children, errors }) {
 				</label>
 				{help && <span className={helpClass}>{help}</span>}
 			</div>
-			<div className="mt-1 relative rounded-md shadow-sm">{children}</div>
+			<div className="mt-1 relative rounded-md shadow-xs">{children}</div>
 		</div>
 	)
 }
@@ -56,7 +56,7 @@ export function FieldGroup({ id, label, help, children, errors }) {
 // 	return (
 // 		<div className="my-8">
 // 			<h3 className="bold text-lg">{field.name}</h3>
-// 			<div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 mt-8">
+// 			<div className="bg-white overflow-hidden shadow-sm rounded-lg divide-y divide-gray-200 mt-8">
 // 				<div className="px-4 py-5 sm:p-6">
 // 					{formData[field.formKey].map((subField) => (
 // 						<Field key={subField.name} values={{}} field={subField} />
@@ -91,7 +91,7 @@ export function Field({ field, values }) {
 						type={field.type === 'URL' ? 'url' : field.inputType || 'text'}
 						required={!!field.required}
 						id={field.name}
-						className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
 						defaultValue={values[field.name]}
 					/>
 				</FieldGroup>
@@ -102,7 +102,7 @@ export function Field({ field, values }) {
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<textarea
 						rows="8"
-						className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
 						name={field.name}
 						required={!!field.required}
 						id={field.name}
@@ -207,13 +207,13 @@ export function CheckboxList({
 							leaveTo="opacity-0 scale-95"
 						>
 							<Disclosure.Panel>
-								<div className="mt-1 relative rounded-md shadow-sm">
+								<div className="mt-1 relative rounded-md shadow-xs">
 									<input
 										name={otherFieldName}
 										type="text"
 										aria-label="Other"
 										defaultValue={defaultOtherValue}
-										className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+										className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
 									/>
 								</div>
 							</Disclosure.Panel>
@@ -491,7 +491,7 @@ export default function Form({
 										size="lg"
 										type="submit"
 										className="w-full"
-										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-hidden focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
 									>
 										{state.status === 'loading'
 											? 'Loading...'

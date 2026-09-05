@@ -9,7 +9,7 @@ export default function SignIn() {
 					<span className="block">Step One: Sign In!</span>
 				</h2>
 				<div className="mt-8 flex justify-center">
-					<div className="inline-flex rounded-md shadow">
+					<div className="inline-flex rounded-md shadow-sm">
 						<Button size="lg" onClick={() => signIn('github')}>
 							Sign in with GitHub
 						</Button>

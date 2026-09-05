@@ -32,7 +32,7 @@ export function CardList({ children }) {
 
 export function Card({ children }) {
 	return (
-		<div className="bg-white shadow overflow-hidden sm:rounded-lg">
+		<div className="bg-white shadow-sm overflow-hidden sm:rounded-lg">
 			{children}
 		</div>
 	)
@@ -58,5 +58,5 @@ export function CardHeaderHeader({ title, description }) {
 }
 
 export function CardHeaderActions({ children }) {
-	return <div className="ml-4 mt-4 flex-shrink-0">{children}</div>
+	return <div className="ml-4 mt-4 shrink-0">{children}</div>
 }

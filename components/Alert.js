@@ -41,7 +41,7 @@ export default function Alert({ title, alertType = 'info', children }) {
 	return (
 		<div className={classNames('rounded-md p-4 mt-8', typeStyles.bodyBg)}>
 			<div className="flex">
-				<div className="flex-shrink-0">
+				<div className="shrink-0">
 					<typeStyles.Icon
 						className={classNames('h-5 w-5', typeStyles.iconColor)}
 						aria-hidden="true"

@@ -1,5 +1,5 @@
 import { SessionProvider } from 'next-auth/react'
-import 'tailwindcss/tailwind.css'
+import '../styles/globals.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Head from 'next/head'
 

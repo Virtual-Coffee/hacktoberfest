@@ -1,0 +1,4 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@source '../pages';
+@source '../components';

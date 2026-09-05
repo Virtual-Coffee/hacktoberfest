@@ -13,7 +13,7 @@ export default function ChoiceCard({ choice }) {
 				<ul className="space-y-4">
 					{choice.items.map((item) => (
 						<li className="flex items-start" key={item}>
-							<div className="flex-shrink-0">
+							<div className="shrink-0">
 								<svg
 									className="h-6 w-6 text-green-500"
 									fill="none"
@@ -32,15 +32,15 @@ export default function ChoiceCard({ choice }) {
 						</li>
 					))}
 				</ul>
-				<div className="rounded-md shadow">
+				<div className="rounded-md shadow-sm">
 					{choice.button.disabled ? (
-						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-none focus:shadow-outline transition duration-150 ease-in-out text-gray-50  bg-gray-500">
+						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-gray-50  bg-gray-500">
 							{choice.button.text}
 						</span>
 					) : (
 						<Link
 							href={choice.button.link}
-							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-none focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
+							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
 							aria-describedby="tier-standard"
 						>
 							{choice.button.text}
