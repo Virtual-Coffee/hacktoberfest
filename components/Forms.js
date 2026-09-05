@@ -145,8 +145,8 @@ export function Field({ field, values }) {
 						values[field.name] === true
 							? 'Yes'
 							: values[field.name] === false
-							? 'No'
-							: undefined
+								? 'No'
+								: undefined
 					}
 				/>
 			)
@@ -496,8 +496,8 @@ export default function Form({
 										{state.status === 'loading'
 											? 'Loading...'
 											: previousFormSubmission
-											? 'Save'
-											: submitText}
+												? 'Save'
+												: submitText}
 									</Button>
 								</div>
 							</div>

@@ -20,11 +20,11 @@ const getChoices = function (newSubmissionsClosed) {
 						text: 'All full!',
 						disabled: true,
 						link: '/contributors',
-				  }
+					}
 				: {
 						text: 'I Want to Hack!',
 						link: '/contributors',
-				  },
+					},
 		},
 		{
 			header: 'Maintainers',
@@ -40,11 +40,11 @@ const getChoices = function (newSubmissionsClosed) {
 						text: 'All Full!',
 						disabled: true,
 						link: '/maintainers',
-				  }
+					}
 				: {
 						text: 'I Have Issues!',
 						link: '/maintainers',
-				  },
+					},
 		},
 		{
 			header: 'Mentors',
