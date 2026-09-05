@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
 	poweredByHeader: false,
 	reactStrictMode: true,
 	agentRules: false,
@@ -8,4 +9,4 @@ const nextConfig = {
 	},
 }
 
-module.exports = nextConfig
+export default nextConfig

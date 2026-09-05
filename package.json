@@ -17,6 +17,7 @@
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
+		"typecheck": "next typegen && tsc --noEmit",
 		"format": "prettier --check --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
 		"format:fix": "prettier --write --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
 	},
@@ -36,8 +37,12 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.3.3",
+		"@types/node": "^24.13.3",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.7",
 		"postcss": "^8.5.28",
 		"prettier": "^3.9.6",
-		"tailwindcss": "^4.3.3"
+		"tailwindcss": "^4.3.3",
+		"typescript": "^7.0.2"
 	}
 }
