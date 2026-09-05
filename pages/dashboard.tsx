@@ -150,7 +150,7 @@ export default function Page() {
 								<CardListItem>
 									<CardListItemKey>
 										Non-PR Contributions{' '}
-										{nonPrContributions.status === 'success' && (
+										{nonPrContributions.data && (
 											<>({nonPrContributions.data.results.length})</>
 										)}
 									</CardListItemKey>
@@ -163,7 +163,7 @@ export default function Page() {
 												Add your contribution
 											</Button>
 										</div>
-										{nonPrContributions.status === 'success' &&
+										{nonPrContributions.data &&
 											nonPrContributions.data.results.length > 0 && (
 												<>
 													<div className="mt-4">
@@ -183,7 +183,7 @@ export default function Page() {
 																</a>{' '}
 																submitted on{' '}
 																{new Date(
-																	result.created_at
+																	result.created_at ?? ''
 																).toLocaleDateString()}
 															</li>
 														))}

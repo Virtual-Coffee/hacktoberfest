@@ -13,12 +13,12 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Add a Non-PR Contribution
+				Become a Hacktoberfest Contributor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Not all open source contributions need to be code! If you have
-				contributed to open source this month in other ways, please tell us
-				about it!
+				Are you interested in participating in Hacktoberfest (or open source in
+				general), but don't know where to start? Or are you an experienced
+				developer looking to do this as part of the Virtual Coffee Community?
 			</p>
 		</div>
 	</>
@@ -35,12 +35,20 @@ const successView = (
 			<div className="text-center">
 				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 flex justify-center">
 					<span className="mr-4">🙌</span>
-					<span>Thank you for your contribution!</span>
+					<span>Thank you for your interest!</span>
 					<span className="ml-4">🙌</span>
 				</h1>
 				<div className="text-lg leading-6 text-gray-500">
-					<p className="mt-4">You're a star!</p>
-
+					<p className="mt-4">
+						You'll hear from a Virtual Coffee member soon with next steps.
+					</p>
+					<p className="mt-4">
+						In the meantime, make sure you've{' '}
+						<a href="https://hacktoberfest.com/">
+							signed up for Hacktoberfest on DigitalOcean
+						</a>
+						!
+					</p>
 					<p className="mt-4">
 						<Button size="lg" href="/dashboard">
 							Go to Dashboard
@@ -58,6 +66,12 @@ export default function Page() {
 	const { error, message: errorMessage } = router.query
 	const newSubmissionsClosed = useNewSubmissionsClosed()
 
+	const previousFormSubmission = useQuery({
+		queryKey: ['contributors-form'],
+		queryFn: getContributorSubmission,
+		enabled: sessionStatus === 'authenticated',
+	})
+
 	if (sessionStatus === 'loading') {
 		return null
 	}
@@ -65,15 +79,19 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Add a Non-PR Contribution"
-				description="Not all open source contributions need to be code!"
+				title="Become a Hacktoberfest Contributor"
+				description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
 			>
 				<SignIn />
 			</FormLayout>
 		)
 	}
 
-	if (newSubmissionsClosed) {
+	if (!(previousFormSubmission.isSuccess || previousFormSubmission.isError)) {
+		return null
+	}
+
+	if (!previousFormSubmission.data && newSubmissionsClosed) {
 		return (
 			<FormLayout
 				title={`We've ended submissions for ${currentYear}`}
@@ -97,18 +115,23 @@ export default function Page() {
 
 	return (
 		<FormLayout
-			title="Add a Non-PR Contribution"
-			description="Not all open source contributions need to be code!"
+			title="Become a Hacktoberfest Contributor"
+			description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
 		>
 			<Form
-				showProfileFields={false}
 				session={session}
-				errorMessage={error ? errorMessage : undefined}
+				previousFormSubmission={
+					previousFormSubmission?.data?.success
+						? previousFormSubmission.data.fields
+						: null
+				}
+				errorMessage={
+					error && typeof errorMessage === 'string' ? errorMessage : undefined
+				}
 				successView={successView}
 				intro={intro}
-				formKey="nonPrContributions"
-				fieldsetLegend="Contribution Details"
-				submitText="Save Contribution"
+				formKey="contributors"
+				fieldsetLegend="Contributor Details"
 			/>
 		</FormLayout>
 	)

@@ -1,10 +1,10 @@
-import ChoiceCard from '../components/ChoiceCard'
+import ChoiceCard, { type Choice } from '../components/ChoiceCard'
 import Layout from '../components/Layout'
 import Head from 'next/head'
 import { currentYear, useNewSubmissionsClosed } from '../util/globals'
 import { useMemo } from 'react'
 
-const getChoices = function (newSubmissionsClosed) {
+const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 	return [
 		{
 			header: 'Contributors',

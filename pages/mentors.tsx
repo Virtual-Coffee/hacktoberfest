@@ -4,8 +4,7 @@ import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '../components/Button'
-import { getContributorSubmission } from '../util/api'
-import { currentYear, useNewSubmissionsClosed } from '../util/globals'
+import { getMentorsSubmission } from '../util/api'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -13,22 +12,18 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Become a Hacktoberfest Contributor
+				Become a Hacktoberfest Mentor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you interested in participating in Hacktoberfest (or open source in
-				general), but don't know where to start? Or are you an experienced
-				developer looking to do this as part of the Virtual Coffee Community?
+				Thank you for expressing your interest in mentoring a Virtual Coffee
+				member participating the Virtual Coffee Hacktoberfest Initiative. We
+				would really appreciate it if you took the time to fill out this short
+				questionnaire.
 			</p>
 		</div>
 	</>
 )
 
-{
-	/* <Head>
-			<title>Thank you for your interest!</title>
-		</Head> */
-}
 const successView = (
 	<div className="py-16 px-4  sm:px-6 lg:px-8 lg:py-24">
 		<div className="relative max-w-2xl mx-auto">
@@ -41,13 +36,6 @@ const successView = (
 				<div className="text-lg leading-6 text-gray-500">
 					<p className="mt-4">
 						You'll hear from a Virtual Coffee member soon with next steps.
-					</p>
-					<p className="mt-4">
-						In the meantime, make sure you've{' '}
-						<a href="https://hacktoberfest.com/">
-							signed up for Hacktoberfest on DigitalOcean
-						</a>
-						!
 					</p>
 					<p className="mt-4">
 						<Button size="lg" href="/dashboard">
@@ -64,11 +52,10 @@ export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
-	const newSubmissionsClosed = useNewSubmissionsClosed()
 
 	const previousFormSubmission = useQuery({
-		queryKey: ['contributors-form'],
-		queryFn: getContributorSubmission,
+		queryKey: ['mentors-form'],
+		queryFn: getMentorsSubmission,
 		enabled: sessionStatus === 'authenticated',
 	})
 
@@ -79,8 +66,8 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Become a Hacktoberfest Contributor"
-				description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+				title="Become a Hacktoberfest Mentor"
+				description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 			>
 				<SignIn />
 			</FormLayout>
@@ -91,32 +78,10 @@ export default function Page() {
 		return null
 	}
 
-	if (!previousFormSubmission.data && newSubmissionsClosed) {
-		return (
-			<FormLayout
-				title={`We've ended submissions for ${currentYear}`}
-				description="Thank you for your interest, but we've ended submissions for this year. See you next year!"
-			>
-				<div className="text-center">
-					<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-						We've ended submissions for {currentYear}
-					</h1>
-					<p className="mt-4 text-lg leading-6 text-gray-500">
-						Thank you for your interest, but we've ended submissions for this
-						year.
-					</p>
-					<p className="mt-4 text-lg leading-6 text-gray-500">
-						See you next year!
-					</p>
-				</div>
-			</FormLayout>
-		)
-	}
-
 	return (
 		<FormLayout
-			title="Become a Hacktoberfest Contributor"
-			description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+			title="Become a Hacktoberfest Mentor"
+			description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
 		>
 			<Form
 				session={session}
@@ -125,11 +90,13 @@ export default function Page() {
 						? previousFormSubmission.data.fields
 						: null
 				}
-				errorMessage={error ? errorMessage : undefined}
+				errorMessage={
+					error && typeof errorMessage === 'string' ? errorMessage : undefined
+				}
 				successView={successView}
 				intro={intro}
-				formKey="contributors"
-				fieldsetLegend="Contributor Details"
+				formKey="mentors"
+				fieldsetLegend="Mentor Details"
 			/>
 		</FormLayout>
 	)

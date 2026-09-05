@@ -5,9 +5,16 @@ export type FormSubmissionResponse = {
 	fields: FormValues
 } | null
 
+export type NonPrContribution = FormValues & {
+	id?: string
+	RepoName?: string
+	RepoUrl?: string
+	created_at?: string
+}
+
 export type NonPrContributionsResponse = {
 	success: true
-	results: FormValues[]
+	results: NonPrContribution[]
 } | null
 
 export async function getContributorSubmission(): Promise<FormSubmissionResponse> {
