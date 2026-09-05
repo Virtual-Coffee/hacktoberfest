@@ -1,4 +1,37 @@
-export const profile = [
+import type { ReactNode } from 'react'
+
+export type FormKey =
+	'contributors' | 'maintainers' | 'mentors' | 'nonPrContributions'
+
+export type FormValues = Record<string, string | string[] | boolean | undefined>
+
+export type AlertType = 'error' | 'warning' | 'success' | 'info'
+
+export type FieldType =
+	| 'Text'
+	| 'URL'
+	| 'Long text'
+	| 'Single select'
+	| 'Multiple select'
+	| 'Checkbox'
+	| 'alert'
+	| 'lookup'
+
+export type FormField = {
+	name: string
+	type: FieldType
+	label?: string
+	help?: string
+	required?: boolean
+	inputType?: string
+	possibleValues?: string[]
+	otherFieldName?: string
+	alertType?: AlertType
+	title?: string
+	body?: ReactNode
+}
+
+export const profile: FormField[] = [
 	{
 		name: 'Name',
 		type: 'Text',
@@ -55,7 +88,7 @@ export const profile = [
 	},
 ]
 
-export const contributors = [
+export const contributors: FormField[] = [
 	{
 		name: 'OssExperience',
 		label: 'What is your experience with Open Source Contribution?',
@@ -158,7 +191,7 @@ export const contributors = [
 	},
 ]
 
-export const mentors = [
+export const mentors: FormField[] = [
 	{
 		name: 'Availability',
 		label:
@@ -221,7 +254,7 @@ export const mentors = [
 	},
 ]
 
-export const repos = [
+export const repos: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
@@ -245,7 +278,7 @@ export const repos = [
 	},
 ]
 
-export const nonPrContributions = [
+export const nonPrContributions: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
@@ -266,7 +299,7 @@ export const nonPrContributions = [
 	},
 ]
 
-export const maintainers = [
+export const maintainers: FormField[] = [
 	// {
 	// 	name: 'Projects',
 	// 	type: 'SubForm',
@@ -393,3 +426,10 @@ export const maintainers = [
 			'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
 	},
 ]
+
+export const forms = {
+	contributors,
+	maintainers,
+	mentors,
+	nonPrContributions,
+} satisfies Record<FormKey, FormField[]>
