@@ -1,5 +1,23 @@
 import type { FormValues } from '@/data/forms'
 
+export type ProfileResponse = {
+	success: true
+	profile: FormValues
+} | null
+
+export async function getProfile(): Promise<ProfileResponse> {
+	const response = await fetch('/api/profile', {
+		headers: {
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+		},
+	})
+	if (!response.ok) {
+		return null
+	}
+	return response.json()
+}
+
 export type FormSubmissionResponse = {
 	success: true
 	fields: FormValues

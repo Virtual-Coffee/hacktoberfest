@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react'
+import { useSessionStatus } from '@/lib/auth-client'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import {
@@ -27,7 +27,7 @@ import classNames from '@/util/classNames'
 import { useNewSubmissionsClosed } from '@/util/globals'
 
 export default function Page() {
-	const { data: session, status: sessionStatus } = useSession()
+	const { data: session, status: sessionStatus } = useSessionStatus()
 	const newSubmissionsClosed = useNewSubmissionsClosed()
 
 	const contributorsSubmission = useQuery({

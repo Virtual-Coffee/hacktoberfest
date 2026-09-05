@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signInWithGitHub, signOut, useSessionStatus } from '@/lib/auth-client'
 import {
 	Disclosure,
 	DisclosureButton,
@@ -36,7 +36,7 @@ const userNavigation: UserNavItem[] = [
 	{
 		name: 'Sign out',
 		props: {
-			href: '/api/auth/signout',
+			href: '/',
 			onClick: (e) => {
 				e.preventDefault()
 				signOut()
@@ -54,7 +54,7 @@ const navigation: NavItem[] = [
 ]
 
 export default function Nav() {
-	const { data: session, status: sessionStatus } = useSession()
+	const { data: session, status: sessionStatus } = useSessionStatus()
 	const { pathname } = useRouter()
 
 	return (
@@ -113,7 +113,7 @@ export default function Nav() {
 									<div className="ml-3 relative">
 										{sessionStatus === 'loading' && <div>Loading</div>}
 										{sessionStatus === 'unauthenticated' && (
-											<Button size="sm" onClick={() => signIn('github')}>
+											<Button size="sm" onClick={() => signInWithGitHub()}>
 												Sign in with GitHub
 											</Button>
 										)}
@@ -192,7 +192,7 @@ export default function Nav() {
 							{sessionStatus === 'loading' && <div>Loading</div>}
 							{sessionStatus === 'unauthenticated' && (
 								<div className="px-3 py-4 border-t border-gray-200">
-									<Button size="sm" onClick={() => signIn('github')}>
+									<Button size="sm" onClick={() => signInWithGitHub()}>
 										Sign in with GitHub
 									</Button>
 								</div>

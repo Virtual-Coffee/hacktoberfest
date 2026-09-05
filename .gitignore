@@ -111,3 +111,6 @@ dist
 
 # Next.js generated TypeScript declarations
 next-env.d.ts
+
+# Local Netlify folder
+.netlify

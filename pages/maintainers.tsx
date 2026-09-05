@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import { useSessionStatus } from '@/lib/auth-client'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import Form, { FormLayout } from '@/components/Forms'
 import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '@/components/Button'
-import { getMaintainersSubmission } from '@/util/api'
+import { getProfile, getMaintainersSubmission } from '@/util/api'
 import { currentYear, useNewSubmissionsClosed } from '@/util/globals'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
@@ -52,7 +52,7 @@ const successView = (
 )
 
 export default function Page() {
-	const { data: session, status: sessionStatus } = useSession()
+	const { data: session, status: sessionStatus } = useSessionStatus()
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
 	const newSubmissionsClosed = useNewSubmissionsClosed()
@@ -60,6 +60,12 @@ export default function Page() {
 	const previousFormSubmission = useQuery({
 		queryKey: ['maintainers-form'],
 		queryFn: getMaintainersSubmission,
+		enabled: sessionStatus === 'authenticated',
+	})
+
+	const profile = useQuery({
+		queryKey: ['profile'],
+		queryFn: getProfile,
 		enabled: sessionStatus === 'authenticated',
 	})
 
@@ -79,6 +85,10 @@ export default function Page() {
 	}
 
 	if (!(previousFormSubmission.isSuccess || previousFormSubmission.isError)) {
+		return null
+	}
+
+	if (profile.isPending) {
 		return null
 	}
 
@@ -111,6 +121,7 @@ export default function Page() {
 		>
 			<Form
 				session={session}
+				profile={profile.data?.profile ?? null}
 				previousFormSubmission={
 					previousFormSubmission?.data?.success
 						? previousFormSubmission.data.fields

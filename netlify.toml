@@ -5,12 +5,50 @@
 [build.environment]
   NODE_VERSION = "24"
 
+  # The Hacktoberfest year the site collects submissions for.
+  #
+  # NEXT_PUBLIC_* vars are inlined into the bundle at build time, so rolling
+  # the year needs a rebuild -- redeploying an existing build will not pick
+  # it up. Keeping it here rather than in the Netlify UI means changing it is
+  # a commit, and a commit always rebuilds.
+  NEXT_PUBLIC_HACKTOBERFEST_YEAR = "2026"
+
+[dev]
+  # netlify dev proxies to Next and starts the local Postgres alongside it.
+  # It must call dev:next rather than dev, or it would invoke itself.
+  command = "pnpm dev:next"
+  targetPort = 3000
+  port = 8888
+  framework = "#custom"
+
 # Auth on deploy previews and branch deploys
 #
-# Those deploys get a different hostname per PR/branch, so NEXTAUTH_URL must
-# NOT be set for the deploy-preview and branch-deploy contexts. Instead,
-# AUTH_TRUST_HOST=true lets next-auth derive its origin from the request host.
+# The site is served on more than one hostname, so there is no single correct
+# base URL to pin. lib/auth.ts derives it from the request and validates the
+# result against an allowlist:
 #
-# That variable has to be set in the Netlify UI (or CLI) with the "Functions"
-# scope for those contexts. Variables declared in this file are only applied
-# at build time and never reach the function runtime, so it cannot live here.
+#   baseURL: {
+#     allowedHosts: ['hacktoberfest.virtualcoffee.io', '*.netlify.app'],
+#     protocol: 'https',
+#     fallback: 'https://hacktoberfest.virtualcoffee.io',
+#   }
+#
+# allowedHosts also seeds trustedOrigins, so there is no second list to keep in
+# sync. This replaces both NEXTAUTH_URL and AUTH_TRUST_HOST. The real hostname
+# reaches functions as x-forwarded-host, which Better Auth ignores unless
+# advanced.trustedProxyHeaders is set -- it is; a forged host still has to
+# match allowedHosts.
+#
+# Do NOT set BETTER_AUTH_URL in the Netlify UI for any context. It is a
+# local-development override only.
+#
+# KNOWN LIMITATION: sign-in does not work on deploy previews. A GitHub OAuth
+# app accepts exactly one callback URL, so per-PR hostnames can never complete
+# the OAuth round-trip regardless of the base URL we resolve. Previews render
+# fine signed out; authenticated flows are verified locally and on production.
+# Fixing it would mean a GitHub App (which allows multiple callbacks) or an
+# OAuth proxy.
+#
+# BETTER_AUTH_SECRET, GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET must be set in
+# the Netlify UI with the "Functions" scope so they reach the function runtime.
+# Variables declared in this file are build-time only.

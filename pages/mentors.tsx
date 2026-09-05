@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import { useSessionStatus } from '@/lib/auth-client'
 import Form, { FormLayout } from '@/components/Forms'
 import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '@/components/Button'
-import { getMentorsSubmission } from '@/util/api'
+import { getProfile, getMentorsSubmission } from '@/util/api'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -49,13 +49,19 @@ const successView = (
 )
 
 export default function Page() {
-	const { data: session, status: sessionStatus } = useSession()
+	const { data: session, status: sessionStatus } = useSessionStatus()
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
 
 	const previousFormSubmission = useQuery({
 		queryKey: ['mentors-form'],
 		queryFn: getMentorsSubmission,
+		enabled: sessionStatus === 'authenticated',
+	})
+
+	const profile = useQuery({
+		queryKey: ['profile'],
+		queryFn: getProfile,
 		enabled: sessionStatus === 'authenticated',
 	})
 
@@ -78,6 +84,10 @@ export default function Page() {
 		return null
 	}
 
+	if (profile.isPending) {
+		return null
+	}
+
 	return (
 		<FormLayout
 			title="Become a Hacktoberfest Mentor"
@@ -85,6 +95,7 @@ export default function Page() {
 		>
 			<Form
 				session={session}
+				profile={profile.data?.profile ?? null}
 				previousFormSubmission={
 					previousFormSubmission?.data?.success
 						? previousFormSubmission.data.fields
