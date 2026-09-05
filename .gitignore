@@ -108,3 +108,6 @@ dist
 .env.local
 
 .DS_Store
+
+# Next.js generated TypeScript declarations
+next-env.d.ts

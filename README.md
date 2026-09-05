@@ -22,7 +22,7 @@ This repo requires `node`, `pnpm`, and the [Netlify CLI](https://www.netlify.com
 
 #### Installing `node`:
 
-The best way to install `node` is to [download the installer](https://nodejs.org/en/) from their site. This repo requires `node` version `18.16`, which is the latest [LTS version](https://nodejs.dev/en/about/releases/).
+The best way to install `node` is to [download the installer](https://nodejs.org/en/) from their site. This repo requires `node` version `24` or newer (see `.nvmrc`), which is the current [LTS version](https://nodejs.org/en/about/previous-releases).
 
 If you already have a different version of `node` installed, but don't want to update globally, you can install [a package called `nvm`](https://github.com/nvm-sh/nvm), which will allow you to easily switch `node` versions. Once you have `nvm` installed (or if you already have it installed), you can run `nvm use` in the main directory and it will install the proper version of `node`.
 
@@ -43,10 +43,10 @@ corepack prepare
 
 #### Setting up your .env
 
-Use the following command to create a local `.env` file. Then open the new file (`.env`) and adjust any settings that are needed.
+Use the following command to create a local `.env.local` file. Then open the new file (`.env.local`) and adjust any settings that are needed.
 
 ```shell
-cp .env.example .env
+cp .env.local.example .env.local
 ```
 
 #### Installing package dependencies
@@ -88,5 +88,6 @@ Use ctrl-c to quit the server when you're done.
 ## Uses:
 
 - [NextJS](https://nextjs.org/docs/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind UI](https://tailwindui.com)
 - Hosted on [Netlify](https://www.netlify.com/)
