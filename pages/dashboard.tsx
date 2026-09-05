@@ -20,11 +20,11 @@ import {
 	getMaintainersSubmission,
 	getMentorsSubmission,
 	getNonPrContributions,
-} from '../util/api'
+} from '@/util/api'
 import { useQuery } from '@tanstack/react-query'
 import SignIn from '../components/SignIn'
-import classNames from '../util/classNames'
-import { useNewSubmissionsClosed } from '../util/globals'
+import classNames from '@/util/classNames'
+import { useNewSubmissionsClosed } from '@/util/globals'
 
 export default function Page() {
 	const { data: session, status: sessionStatus } = useSession()

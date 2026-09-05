@@ -6,8 +6,8 @@ import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '../components/Button'
-import { getMaintainersSubmission } from '../util/api'
-import { currentYear, useNewSubmissionsClosed } from '../util/globals'
+import { getMaintainersSubmission } from '@/util/api'
+import { currentYear, useNewSubmissionsClosed } from '@/util/globals'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 

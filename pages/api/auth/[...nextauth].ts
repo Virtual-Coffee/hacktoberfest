@@ -3,7 +3,7 @@ import GitHub from 'next-auth/providers/github'
 import {
 	findOrCreateUserAuthIdByGitHubAccount,
 	findOrCreateUserProfile,
-} from '../../../util/airtable'
+} from '@/util/airtable'
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options

@@ -1,7 +1,7 @@
 import ChoiceCard, { type Choice } from '../components/ChoiceCard'
 import Layout from '../components/Layout'
 import Head from 'next/head'
-import { currentYear, useNewSubmissionsClosed } from '../util/globals'
+import { currentYear, useNewSubmissionsClosed } from '@/util/globals'
 import { useMemo } from 'react'
 
 const getChoices = function (newSubmissionsClosed: boolean): Choice[] {

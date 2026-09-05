@@ -5,7 +5,7 @@ import {
 	createOrUpdateForm,
 	findFormResult,
 	updateUserProfile,
-} from '../../../util/airtable'
+} from '@/util/airtable'
 import * as formData from '../../../data/forms'
 import type { NextApiRequest, NextApiResponse } from 'next'
 

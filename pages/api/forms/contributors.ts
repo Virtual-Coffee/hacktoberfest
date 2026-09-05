@@ -3,7 +3,7 @@ import {
 	createOrUpdateForm,
 	findFormResult,
 	updateUserProfile,
-} from '../../../util/airtable'
+} from '@/util/airtable'
 import * as formData from '../../../data/forms'
 import { nextAuthOptions } from '../auth/[...nextauth]'
 import { getServerSession } from 'next-auth/next'

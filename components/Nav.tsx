@@ -11,7 +11,7 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Button from './Button'
-import classNames from '../util/classNames'
+import classNames from '@/util/classNames'
 import Container from './Container'
 import { useRouter } from 'next/router'
 import type { MouseEvent } from 'react'

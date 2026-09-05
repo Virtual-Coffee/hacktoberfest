@@ -4,7 +4,7 @@ import Form, { FormLayout } from '../components/Forms'
 import SignIn from '../components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '../components/Button'
-import { getMentorsSubmission } from '../util/api'
+import { getMentorsSubmission } from '@/util/api'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 

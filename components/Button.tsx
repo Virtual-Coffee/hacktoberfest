@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { MouseEventHandler, ReactNode } from 'react'
-import classNames from '../util/classNames'
+import classNames from '@/util/classNames'
 
 const defaultClassName =
 	'inline-block border border-transparent leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out'
