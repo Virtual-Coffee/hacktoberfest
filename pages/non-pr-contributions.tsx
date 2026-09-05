@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import { useSessionStatus } from '@/lib/auth-client'
 import Form, { FormLayout } from '@/components/Forms'
 import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
@@ -53,7 +53,7 @@ const successView = (
 )
 
 export default function Page() {
-	const { data: session, status: sessionStatus } = useSession()
+	const { data: session, status: sessionStatus } = useSessionStatus()
 	const router = useRouter()
 	const { error, message: errorMessage } = router.query
 	const newSubmissionsClosed = useNewSubmissionsClosed()

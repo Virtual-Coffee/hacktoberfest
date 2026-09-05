@@ -1,21 +1,22 @@
-import { nextAuthOptions } from '@/pages/api/auth/[...nextauth]'
-import { getServerSession } from 'next-auth/next'
-import { getToken } from 'next-auth/jwt'
+import { fromNodeHeaders } from 'better-auth/node'
 import {
-	createOrUpdateForm,
-	findFormResult,
-	updateUserProfile,
-} from '@/util/airtable'
+	findSubmission,
+	profileToFormValues,
+	saveSubmission,
+	updateProfile,
+} from '@/util/data'
 import * as formData from '@/data/forms'
+import { auth } from '@/lib/auth'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const secret = process.env.SECRET
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	const session = await getServerSession(req, res, nextAuthOptions)
-	const token = await getToken({ req, secret })
+	const session = await auth.api.getSession({
+		headers: fromNodeHeaders(req.headers),
+	})
 
-	if (session && token?.auth_id) {
+	if (session) {
+		const userId = session.user.id
+
 		switch (req.method) {
 			case 'POST':
 				const data =
@@ -58,28 +59,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
-				const updateProfileResult = await updateUserProfile(
-					token.auth_id,
-					session.profile.profile_id,
-					data
-				)
+				const profile = await updateProfile(userId, data)
 
-				// console.log(updateProfileResult)
-
-				const formRowResult = await createOrUpdateForm(
-					token.auth_id,
-					'mentors',
-					data
-				)
-
-				// console.log(formRowResult)
+				const submission = await saveSubmission(userId, 'mentors', data)
 
 				if (req.headers.accept === 'application/json') {
 					res.send({
 						success: true,
 						fields: {
-							...updateProfileResult.fields,
-							...formRowResult.fields,
+							...profileToFormValues(profile),
+							...submission.responses,
 						},
 					})
 				} else {
@@ -94,12 +83,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
-				const result = await findFormResult(token.auth_id, 'mentors')
+				const result = await findSubmission(userId, 'mentors')
 
 				if (result) {
 					res.send({
 						success: true,
-						fields: result.fields,
+						fields: result.responses,
 					})
 				} else {
 					res.status(404).send({ success: false, message: 'Not found.' })

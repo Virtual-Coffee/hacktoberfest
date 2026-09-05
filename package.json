@@ -33,11 +33,9 @@
 		"@netlify/database": "^2.0.1",
 		"@tailwindcss/forms": "^0.5.11",
 		"@tanstack/react-query": "^5.102.8",
-		"airtable": "^0.12.2",
 		"better-auth": "^1.7.2",
 		"drizzle-orm": "^0.45.2",
 		"next": "^16.3.4",
-		"next-auth": "^4.24.15",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"zod": "^4.5.4"

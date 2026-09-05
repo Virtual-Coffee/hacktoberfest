@@ -1,17 +1,17 @@
-import { getToken } from 'next-auth/jwt'
-import { createOrUpdateForm, findFormResults } from '@/util/airtable'
+import { fromNodeHeaders } from 'better-auth/node'
+import { findSubmissions, saveSubmission } from '@/util/data'
 import * as formData from '@/data/forms'
-import { nextAuthOptions } from '@/pages/api/auth/[...nextauth]'
-import { getServerSession } from 'next-auth/next'
+import { auth } from '@/lib/auth'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const secret = process.env.SECRET
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	const session = await getServerSession(req, res, nextAuthOptions)
-	const token = await getToken({ req, secret })
+	const session = await auth.api.getSession({
+		headers: fromNodeHeaders(req.headers),
+	})
 
-	if (session && token?.auth_id) {
+	if (session) {
+		const userId = session.user.id
+
 		switch (req.method) {
 			case 'POST':
 				const data =
@@ -51,20 +51,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
-				const formRowResult = await createOrUpdateForm(
-					token.auth_id,
+				// Append-only: every submission is a separate contribution.
+				const submission = await saveSubmission(
+					userId,
 					'nonPrContributions',
 					data
 				)
 
-				// console.log(formRowResult)
-
 				if (req.headers.accept === 'application/json') {
 					res.send({
 						success: true,
-						fields: {
-							...formRowResult.fields,
-						},
+						fields: submission.responses,
 					})
 				} else {
 					res.redirect(303, '/non-pr-contributions-thanks')
@@ -78,19 +75,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					return
 				}
 
-				const results = await findFormResults(
-					token.auth_id,
-					'nonPrContributions'
-				)
+				const results = await findSubmissions(userId, 'nonPrContributions')
 
-				if (results) {
-					res.send({
-						success: true,
-						results: results.map((r) => r.fields),
-					})
-				} else {
-					res.status(404).send({ success: false, message: 'Not found.' })
-				}
+				res.send({
+					success: true,
+					results: results.map((result) => ({
+						...result.responses,
+						id: result.id,
+						created_at: result.created_at,
+					})),
+				})
 
 				break
 			default:

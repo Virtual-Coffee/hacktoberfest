@@ -11,7 +11,7 @@ import {
 	useEffect,
 	useReducer,
 } from 'react'
-import type { Session } from 'next-auth'
+import type { AppSession } from '@/lib/auth-client'
 import * as formData from '@/data/forms'
 import type { FormField, FormKey, FormValues } from '@/data/forms'
 import Alert, { ErrorAlert } from './Alert'
@@ -336,7 +336,8 @@ type FormState = {
 
 type InitArgs = {
 	defaultState: FormState
-	session: Session | null
+	session: AppSession | null
+	profile?: FormValues | null
 	previousFormSubmission?: FormValues | null
 	errorMessage?: string
 }
@@ -361,6 +362,7 @@ const defaultState: FormState = {
 function createInitialState({
 	defaultState,
 	session,
+	profile,
 	previousFormSubmission,
 	errorMessage,
 }: InitArgs): FormState {
@@ -374,19 +376,19 @@ function createInitialState({
 
 	state.status = 'ready'
 
-	state.fields.Name = session?.githubUser.name || undefined
-	state.fields['GitHubUsername'] = session?.githubUser?.login || undefined
+	// Saved profile first, then whatever GitHub told us at sign-in.
+	state.fields.Name = profile?.Name || session?.user?.name || undefined
+	state.fields['GitHubUsername'] =
+		profile?.['GitHubUsername'] || session?.user?.githubLogin || undefined
 	state.fields['TwitterUsername'] =
-		session?.profile?.['TwitterUsername'] || undefined
+		profile?.['TwitterUsername'] || session?.user?.twitterUsername || undefined
 	state.fields['PreferredTimeZone'] =
-		session?.profile?.['PreferredTimeZone'] || undefined
-	state.fields.Pronouns = session?.profile?.Pronouns || undefined
-	state.fields.Email =
-		session?.profile?.Email || session?.githubUser?.email || undefined
+		profile?.['PreferredTimeZone'] || undefined
+	state.fields.Pronouns = profile?.Pronouns || undefined
+	state.fields.Email = profile?.Email || session?.user?.email || undefined
 
-	state.fields.IsMember = session?.profile?.IsMember || undefined
-	state.fields.AllowSocialSharing =
-		session?.profile?.AllowSocialSharing || undefined
+	state.fields.IsMember = profile?.IsMember || undefined
+	state.fields.AllowSocialSharing = profile?.AllowSocialSharing || undefined
 
 	if (previousFormSubmission) {
 		state.fields = {
@@ -457,6 +459,7 @@ function reducer(state: FormState, action: FormAction): FormState {
 
 export default function Form({
 	session,
+	profile,
 	errorMessage,
 	previousFormSubmission,
 	successView,
@@ -467,7 +470,8 @@ export default function Form({
 	showProfileFields = true,
 	submitText = 'Sign Up!',
 }: {
-	session: Session | null
+	session: AppSession | null
+	profile?: FormValues | null
 	errorMessage?: string
 	previousFormSubmission?: FormValues | null
 	successView: ReactNode
@@ -483,6 +487,7 @@ export default function Form({
 		{
 			defaultState,
 			session,
+			profile,
 			previousFormSubmission,
 			errorMessage,
 		},

@@ -1,4 +1,4 @@
-import { signIn } from 'next-auth/react'
+import { signInWithGitHub } from '@/lib/auth-client'
 import Button from './Button'
 
 export default function SignIn() {
@@ -10,7 +10,7 @@ export default function SignIn() {
 				</h2>
 				<div className="mt-8 flex justify-center">
 					<div className="inline-flex rounded-md shadow-sm">
-						<Button size="lg" onClick={() => signIn('github')}>
+						<Button size="lg" onClick={() => signInWithGitHub()}>
 							Sign in with GitHub
 						</Button>
 					</div>
