@@ -17,6 +17,12 @@ importers:
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.8)
+      '@json2csv/formatters':
+        specifier: ^7.0.8
+        version: 7.0.8
+      '@json2csv/plainjs':
+        specifier: ^7.0.8
+        version: 7.0.8
       '@netlify/database':
         specifier: ^2.0.1
         version: 2.0.1
@@ -1027,6 +1033,12 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@json2csv/formatters@7.0.8':
+    resolution: {integrity: sha512-YYpeZF7qKSX55FMYEl0m7Hn188l050k171/KwDHSMPHLHvWxDbzjmH1qVfXyV7XO7MMpDx1P7xksd/jXqlLxDw==}
+
+  '@json2csv/plainjs@7.0.8':
+    resolution: {integrity: sha512-bxsdb7tcHFyq6SGvDdHrxgSLxc8ScNyX+6B1aT+Anp8PEieZIenf6lPIJ2CnB4MQkrNANfFj6mXJlK9f8Bh5wg==}
+
   '@mrleebo/prisma-ast@0.16.0':
     resolution: {integrity: sha512-a9ELYNIflEQP38tSu6gnUgSAWgXjuhMvC52868K5sWgyRmYsjiJMWTUmm8iy7hZT5EN2ZKVydMTFP2q3/+6ccg==}
     engines: {node: '>=22.0.0'}
@@ -1129,6 +1141,9 @@ packages:
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
+  '@streamparser/json@0.0.23':
+    resolution: {integrity: sha512-givIVGxVGwP2oh5wiGdjQBKLZAS6LMkvnOxKybKTZDWP9LCO20eAzAL8OkUg8iR7u28cB2Ti7lFfLHnAAZGN6A==}
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
@@ -2942,6 +2957,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
+  '@json2csv/formatters@7.0.8': {}
+
+  '@json2csv/plainjs@7.0.8':
+    dependencies:
+      '@json2csv/formatters': 7.0.8
+      '@streamparser/json': 0.0.23
+
   '@mrleebo/prisma-ast@0.16.0':
     dependencies:
       chevrotain: 12.0.0
@@ -3033,6 +3055,8 @@ snapshots:
       react: 19.2.8
 
   '@standard-schema/spec@1.1.0': {}
+
+  '@streamparser/json@0.0.23': {}
 
   '@swc/helpers@0.5.23':
     dependencies:
