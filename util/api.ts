@@ -96,9 +96,20 @@ export async function getNonPrContributions(): Promise<NonPrContributionsRespons
 }
 
 /**
- * Admin reads. These hit /api/admin/*, which returns 403 to a non-admin -- the
- * `null` on !ok below is why the pages check for data rather than isError.
+ * Admin reads. These hit /api/admin/*.
+ *
+ * A 403 throws rather than returning null, because "you no longer have access"
+ * and "there is nothing here" have to look different: returning null made
+ * react-query report success-with-no-data, so a revoked admin saw an empty
+ * dashboard instead of being told. See components/admin/useAdminAccess.ts.
+ * Every other failure still returns null, like the member-facing helpers above.
  */
+export class AdminAccessError extends Error {
+	constructor() {
+		super('You do not have access to this content.')
+		this.name = 'AdminAccessError'
+	}
+}
 
 export type AdminCountsResponse = {
 	success: true
@@ -112,6 +123,9 @@ export async function getAdminCounts(): Promise<AdminCountsResponse> {
 			Accept: 'application/json',
 		},
 	})
+	if (response.status === 403) {
+		throw new AdminAccessError()
+	}
 	if (!response.ok) {
 		return null
 	}
@@ -138,6 +152,9 @@ export async function getAdminSubmissions(
 			},
 		}
 	)
+	if (response.status === 403) {
+		throw new AdminAccessError()
+	}
 	if (!response.ok) {
 		return null
 	}
@@ -160,6 +177,9 @@ export async function getAdminSubmitter(
 			},
 		}
 	)
+	if (response.status === 403) {
+		throw new AdminAccessError()
+	}
 	if (!response.ok) {
 		return null
 	}

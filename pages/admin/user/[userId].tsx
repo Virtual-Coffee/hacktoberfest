@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
+import useAdminAccess from '@/components/admin/useAdminAccess'
 import {
 	Card,
 	CardHeader,
@@ -126,7 +127,12 @@ export default function Page() {
 		queryKey: ['admin-submitter', userId, year],
 		queryFn: () => getAdminSubmitter(userId!, year),
 		enabled: sessionStatus === 'authenticated' && Boolean(userId),
+		// A 403 is a settled answer, not a blip -- retrying would mean three
+		// more 403s and three more GitHub resyncs behind them.
+		retry: false,
 	})
+
+	const revoked = useAdminAccess(detail.error)
 
 	const data = detail.data
 	const submitter = data?.submitter
@@ -145,7 +151,7 @@ export default function Page() {
 				← {backLabel}
 			</Link>
 
-			{detail.isPending ? (
+			{revoked ? null : detail.isPending ? (
 				<p className="mt-6 text-sm text-gray-500">Loading…</p>
 			) : !submitter || !data ? (
 				<div className="mt-6">

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
+import useAdminAccess from '@/components/admin/useAdminAccess'
 import { YearSelect } from '@/components/admin/Controls'
 import { useSessionStatus } from '@/lib/auth-client'
 import { getAdminCounts } from '@/util/api'
@@ -18,7 +19,12 @@ export default function Page() {
 		queryKey: ['admin-counts'],
 		queryFn: getAdminCounts,
 		enabled: sessionStatus === 'authenticated',
+		// A 403 is a settled answer, not a blip -- retrying would mean three
+		// more 403s and three more GitHub resyncs behind them.
+		retry: false,
 	})
+
+	useAdminAccess(counts.error)
 
 	const rows = counts.data?.counts ?? []
 	const years = rows.map((row) => row.year)
@@ -119,7 +125,7 @@ export default function Page() {
 									))}
 								</tr>
 							))}
-							{counts.isSuccess && rows.length === 0 ? (
+							{counts.isSuccess && !counts.isError && rows.length === 0 ? (
 								<tr className="border-t border-gray-200">
 									<td
 										colSpan={FORM_KEYS.length + 1}
