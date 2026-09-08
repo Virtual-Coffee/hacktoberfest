@@ -14,8 +14,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
  * everything for one form and year, not the page currently on screen.
  */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	if (!(await requireAdmin(req, res))) return
 	if (!requireGet(req, res)) return
+	if (!(await requireAdmin(req, res))) return
 
 	const { formKey } = req.query
 

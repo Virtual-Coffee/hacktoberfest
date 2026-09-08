@@ -5,8 +5,8 @@ import { currentYear } from '@/util/globals'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	if (!(await requireAdmin(req, res))) return
 	if (!requireGet(req, res)) return
+	if (!(await requireAdmin(req, res))) return
 
 	const { userId } = req.query
 

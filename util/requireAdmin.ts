@@ -34,11 +34,22 @@ const isStale = (syncedAt: Date | string | null | undefined) => {
  *
  * Returns the session on success; on failure it has already sent the response
  * and returns null, so callers just `if (!session) return`.
+ *
+ * Also marks the response uncacheable. Everything behind this boundary is
+ * other members' personal data on a stable, guessable URL, and Next sets no
+ * cache header of its own on a pages API route -- so without this the CSV
+ * export in particular lands in the browser's disk cache and stays there for
+ * the next person at that machine.
  */
 export async function requireAdmin(
 	req: NextApiRequest,
 	res: NextApiResponse
 ): Promise<Session | null> {
+	res.setHeader(
+		'Cache-Control',
+		'private, no-cache, no-store, max-age=0, must-revalidate'
+	)
+
 	const session = await auth.api.getSession({
 		headers: fromNodeHeaders(req.headers),
 	})
@@ -75,7 +86,15 @@ export async function requireAdmin(
 	return session
 }
 
-/** Every admin route is read-only. */
+/**
+ * Every admin route is read-only.
+ *
+ * Runs before requireAdmin, so an unsupported method is turned away on the
+ * method alone. The other order let a stale admin's POST reach the GitHub
+ * resync above -- several requests on a 2-second timeout each -- before the
+ * 405 it was always going to get, and a failed resync leaves the timestamp
+ * stale, so the next POST pays it again.
+ */
 export function requireGet(req: NextApiRequest, res: NextApiResponse) {
 	if (req.method !== 'GET') {
 		res.status(405).send({ message: 'Requests method not allowed.' })
