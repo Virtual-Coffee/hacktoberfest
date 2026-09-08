@@ -22,11 +22,17 @@ export function YearSelect({
 			<label htmlFor="admin-year" className="text-sm font-medium text-gray-700">
 				Year
 			</label>
+			{/*
+			 * pr-10 rather than px-3: @tailwindcss/forms paints a chevron at
+			 * `right 0.5rem center` and reserves 2.5rem of padding-right for it.
+			 * A symmetric px-3 overrides that reservation, and the arrow lands on
+			 * top of the year.
+			 */}
 			<select
 				id="admin-year"
 				value={year}
 				onChange={(event) => onChange(Number(event.target.value))}
-				className="border border-gray-300 rounded-md px-3 py-1.5 text-sm text-gray-900 bg-white"
+				className="border border-gray-300 rounded-md pl-3 pr-10 py-1.5 text-sm text-gray-900 bg-white"
 			>
 				{options.map((option) => (
 					<option key={option} value={option}>
