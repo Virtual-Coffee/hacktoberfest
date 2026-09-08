@@ -16,7 +16,7 @@ import {
 	formatText,
 	formatValue,
 	responseFields,
-} from './fields'
+} from '@/util/adminFields'
 import type { AdminSubmissionRow } from '@/util/admin'
 import type { FormKey } from '@/data/forms'
 

@@ -19,7 +19,7 @@ import {
 	formatText,
 	formatValue,
 	responseFields,
-} from '@/components/admin/fields'
+} from '@/util/adminFields'
 import { useSessionStatus } from '@/lib/auth-client'
 import { getAdminSubmitter } from '@/util/api'
 import { FORM_KEYS } from '@/util/adminForms'
