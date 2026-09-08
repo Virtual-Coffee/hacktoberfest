@@ -26,6 +26,15 @@ import type { FormKey } from '@/data/forms'
  *
  * Only the three features the grid actually uses are registered -- in v9 the
  * sorting/pagination/pinning APIs do not exist on the table until they are.
+ *
+ * `alphanumeric` is the only sort function registered, and every column below
+ * names it rather than leaving `sortFn` on its `'auto'` default. Auto samples
+ * the first ten rows: values with no digits resolve to `text`, which is not
+ * registered here, and v9 only rescues the other direction (alphanumeric ->
+ * text), so those columns silently fell back to `sortFn_basic` -- a raw `>`
+ * with no lowercasing, which sorts `Zoe` above `alice`. Naming it also means
+ * `project2` sorts before `project10` in every column, not just the ones that
+ * happened to have a number in the first ten rows.
  */
 export const features = tableFeatures({
 	rowSortingFeature,
@@ -51,6 +60,7 @@ export function buildColumns(formKey: FormKey, year: number) {
 		helper.accessor((row) => row.name ?? EM_DASH, {
 			id: PINNED_COLUMN_ID,
 			header: 'Name',
+			sortFn: 'alphanumeric',
 			cell: ({ row }) => (
 				<Link
 					href={`/admin/user/${encodeURIComponent(row.original.userId)}?year=${year}&from=${formKey}`}
@@ -63,22 +73,27 @@ export function buildColumns(formKey: FormKey, year: number) {
 		helper.accessor((row) => formatText(row.githubUsername), {
 			id: 'githubUsername',
 			header: 'GitHub',
+			sortFn: 'alphanumeric',
 		}),
 		helper.accessor((row) => formatText(row.email), {
 			id: 'email',
 			header: 'Email',
+			sortFn: 'alphanumeric',
 		}),
 		helper.accessor((row) => formatText(row.preferredTimeZone), {
 			id: 'preferredTimeZone',
 			header: 'Time zone',
+			sortFn: 'alphanumeric',
 		}),
 		helper.accessor((row) => formatText(row.pronouns), {
 			id: 'pronouns',
 			header: 'Pronouns',
+			sortFn: 'alphanumeric',
 		}),
 		helper.accessor((row) => formatBoolean(row.isMember), {
 			id: 'isMember',
 			header: 'Member',
+			sortFn: 'alphanumeric',
 		}),
 	]
 
@@ -88,6 +103,7 @@ export function buildColumns(formKey: FormKey, year: number) {
 		helper.accessor((row) => formatValue(row.responses[field.key]), {
 			id: `response:${field.key}`,
 			header: field.label,
+			sortFn: 'alphanumeric',
 		})
 	)
 
@@ -95,6 +111,7 @@ export function buildColumns(formKey: FormKey, year: number) {
 		helper.accessor((row) => row.createdAt, {
 			id: 'createdAt',
 			header: 'Submitted',
+			sortFn: 'alphanumeric',
 			cell: ({ row }) => formatDate(row.original.createdAt),
 		}),
 	]
