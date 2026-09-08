@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
 import useAdminAccess from '@/components/admin/useAdminAccess'
+import AdminError from '@/components/admin/AdminError'
 import Button from '@/components/Button'
 import SubmissionsTable from '@/components/admin/SubmissionsTable'
 import { FormTabs, YearSelect } from '@/components/admin/Controls'
@@ -103,7 +104,9 @@ export default function Page() {
 				</div>
 			</div>
 
-			{revoked ? null : submissions.isPending ? (
+			{revoked ? null : submissions.isError ? (
+				<AdminError onRetry={() => submissions.refetch()} />
+			) : submissions.isPending ? (
 				<div className="mt-6 px-6 py-12 text-center text-sm text-gray-500">
 					Loading {noun}…
 				</div>

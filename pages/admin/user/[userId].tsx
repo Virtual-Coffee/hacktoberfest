@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
 import useAdminAccess from '@/components/admin/useAdminAccess'
+import AdminError from '@/components/admin/AdminError'
 import {
 	Card,
 	CardHeader,
@@ -151,7 +152,9 @@ export default function Page() {
 				← {backLabel}
 			</Link>
 
-			{revoked ? null : detail.isPending ? (
+			{revoked ? null : detail.isError ? (
+				<AdminError onRetry={() => detail.refetch()} />
+			) : detail.isPending ? (
 				<p className="mt-6 text-sm text-gray-500">Loading…</p>
 			) : !submitter || !data ? (
 				<div className="mt-6">
