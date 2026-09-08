@@ -1,0 +1,118 @@
+import { useRouter } from 'next/router'
+import { useQuery } from '@tanstack/react-query'
+import AdminGate from '@/components/AdminGate'
+import useAdminAccess from '@/components/admin/useAdminAccess'
+import AdminError from '@/components/admin/AdminError'
+import Button from '@/components/Button'
+import SubmissionsTable from '@/components/admin/SubmissionsTable'
+import { FormTabs, YearSelect } from '@/components/admin/Controls'
+import { useSessionStatus } from '@/lib/auth-client'
+import { getAdminCounts, getAdminSubmissions } from '@/util/api'
+import { FORM_HEADINGS, isFormKey } from '@/util/adminForms'
+import { currentYear } from '@/util/globals'
+import { parseYearParam } from '@/util/adminYear'
+
+export default function Page() {
+	const { status: sessionStatus } = useSessionStatus()
+	const router = useRouter()
+
+	const formKeyParam = Array.isArray(router.query.formKey)
+		? router.query.formKey[0]
+		: router.query.formKey
+	const formKey = isFormKey(formKeyParam) ? formKeyParam : null
+	const year = parseYearParam(router.query.year, currentYear)
+
+	const counts = useQuery({
+		queryKey: ['admin-counts'],
+		queryFn: getAdminCounts,
+		enabled: sessionStatus === 'authenticated',
+		retry: false,
+	})
+
+	const submissions = useQuery({
+		queryKey: ['admin-submissions', formKey, year],
+		queryFn: () => getAdminSubmissions(formKey!, year),
+		enabled: sessionStatus === 'authenticated' && formKey !== null,
+		// A 403 is a settled answer, not a blip -- retrying would mean three
+		// more 403s and three more GitHub resyncs behind them.
+		retry: false,
+	})
+
+	const revoked = useAdminAccess(submissions.error ?? counts.error)
+
+	// router.query is empty on the very first client render, so an unknown form
+	// is only really unknown once the router has hydrated.
+	if (!formKey) {
+		if (!router.isReady) return null
+
+		return (
+			<AdminGate title="Admin | Virtual Coffee Hacktoberfest">
+				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900">
+					Unknown form
+				</h1>
+				<p className="mt-4 text-lg leading-6 text-gray-500">
+					No submission form matches that address.
+				</p>
+			</AdminGate>
+		)
+	}
+
+	const rows = submissions.data?.submissions
+	const yearCounts = counts.data?.counts ?? []
+	const selected = yearCounts.find((row) => row.year === year)
+	const noun =
+		formKey === 'nonPrContributions' ? 'contributions' : 'submissions'
+
+	return (
+		<AdminGate
+			title={`${FORM_HEADINGS[formKey]} | Admin | Virtual Coffee Hacktoberfest`}
+			description={`${FORM_HEADINGS[formKey]} ${noun} for ${year}.`}
+		>
+			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+				{FORM_HEADINGS[formKey]}
+			</h1>
+			<p className="mt-3 mb-6 text-lg leading-6 text-gray-500">
+				{rows ? `${rows.length} ${noun} for ${year}.` : ` `}
+			</p>
+
+			<div className="border-b border-gray-200 flex justify-between items-end flex-wrap gap-3">
+				<FormTabs active={formKey} year={year} counts={selected} />
+				<div className="pb-2 flex items-center gap-3">
+					{/*
+					 * `external` so this renders a plain anchor: a next/link would
+					 * client-side navigate instead of letting the browser download.
+					 * Exports every row for this form and year, not the page on screen.
+					 */}
+					<Button
+						href={`/api/admin/export/${formKey}?year=${year}`}
+						external
+						size="sm"
+						color="utility"
+					>
+						Export CSV
+					</Button>
+					<YearSelect
+						year={year}
+						years={yearCounts.map((row) => row.year)}
+						onChange={(next) =>
+							router.push({
+								pathname: `/admin/${formKey}`,
+								query: { year: next },
+							})
+						}
+					/>
+				</div>
+			</div>
+
+			{revoked ? null : submissions.isError ? (
+				<AdminError onRetry={() => submissions.refetch()} />
+			) : submissions.isPending ? (
+				<div className="mt-6 px-6 py-12 text-center text-sm text-gray-500">
+					Loading {noun}…
+				</div>
+			) : (
+				<SubmissionsTable formKey={formKey} year={year} rows={rows} />
+			)}
+		</AdminGate>
+	)
+}

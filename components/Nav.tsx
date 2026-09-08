@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { signInWithGitHub, signOut, useSessionStatus } from '@/lib/auth-client'
+import type { SessionStatus } from '@/lib/auth-client'
 import {
 	Disclosure,
 	DisclosureButton,
@@ -20,6 +21,9 @@ type NavItem = {
 	name: string
 	href: string
 	authOnly?: boolean
+	adminOnly?: boolean
+	/** Keep the item active on nested routes, e.g. /admin/contributors. */
+	matchPrefix?: boolean
 	current?: boolean
 }
 
@@ -51,7 +55,27 @@ const navigation: NavItem[] = [
 	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
 	{ name: 'Code of Conduct', href: 'https://virtualcoffee.io/code-of-conduct' },
 	{ name: 'Dashboard', href: '/dashboard', authOnly: true },
+	{ name: 'Admin', href: '/admin', adminOnly: true, matchPrefix: true },
 ]
+
+const isVisible = (
+	item: NavItem,
+	sessionStatus: SessionStatus,
+	role?: string | null
+) => {
+	if (item.adminOnly) {
+		return sessionStatus === 'authenticated' && role === 'admin'
+	}
+	if (item.authOnly) {
+		return sessionStatus === 'authenticated'
+	}
+	return true
+}
+
+const isCurrent = (item: NavItem, pathname: string) =>
+	item.matchPrefix
+		? pathname === item.href || pathname.startsWith(`${item.href}/`)
+		: pathname === item.href
 
 export default function Nav() {
 	const { data: session, status: sessionStatus } = useSessionStatus()
@@ -84,22 +108,33 @@ export default function Nav() {
 										/>
 									</div>
 									<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-										{navigation.map(({ name, authOnly, href, ...rest }) => {
-											if (authOnly && sessionStatus !== 'authenticated') {
+										{navigation.map((item) => {
+											if (!isVisible(item, sessionStatus, session?.user.role)) {
 												return null
 											}
+
+											const {
+												name,
+												href,
+												current: _current,
+												authOnly: _authOnly,
+												adminOnly: _adminOnly,
+												matchPrefix: _matchPrefix,
+												...rest
+											} = item
+											const current = isCurrent(item, pathname)
 
 											return (
 												<Link
 													href={href}
 													key={name}
 													className={classNames(
-														href === pathname
+														current
 															? 'border-indigo-500 text-gray-900'
 															: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
 														'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
 													)}
-													aria-current={href === pathname ? 'page' : undefined}
+													aria-current={current ? 'page' : undefined}
 													{...rest}
 												>
 													{name}
@@ -172,22 +207,39 @@ export default function Nav() {
 
 						<DisclosurePanel className="sm:hidden">
 							<div className="pt-2 pb-3 space-y-1">
-								{navigation.map(({ name, current, href, ...rest }) => (
-									<Link
-										href={href}
-										key={name}
-										className={classNames(
-											current
-												? 'bg-indigo-50 border-indigo-500 text-indigo-700'
-												: 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
-											'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
-										)}
-										aria-current={current ? 'page' : undefined}
-										{...rest}
-									>
-										{name}
-									</Link>
-								))}
+								{navigation.map((item) => {
+									if (!isVisible(item, sessionStatus, session?.user.role)) {
+										return null
+									}
+
+									const {
+										name,
+										href,
+										current: _current,
+										authOnly: _authOnly,
+										adminOnly: _adminOnly,
+										matchPrefix: _matchPrefix,
+										...rest
+									} = item
+									const current = isCurrent(item, pathname)
+
+									return (
+										<Link
+											href={href}
+											key={name}
+											className={classNames(
+												current
+													? 'bg-indigo-50 border-indigo-500 text-indigo-700'
+													: 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
+												'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+											)}
+											aria-current={current ? 'page' : undefined}
+											{...rest}
+										>
+											{name}
+										</Link>
+									)
+								})}
 							</div>
 							{sessionStatus === 'loading' && <div>Loading</div>}
 							{sessionStatus === 'unauthenticated' && (
