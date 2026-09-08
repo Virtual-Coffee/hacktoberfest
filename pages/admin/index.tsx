@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
 import useAdminAccess from '@/components/admin/useAdminAccess'
+import AdminError from '@/components/admin/AdminError'
 import { YearSelect } from '@/components/admin/Controls'
 import { useSessionStatus } from '@/lib/auth-client'
 import { getAdminCounts } from '@/util/api'
@@ -24,7 +25,7 @@ export default function Page() {
 		retry: false,
 	})
 
-	useAdminAccess(counts.error)
+	const revoked = useAdminAccess(counts.error)
 
 	const rows = counts.data?.counts ?? []
 	const years = rows.map((row) => row.year)
@@ -54,6 +55,10 @@ export default function Page() {
 					/>
 				</div>
 			</div>
+
+			{counts.isError && !revoked ? (
+				<AdminError onRetry={() => counts.refetch()} />
+			) : null}
 
 			<dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 				{FORM_KEYS.map((formKey) => (

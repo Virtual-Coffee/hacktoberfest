@@ -98,11 +98,19 @@ export async function getNonPrContributions(): Promise<NonPrContributionsRespons
 /**
  * Admin reads. These hit /api/admin/*.
  *
- * A 403 throws rather than returning null, because "you no longer have access"
- * and "there is nothing here" have to look different: returning null made
- * react-query report success-with-no-data, so a revoked admin saw an empty
- * dashboard instead of being told. See components/admin/useAdminAccess.ts.
- * Every other failure still returns null, like the member-facing helpers above.
+ * Unlike the member-facing helpers above, these do not flatten every failure
+ * to null. react-query settles a null as success-with-no-data, and an admin
+ * page cannot tell that apart from an empty table -- so a failure rendered as
+ * "No submissions yet" or "Not found", which is a lie about someone else's
+ * data. Three outcomes instead:
+ *
+ * - 403 throws AdminAccessError. Access was revoked mid-session; see
+ *   components/admin/useAdminAccess.ts, which refetches the session so
+ *   AdminGate can say so.
+ * - 404 returns null. This is an answer, not a failure: no member matches that
+ *   address. The pages still render their own "not found" copy for it.
+ * - Anything else throws. The server or the network broke, and the page says
+ *   that rather than inventing an empty result.
  */
 export class AdminAccessError extends Error {
 	constructor() {
@@ -126,8 +134,11 @@ export async function getAdminCounts(): Promise<AdminCountsResponse> {
 	if (response.status === 403) {
 		throw new AdminAccessError()
 	}
-	if (!response.ok) {
+	if (response.status === 404) {
 		return null
+	}
+	if (!response.ok) {
+		throw new Error(`Admin request failed with ${response.status}`)
 	}
 	return response.json()
 }
@@ -155,8 +166,11 @@ export async function getAdminSubmissions(
 	if (response.status === 403) {
 		throw new AdminAccessError()
 	}
-	if (!response.ok) {
+	if (response.status === 404) {
 		return null
+	}
+	if (!response.ok) {
+		throw new Error(`Admin request failed with ${response.status}`)
 	}
 	return response.json()
 }
@@ -180,8 +194,11 @@ export async function getAdminSubmitter(
 	if (response.status === 403) {
 		throw new AdminAccessError()
 	}
-	if (!response.ok) {
+	if (response.status === 404) {
 		return null
+	}
+	if (!response.ok) {
+		throw new Error(`Admin request failed with ${response.status}`)
 	}
 	return response.json()
 }
