@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 import AdminGate from '@/components/AdminGate'
+import useAdminAccess from '@/components/admin/useAdminAccess'
+import Button from '@/components/Button'
 import SubmissionsTable from '@/components/admin/SubmissionsTable'
 import { FormTabs, YearSelect } from '@/components/admin/Controls'
 import { useSessionStatus } from '@/lib/auth-client'
@@ -23,13 +25,19 @@ export default function Page() {
 		queryKey: ['admin-counts'],
 		queryFn: getAdminCounts,
 		enabled: sessionStatus === 'authenticated',
+		retry: false,
 	})
 
 	const submissions = useQuery({
 		queryKey: ['admin-submissions', formKey, year],
 		queryFn: () => getAdminSubmissions(formKey!, year),
 		enabled: sessionStatus === 'authenticated' && formKey !== null,
+		// A 403 is a settled answer, not a blip -- retrying would mean three
+		// more 403s and three more GitHub resyncs behind them.
+		retry: false,
 	})
+
+	const revoked = useAdminAccess(submissions.error ?? counts.error)
 
 	// router.query is empty on the very first client render, so an unknown form
 	// is only really unknown once the router has hydrated.
@@ -68,7 +76,20 @@ export default function Page() {
 
 			<div className="border-b border-gray-200 flex justify-between items-end flex-wrap gap-3">
 				<FormTabs active={formKey} year={year} counts={selected} />
-				<div className="pb-2">
+				<div className="pb-2 flex items-center gap-3">
+					{/*
+					 * `external` so this renders a plain anchor: a next/link would
+					 * client-side navigate instead of letting the browser download.
+					 * Exports every row for this form and year, not the page on screen.
+					 */}
+					<Button
+						href={`/api/admin/export/${formKey}?year=${year}`}
+						external
+						size="sm"
+						color="utility"
+					>
+						Export CSV
+					</Button>
 					<YearSelect
 						year={year}
 						years={yearCounts.map((row) => row.year)}
@@ -82,7 +103,7 @@ export default function Page() {
 				</div>
 			</div>
 
-			{submissions.isPending ? (
+			{revoked ? null : submissions.isPending ? (
 				<div className="mt-6 px-6 py-12 text-center text-sm text-gray-500">
 					Loading {noun}…
 				</div>
