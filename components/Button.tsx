@@ -8,6 +8,7 @@ const defaultClassName =
 const colors = {
 	primary: 'text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500',
 	utility: 'text-orange-600 hover:text-orange-500 bg-gray-50 hover:bg-gray-50',
+	disabled: 'text-orange-50 bg-gray-600'
 }
 
 const sizes = {
@@ -25,6 +26,7 @@ type ButtonProps = {
 	children?: ReactNode
 	type?: 'button' | 'submit' | 'reset'
 	onClick?: MouseEventHandler<HTMLElement>
+	disabled?: boolean
 }
 
 export default function Button({
@@ -32,14 +34,15 @@ export default function Button({
 	href,
 	size = 'md',
 	color = 'primary',
+	disabled,
 	className: providedClassname = '',
 	...props
 }: ButtonProps) {
 	const className = classNames(
 		defaultClassName,
 		sizes[size],
-		colors[color],
-		providedClassname
+		disabled ? colors["disabled"] : colors[color],
+		providedClassname,
 	)
 
 	if (href) {
@@ -49,5 +52,5 @@ export default function Button({
 		return <Link href={href} className={className} {...props} />
 	}
 
-	return <button className={className} {...props} />
+	return <button className={className} {...props} disabled={disabled} />
 }
