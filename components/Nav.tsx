@@ -50,7 +50,7 @@ const userNavigation: UserNavItem[] = [
 ]
 
 const navigation: NavItem[] = [
-	{ name: 'VC Hacktoberfest', href: '/' },
+	{ name: 'OSWeave', href: '/' },
 	{ name: 'FAQ', href: '/#questions' },
 	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
 	{ name: 'Code of Conduct', href: 'https://virtualcoffee.io/code-of-conduct' },
