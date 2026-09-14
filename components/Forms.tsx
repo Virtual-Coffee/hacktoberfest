@@ -602,8 +602,7 @@ export default function Form({
 
 							<div className="mt-8 border-t border-gray-200 pt-12">
 								<p className="mb-12 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-									Thank you for showing interest in the Virtual Coffee Hacktober
-									Initiative!
+									Thank you for showing interest in OSWeave!
 								</p>
 								<div>
 									<Button
