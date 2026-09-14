@@ -158,11 +158,18 @@ export default function Nav() {
 												<div>
 													<MenuButton className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 														<span className="sr-only">Open user menu</span>
-														<img
-															className="h-8 w-8 rounded-full"
-															src={session?.user?.image ?? undefined}
-															alt=""
-														/>
+														{session?.user?.image ? (
+															<img
+																className="h-8 w-8 rounded-full"
+																src={session.user.image}
+																alt=""
+															/>
+														) : (
+															<div
+																className="h-8 w-8 rounded-full bg-gray-200"
+																aria-hidden="true"
+															/>
+														)}
 													</MenuButton>
 												</div>
 												<MenuItems
@@ -254,11 +261,18 @@ export default function Nav() {
 								<div className="pt-4 pb-3 border-t border-gray-200">
 									<div className="flex items-center px-4">
 										<div className="shrink-0">
-											<img
-												className="h-10 w-10 rounded-full"
-												src={session?.user?.image ?? undefined}
-												alt=""
-											/>
+											{session?.user?.image ? (
+												<img
+													className="h-10 w-10 rounded-full"
+													src={session.user.image}
+													alt=""
+												/>
+											) : (
+												<div
+													className="h-10 w-10 rounded-full bg-gray-200"
+													aria-hidden="true"
+												/>
+											)}
 										</div>
 										<div className="ml-3">
 											<div className="text-base font-medium text-gray-800">

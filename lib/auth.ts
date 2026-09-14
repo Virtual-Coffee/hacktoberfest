@@ -8,6 +8,11 @@ import { syncGitHubOrgRole } from '@/lib/github'
 const productionHost = 'hacktoberfest.virtualcoffee.io'
 const productionURL = `https://${productionHost}`
 
+// Devtools personas have no GitHub profile to take an avatar from, and the
+// Nav menu button is nothing but the avatar.
+const placeholderAvatar = (seed: string) =>
+	`https://api.dicebear.com/10.x/initials/svg?seed=${encodeURIComponent(seed)}`
+
 export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg', schema }),
 
@@ -67,13 +72,20 @@ export const auth = betterAuth({
 		devtools({
 			enabled: true,
 			templates: {
-				user: { label: 'Member' },
+				user: {
+					label: 'Member',
+					user: { image: placeholderAvatar('Member') },
+				},
 				admin: {
 					label: 'Admin',
 					// Mirrors what syncGitHubOrgRole stores for an org admin. These
 					// users have no GitHub account row, so requireAdmin's stale-role
 					// resync finds no token and leaves the stored role alone.
-					user: { role: 'admin', isVcOrgMember: true },
+					user: {
+						role: 'admin',
+						isVcOrgMember: true,
+						image: placeholderAvatar('Admin'),
+					},
 				},
 			},
 			editableFields: [
