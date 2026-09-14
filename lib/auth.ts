@@ -70,7 +70,10 @@ export const auth = betterAuth({
 		// panel is mounted in pages/_app.tsx. DEV_AUTH_ENABLED=false turns it
 		// off locally without touching code.
 		devtools({
-			enabled: true,
+			// `next dev` sets development. Opting in on that rather than `true`
+			// means an unset NODE_ENV (a plain `node` process, some hosts) also
+			// lands on off, without leaning on the plugin's production guard.
+			enabled: process.env.NODE_ENV === 'development',
 			templates: {
 				user: {
 					label: 'Member',
