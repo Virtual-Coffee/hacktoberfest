@@ -47,6 +47,24 @@ export function FormLayout({
 	)
 }
 
+export function SignupsPausedNotice() {
+	return (
+		<FormLayout
+			title="Sign ups are temporarily paused"
+			description="We're making updates to the site -- check back soon."
+		>
+			<div className="text-center">
+				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+					Sign ups are temporarily paused
+				</h1>
+				<p className="mt-4 text-lg leading-6 text-gray-500">
+					We're making some updates and will reopen sign ups shortly.
+				</p>
+			</div>
+		</FormLayout>
+	)
+}
+
 export function FieldSet({
 	legend,
 	legendDesc,

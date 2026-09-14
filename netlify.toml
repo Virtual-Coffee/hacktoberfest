@@ -13,6 +13,13 @@
   # a commit, and a commit always rebuilds.
   NEXT_PUBLIC_HACKTOBERFEST_YEAR = "2026"
 
+  # Manual kill switch to pause sign ups while site changes are in progress,
+  # independent of the year cutoff above. Same build-time-inlining caveat as
+  # NEXT_PUBLIC_HACKTOBERFEST_YEAR -- flipping this needs a rebuild.
+  #
+  # Set to "false" (or remove the line) and redeploy to reopen sign ups.
+  NEXT_PUBLIC_SIGNUPS_PAUSED = "true"
+
 [dev]
   # netlify dev proxies to Next and starts the local Postgres alongside it.
   # It must call dev:next rather than dev, or it would invoke itself.
