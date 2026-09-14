@@ -53,6 +53,7 @@ const navigation: NavItem[] = [
 	{ name: 'OSWeave', href: '/' },
 	{ name: 'FAQ', href: '/#questions' },
 	{ name: 'Virtual Coffee', href: 'https://virtualcoffee.io' },
+	{ name: 'HCLB Communities', href: 'https://www.hclbcommunities.com' },
 	{ name: 'Code of Conduct', href: 'https://virtualcoffee.io/code-of-conduct' },
 	{ name: 'Dashboard', href: '/dashboard', authOnly: true },
 	{ name: 'Admin', href: '/admin', adminOnly: true, matchPrefix: true },
