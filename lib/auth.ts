@@ -1,5 +1,5 @@
 import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from '@better-auth/drizzle-adapter'
+import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2'
 import { db, schema } from '@/db'
 import { syncGitHubOrgRole } from '@/lib/github'
 
