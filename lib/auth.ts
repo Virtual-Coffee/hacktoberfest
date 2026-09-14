@@ -1,5 +1,6 @@
 import { betterAuth } from 'better-auth'
 import { oAuthProxy } from 'better-auth/plugins'
+import { devtools } from 'better-auth-devtools'
 import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2'
 import { db, schema } from '@/db'
 import { syncGitHubOrgRole } from '@/lib/github'
@@ -54,6 +55,37 @@ export const auth = betterAuth({
 						secret: process.env.OAUTH_PROXY_SECRET,
 					}),
 				]),
+
+		// Local development only: a panel for creating throwaway users and
+		// switching sessions, so admin pages can be worked on without a real
+		// Virtual Coffee org membership. The plugin hard-disables its endpoints
+		// under NODE_ENV=production (which includes deploy previews), so it is
+		// safe to keep in the config unconditionally -- and it has to be, so
+		// that `pnpm auth:generate` sees its devtoolsUser table. The React
+		// panel is mounted in pages/_app.tsx. DEV_AUTH_ENABLED=false turns it
+		// off locally without touching code.
+		devtools({
+			enabled: true,
+			templates: {
+				user: { label: 'Member' },
+				admin: {
+					label: 'Admin',
+					// Mirrors what syncGitHubOrgRole stores for an org admin. These
+					// users have no GitHub account row, so requireAdmin's stale-role
+					// resync finds no token and leaves the stored role alone.
+					user: { role: 'admin', isVcOrgMember: true },
+				},
+			},
+			editableFields: [
+				{
+					key: 'role',
+					label: 'Role',
+					type: 'select',
+					options: ['user', 'admin'],
+				},
+				{ key: 'isVcOrgMember', label: 'VC org member', type: 'boolean' },
+			],
+		}),
 	],
 
 	advanced: {
