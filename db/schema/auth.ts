@@ -79,8 +79,21 @@ export const verification = pgTable(
 	(table) => [index('verification_identifier_idx').on(table.identifier)]
 )
 
+export const devtoolsUser = pgTable('devtools_user', {
+	id: text('id').primaryKey(),
+	userId: text('user_id')
+		.notNull()
+		.unique()
+		.references(() => user.id, { onDelete: 'cascade' }),
+	templateKey: text('template_key').notNull(),
+	label: text('label').notNull(),
+	email: text('email').notNull().unique(),
+	createdAt: timestamp('created_at').notNull(),
+	updatedAt: timestamp('updated_at').notNull(),
+})
+
 export const authRelations = defineRelationsPart(
-	{ user, session, account, verification },
+	{ user, session, account, verification, devtoolsUser },
 	(r) => ({
 		user: {
 			sessions: r.many.session({
@@ -90,6 +103,10 @@ export const authRelations = defineRelationsPart(
 			accounts: r.many.account({
 				from: r.user.id,
 				to: r.account.userId,
+			}),
+			devtoolsUser: r.one.devtoolsUser({
+				from: r.user.id,
+				to: r.devtoolsUser.userId,
 			}),
 		},
 		session: {
@@ -101,6 +118,12 @@ export const authRelations = defineRelationsPart(
 		account: {
 			user: r.one.user({
 				from: r.account.userId,
+				to: r.user.id,
+			}),
+		},
+		devtoolsUser: {
+			user: r.one.user({
+				from: r.devtoolsUser.userId,
 				to: r.user.id,
 			}),
 		},

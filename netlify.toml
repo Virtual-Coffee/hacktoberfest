@@ -49,13 +49,16 @@
 # Do NOT set BETTER_AUTH_URL in the Netlify UI for any context. It is a
 # local-development override only.
 #
-# KNOWN LIMITATION: sign-in does not work on deploy previews. A GitHub OAuth
-# app accepts exactly one callback URL, so per-PR hostnames can never complete
-# the OAuth round-trip regardless of the base URL we resolve. Previews render
-# fine signed out; authenticated flows are verified locally and on production.
-# Fixing it would mean a GitHub App (which allows multiple callbacks) or an
-# OAuth proxy.
+# A GitHub OAuth app accepts exactly one callback URL, so a preview hostname
+# cannot finish the OAuth round-trip on its own. lib/auth.ts loads Better Auth's
+# oAuthProxy plugin on Netlify: previews send GitHub to production's callback,
+# production exchanges the code and hands the encrypted profile back to the
+# preview origin. Production skips the hop automatically. Only the production
+# callback URL is registered on the GitHub OAuth app.
 #
-# BETTER_AUTH_SECRET, GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET must be set in
-# the Netlify UI with the "Functions" scope so they reach the function runtime.
+# BETTER_AUTH_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET and
+# OAUTH_PROXY_SECRET must be set in the Netlify UI with the "Functions" scope
+# so they reach the function runtime. OAUTH_PROXY_SECRET must hold the SAME
+# value in every deploy context -- production encrypts what the preview
+# decrypts, and a mismatch surfaces as a state_mismatch error on sign-in.
 # Variables declared in this file are build-time only.
