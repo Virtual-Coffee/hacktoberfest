@@ -4,5 +4,18 @@
 // not be hand-edited; ./app holds the application tables. Keeping them in
 // separate files means regenerating after a Better Auth upgrade cannot
 // clobber our own tables.
+import { defineRelations } from 'drizzle-orm'
+import * as authSchema from './auth'
+import * as appSchema from './app'
+
 export * from './auth'
 export * from './app'
+
+// App tables have no relations of their own today. Drizzle Relations v2
+// still needs one full `defineRelations` covering every table so it can
+// infer the whole schema for autocomplete; `authRelations` (from ./auth) is
+// a partial merged on top of it. The main relations object must come first
+// in the spread for table inference to work (see Drizzle's relations-v2
+// docs).
+const relations = defineRelations({ ...authSchema, ...appSchema }, () => ({}))
+export const allRelations = { ...relations, ...authSchema.authRelations }
