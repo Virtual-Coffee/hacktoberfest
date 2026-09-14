@@ -25,3 +25,10 @@ export function useNewSubmissionsClosed() {
 		return Date.now() > submissionsClosed.getTime()
 	}, [])
 }
+
+// Manual kill switch for pausing sign ups independent of the season cutoff
+// above -- e.g. while site changes are in progress. NEXT_PUBLIC_ for the same
+// reason as NEXT_PUBLIC_HACKTOBERFEST_YEAR: inlined at build time and read by
+// the same client pages. Flip it back to unset/"false" and redeploy to
+// reopen sign ups -- no code change required.
+export const signupsPaused = process.env.NEXT_PUBLIC_SIGNUPS_PAUSED === 'true'

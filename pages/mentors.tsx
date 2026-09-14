@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import { useSessionStatus } from '@/lib/auth-client'
-import Form, { FormLayout } from '@/components/Forms'
+import Form, { FormLayout, SignupsPausedNotice } from '@/components/Forms'
 import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '@/components/Button'
 import { getProfile, getMentorsSubmission } from '@/util/api'
+import { signupsPaused } from '@/util/globals'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -86,6 +87,10 @@ export default function Page() {
 
 	if (profile.isPending) {
 		return null
+	}
+
+	if (!previousFormSubmission.data && signupsPaused) {
+		return <SignupsPausedNotice />
 	}
 
 	return (

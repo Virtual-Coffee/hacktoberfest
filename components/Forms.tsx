@@ -47,6 +47,24 @@ export function FormLayout({
 	)
 }
 
+export function SignupsPausedNotice() {
+	return (
+		<FormLayout
+			title="Sign ups are temporarily paused"
+			description="We're making updates to the site -- check back soon."
+		>
+			<div className="text-center">
+				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+					Sign ups are temporarily paused
+				</h1>
+				<p className="mt-4 text-lg leading-6 text-gray-500">
+					We're making some updates and will reopen sign ups shortly.
+				</p>
+			</div>
+		</FormLayout>
+	)
+}
+
 export function FieldSet({
 	legend,
 	legendDesc,
@@ -609,8 +627,6 @@ export default function Form({
 										size="lg"
 										type="submit"
 										className="w-full"
-										// re-enable this when we are ready
-										disabled
 										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-hidden focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
 									>
 										{state.status === 'loading'

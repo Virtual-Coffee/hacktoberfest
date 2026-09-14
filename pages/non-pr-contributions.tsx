@@ -1,11 +1,15 @@
 import { useRouter } from 'next/router'
 import { useSessionStatus } from '@/lib/auth-client'
-import Form, { FormLayout } from '@/components/Forms'
+import Form, { FormLayout, SignupsPausedNotice } from '@/components/Forms'
 import SignIn from '@/components/SignIn'
 import { useQuery } from '@tanstack/react-query'
 import Button from '@/components/Button'
 import { getContributorSubmission } from '@/util/api'
-import { currentYear, useNewSubmissionsClosed } from '@/util/globals'
+import {
+	currentYear,
+	signupsPaused,
+	useNewSubmissionsClosed,
+} from '@/util/globals'
 
 // Become a Contributor: Virtual Coffee Hacktoberfest Initiative
 
@@ -93,6 +97,10 @@ export default function Page() {
 				</div>
 			</FormLayout>
 		)
+	}
+
+	if (signupsPaused) {
+		return <SignupsPausedNotice />
 	}
 
 	return (
