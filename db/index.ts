@@ -1,10 +1,12 @@
 import { getDatabase, MissingDatabaseConnectionError } from '@netlify/database'
-import { drizzle as drizzleNeon } from 'drizzle-orm/neon-serverless'
-import { drizzle as drizzleNodePg } from 'drizzle-orm/node-postgres'
-import type { PgDatabase, PgQueryResultHKT } from 'drizzle-orm/pg-core'
+import { drizzle } from 'drizzle-orm/netlify-db'
+import type { NetlifyDbDatabase } from 'drizzle-orm/netlify-db'
+import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
 import * as schema from './schema'
 
-export type Database = PgDatabase<PgQueryResultHKT, typeof schema>
+export type Database =
+	| NetlifyDbDatabase<typeof schema.allRelations>
+	| NodePgDatabase<typeof schema.allRelations>
 
 let instance: Database | null = null
 
@@ -28,12 +30,12 @@ function connect(): Database {
 		throw error
 	}
 
-	// getDatabase() picks the driver for the environment: neon's serverless
-	// pool in deployed functions, a plain pg pool locally. They expose the
-	// same query surface, so both branches widen to PgDatabase.
-	return connection.driver === 'serverless'
-		? drizzleNeon(connection.pool, { schema })
-		: drizzleNodePg(connection.pool, { schema })
+	// getDatabase() resolves the connection (and driver: neon's serverless
+	// pool in deployed functions, a plain pg pool locally) via
+	// NETLIFY_DB_URL/NETLIFY_DB_DRIVER; drizzle-orm's netlify-db driver
+	// accepts that same client shape directly and picks the matching
+	// implementation for us.
+	return drizzle({ client: connection, relations: schema.allRelations })
 }
 
 /**
