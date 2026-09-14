@@ -1,9 +1,11 @@
 import { betterAuth } from 'better-auth'
+import { oAuthProxy } from 'better-auth/plugins'
 import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2'
 import { db, schema } from '@/db'
 import { syncGitHubOrgRole } from '@/lib/github'
 
 const productionHost = 'hacktoberfest.virtualcoffee.io'
+const productionURL = `https://${productionHost}`
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg', schema }),
@@ -16,20 +18,43 @@ export const auth = betterAuth({
 	// what makes that safe. allowedHosts also seeds trustedOrigins, so that is
 	// not maintained separately.
 	//
-	// Note this does NOT make sign-in work on deploy previews. A GitHub OAuth
-	// App accepts exactly one callback URL, so the per-PR hostnames can never
-	// complete the OAuth round-trip no matter what base URL we resolve.
-	// Previews render fine signed out; authenticated flows are verified
-	// locally and on production. Fixing it properly would mean a GitHub App
-	// (which allows multiple callbacks) or an OAuth proxy.
+	// Resolving the host is only half of preview sign-in; the OAuth round-trip
+	// itself is handled by the oAuthProxy plugin below.
 	//
 	// BETTER_AUTH_URL is a local-development override only; it must stay unset
 	// in every Netlify context.
 	baseURL: process.env.BETTER_AUTH_URL || {
 		allowedHosts: [productionHost, '*.netlify.app'],
 		protocol: 'https',
-		fallback: `https://${productionHost}`,
+		fallback: productionURL,
 	},
+
+	plugins: [
+		// Deploy previews. A GitHub OAuth App accepts exactly one callback URL,
+		// so a preview hostname can never finish the round-trip on its own.
+		// The proxy sends GitHub to production's callback; production exchanges
+		// the code, encrypts the profile with OAUTH_PROXY_SECRET, and bounces it
+		// back to the preview origin, which creates the user and session in its
+		// own context. Production skips the hop (request origin matches
+		// productionURL), and allowedHosts above is what lets a *.netlify.app
+		// origin be trusted as the return address.
+		//
+		// Omitted locally: BETTER_AUTH_URL means "local dev", which uses its own
+		// OAuth app with a localhost callback -- left in, the proxy would rewrite
+		// that redirect_uri to production's and GitHub would reject it.
+		...(process.env.BETTER_AUTH_URL
+			? []
+			: [
+					oAuthProxy({
+						productionURL,
+						// Must be the same value in every Netlify context. Falls
+						// back to BETTER_AUTH_SECRET when unset, but keeping the
+						// proxy on its own key means rotating one does not
+						// invalidate the other.
+						secret: process.env.OAUTH_PROXY_SECRET,
+					}),
+				]),
+	],
 
 	advanced: {
 		// Netlify functions sit behind a proxy, so the real hostname arrives as
