@@ -144,31 +144,43 @@ export default function Page() {
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
-								What is Hacktoberfest?
+								What is HCLB Communities?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
-									Hacktoberfest is a month-long virtual event encouraging and
-									supporting open-source contributions sponsored by
-									DigitalOcean. Open Source Software (OSS) is code the public
-									can view, contribute to, and use. A contributor can complete
-									Hacktoberfest by{' '}
-									<a
-										href="https://hacktoberfest.com/"
-										className="text-orange-500 underline"
-									>
-										registering
-									</a>{' '}
-									and getting four pull requests (PRs) accepted by maintainers
-									in repositories with the "Hacktoberfest" topic or labeled
-									"hacktoberfest-accepted" between October 1-31.
+									HCLB Communities are a community ecosystem startup building 
+									online communities and events for founders, techies and startup 
+									people. They are a tech company with a human touch, here to build 
+									online communities that nurture genuine connection between real 
+									people, and brands that speak to the values of human creativity 
+									and community, and to enable others to do the same. They are also 
+									currently working behind the scenes on internal software to power 
+									their programs, much of which will be open sourced in due course.
 								</p>
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
-								What is a Maintainer?
+								What is OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
+								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+							</dd>
+
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
+								What are the roles of HCLB Communities and Virtual Coffee in OSWeave?
+							</dt>
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
+								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+							</dd>
+
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
+								What is a Maintainer?
+							</dt>
+							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
 									Maintainers are the owners of the open source project. They
 									keep track of the work, review incoming PR requests and
@@ -180,11 +192,14 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
 								What is a Contributor and what do I need to get started?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+								{/* <p className="text-base leading-6 text-gray-500">
 									A contributor is someone who submits code or documentation to
 									an open source project as a pull request on GitHub but usually
 									does not have the ability to merge their contributions.
@@ -205,29 +220,44 @@ export default function Page() {
 										Github account
 									</a>
 									.
-								</p>
+								</p> */}
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
-								Why should I partner with Virtual Coffee for Hacktoberfest?
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-7">
+								Why should I partner with OSWeave?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-6">
+							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									Our goal is to provide support for contributors and
-									maintainers. We want everyone to have an opportunity to
-									contribute, regardless of their experience. Likewise, we want
-									to provide maintainers with support to create projects that
-									are contributor-friendly and will lead to repeat contributions
-									beyond Hacktoberfest. Our goal is to make tech a friendly
-									place for everyone.
+									Content coming soon...
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
+								Who can participate in OSWeave?
+							</dt>
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
+								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+							</dd>
+
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-9">
+								Does it cost anything to participate in OSWeave?
+							</dt>
+							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
+								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+							</dd>
+
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-9">
 								What type of support will there be?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
 								<p className="text-base leading-6 text-gray-500">
+									Content coming soon...
+								</p>
+								{/* <p className="text-base leading-6 text-gray-500">
 									Because not everyone will need the same level or type of
 									support, we're working to accommodate as many needs as
 									possible. This could include 1:1 mentorship, access to private
@@ -235,12 +265,12 @@ export default function Page() {
 									project you're using for Hacktoberfest, or general community
 									support. We're also here to cheer you on throughout the month,
 									whether on social media, through our events, or Slack.
-								</p>
+								</p> */}
 							</dd>
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-11">
 								How many roles can I take on?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-12">
 								<p className="text-base leading-6 text-gray-500">
 									The short answer is as many as you want! If you want to be a
 									maintainer, mentor, and contributor, you can. But we know that
