@@ -13,4 +13,4 @@
 # --- Default owners: everything not matched by a more specific rule below ---
 # This intentionally covers src/content/members/** — routine member-profile PRs
 # should not be gated on the content team.
-*                               @Virtual-Coffee/Hacktoberfest Team
+*                               @Virtual-Coffee/hacktoberfest-team
