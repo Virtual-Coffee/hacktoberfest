@@ -49,15 +49,14 @@ export const profile: FormField[] = [
 	},
 	{
 		name: 'PreferredTimeZone',
-		type: 'Text',
-		label: 'Preferred Time Zone',
+		label: 'Preferred time zone',
 		required: true,
 		help: 'Required',
 	},
 	{
 		name: 'GitHubUsername',
 		type: 'Text',
-		label: 'GitHub Username',
+		label: 'GitHub username',
 		required: true,
 		help: 'Required',
 	},
@@ -75,7 +74,7 @@ export const profile: FormField[] = [
 		name: 'IsMember',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
-		label: 'Are you a current Virtual Coffee Member?',
+		label: 'Are you a current Virtual Coffee member?',
 		required: true,
 		help: 'You must be a VC member to participate in our Virtual Coffee Hacktoberfest Initiative as a Contributor or Mentor.',
 	},
@@ -91,7 +90,7 @@ export const profile: FormField[] = [
 export const contributors: FormField[] = [
 	{
 		name: 'OssExperience',
-		label: 'What is your experience with Open Source Contribution?',
+		label: 'What is your experience with open-source contribution?',
 		type: 'Single select',
 		possibleValues: [
 			"I've never contributed to OSS before",
@@ -165,9 +164,9 @@ export const contributors: FormField[] = [
 		label: 'Please indicate your interest in any of the following activities:',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Pair Programming Sessions',
-			'Code Review Sessions',
-			'Git/GitHub Flow Coaching',
+			'Pair programming sessions',
+			'Code review sessions',
+			'Git/GitHub flow coaching',
 		],
 	},
 	{
@@ -258,7 +257,7 @@ export const repos: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
-		label: 'Repository Name',
+		label: 'Repository name',
 		help: 'Required',
 		required: true,
 	},
@@ -282,7 +281,7 @@ export const nonPrContributions: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
-		label: 'Repository Name',
+		label: 'Repository name',
 	},
 	{
 		name: 'RepoUrl',
@@ -333,8 +332,8 @@ export const maintainers: FormField[] = [
 					>
 						Maintainer's Checklist
 					</a>{' '}
-					to ensure your project has everything it needs to support Open Source
-					Contributions.
+					to ensure your project has everything it needs to support open-source
+					contributions.
 				</p>
 				<p>
 					If your project needs some work to meet these requirements, please
@@ -354,7 +353,7 @@ export const maintainers: FormField[] = [
 			"I'm in the process of updating my project",
 			'I would like some help updating my project ',
 		],
-		label: 'Are your projects ready for Open Source Contributors?',
+		label: 'Are your projects ready for open-source contributors?',
 	},
 	{
 		name: 'HowManyHours',
