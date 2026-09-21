@@ -384,6 +384,15 @@ export const maintainers: FormField[] = [
 			'How much do you want to prioritize your efforts as a project maintainer?',
 	},
 	{
+		name: 'AICode',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+    required: true,
+    help: 'Required',
+		label:
+			'Are you willing to accept contributions that contain AI-generated code?',
+	},
+	{
 		name: 'MentoringContributors',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
