@@ -390,6 +390,32 @@ export const maintainers: FormField[] = [
 		label:
 			'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
 	},
+  {
+		name: 'MaintainerCategory',
+		type: 'Single select',
+		required: true,
+		help: 'Required',
+		possibleValues: [
+      'Independent maintainer',
+      'small nonprofit (annual revenue below $500,000)',
+      'large nonprofit',
+      'for-profit company',
+		],
+		label: 'Which of the following best describes you as a maintainer?',
+	},
+  {
+		type: 'alert',
+		alertType: 'info',
+		name: 'MaintainerNote',
+		title: 'Please note:',
+		body: ( // ! TODO: Have Dominic review this message
+			<>
+				<p>
+					If you're a maintainer for a large nonprofit or a for-profit company, HCLB Communities will be in touch regarding paid partnership opportunities.
+				</p>
+			</>
+		),
+	},
 ]
 
 export const forms = {
