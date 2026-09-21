@@ -89,13 +89,13 @@ export const profile: FormField[] = [
 
 export const contributors: FormField[] = [
 	{
-		name: 'OssExperience',
+		name: 'OsExperience',
 		label: 'What is your experience with open-source contribution?',
 		type: 'Single select',
 		possibleValues: [
-			"I've never contributed to OSS before",
+			"I've never contributed to open source before",
 			"I've done a few contributions before, but I'm no expert",
-			"I've done many open source contributions before, very familiar with the process",
+			"I've done many open-source contributions before and I'm very familiar with the process",
 		],
 	},
 	{
@@ -120,7 +120,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Availability',
 		label:
-			'How many hours do you think you can dedicate to open source contributions for the month?',
+			'How many hours do you think you can dedicate to open-source contributions for the month?',
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 	},
@@ -128,7 +128,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Skills',
 		label:
-			'What skills/talents/interests would you be willing to practice in your OSS contributions?',
+			'What skills/talents/interests would you be willing to practice in your OS contributions?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
@@ -294,7 +294,7 @@ export const nonPrContributions: FormField[] = [
 		name: 'ContributionDescription',
 		type: 'Long text',
 		label:
-			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open source event, writing a detailed issue.',
+			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open-source event, writing a detailed issue, etc.',
 		help: 'Required',
 		required: true,
 	},
