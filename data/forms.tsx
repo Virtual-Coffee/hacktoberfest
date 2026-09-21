@@ -222,25 +222,6 @@ export const mentors: FormField[] = [
 		],
 		otherFieldName: 'SkillsOther',
 	},
-	{
-		name: 'MentorshipStyles',
-		type: 'Multiple select',
-		label: 'What type of mentorship do you prefer?',
-		help: 'Check all that apply',
-		possibleValues: [
-			'One-on-One',
-			'General (Will answer questions in the slack channel, offer open office hours for OSS questions, etc.)',
-			"Project-based (I'm willing to work as a mentor to those working on my OSS project)",
-		],
-	},
-
-	{
-		name: 'HowManyMentees',
-		type: 'Single select',
-		possibleValues: ['1', '2-3', '4-5'],
-		label:
-			'How many One-to-one mentees would you feel comfortable working with?',
-	},
 ]
 
 export const repos: FormField[] = [
@@ -289,13 +270,6 @@ export const nonPrContributions: FormField[] = [
 ]
 
 export const maintainers: FormField[] = [
-	// {
-	// 	name: 'Projects',
-	// 	type: 'SubForm',
-	// 	formKey: 'repos',
-	// 	multiple: true,
-	// },
-
 	{
 		name: 'Projects',
 		type: 'Long text',
