@@ -61,11 +61,6 @@ export const profile: FormField[] = [
 		help: 'Required',
 	},
 	{
-		name: 'TwitterUsername',
-		type: 'Text',
-		label: 'Twitter Username',
-	},
-	{
 		name: 'Pronouns',
 		type: 'Text',
 		label: 'Pronouns',
@@ -76,14 +71,7 @@ export const profile: FormField[] = [
 		possibleValues: ['Yes', 'No'],
 		label: 'Are you a current Virtual Coffee member?',
 		required: true,
-		help: 'You must be a VC member to participate in our Virtual Coffee Hacktoberfest Initiative as a Contributor or Mentor.',
-	},
-	{
-		name: 'AllowSocialSharing',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label:
-			'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
+		help: "If you're not a current Virtual Coffee member, that's okay! We still welcome your participation.",
 	},
 ]
 
