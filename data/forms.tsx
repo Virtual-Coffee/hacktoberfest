@@ -154,9 +154,9 @@ export const contributors: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
 	{
@@ -207,9 +207,9 @@ export const mentors: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
 
@@ -371,10 +371,9 @@ export const maintainers: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email',
-			'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
 	{
