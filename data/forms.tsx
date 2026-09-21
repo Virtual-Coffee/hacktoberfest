@@ -285,8 +285,7 @@ export const maintainers: FormField[] = [
 		body: (
 			<>
 				<p>
-					All projects and repositories are evaluated by Virtual Coffee staff
-					before being shared with our members.{' '}
+					All projects and repositories are evaluated by Virtual Coffee and HCLB Communities before being shared with our members.{' '}
 				</p>
 				<p>
 					Please take a look at our{' '}
