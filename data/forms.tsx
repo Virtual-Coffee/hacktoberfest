@@ -173,9 +173,7 @@ export const contributors: FormField[] = [
 		title: 'Please note:',
 		body: (
 			<p>
-				Although we would love to support everyone in their Open Source journey,
-				we're still a very small team with limited resources. We will do our
-				best to pair you with a mentor, but we can't guarantee it.
+				We would love to support everyone in their open-source journey! We ask you to recognize that we're a very small team with limited resources. Mentorship will be provided on a best-effort basis as ad-hoc troubleshooting and drop-in office hours throughout the month.
 			</p>
 		),
 	},
