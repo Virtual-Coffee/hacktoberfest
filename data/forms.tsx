@@ -49,6 +49,8 @@ export const profile: FormField[] = [
 	},
 	{
 		name: 'PreferredTimeZone',
+		type: 'Single select',
+    possibleValues: ['EST', 'PST'], // ! TODO: Replace with actual time zones
 		label: 'Preferred time zone',
 		required: true,
 		help: 'Required',
