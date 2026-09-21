@@ -89,13 +89,13 @@ export const contributors: FormField[] = [
 	{
 		name: 'Reasons',
 		label:
-			'What are your reasons for wanting to contribute to Hacktober month?',
+			'What are your reasons for wanting to contribute to Hacktoberfest?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
 			'Helping others/giving back',
-			'Learning new skills/stacks',
-			'Improving my GitHub contributions/resume',
+			'Learning new skills/tech stacks',
+			'Improving my GitHub contributions/résumé',
 			'Working on a good cause',
 			'Finding community',
 			'Improving social/communication skills',
@@ -162,7 +162,7 @@ export const contributors: FormField[] = [
 		name: 'RequestedMentor',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
-		label: 'I would like to be paired with a mentor for Hacktoberfest',
+		label: 'I would like to receive mentorship for Hacktoberfest',
 	},
 	{
 		name: 'Note',
@@ -183,7 +183,7 @@ export const mentors: FormField[] = [
 	{
 		name: 'Availability',
 		label:
-			'How many hours do you think you can dedicate to open source contributions for the month?',
+			'How many hours do you think you can dedicate to mentorship for the month?',
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 	},
@@ -324,7 +324,7 @@ export const maintainers: FormField[] = [
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 		label:
-			'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
+			'How many hours do you think you can dedicate to reviewing PRs during Hacktoberfest?',
 	},
 	{
 		name: 'CommunicationPreferences',
@@ -341,7 +341,7 @@ export const maintainers: FormField[] = [
 	{
 		name: 'HelpNeeded',
 		type: 'Multiple select',
-		label: 'What areas do you feel like you need/want help on the most?',
+		label: 'What areas do you feel like you need/want help in the most?',
 		help: 'Check all that apply',
 		possibleValues: [
 			'Accessibility',
