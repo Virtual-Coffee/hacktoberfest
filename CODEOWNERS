@@ -1,16 +1,7 @@
 # Code Owners
 # <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>
 #
-# ORDER IS LOAD-BEARING. The LAST matching pattern wins outright; rules are not
-# additive. Two `*` lines do not mean "both teams own everything" — the second
-# silently replaces the first. To give a path several owners, list them all on
-# ONE line. Any one of the listed owners can then satisfy the review.
-#
-# Code-owner review is enforced by the `main (pr-merges)` ruleset, so a mistake
-# here can block every PR. Teams must be visible (not secret) AND have explicit
-# write access, or they are ignored without error.
+# The LAST matching pattern wins; rules are not additive. To give a path several
+# owners, list them all on one line.
 
-# --- Default owners: everything not matched by a more specific rule below ---
-# This intentionally covers src/content/members/** — routine member-profile PRs
-# should not be gated on the content team.
 *                               @Virtual-Coffee/hacktoberfest-team
