@@ -1,8 +1,8 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "unifiedjs.vscode-mdx",
-    "typescriptteam.native-preview"
-  ]
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"unifiedjs.vscode-mdx",
+		"typescriptteam.native-preview"
+	]
 }
