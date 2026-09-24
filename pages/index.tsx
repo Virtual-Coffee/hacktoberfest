@@ -202,7 +202,7 @@ export default function Page() {
 										href="https://github.com/"
 										className="text-orange-500 underline"
 									>
-										Github account
+										GitHub account
 									</a>
 									.
 								</p>
