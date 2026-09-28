@@ -52,6 +52,7 @@
 		"@types/react-dom": "^19.3.0",
 		"auth": "^1.7.5",
 		"drizzle-kit": "^1.0.0-rc.5-ab785fc",
+		"netlify-cli": "^27.8.1",
 		"postcss": "^8.5.28",
 		"prettier": "^3.9.8",
 		"tailwindcss": "^4.3.3",
