@@ -1,0 +1,7 @@
+# Code Owners
+# <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>
+#
+# The LAST matching pattern wins; rules are not additive. To give a path several
+# owners, list them all on one line.
+
+*                               @Virtual-Coffee/hacktoberfest-team
