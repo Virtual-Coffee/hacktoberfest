@@ -226,6 +226,16 @@ export function Field({
 				/>
 			)
 
+		case 'Agreement':
+			return (
+				<Checkbox
+					id={field.name}
+					label={field.label || ""}
+					items={['Yes']}
+					help={field.help}
+				/>
+			)
+
 		default:
 			return null
 	}
@@ -296,6 +306,37 @@ export function CheckboxList({
 						</DisclosurePanel>
 					</Disclosure>
 				)}
+			</div>
+		</fieldset>
+	)
+}
+
+export function Checkbox({
+	label,
+	id,
+	defaultValues = [],
+}: {
+	help?: string
+	label: string
+	items: string[]
+	id: string
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
+}) {
+	return (
+		<fieldset>
+			<div className="mt-4 grid grid-cols-1 gap-y-4">
+				<label className="flex items-center" key={label}>
+					<input
+						name={`${id}[]`}
+						value={label}
+						type="checkbox"
+						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						defaultChecked={defaultValues && defaultValues.includes(label)}
+					/>
+					<span className="block leading-5 text-gray-700">{label}</span>
+				</label>
 			</div>
 		</fieldset>
 	)
@@ -612,6 +653,13 @@ export default function Form({
 										>
 											Virtual Coffee Code of Conduct
 										</a>
+										{' '}and the{' '}
+										<a
+											href="https://www.hclbcommunities.com/code-of-conduct"
+											className="font-medium text-gray-700 underline"
+										>
+											HCLB Communities Code of Conduct
+										</a>
 									</span>
 								</label>
 							</div>
@@ -636,6 +684,15 @@ export default function Form({
 												: submitText}
 									</Button>
 								</div>
+								<p className="mt-12 text-base text-gray-500">
+									HCLB Communities Ltd will only use your personal data as set out in their{' '}
+									<a
+										href="https://www.hclbcommunities.com/privacy-policy.pdf"
+										className="font-medium text-gray-700 underline"
+									>
+										Privacy Policy
+									</a>
+								</p>
 							</div>
 						</FieldSet>
 					</div>
