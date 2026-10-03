@@ -189,7 +189,7 @@ export const contributors: FormField[] = [
 		required: true
 	},
 	{
-		name: 'Note',
+		name: 'CodeOfPracticeNote',
 		type: 'alert',
 		alertType: 'info',
 		title: 'Please note',
