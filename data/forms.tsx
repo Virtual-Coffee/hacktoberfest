@@ -14,6 +14,7 @@ export type FieldType =
 	| 'Single select'
 	| 'Multiple select'
 	| 'Checkbox'
+	| 'Agreement'
 	| 'alert'
 	| 'lookup'
 
@@ -73,11 +74,23 @@ export const profile: FormField[] = [
 		possibleValues: ['Yes', 'No'],
 		label: 'Are you a current Virtual Coffee member?',
 		required: true,
-		help: "If you're not a current Virtual Coffee member, that's okay! We still welcome your participation.",
-	},
+		help: "If you're not a current Virtual Coffee member, that's okay! We still welcome your participation. As part of the partnership between HCLB Communities and Virtual Coffee, you'll be added to the Virtual Coffee Slack to facilitate your participation.",
+	}, // TBC
 ]
 
 export const contributors: FormField[] = [
+	{
+		name: 'Partner',
+		label: 'Which OSWeave partner are you applying from?',
+		type: 'Single select',
+		help: 'Required. You should be an existing member or employee of the selected partner',
+		possibleValues: [
+			"Virtual Coffee",
+			"HCLB Communities Cohort"
+		],
+		required: true
+		// TODO: Add other partners
+	},
 	{
 		name: 'OsExperience',
 		label: 'What is your experience with open-source contribution?',
@@ -91,7 +104,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Reasons',
 		label:
-			'What are your reasons for wanting to contribute to Hacktoberfest?',
+			'What are your reasons for wanting to contribute to open-source via OSWeave?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
@@ -164,7 +177,7 @@ export const contributors: FormField[] = [
 		name: 'RequestedMentor',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
-		label: 'I would like to receive mentorship for Hacktoberfest',
+		label: 'I would like to receive mentorship for OSWeave',
 	},
 	{
 		name: 'Note',
@@ -174,6 +187,29 @@ export const contributors: FormField[] = [
 		body: (
 			<p>
 				We would love to support everyone in their open-source journey! We ask you to recognize that we're a very small team with limited resources. Mentorship will be provided on a best-effort basis as ad-hoc troubleshooting and drop-in office hours throughout the month.
+			</p>
+		),
+	},
+	{
+		name: 'CodeOfPractice',
+		type: 'Agreement',
+		label: 'I agree to follow the OSWeave Code of Practice for Contributors',
+		required: true
+	},
+	{
+		name: 'CodeOfPracticeNote',
+		type: 'alert',
+		alertType: 'info',
+		title: 'Please note',
+		body: (
+			<p>
+				The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source. Please read the{' '} 
+				<a
+					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForContributors"
+					className="font-medium text-gray-700 underline"
+				>
+					Contributor Code of Practice
+				</a>
 			</p>
 		),
 	},
@@ -406,9 +442,9 @@ export const maintainers: FormField[] = [
 		help: 'Required',
 		possibleValues: [
       'Independent maintainer',
-      'small nonprofit (annual revenue below $500,000)',
-      'large nonprofit',
-      'for-profit company',
+      'Small nonprofit (annual revenue below $500,000)',
+      'Large nonprofit',
+      'For-profit company',
 		],
 		label: 'Which of the following best describes you as a maintainer?',
 	},
@@ -422,7 +458,39 @@ export const maintainers: FormField[] = [
 				<p>
 					If you're a maintainer for a large nonprofit or a for-profit company, HCLB Communities will be in touch regarding paid partnership opportunities.
 				</p>
+				<p>
+					We consider independent maintainers to be individuals working on their own projects, without a dedicated legal entity or paid employees. They may or may not derive a personal income from the project.
+				</p>
+				<p>
+					We consider non-profits to be any entity organized in a non-profit fashion, either using a recognized non-profit structure or with any governance structure that doesn't provide for the distribution of profits to owners and/or members.
+				</p>
+				<p>
+					We'll assess each maintainer on the spirit of these rules, not the letter. If you look like a duck and quack like a duck, but are technically a goose, we'll probably call you a duck.
+				</p>
 			</>
+		),
+	},
+		{
+		name: 'CodeOfPractice',
+		type: 'Agreement',
+		label: 'I agree to follow the OSWeave Code of Practice for Maintainers',
+		required: true
+	},
+	{
+		name: 'MaintainerCodeOfPracticeNote',
+		type: 'alert',
+		alertType: 'info',
+		title: 'Please note',
+		body: (
+			<p>
+				The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source. Please read the{' '} 
+				<a
+					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForMaintainers"
+					className="font-medium text-gray-700 underline"
+				>
+					Maintainers Code of Practice
+				</a>
+			</p>
 		),
 	},
 ]

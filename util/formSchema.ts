@@ -52,6 +52,14 @@ function fieldSchema(field: FormField): z.ZodType | null {
 		case 'Checkbox':
 			return z.preprocess(toBoolean, z.boolean())
 
+		case 'Agreement':
+			return z.preprocess(
+				toArray,
+				z
+					.array(z.literal('Yes'))
+					.min(1, 'You must agree to continue.')
+			)
+
 		// UI-only, and the auth_id pseudo-field. Neither is submitted.
 		case 'alert':
 		case 'lookup':
