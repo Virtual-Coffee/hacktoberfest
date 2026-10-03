@@ -442,9 +442,9 @@ export const maintainers: FormField[] = [
 		help: 'Required',
 		possibleValues: [
       'Independent maintainer',
-      'small nonprofit (annual revenue below $500,000)',
-      'large nonprofit',
-      'for-profit company',
+      'Small nonprofit (annual revenue below $500,000)',
+      'Large nonprofit',
+      'For-profit company',
 		],
 		label: 'Which of the following best describes you as a maintainer?',
 	},
@@ -458,7 +458,39 @@ export const maintainers: FormField[] = [
 				<p>
 					If you're a maintainer for a large nonprofit or a for-profit company, HCLB Communities will be in touch regarding paid partnership opportunities.
 				</p>
+				<p>
+					We consider independent maintainers to be individuals working on their own projects, without a dedicated legal entity or paid employees. They may or may not derive a personal income from the project.
+				</p>
+				<p>
+					We consider non-profits to be any entity organized in a non-profit fashion, either using a recognized non-profit structure or with any governance structure that doesn't provide for the distribution of profits to owners and/or members.
+				</p>
+				<p>
+					We'll assess each maintainer on the spirit of these rules, not the letter. If you look like a duck and quack like a duck, but are technically a goose, we'll probably call you a duck.
+				</p>
 			</>
+		),
+	},
+		{
+		name: 'CodeOfPractice',
+		type: 'Agreement',
+		label: 'I agree to follow the OSWeave Code of Practice for Maintainers',
+		required: true
+	},
+	{
+		name: 'MaintainerCodeOfPracticeNote',
+		type: 'alert',
+		alertType: 'info',
+		title: 'Please note',
+		body: (
+			<p>
+				The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source. Please read the{' '} 
+				<a
+					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForMaintainers"
+					className="font-medium text-gray-700 underline"
+				>
+					Maintainers Code of Practice
+				</a>
+			</p>
 		),
 	},
 ]
