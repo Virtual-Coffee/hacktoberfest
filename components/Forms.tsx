@@ -233,6 +233,14 @@ export function Field({
 					label={field.label || ""}
 					items={['Yes']}
 					help={field.help}
+					required={!!field.required}
+					defaultValues={
+						values[field.name] === true ||
+						(Array.isArray(values[field.name]) &&
+							(values[field.name] as string[]).includes('Yes'))
+							? ['Yes']
+							: []
+					}
 				/>
 			)
 
@@ -314,26 +322,38 @@ export function CheckboxList({
 export function Checkbox({
 	label,
 	id,
+	items,
+	help,
+	required,
 	defaultValues = [],
 }: {
 	help?: string
 	label: string
 	items: string[]
 	id: string
+	required?: boolean
 	otherFieldName?: string
 	defaultValues?: string[]
 	defaultOtherValue?: string
 }) {
+	const value = items[0] ?? 'on'
+
 	return (
 		<fieldset>
+			{help && (
+				<div className="flex justify-between flex-wrap">
+					<span className={helpClass}>{help}</span>
+				</div>
+			)}
 			<div className="mt-4 grid grid-cols-1 gap-y-4">
-				<label className="flex items-center" key={label}>
+				<label className="flex items-center" key={`${id}_${value}`}>
 					<input
 						name={`${id}[]`}
-						value={label}
+						value={value}
 						type="checkbox"
+						required={required}
 						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
-						defaultChecked={defaultValues && defaultValues.includes(label)}
+						defaultChecked={defaultValues && defaultValues.includes(value)}
 					/>
 					<span className="block leading-5 text-gray-700">{label}</span>
 				</label>
