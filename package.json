@@ -12,7 +12,7 @@
 	"engines": {
 		"node": ">=24.21.0"
 	},
-	"packageManager": "pnpm@12.6.0",
+	"packageManager": "pnpm@12.8.2",
 	"scripts": {
 		"dev": "netlify dev",
 		"dev:next": "next",
