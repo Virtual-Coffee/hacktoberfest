@@ -173,7 +173,20 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									HCLB Communities is the overall operator of OSWeave and will
+									be responsible for the program design, coordinating the
+									project, and the future development of OSWeave after the Fall
+									2026 pilot project. They will also be sending out T-shirt
+									rewards to participants (the requirements will be announced
+									later).
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									Virtual Coffee is participating in OSWeave as the
+									Infrastructure Partner, which means we are responsible for the
+									sign-up and community infrastructure required to run the Fall
+									2026 pilot project. We are also participating as a Community
+									Partner, meaning Virtual Coffee members will be participating
+									as contributors.
 								</p>
 							</dd>
 
