@@ -119,6 +119,39 @@ export default function Page() {
 				</div>
 			</div>
 
+			<div className="" id="vchi-to-osweave">
+				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
+					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
+						From VCHI to OSWeave
+					</h2>
+					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4">
+						<p className="text-base leading-6 text-gray-500">
+							Virtual Coffee took part in Hacktoberfest every October from 2021
+							to 2025, through the Virtual Coffee Hacktoberfest Initiative
+							(VCHI). VCHI helped people make their first open source
+							contributions. For members who wanted to contribute, it helped
+							them find repositories, answered their questions, supported them
+							throughout the event, and offered mentorship to first-timers. For
+							members who maintain open source projects, it helped them get
+							their repositories ready for contributions and promote them.
+						</p>
+						<p className="text-base leading-6 text-gray-500">
+							Hacktoberfest is moving in a different direction in 2026. It now
+							focuses on open source AI, and pull requests no longer count
+							toward rewards.
+						</p>
+						<p className="text-base leading-6 text-gray-500">
+							That change led to OSWeave, an idea from Dominic Duffin, founder
+							of HCLB Communities and a Monthly Challenge Team Lead at Virtual
+							Coffee. It is a new initiative that nurtures quality contributions
+							to open source in a way that is sustainable in the age of AI. This
+							fall, we will run our traditional event as part of the OSWeave
+							pilot, working with HCLB as the infrastructure partner.
+						</p>
+					</div>
+				</div>
+			</div>
+
 			<div className="" id="questions">
 				<div className="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
@@ -189,7 +222,20 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									HCLB Communities is the overall operator of OSWeave and responsible
+									for the program design, coordinating the project, and the future
+									development of OSWeave after the Fall 2026 pilot project. They will
+									also be sending out T-shirt rewards to participants (the requirements
+									will be announced later).
+
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									Virtual Coffee is participating in OSWeave as the
+									Infrastructure Partner, which means we are responsible for the
+									sign-up and community infrastructure required to run the Fall
+									2026 pilot project. We are also participating as a Community
+									Partner, meaning Virtual Coffee members will be participating
+									as contributors.
 								</p>
 							</dd>
 
