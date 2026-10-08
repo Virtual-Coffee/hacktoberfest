@@ -85,8 +85,9 @@ export const contributors: FormField[] = [
 		type: 'Single select',
 		help: 'Required. You should be an existing member or employee of the selected partner',
 		possibleValues: [
-			"Virtual Coffee",
-			"HCLB Communities Cohort"
+			"HCLB Communities Cohort",
+			"Self-Taught Software Developers",
+			"Virtual Coffee"
 		],
 		required: true
 		// TODO: Add other partners
