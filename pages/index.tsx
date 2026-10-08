@@ -179,7 +179,7 @@ export default function Page() {
 									controlled to avoid a flood of low-effort contributions. This
 									means contributors join only through participating
 									communities and corporate partners. The Fall 2026 event is a pilot that
-									HCLB Communities and Virtual Coffee run together. We are also
+									HCLB Communities and Virtual Coffee are running together. We are also
 									inviting other carefully chosen partners to join.
 								</p>
 							</dd>
