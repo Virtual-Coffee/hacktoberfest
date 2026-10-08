@@ -449,8 +449,6 @@ function createInitialState({
 		return defaultState
 	}
 
-	// console.log({ create: previousFormSubmission })
-
 	const state = { ...defaultState }
 
 	state.status = 'ready'
@@ -480,9 +478,6 @@ function createInitialState({
 		state.status = 'error'
 		state.errorMessage = errorMessage
 	}
-
-	// console.log('sdflkjsdfljksdflkjsdlfkjs')
-	// console.log(state)
 
 	return state
 }
@@ -572,7 +567,6 @@ export default function Form({
 		},
 		createInitialState
 	)
-	// console.log({ state })
 
 	useEffect(() => {
 		if (state.status === 'error') {
@@ -609,9 +603,7 @@ export default function Form({
 
 				const json = await result.json()
 				dispatch({ type: 'finish', status: result.status, ...json })
-				// console.log({ status: result.status, json })
 			} catch (error) {
-				// console.log({ error })
 				dispatch({ type: 'error', error })
 			}
 		},
@@ -695,7 +687,6 @@ export default function Form({
 										size="lg"
 										type="submit"
 										className="w-full"
-										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-hidden focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
 									>
 										{state.status === 'loading'
 											? 'Loading...'
