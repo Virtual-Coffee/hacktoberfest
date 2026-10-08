@@ -2,3 +2,9 @@
 @plugin '@tailwindcss/forms';
 @source '../pages';
 @source '../components';
+
+@layer base {
+	button:not(:disabled) {
+		cursor: pointer;
+	}
+}
