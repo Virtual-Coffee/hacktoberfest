@@ -75,7 +75,7 @@ export const profile: FormField[] = [
 		label: 'Are you a current Virtual Coffee member?',
 		required: true,
 		help: "If you're not a current Virtual Coffee member, that's okay! We still welcome your participation. As part of the partnership between HCLB Communities and Virtual Coffee, you'll be added to the Virtual Coffee Slack to facilitate your participation.",
-	}, // TBC
+	},
 ]
 
 export const contributors: FormField[] = [
