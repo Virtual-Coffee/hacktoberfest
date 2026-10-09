@@ -9,11 +9,11 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 		{
 			header: 'Contributors',
 			intro:
-				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or open source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+				"Are you part of Virtual Coffee, or one of our participating communities and companies, who wants to contribute to open source but doesn't know where to start? Or have you contributed to open source before and want to keep making quality contributions? We'd love to help! Come join OSWeave and get the support you need.",
 			items: [
-				'Learn OSS essentials',
-				'Complete Hacktoberfest Challenge',
-				'Join a great community of developers',
+				'Learn open-source essentials',
+				'Contribute to real-world projects',
+				'Connect with people across open-source communities',
 			],
 			button: newSubmissionsClosed
 				? {
@@ -22,18 +22,18 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 						link: '/contributors',
 					}
 				: {
-						text: 'I Want to Hack!',
+						text: 'I Want to Contribute!',
 						link: '/contributors',
 					},
 		},
 		{
 			header: 'Maintainers',
 			intro:
-				"Are you an open source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our contributors as they start or continue their open source journey.",
+				"Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.",
 			items: [
-				'Find some excited contributors for your project',
+				'Find contributors for your project',
 				'Grow your community',
-				'Join a great community of developers',
+				'Connect with people across open-source communities',
 			],
 			button: newSubmissionsClosed
 				? {
@@ -42,18 +42,18 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 						link: '/maintainers',
 					}
 				: {
-						text: 'I Have Issues!',
+						text: 'We Have Issues!',
 						link: '/maintainers',
 					},
 		},
 		{
 			header: 'Mentors',
 			intro:
-				"Have a few pull requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors.",
+				'Have a few pull requests under your belt and want to give back? Join our pool of OSWeave mentors. Help out open-source contributors in Slack, or hold your own open office hours, whatever fits your schedule.',
 			items: [
 				'Give back to the community',
 				'Have some fun',
-				'Join a great community of developers',
+				'Connect with people across open-source communities',
 			],
 			button: {
 				text: "I'd Love to Help!",
