@@ -197,7 +197,23 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									OSWeave is a project from{' '}
+									<a
+										href="https://www.hclbcommunities.com/"
+										className="text-orange-500 underline"
+									>
+										HCLB Communities
+									</a>
+									. It brings together tech communities, companies, and
+									maintainers to nurture quality contributions to open source
+									projects in the age of AI. To do this, we coordinate
+									contributors and maintainers from selected partners, and we
+									give T-shirt rewards for contributions. Participation is
+									controlled to avoid a flood of low-effort contributions. This
+									means contributors join only through participating
+									communities and corporate partners. The Fall 2026 event is a pilot that
+									HCLB Communities and Virtual Coffee are running together. We are also
+									inviting other carefully chosen partners to join.
 								</p>
 							</dd>
 
