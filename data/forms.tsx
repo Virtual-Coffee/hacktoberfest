@@ -105,7 +105,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Reasons',
 		label:
-			'What are your reasons for wanting to contribute to open-source via OSWeave?',
+			'What are your reasons for wanting to contribute to open source via OSWeave?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
@@ -132,7 +132,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Skills',
 		label:
-			'What skills/talents/interests would you be willing to practice in your OS contributions?',
+			'What skills/talents/interests would you be willing to practice in your open-source contributions?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
