@@ -226,6 +226,24 @@ export function Field({
 				/>
 			)
 
+		case 'Agreement':
+			return (
+				<Checkbox
+					id={field.name}
+					label={field.label || ""}
+					items={['Yes']}
+					help={field.help}
+					required={!!field.required}
+					defaultValues={
+						values[field.name] === true ||
+						(Array.isArray(values[field.name]) &&
+							(values[field.name] as string[]).includes('Yes'))
+							? ['Yes']
+							: []
+					}
+				/>
+			)
+
 		default:
 			return null
 	}
@@ -296,6 +314,49 @@ export function CheckboxList({
 						</DisclosurePanel>
 					</Disclosure>
 				)}
+			</div>
+		</fieldset>
+	)
+}
+
+export function Checkbox({
+	label,
+	id,
+	items,
+	help,
+	required,
+	defaultValues = [],
+}: {
+	help?: string
+	label: string
+	items: string[]
+	id: string
+	required?: boolean
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
+}) {
+	const value = items[0] ?? 'on'
+
+	return (
+		<fieldset>
+			{help && (
+				<div className="flex justify-between flex-wrap">
+					<span className={helpClass}>{help}</span>
+				</div>
+			)}
+			<div className="mt-4 grid grid-cols-1 gap-y-4">
+				<label className="flex items-center" key={`${id}_${value}`}>
+					<input
+						name={`${id}[]`}
+						value={value}
+						type="checkbox"
+						required={required}
+						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						defaultChecked={defaultValues && defaultValues.includes(value)}
+					/>
+					<span className="block leading-5 text-gray-700">{label}</span>
+				</label>
 			</div>
 		</fieldset>
 	)
@@ -388,8 +449,6 @@ function createInitialState({
 		return defaultState
 	}
 
-	// console.log({ create: previousFormSubmission })
-
 	const state = { ...defaultState }
 
 	state.status = 'ready'
@@ -419,9 +478,6 @@ function createInitialState({
 		state.status = 'error'
 		state.errorMessage = errorMessage
 	}
-
-	// console.log('sdflkjsdfljksdflkjsdlfkjs')
-	// console.log(state)
 
 	return state
 }
@@ -511,7 +567,6 @@ export default function Form({
 		},
 		createInitialState
 	)
-	// console.log({ state })
 
 	useEffect(() => {
 		if (state.status === 'error') {
@@ -548,9 +603,7 @@ export default function Form({
 
 				const json = await result.json()
 				dispatch({ type: 'finish', status: result.status, ...json })
-				// console.log({ status: result.status, json })
 			} catch (error) {
-				// console.log({ error })
 				dispatch({ type: 'error', error })
 			}
 		},
@@ -612,6 +665,13 @@ export default function Form({
 										>
 											Virtual Coffee Code of Conduct
 										</a>
+										{' '}and the{' '}
+										<a
+											href="https://www.hclbcommunities.com/code-of-conduct"
+											className="font-medium text-gray-700 underline"
+										>
+											HCLB Communities Code of Conduct
+										</a>
 									</span>
 								</label>
 							</div>
@@ -627,7 +687,6 @@ export default function Form({
 										size="lg"
 										type="submit"
 										className="w-full"
-										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-hidden focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
 									>
 										{state.status === 'loading'
 											? 'Loading...'
@@ -636,6 +695,15 @@ export default function Form({
 												: submitText}
 									</Button>
 								</div>
+								<p className="mt-12 text-base text-gray-500">
+									HCLB Communities Ltd will only use your personal data as set out in their{' '}
+									<a
+										href="https://www.hclbcommunities.com/privacy-policy.pdf"
+										className="font-medium text-gray-700 underline"
+									>
+										Privacy Policy
+									</a>
+								</p>
 							</div>
 						</FieldSet>
 					</div>
