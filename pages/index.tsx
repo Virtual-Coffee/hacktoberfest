@@ -259,22 +259,23 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
-								</p>
-								{/* <p className="text-base leading-6 text-gray-500">
-									A contributor is someone who submits code or documentation to
-									an open source project as a pull request on GitHub but usually
-									does not have the ability to merge their contributions.
-									Contributors can find issues to work on in open source
-									repositories. To get started as an open source contributor for
-									Hacktoberfest, all you need to do is to{' '}
+									A contributor is anyone who gives their time or skills to
+									help an open source project. This can include writing code,
+									but it doesn't have to. Designing graphics, writing blog
+									posts, and helping with community engagement are all
+									examples of non-code contributions, and there are many
+									other ways to contribute too. The most common path is
+									submitting a pull request on GitHub, though contributors
+									usually cannot merge their own changes. Issues in open
+									source repositories are a good place to find work that
+									matches your interests. To get started with OSWeave,{' '}
 									<a
-										href="https://hacktoberfest.com/"
+										href="/contributors"
 										className="text-orange-500 underline"
 									>
 										sign up
 									</a>{' '}
-									and have/create a{' '}
+									and have (or create) a{' '}
 									<a
 										href="https://github.com/"
 										className="text-orange-500 underline"
@@ -282,7 +283,7 @@ export default function Page() {
 										Github account
 									</a>
 									.
-								</p> */}
+								</p>
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-7">
