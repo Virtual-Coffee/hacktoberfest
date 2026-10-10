@@ -105,11 +105,10 @@ export default function Page() {
 			<div className="py-8">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Join us for Hacktoberfest:
+						Join us for OSWeave:
 					</h2>
 					<div className="text-base leading-6 text-gray-500">
-						*Choose as many roles as you like. Mentorship only guaranteed if
-						you're a Virtual Coffee member who registers before September 28th.
+						*Choose as many roles as you like.
 					</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
