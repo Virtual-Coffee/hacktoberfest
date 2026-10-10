@@ -309,7 +309,15 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									Participation is free for all eligible contributors and
+									independent maintainers. Organizations can participate as
+									maintainer for free if they meet OSWeave&apos;s definition of a
+									small non-profit, which covers most organizations that
+									don&apos;t distribute profits to owners and have an annual
+									revenue of less than $500,000. HCLB Communities will reach out
+									to maintainers who sign up with organization projects to
+									confirm their organization&apos;s status and any costs for
+									participation.
 								</p>
 							</dd>
 
