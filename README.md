@@ -125,7 +125,7 @@ Sign-in is GitHub OAuth through [Better Auth](https://www.better-auth.com/), con
 
 ### Local development
 
-- **Without GitHub credentials (most contributors).** Run `pnpm dev` and use the **Auth DevTools** panel in the bottom-right corner to create throwaway Member or Admin users and switch between them. The "Sign in with GitHub" button tells you it is not configured; that is expected.
+- **Without GitHub credentials (most contributors).** Run `pnpm dev` and use the **Auth DevTools** panel in the bottom-right corner to create throwaway Member or Admin users and switch between them. The "Sign in with GitHub" button is replaced by a pointer to that panel; that is expected.
 - **With real GitHub sign-in (maintainers).** Ask a maintainer for production's `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` and `OAUTH_PROXY_SECRET`, and put them in `.env.local`. Signing in at `http://localhost:8888` sends you to GitHub, back to production's callback, and then back to localhost with your session.
 
 ### Deploy previews and branch deploys

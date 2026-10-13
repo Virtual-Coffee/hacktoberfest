@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { signInWithGitHub, signOut, useSessionStatus } from '@/lib/auth-client'
+import { signOut, useSessionStatus } from '@/lib/auth-client'
 import type { SessionStatus } from '@/lib/auth-client'
 import {
 	Disclosure,
@@ -11,7 +11,7 @@ import {
 	MenuItems,
 } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Button from './Button'
+import GitHubSignInButton from './GitHubSignInButton'
 import classNames from '@/util/classNames'
 import Container from './Container'
 import { useRouter } from 'next/router'
@@ -149,9 +149,7 @@ export default function Nav() {
 									<div className="ml-3 relative">
 										{sessionStatus === 'loading' && <div>Loading</div>}
 										{sessionStatus === 'unauthenticated' && (
-											<Button size="sm" onClick={() => signInWithGitHub()}>
-												Sign in with GitHub
-											</Button>
+											<GitHubSignInButton />
 										)}
 										{sessionStatus === 'authenticated' && (
 											<Menu as="div">
@@ -252,9 +250,7 @@ export default function Nav() {
 							{sessionStatus === 'loading' && <div>Loading</div>}
 							{sessionStatus === 'unauthenticated' && (
 								<div className="px-3 py-4 border-t border-gray-200">
-									<Button size="sm" onClick={() => signInWithGitHub()}>
-										Sign in with GitHub
-									</Button>
+									<GitHubSignInButton />
 								</div>
 							)}
 							{sessionStatus === 'authenticated' && (

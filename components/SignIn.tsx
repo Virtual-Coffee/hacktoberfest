@@ -1,5 +1,4 @@
-import { signInWithGitHub } from '@/lib/auth-client'
-import Button from './Button'
+import GitHubSignInButton from './GitHubSignInButton'
 
 export default function SignIn() {
 	return (
@@ -10,9 +9,7 @@ export default function SignIn() {
 				</h2>
 				<div className="mt-8 flex justify-center">
 					<div className="inline-flex rounded-md shadow-sm">
-						<Button size="lg" onClick={() => signInWithGitHub()}>
-							Sign in with GitHub
-						</Button>
+						<GitHubSignInButton size="lg" />
 					</div>
 				</div>
 			</div>
