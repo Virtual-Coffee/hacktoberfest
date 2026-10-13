@@ -130,7 +130,7 @@ export const auth = betterAuth({
 	},
 
 	// Registered only when both credentials are present, so a fresh clone boots
-	// and works through the devtools personas; signInWithGitHub explains the
+	// and works through the devtools personas; GitHubSignInButton explains the
 	// missing provider instead of GitHub rejecting an empty client id.
 	socialProviders: githubCredentials && {
 		github: {
