@@ -20,6 +20,15 @@
   # Set to "false" (or remove the line) and redeploy to reopen sign ups.
   NEXT_PUBLIC_SIGNUPS_PAUSED = "true"
 
+# One canonical host. Both domains are attached to the site, but auth cookies
+# and the GitHub OAuth callback belong to osweave only, so a visitor left on
+# the alias would sign in and still appear signed out.
+[[redirects]]
+  from = "https://hacktoberfest.virtualcoffee.io/*"
+  to = "https://osweave.virtualcoffee.io/:splat"
+  status = 301
+  force = true
+
 [dev]
   # netlify dev proxies to Next and starts the local Postgres alongside it.
   # It must call dev:next rather than dev, or it would invoke itself.

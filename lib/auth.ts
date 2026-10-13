@@ -5,7 +5,9 @@ import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2'
 import { db, schema } from '@/db'
 import { syncGitHubOrgRole } from '@/lib/github'
 
-const productionHost = 'hacktoberfest.virtualcoffee.io'
+// The canonical host; netlify.toml redirects the hacktoberfest alias here so
+// sessions live on one cookie domain.
+const productionHost = 'osweave.virtualcoffee.io'
 const productionURL = `https://${productionHost}`
 
 // Devtools personas have no GitHub profile to take an avatar from, and the

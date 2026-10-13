@@ -121,7 +121,7 @@ If you change the Better Auth config in `lib/auth.ts` in a way that affects its 
 
 ## Authentication
 
-Sign-in is GitHub OAuth through [Better Auth](https://www.better-auth.com/), configured in `lib/auth.ts`. There is exactly one GitHub OAuth app, and it is registered with production's callback only: `https://hacktoberfest.virtualcoffee.io/api/auth/callback/github`.
+Sign-in is GitHub OAuth through [Better Auth](https://www.better-auth.com/), configured in `lib/auth.ts`. There is exactly one GitHub OAuth app, and it is registered with production's callback only: `https://osweave.virtualcoffee.io/api/auth/callback/github`. The old `hacktoberfest.virtualcoffee.io` alias redirects there (`netlify.toml`), so sessions only ever live on one domain.
 
 ### Local development
 
