@@ -8,15 +8,12 @@ type GitHubSignInButtonProps = {
 export default function GitHubSignInButton({
 	size = 'sm',
 }: GitHubSignInButtonProps) {
+	// Only ever false in a local checkout without GitHub credentials, which
+	// signs in through the devtools panel instead.
 	if (!githubSignInConfigured) {
-		// Locally this is a contributor without GitHub credentials, who signs
-		// in through the devtools panel instead. On a deploy it is a
-		// misconfiguration, and that panel is not there.
 		return (
 			<p className="text-sm text-gray-500 whitespace-nowrap">
-				{process.env.NODE_ENV === 'development'
-					? 'Sign in via Auth DevTools'
-					: 'Sign-in unavailable'}
+				Sign in via Auth DevTools
 			</p>
 		)
 	}
