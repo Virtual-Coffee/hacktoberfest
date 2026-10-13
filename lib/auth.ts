@@ -24,42 +24,40 @@ export const auth = betterAuth({
 	// what makes that safe. allowedHosts also seeds trustedOrigins, so that is
 	// not maintained separately.
 	//
-	// Resolving the host is only half of preview sign-in; the OAuth round-trip
-	// itself is handled by the oAuthProxy plugin below.
+	// Resolving the host is only half of non-production sign-in; the OAuth
+	// round-trip itself is handled by the oAuthProxy plugin below.
 	//
-	// BETTER_AUTH_URL is a local-development override only; it must stay unset
-	// in every Netlify context.
-	baseURL: process.env.BETTER_AUTH_URL || {
-		allowedHosts: [productionHost, '*.netlify.app'],
-		protocol: 'https',
+	// 'auto' takes the scheme from x-forwarded-proto on Netlify and falls back
+	// to http for localhost; a fixed 'https' would derive https://localhost.
+	baseURL: {
+		allowedHosts: [productionHost, '*.netlify.app', 'localhost:8888'],
+		protocol: 'auto',
 		fallback: productionURL,
 	},
 
 	plugins: [
-		// Deploy previews. A GitHub OAuth App accepts exactly one callback URL,
-		// so a preview hostname can never finish the round-trip on its own.
-		// The proxy sends GitHub to production's callback; production exchanges
-		// the code, encrypts the profile with OAUTH_PROXY_SECRET, and bounces it
-		// back to the preview origin, which creates the user and session in its
-		// own context. Production skips the hop (request origin matches
-		// productionURL), and allowedHosts above is what lets a *.netlify.app
-		// origin be trusted as the return address.
-		//
-		// Omitted locally: BETTER_AUTH_URL means "local dev", which uses its own
-		// OAuth app with a localhost callback -- left in, the proxy would rewrite
-		// that redirect_uri to production's and GitHub would reject it.
-		...(process.env.BETTER_AUTH_URL
-			? []
-			: [
-					oAuthProxy({
-						productionURL,
-						// Must be the same value in every Netlify context. Falls
-						// back to BETTER_AUTH_SECRET when unset, but keeping the
-						// proxy on its own key means rotating one does not
-						// invalidate the other.
-						secret: process.env.OAUTH_PROXY_SECRET,
-					}),
-				]),
+		// Deploy previews and local development. A GitHub OAuth App accepts
+		// exactly one callback URL -- production's -- so no other origin can
+		// finish the round-trip on its own. The proxy sends GitHub to
+		// production's callback; production exchanges the code, encrypts the
+		// profile with OAUTH_PROXY_SECRET, and bounces it back to the origin
+		// that started sign-in, which creates the user and session in its own
+		// database. Production skips the hop (request origin matches
+		// productionURL), and allowedHosts above is what lets the return
+		// address be trusted. See README "Authentication".
+		oAuthProxy({
+			productionURL,
+			// Must be production's value everywhere, local checkouts included.
+			// Falls back to BETTER_AUTH_SECRET when unset, but keeping the proxy
+			// on its own key means rotating one does not invalidate the other.
+			secret: process.env.OAUTH_PROXY_SECRET,
+			// netlify dev serves on 8888 but hands Next requests on 3000, an
+			// origin that is not trusted -- left to work it out, the proxy would
+			// send the profile back to the fallback (production) instead.
+			...(process.env.NODE_ENV === 'development' && {
+				currentURL: 'http://localhost:8888',
+			}),
+		}),
 
 		// Local development only: a panel for creating throwaway users and
 		// switching sessions, so admin pages can be worked on without a real
@@ -109,6 +107,10 @@ export const auth = betterAuth({
 		// Spoofing it is not useful: a forged host still has to match
 		// allowedHosts above.
 		trustedProxyHeaders: true,
+		// With protocol 'auto' there is no fixed scheme to infer this from.
+		// Off locally so the session cookie also sticks on http://localhost in
+		// browsers that refuse Secure cookies there (Safari).
+		useSecureCookies: process.env.NODE_ENV === 'production',
 	},
 
 	socialProviders: {
