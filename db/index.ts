@@ -33,9 +33,37 @@ function connect(): Database {
 	// getDatabase() resolves the connection (and driver: neon's serverless
 	// pool in deployed functions, a plain pg pool locally) via
 	// NETLIFY_DB_URL/NETLIFY_DB_DRIVER; drizzle-orm's netlify-db driver
-	// accepts that same client shape directly and picks the matching
-	// implementation for us.
+	// accepts that same client shape and picks the matching implementation.
+	if (connection.driver === 'serverless') {
+		connection = {
+			...connection,
+			httpClient: queryCompatible(connection.httpClient),
+		}
+	}
 	return drizzle({ client: connection, relations: schema.allRelations })
+}
+
+type NeonHttpClient = Extract<
+	ReturnType<typeof getDatabase>,
+	{ driver: 'serverless' }
+>['httpClient']
+
+/**
+ * drizzle-orm 1.0.0-rc.5's netlify-db session calls the neon HTTP client as
+ * `client(sql, params, options)`, which @neondatabase/serverless 1.x rejects
+ * in favour of `client.query(...)`. Route those calls to `.query` until
+ * drizzle does it itself; tagged-template calls pass through untouched.
+ */
+function queryCompatible(client: NeonHttpClient): NeonHttpClient {
+	return new Proxy(client, {
+		apply(target, thisArg, args: unknown[]) {
+			const [first] = args
+			if (Array.isArray(first) && 'raw' in first) {
+				return Reflect.apply(target, thisArg, args)
+			}
+			return target.query(...(args as Parameters<NeonHttpClient['query']>))
+		},
+	})
 }
 
 /**
