@@ -31,8 +31,21 @@ export function useSessionStatus() {
 	return { data, status, isPending, error, refetch }
 }
 
-export function signInWithGitHub(callbackURL = '/dashboard') {
-	return authClient.signIn.social({ provider: 'github', callbackURL })
+export async function signInWithGitHub(callbackURL = '/dashboard') {
+	const result = await authClient.signIn.social({
+		provider: 'github',
+		callbackURL,
+	})
+
+	// lib/auth.ts leaves the provider out when GitHub credentials are unset,
+	// which is the normal state of a contributor's checkout.
+	if (result.error?.code === 'PROVIDER_NOT_FOUND') {
+		window.alert(
+			'GitHub sign-in is not configured in this environment. Use the Auth DevTools panel (bottom-right) to sign in as a test user -- see README "Authentication".'
+		)
+	}
+
+	return result
 }
 
 export function signOut(onSuccess?: () => void) {

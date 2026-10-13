@@ -13,6 +13,14 @@ const productionURL = `https://${productionHost}`
 const placeholderAvatar = (seed: string) =>
 	`https://api.dicebear.com/10.x/initials/svg?seed=${encodeURIComponent(seed)}`
 
+const githubCredentials =
+	process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET
+		? {
+				clientId: process.env.GITHUB_CLIENT_ID,
+				clientSecret: process.env.GITHUB_CLIENT_SECRET,
+			}
+		: undefined
+
 export const auth = betterAuth({
 	database: drizzleAdapter(db, { provider: 'pg', schema }),
 
@@ -119,10 +127,12 @@ export const auth = betterAuth({
 		useSecureCookies: process.env.NODE_ENV === 'production',
 	},
 
-	socialProviders: {
+	// Registered only when both credentials are present, so a fresh clone boots
+	// and works through the devtools personas; signInWithGitHub explains the
+	// missing provider instead of GitHub rejecting an empty client id.
+	socialProviders: githubCredentials && {
 		github: {
-			clientId: process.env.GITHUB_CLIENT_ID as string,
-			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+			...githubCredentials,
 			// read:org backs the Virtual Coffee membership check that decides
 			// the admin role. Adding it sends existing users through GitHub's
 			// re-consent screen on their next sign-in.
