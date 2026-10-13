@@ -30,7 +30,13 @@ export const auth = betterAuth({
 	// 'auto' takes the scheme from x-forwarded-proto on Netlify and falls back
 	// to http for localhost; a fixed 'https' would derive https://localhost.
 	baseURL: {
-		allowedHosts: [productionHost, '*.netlify.app', 'localhost:8888'],
+		allowedHosts: [
+			productionHost,
+			'*.netlify.app',
+			// Only the local instance needs to trust itself; production's half
+			// of the proxy hop never checks trusted origins.
+			...(process.env.NODE_ENV === 'development' ? ['localhost:8888'] : []),
+		],
 		protocol: 'auto',
 		fallback: productionURL,
 	},
