@@ -49,12 +49,7 @@ Use the following command to create a local `.env.local` file. Then open the new
 cp .env.local.example .env.local
 ```
 
-You will need two things of your own:
-
-- **A secret.** Generate one with `openssl rand -base64 32` and put it in `BETTER_AUTH_SECRET`.
-- **A GitHub OAuth app** for local development, created under [Developer settings -> OAuth Apps](https://github.com/settings/developers). Set its Authorization callback URL to `http://localhost:8888/api/auth/callback/github` -- note port **8888**, which is what `netlify dev` serves on, not Next's 3000. Copy the client ID and secret into `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`.
-
-Use your own OAuth app rather than sharing one: a GitHub OAuth app allows exactly one callback URL.
+The only value you need of your own is a secret: generate one with `openssl rand -base64 32` and put it in `BETTER_AUTH_SECRET`. You sign in with the Auth DevTools panel -- see [Authentication](#authentication).
 
 Leave `VC_GITHUB_ORG` unset if you are not a Virtual Coffee org member -- the admin-role lookup is then skipped entirely and everything else works normally.
 
@@ -123,6 +118,36 @@ netlify database migrations apply
 ```
 
 If you change the Better Auth config in `lib/auth.ts` in a way that affects its tables, run `pnpm auth:generate` first to regenerate `db/schema/auth.ts`.
+
+## Authentication
+
+Sign-in is GitHub OAuth through [Better Auth](https://www.better-auth.com/), configured in `lib/auth.ts`. There is exactly one GitHub OAuth app, and it is registered with production's callback only: `https://hacktoberfest.virtualcoffee.io/api/auth/callback/github`.
+
+### Local development
+
+- **Without GitHub credentials (most contributors).** Run `pnpm dev` and use the **Auth DevTools** panel in the bottom-right corner to create throwaway Member or Admin users and switch between them. The "Sign in with GitHub" button tells you it is not configured; that is expected.
+- **With real GitHub sign-in (maintainers).** Ask a maintainer for production's `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` and `OAUTH_PROXY_SECRET`, and put them in `.env.local`. Signing in at `http://localhost:8888` sends you to GitHub, back to production's callback, and then back to localhost with your session.
+
+### Deploy previews and branch deploys
+
+Previews sign in the same way: Better Auth's `oAuthProxy` plugin sends GitHub to production's callback, production exchanges the code and encrypts the profile with `OAUTH_PROXY_SECRET`, and the preview creates the user and session in its own database branch. Production skips the hop. A preview's database is a fork of production's, so a preview has production's data behind production's sign-in. The devtools panel is off on every Netlify deploy.
+
+### Environment variables
+
+Set these in the Netlify UI with the **Functions** scope, so they reach the function runtime:
+
+| Variable               | Production | Deploy previews / branch deploys | Local                    |
+| ---------------------- | ---------- | -------------------------------- | ------------------------ |
+| `BETTER_AUTH_SECRET`   | value A    | a different value                | your own                 |
+| `OAUTH_PROXY_SECRET`   | value B    | the same value B                 | value B, or unset        |
+| `GITHUB_CLIENT_ID`     | set        | the same value                   | the same value, or unset |
+| `GITHUB_CLIENT_SECRET` | set        | the same value                   | the same value, or unset |
+
+- A distinct `BETTER_AUTH_SECRET` per context means a session from one deploy is worthless on another.
+- `OAUTH_PROXY_SECRET` must match everywhere: production encrypts what the other side decrypts. A mismatch shows up as an error after the GitHub round-trip.
+- `BETTER_AUTH_URL` is not used. Do not set it anywhere; the base URL is derived from the request against an allowlist in `lib/auth.ts`.
+
+Because previews get these secrets and a fork of production's data, the Netlify site's **Sensitive variable policy** requires approval before building pull requests from unrecognized authors. Approve a fork's deploy only after reading its changes.
 
 ## Uses:
 
