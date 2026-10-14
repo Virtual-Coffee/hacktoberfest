@@ -683,11 +683,7 @@ export default function Form({
 									Thank you for showing interest in OSWeave!
 								</p>
 								<div>
-									<Button
-										size="lg"
-										type="submit"
-										className="w-full"
-									>
+									<Button size="lg" type="submit" className="w-full">
 										{state.status === 'loading'
 											? 'Loading...'
 											: previousFormSubmission
@@ -696,13 +692,15 @@ export default function Form({
 									</Button>
 								</div>
 								<p className="mt-12 text-base text-gray-500">
-									HCLB Communities Ltd will only use your personal data as set out in their{' '}
+									HCLB Communities Ltd will only use your personal data as set
+									out in their{' '}
 									<a
 										href="https://www.hclbcommunities.com/privacy-policy.pdf"
-										className="font-medium text-gray-700 underline"
+										className="text-blue-800 underline"
 									>
 										Privacy Policy
 									</a>
+									.
 								</p>
 							</div>
 						</FieldSet>
