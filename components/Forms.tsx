@@ -214,6 +214,7 @@ export function Field({
 				<RadioList
 					id={field.name}
 					label={field.label}
+					label_html={field.label_html}
 					items={['Yes', 'No']}
 					help={field.help}
 					defaultValue={
@@ -230,7 +231,8 @@ export function Field({
 			return (
 				<Checkbox
 					id={field.name}
-					label={field.label || ""}
+					label={field.label || ''}
+					label_html={field.label_html}
 					items={['Yes']}
 					help={field.help}
 					required={!!field.required}
@@ -321,6 +323,7 @@ export function CheckboxList({
 
 export function Checkbox({
 	label,
+	label_html,
 	id,
 	items,
 	help,
@@ -329,6 +332,7 @@ export function Checkbox({
 }: {
 	help?: string
 	label: string
+	label_html?: ReactNode
 	items: string[]
 	id: string
 	required?: boolean
@@ -355,7 +359,9 @@ export function Checkbox({
 						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
 						defaultChecked={defaultValues && defaultValues.includes(value)}
 					/>
-					<span className="block leading-5 text-gray-700">{label}</span>
+					<span className="block leading-5 text-gray-700">
+						{label_html ?? label}
+					</span>
 				</label>
 			</div>
 		</fieldset>
@@ -364,12 +370,14 @@ export function Checkbox({
 
 export function RadioList({
 	label,
+	label_html,
 	help,
 	items,
 	id,
 	defaultValue,
 }: {
 	label?: string
+	label_html?: ReactNode
 	help?: string
 	items: string[]
 	id: string
