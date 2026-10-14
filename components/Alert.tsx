@@ -84,7 +84,7 @@ export default function Alert({
 
 					<div
 						className={classNames(
-							'mt-2 space-y-2 text-sm font-medium text-gray-700'
+							'me-3 mt-2 space-y-2 text-sm font-medium text-gray-700'
 						)}
 					>
 						{children}
