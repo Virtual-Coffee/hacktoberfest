@@ -81,14 +81,10 @@ export const profile: FormField[] = [
 export const contributors: FormField[] = [
 	{
 		name: 'Partner',
-		label: 'Which OSWeave partner are you applying from?',
-		type: 'Single select',
-		help: 'Required. You should be an existing member or employee of the selected partner',
-		possibleValues: [
-			'HCLB Communities Cohort',
-			'Self-Taught Software Developers',
-			'Virtual Coffee',
-		],
+		label: 'Which OSWeave partner(s) are you associated with?',
+		type: 'Multiple select',
+		help: 'Check all that apply',
+		possibleValues: ['HCLB Communities Cohort', 'Virtual Coffee'],
 		required: true,
 		// TODO: Add other partners
 	},
