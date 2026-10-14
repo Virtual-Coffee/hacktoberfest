@@ -5,7 +5,7 @@ export type FormKey =
 
 export type FormValues = Record<string, string | string[] | boolean | undefined>
 
-export type AlertType = 'error' | 'warning' | 'success' | 'info'
+export type AlertType = 'error' | 'warning' | 'success' | 'info' | 'important'
 
 export type FieldType =
 	| 'Text'

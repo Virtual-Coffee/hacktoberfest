@@ -3,6 +3,7 @@ import {
 	ExclamationTriangleIcon,
 	CheckCircleIcon,
 	InformationCircleIcon,
+	ChatBubbleLeftIcon,
 } from '@heroicons/react/24/solid'
 import type { ReactNode } from 'react'
 import type { AlertType } from '@/data/forms'
@@ -45,6 +46,12 @@ const alertTypes: Record<AlertType, AlertStyle> = {
 		Icon: InformationCircleIcon,
 		iconColor: 'text-blue-400',
 		titleColor: 'text-blue-800',
+	},
+	important: {
+		bodyBg: 'bg-purple-50',
+		Icon: ChatBubbleLeftIcon,
+		iconColor: 'text-purple-400',
+		titleColor: 'text-purple-800',
 	},
 }
 
@@ -91,6 +98,14 @@ export default function Alert({
 export function InfoAlert({ title, children }: AlertProps) {
 	return (
 		<Alert title={title} alertType="info">
+			{children}
+		</Alert>
+	)
+}
+
+export function ImportantAlert({ title, children }: AlertProps) {
+	return (
+		<Alert title={title} alertType="important">
 			{children}
 		</Alert>
 	)
