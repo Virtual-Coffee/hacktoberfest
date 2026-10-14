@@ -13,7 +13,6 @@ type AlertStyle = {
 	Icon: typeof XCircleIcon
 	iconColor: string
 	titleColor: string
-	bodyColor?: string
 }
 
 type AlertProps = {
@@ -28,7 +27,6 @@ const alertTypes: Record<AlertType, AlertStyle> = {
 		Icon: XCircleIcon,
 		iconColor: 'text-red-400',
 		titleColor: 'text-red-800',
-		bodyColor: 'text-red-700',
 	},
 	warning: {
 		bodyBg: 'bg-yellow-50',
@@ -41,14 +39,12 @@ const alertTypes: Record<AlertType, AlertStyle> = {
 		Icon: CheckCircleIcon,
 		iconColor: 'text-green-400',
 		titleColor: 'text-green-800',
-		bodyColor: 'text-green-700',
 	},
 	info: {
 		bodyBg: 'bg-blue-50',
 		Icon: InformationCircleIcon,
 		iconColor: 'text-blue-400',
 		titleColor: 'text-blue-800',
-		bodyColor: 'text-blue-700',
 	},
 }
 
@@ -81,8 +77,7 @@ export default function Alert({
 
 					<div
 						className={classNames(
-							'mt-2 space-y-2 text-sm',
-							typeStyles.bodyColor
+							'mt-2 space-y-2 text-sm font-medium text-gray-700'
 						)}
 					>
 						{children}
