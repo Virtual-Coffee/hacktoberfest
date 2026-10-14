@@ -344,11 +344,53 @@ export function Checkbox({
 
 	return (
 		<fieldset>
+			<div className="mb-3 grid grid-cols-1 gap-y-4">
+				<label className="flex items-center" key={`${id}_${value}`}>
+					<input
+						name={`${id}[]`}
+						value={value}
+						type="checkbox"
+						required={required}
+						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						defaultChecked={defaultValues && defaultValues.includes(value)}
+					/>
+					<span className="block leading-5 text-gray-700">
+						{label_html ?? label}
+					</span>
+				</label>
+			</div>
 			{help && (
-				<div className="flex justify-between flex-wrap">
+				<div className="ml-[27] flex justify-between flex-wrap">
 					<span className={helpClass}>{help}</span>
 				</div>
 			)}
+		</fieldset>
+	)
+}
+
+export function Agreement({
+	label,
+	label_html,
+	id,
+	items,
+	help,
+	required,
+	defaultValues = [],
+}: {
+	help?: string
+	label: string
+	label_html?: ReactNode
+	items: string[]
+	id: string
+	required?: boolean
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
+}) {
+	const value = items[0] ?? 'on'
+
+	return (
+		<fieldset>
 			<div className="mt-4 grid grid-cols-1 gap-y-4">
 				<label className="flex items-center" key={`${id}_${value}`}>
 					<input
@@ -660,34 +702,6 @@ export default function Form({
 							{formData.forms[formKey].map((field) => (
 								<Field key={field.name} values={state.fields} field={field} />
 							))}
-
-							<div className="mb-6">
-								<label className="inline-flex items-center">
-									<input
-										type="checkbox"
-										className="form-checkbox"
-										name="agree"
-										required
-										defaultChecked={!!previousFormSubmission}
-									/>
-									<span className="ml-2">
-										By selecting this, I agree to abide by the{' '}
-										<a
-											href="https://virtualcoffee.io/code-of-conduct"
-											className="font-medium text-gray-700 underline"
-										>
-											Virtual Coffee Code of Conduct
-										</a>
-										{' '}and the{' '}
-										<a
-											href="https://www.hclbcommunities.com/code-of-conduct"
-											className="font-medium text-gray-700 underline"
-										>
-											HCLB Communities Code of Conduct
-										</a>
-									</span>
-								</label>
-							</div>
 
 							{formFooter}
 

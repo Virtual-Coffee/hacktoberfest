@@ -22,6 +22,7 @@ export type FormField = {
 	name: string
 	type: FieldType
 	label?: string
+	label_html?: ReactNode
 	help?: string
 	required?: boolean
 	inputType?: string
@@ -91,8 +92,8 @@ export const contributors: FormField[] = [
 	{
 		name: 'PartnerNote',
 		type: 'alert',
-		alertType: 'important',
-		title: 'Please note:',
+		alertType: 'info',
+		title: 'Join or become a partner organization',
 		body: (
 			<p>
 				You should be an existing member or employee of the selected partner.
@@ -203,16 +204,16 @@ export const contributors: FormField[] = [
 		label: 'I would like to receive mentorship for OSWeave',
 	},
 	{
-		name: 'Note',
+		name: 'MentorNote',
 		type: 'alert',
-		alertType: 'info',
-		title: 'Please note:',
+		alertType: 'important',
+		title: 'Setting mentorship expectations',
 		body: (
 			<p>
 				We would love to support everyone in their open-source journey! We ask
 				you to recognize that we're a very small team with limited resources.
 				Mentorship will be provided on a best-effort basis as ad-hoc
-				troubleshooting and drop-in office hours throughout the month.
+				troubleshooting and drop-in office hours.
 			</p>
 		),
 	},
@@ -220,25 +221,45 @@ export const contributors: FormField[] = [
 		name: 'CodeOfPractice',
 		type: 'Agreement',
 		label: 'I agree to follow the OSWeave Code of Practice for Contributors',
-		required: true,
-	},
-	{
-		name: 'CodeOfPracticeNote',
-		type: 'alert',
-		alertType: 'info',
-		title: 'Please note',
-		body: (
+		label_html: (
 			<p>
-				The OSWeave Codes of Practice are designed to foster quality
-				contributions and healthy collaboration in open source. Please read the{' '}
+				By checking the box, I agree to follow the{' '}
 				<a
 					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForContributors"
-					className="font-medium text-gray-700 underline"
+					className="text-blue-800 underline"
 				>
-					Contributor Code of Practice
+					OSWeave Code of Practice for Contributors
 				</a>
+				.
 			</p>
 		),
+		required: true,
+		help: 'The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source.',
+	},
+	{
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'I agree to follow the Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 
@@ -284,6 +305,31 @@ export const mentors: FormField[] = [
 			'User testing',
 		],
 		otherFieldName: 'SkillsOther',
+	},
+	{
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'I agree to follow the Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 
@@ -531,6 +577,31 @@ export const maintainers: FormField[] = [
 				</a>
 			</p>
 		),
+	},
+	{
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'I agree to follow the Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 
