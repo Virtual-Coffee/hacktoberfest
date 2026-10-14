@@ -364,6 +364,11 @@ export function Checkbox({
 					</span>
 				</label>
 			</div>
+			{help && (
+				<div className="ml-[27] flex justify-between flex-wrap">
+					<span className={helpClass}>{help}</span>
+				</div>
+			)}
 		</fieldset>
 	)
 }
