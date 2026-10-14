@@ -89,6 +89,32 @@ export const contributors: FormField[] = [
 		// TODO: Add other partners
 	},
 	{
+		name: 'PartnerNote',
+		type: 'alert',
+		alertType: 'important',
+		title: 'Please note:',
+		body: (
+			<p>
+				You should be an existing member or employee of the selected partner.
+				Become a partner organization at{' '}
+				<a
+					href="https://www.hclbcommunities.com/contact"
+					className="text-blue-800 underline"
+				>
+					https://www.hclbcommunities.com/contact
+				</a>
+				. Individuals can learn more about joining one of our partners at{' '}
+				<a
+					href="https://www.hclbcommunities.com/osweave"
+					className="text-blue-800 underline"
+				>
+					https://www.hclbcommunities.com/osweave
+				</a>
+				.
+			</p>
+		),
+	},
+	{
 		name: 'OsExperience',
 		label: 'What is your experience with open-source contribution?',
 		type: 'Single select',
