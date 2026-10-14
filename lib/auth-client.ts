@@ -31,8 +31,27 @@ export function useSessionStatus() {
 	return { data, status, isPending, error, refetch }
 }
 
-export function signInWithGitHub(callbackURL = '/dashboard') {
-	return authClient.signIn.social({ provider: 'github', callbackURL })
+/**
+ * lib/auth.ts leaves the GitHub provider out when its credentials are unset,
+ * which is the normal state of a contributor's checkout. Set from the same
+ * check in next.config.ts.
+ */
+export const githubSignInConfigured =
+	process.env.GITHUB_SIGN_IN_CONFIGURED === 'true'
+
+export async function signInWithGitHub(callbackURL = '/dashboard') {
+	const result = await authClient.signIn.social({
+		provider: 'github',
+		callbackURL,
+	})
+
+	// A deploy always shows the button (see next.config.ts), so a server
+	// missing its credentials only surfaces here.
+	if (result.error) {
+		window.alert('Sign-in is unavailable right now. Please try again later.')
+	}
+
+	return result
 }
 
 export function signOut(onSuccess?: () => void) {

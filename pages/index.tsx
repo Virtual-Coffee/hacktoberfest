@@ -9,11 +9,11 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 		{
 			header: 'Contributors',
 			intro:
-				"Are you a Virtual Coffee member interested in participating in Hacktoberfest (or open source in general), but don't know where to start? Or are you an experienced developer looking to complete Hacktoberfest as part of the Virtual Coffee Community? We'd love to help! Come join our Hacktoberfest Initiative and get the support you need to complete the challenge.",
+				"Are you part of Virtual Coffee, or one of our participating communities and companies, who wants to contribute to open source but doesn't know where to start? Or have you contributed to open source before and want to keep making quality contributions? We'd love to help! Come join OSWeave and get the support you need.",
 			items: [
-				'Learn OSS essentials',
-				'Complete Hacktoberfest Challenge',
-				'Join a great community of developers',
+				'Learn open-source essentials',
+				'Contribute to real-world projects',
+				'Connect with people across open-source communities',
 			],
 			button: newSubmissionsClosed
 				? {
@@ -22,18 +22,18 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 						link: '/contributors',
 					}
 				: {
-						text: 'I Want to Hack!',
+						text: 'I Want to Contribute!',
 						link: '/contributors',
 					},
 		},
 		{
 			header: 'Maintainers',
 			intro:
-				"Are you an open source maintainer who is interested in participating in Hacktoberfest? We're looking for some OSS maintainers to partner with in order to provide a welcoming environment to our contributors as they start or continue their open source journey.",
+				"Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.",
 			items: [
-				'Find some excited contributors for your project',
+				'Find contributors for your project',
 				'Grow your community',
-				'Join a great community of developers',
+				'Connect with people across open-source communities',
 			],
 			button: newSubmissionsClosed
 				? {
@@ -42,18 +42,18 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 						link: '/maintainers',
 					}
 				: {
-						text: 'I Have Issues!',
+						text: 'We Have Issues!',
 						link: '/maintainers',
 					},
 		},
 		{
 			header: 'Mentors',
 			intro:
-				"Have a few pull requests under your belt, and are looking for ways to give back to the community? Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors.",
+				'Have a few pull requests under your belt and want to give back? Join our pool of OSWeave mentors. Help out open-source contributors in Slack, or hold your own open office hours, whatever fits your schedule.',
 			items: [
 				'Give back to the community',
 				'Have some fun',
-				'Join a great community of developers',
+				'Connect with people across open-source communities',
 			],
 			button: {
 				text: "I'd Love to Help!",
@@ -105,11 +105,10 @@ export default function Page() {
 			<div className="py-8">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Join us for Hacktoberfest:
+						Join us for OSWeave:
 					</h2>
 					<div className="text-base leading-6 text-gray-500">
-						*Choose as many roles as you like. Mentorship only guaranteed if
-						you're a Virtual Coffee member who registers before September 28th.
+						*Choose as many roles as you like.
 					</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
@@ -197,7 +196,23 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									OSWeave is a project from{' '}
+									<a
+										href="https://www.hclbcommunities.com/"
+										className="text-orange-500 underline"
+									>
+										HCLB Communities
+									</a>
+									. It brings together tech communities, companies, and
+									maintainers to nurture quality contributions to open source
+									projects in the age of AI. To do this, we coordinate
+									contributors and maintainers from selected partners, and we
+									give T-shirt rewards for contributions. Participation is
+									controlled to avoid a flood of low-effort contributions. This
+									means contributors join only through participating
+									communities and corporate partners. The Fall 2026 event is a pilot that
+									HCLB Communities and Virtual Coffee are running together. We are also
+									inviting other carefully chosen partners to join.
 								</p>
 							</dd>
 
@@ -243,22 +258,23 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
-								</p>
-								{/* <p className="text-base leading-6 text-gray-500">
-									A contributor is someone who submits code or documentation to
-									an open source project as a pull request on GitHub but usually
-									does not have the ability to merge their contributions.
-									Contributors can find issues to work on in open source
-									repositories. To get started as an open source contributor for
-									Hacktoberfest, all you need to do is to{' '}
+									A contributor is anyone who gives their time or skills to
+									help an open source project. This can include writing code,
+									but it doesn't have to. Designing graphics, writing blog
+									posts, and helping with community engagement are all
+									examples of non-code contributions, and there are many
+									other ways to contribute too. The most common path is
+									submitting a pull request on GitHub, though contributors
+									usually cannot merge their own changes. Issues in open
+									source repositories are a good place to find work that
+									matches your interests. To get started with OSWeave,{' '}
 									<a
-										href="https://hacktoberfest.com/"
+										href="/contributors"
 										className="text-orange-500 underline"
 									>
 										sign up
 									</a>{' '}
-									and have/create a{' '}
+									and have (or create) a{' '}
 									<a
 										href="https://github.com/"
 										className="text-orange-500 underline"
@@ -266,7 +282,7 @@ export default function Page() {
 										GitHub account
 									</a>
 									.
-								</p> */}
+								</p>
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-7">
@@ -292,7 +308,15 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									Participation is free for all eligible contributors and
+									independent maintainers. Organizations can participate as
+									maintainer for free if they meet OSWeave&apos;s definition of a
+									small non-profit, which covers most organizations that
+									don&apos;t distribute profits to owners and have an annual
+									revenue of less than $500,000. HCLB Communities will reach out
+									to maintainers who sign up with organization projects to
+									confirm their organization&apos;s status and any costs for
+									participation.
 								</p>
 							</dd>
 
