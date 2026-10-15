@@ -344,7 +344,11 @@ export function Checkbox({
 
 	return (
 		<fieldset>
-			<div className="mb-3 grid grid-cols-1 gap-y-4">
+			<div className="flex justify-between flex-wrap">
+				<legend className={labelClass}>{label}</legend>
+				{help && <span className={helpClass}>{help}</span>}
+			</div>
+			<div className="mt-4 grid grid-cols-1 gap-y-4">
 				<label className="flex items-center" key={`${id}_${value}`}>
 					<input
 						name={`${id}[]`}
@@ -354,16 +358,9 @@ export function Checkbox({
 						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
 						defaultChecked={defaultValues && defaultValues.includes(value)}
 					/>
-					<span className="block leading-5 text-gray-700">
-						{label_html ?? label}
-					</span>
+					<span className="block leading-5 text-gray-700">{label_html}</span>
 				</label>
 			</div>
-			{help && (
-				<div className="ml-[27] flex justify-between flex-wrap">
-					<span className={helpClass}>{help}</span>
-				</div>
-			)}
 		</fieldset>
 	)
 }
@@ -391,6 +388,10 @@ export function Agreement({
 
 	return (
 		<fieldset>
+			<div className="flex justify-between flex-wrap">
+				<legend className={labelClass}>{label}</legend>
+				{help && <span className={helpClass}>{help}</span>}
+			</div>
 			<div className="mt-4 grid grid-cols-1 gap-y-4">
 				<label className="flex items-center" key={`${id}_${value}`}>
 					<input
@@ -406,11 +407,6 @@ export function Agreement({
 					</span>
 				</label>
 			</div>
-			{help && (
-				<div className="ml-[27] flex justify-between flex-wrap">
-					<span className={helpClass}>{help}</span>
-				</div>
-			)}
 		</fieldset>
 	)
 }
