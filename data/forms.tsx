@@ -100,6 +100,8 @@ export const contributors: FormField[] = [
 				Become a partner organization at{' '}
 				<a
 					href="https://www.hclbcommunities.com/contact"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					https://www.hclbcommunities.com/contact
@@ -107,6 +109,8 @@ export const contributors: FormField[] = [
 				. Individuals can learn more about joining one of our partners at{' '}
 				<a
 					href="https://www.hclbcommunities.com/osweave"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					https://www.hclbcommunities.com/osweave
@@ -220,12 +224,14 @@ export const contributors: FormField[] = [
 	{
 		name: 'CodeOfPractice',
 		type: 'Agreement',
-		label: 'I agree to follow the OSWeave Code of Practice for Contributors',
+		label: 'Code of Practice for Contributors',
 		label_html: (
 			<p>
 				By checking the box, I agree to follow the{' '}
 				<a
 					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForContributors"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					OSWeave Code of Practice for Contributors
@@ -239,12 +245,14 @@ export const contributors: FormField[] = [
 	{
 		name: 'CodeOfConduct',
 		type: 'Agreement',
-		label: 'I agree to follow the Code of Conduct',
+		label: 'Code of Conduct',
 		label_html: (
 			<p>
 				By checking the box, I agree to abide by the{' '}
 				<a
 					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					Virtual Coffee Code of Conduct
@@ -252,6 +260,8 @@ export const contributors: FormField[] = [
 				and the{' '}
 				<a
 					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					HCLB Communities Code of Conduct
@@ -271,7 +281,6 @@ export const mentors: FormField[] = [
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 	},
-
 	{
 		name: 'CommunicationPreferences',
 		type: 'Multiple select',
@@ -284,7 +293,6 @@ export const mentors: FormField[] = [
 			'Video chat via Zoom or Discord',
 		],
 	},
-
 	{
 		name: 'Skills',
 		label:
@@ -309,12 +317,14 @@ export const mentors: FormField[] = [
 	{
 		name: 'CodeOfConduct',
 		type: 'Agreement',
-		label: 'I agree to follow the Code of Conduct',
+		label: 'Code of Conduct',
 		label_html: (
 			<p>
 				By checking the box, I agree to abide by the{' '}
 				<a
 					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					Virtual Coffee Code of Conduct
@@ -322,6 +332,8 @@ export const mentors: FormField[] = [
 				and the{' '}
 				<a
 					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					HCLB Communities Code of Conduct
@@ -557,36 +569,35 @@ export const maintainers: FormField[] = [
 	{
 		name: 'CodeOfPractice',
 		type: 'Agreement',
-		label: 'I agree to follow the OSWeave Code of Practice for Maintainers',
-		required: true,
-	},
-	{
-		name: 'MaintainerCodeOfPracticeNote',
-		type: 'alert',
-		alertType: 'info',
-		title: 'Please note',
-		body: (
+		label: 'Code of Practice for Maintainers',
+		label_html: (
 			<p>
-				The OSWeave Codes of Practice are designed to foster quality
-				contributions and healthy collaboration in open source. Please read the{' '}
+				By checking the box, I agree to follow the{' '}
 				<a
 					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForMaintainers"
-					className="font-medium text-gray-700 underline"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
 				>
-					Maintainers Code of Practice
+					OSWeave Code of Practice for Maintainers
 				</a>
+				.
 			</p>
 		),
+		required: true,
+		help: 'The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source.',
 	},
 	{
 		name: 'CodeOfConduct',
 		type: 'Agreement',
-		label: 'I agree to follow the Code of Conduct',
+		label: 'Code of Conduct',
 		label_html: (
 			<p>
 				By checking the box, I agree to abide by the{' '}
 				<a
 					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					Virtual Coffee Code of Conduct
@@ -594,6 +605,8 @@ export const maintainers: FormField[] = [
 				and the{' '}
 				<a
 					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="text-blue-800 underline"
 				>
 					HCLB Communities Code of Conduct
