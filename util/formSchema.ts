@@ -94,17 +94,6 @@ function shapeFor(fields: FormField[]) {
 	return shape
 }
 
-/**
- * `agree` is not in data/forms.tsx -- Forms.tsx hardcodes the Code of Conduct
- * checkbox, and the routes used to prepend the literal string to their
- * required-field list. It stays explicit here, and is recorded as
- * agreedToCocAt on the row rather than stored among the responses.
- */
-const agree = z.preprocess(
-	toBoolean,
-	z.literal(true, 'You must agree to the Code of Conduct.')
-)
-
 export function buildFormSchema(
 	formKey: FormKey,
 	{ includeProfile }: { includeProfile: boolean }
@@ -113,7 +102,6 @@ export function buildFormSchema(
 	// pseudo-field, anything a browser extension adds) are dropped instead of
 	// failing the submission.
 	return z.object({
-		agree,
 		...(includeProfile ? shapeFor(formData.profile) : {}),
 		...shapeFor(formData.forms[formKey]),
 	})
