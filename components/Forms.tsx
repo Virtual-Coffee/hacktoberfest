@@ -214,6 +214,7 @@ export function Field({
 				<RadioList
 					id={field.name}
 					label={field.label}
+					label_html={field.label_html}
 					items={['Yes', 'No']}
 					help={field.help}
 					defaultValue={
@@ -222,6 +223,25 @@ export function Field({
 							: values[field.name] === false
 								? 'No'
 								: undefined
+					}
+				/>
+			)
+
+		case 'Agreement':
+			return (
+				<Checkbox
+					id={field.name}
+					label={field.label || ''}
+					label_html={field.label_html}
+					items={['Yes']}
+					help={field.help}
+					required={!!field.required}
+					defaultValues={
+						values[field.name] === true ||
+						(Array.isArray(values[field.name]) &&
+							(values[field.name] as string[]).includes('Yes'))
+							? ['Yes']
+							: []
 					}
 				/>
 			)
@@ -301,14 +321,106 @@ export function CheckboxList({
 	)
 }
 
+export function Checkbox({
+	label,
+	label_html,
+	id,
+	items,
+	help,
+	required,
+	defaultValues = [],
+}: {
+	help?: string
+	label: string
+	label_html?: ReactNode
+	items: string[]
+	id: string
+	required?: boolean
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
+}) {
+	const value = items[0] ?? 'on'
+
+	return (
+		<fieldset>
+			<div className="flex justify-between flex-wrap">
+				<legend className={labelClass}>{label}</legend>
+				{help && <span className={helpClass}>{help}</span>}
+			</div>
+			<div className="mt-4 grid grid-cols-1 gap-y-4">
+				<label className="flex items-center" key={`${id}_${value}`}>
+					<input
+						name={`${id}[]`}
+						value={value}
+						type="checkbox"
+						required={required}
+						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						defaultChecked={defaultValues && defaultValues.includes(value)}
+					/>
+					<span className="block leading-5 text-gray-700">{label_html}</span>
+				</label>
+			</div>
+		</fieldset>
+	)
+}
+
+export function Agreement({
+	label,
+	label_html,
+	id,
+	items,
+	help,
+	required,
+	defaultValues = [],
+}: {
+	help?: string
+	label: string
+	label_html?: ReactNode
+	items: string[]
+	id: string
+	required?: boolean
+	otherFieldName?: string
+	defaultValues?: string[]
+	defaultOtherValue?: string
+}) {
+	const value = items[0] ?? 'on'
+
+	return (
+		<fieldset>
+			<div className="flex justify-between flex-wrap">
+				<legend className={labelClass}>{label}</legend>
+				{help && <span className={helpClass}>{help}</span>}
+			</div>
+			<div className="mt-4 grid grid-cols-1 gap-y-4">
+				<label className="flex items-center" key={`${id}_${value}`}>
+					<input
+						name={`${id}[]`}
+						value={value}
+						type="checkbox"
+						required={required}
+						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						defaultChecked={defaultValues && defaultValues.includes(value)}
+					/>
+					<span className="block leading-5 text-gray-700">
+						{label_html ?? label}
+					</span>
+				</label>
+			</div>
+		</fieldset>
+	)
+}
+
 export function RadioList({
 	label,
+	label_html,
 	help,
 	items,
 	id,
 	defaultValue,
 }: {
 	label?: string
+	label_html?: ReactNode
 	help?: string
 	items: string[]
 	id: string
@@ -388,8 +500,6 @@ function createInitialState({
 		return defaultState
 	}
 
-	// console.log({ create: previousFormSubmission })
-
 	const state = { ...defaultState }
 
 	state.status = 'ready'
@@ -419,9 +529,6 @@ function createInitialState({
 		state.status = 'error'
 		state.errorMessage = errorMessage
 	}
-
-	// console.log('sdflkjsdfljksdflkjsdlfkjs')
-	// console.log(state)
 
 	return state
 }
@@ -511,7 +618,6 @@ export default function Form({
 		},
 		createInitialState
 	)
-	// console.log({ state })
 
 	useEffect(() => {
 		if (state.status === 'error') {
@@ -548,9 +654,7 @@ export default function Form({
 
 				const json = await result.json()
 				dispatch({ type: 'finish', status: result.status, ...json })
-				// console.log({ status: result.status, json })
 			} catch (error) {
-				// console.log({ error })
 				dispatch({ type: 'error', error })
 			}
 		},
@@ -595,27 +699,6 @@ export default function Form({
 								<Field key={field.name} values={state.fields} field={field} />
 							))}
 
-							<div className="mb-6">
-								<label className="inline-flex items-center">
-									<input
-										type="checkbox"
-										className="form-checkbox"
-										name="agree"
-										required
-										defaultChecked={!!previousFormSubmission}
-									/>
-									<span className="ml-2">
-										By selecting this, I agree to abide by the{' '}
-										<a
-											href="https://virtualcoffee.io/code-of-conduct"
-											className="font-medium text-gray-700 underline"
-										>
-											Virtual Coffee Code of Conduct
-										</a>
-									</span>
-								</label>
-							</div>
-
 							{formFooter}
 
 							<div className="mt-8 border-t border-gray-200 pt-12">
@@ -623,12 +706,7 @@ export default function Form({
 									Thank you for showing interest in OSWeave!
 								</p>
 								<div>
-									<Button
-										size="lg"
-										type="submit"
-										className="w-full"
-										// className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500 focus:outline-hidden focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
-									>
+									<Button size="lg" type="submit" className="w-full">
 										{state.status === 'loading'
 											? 'Loading...'
 											: previousFormSubmission
@@ -636,6 +714,17 @@ export default function Form({
 												: submitText}
 									</Button>
 								</div>
+								<p className="mt-12 text-base text-gray-500">
+									HCLB Communities Ltd will only use your personal data as set
+									out in their{' '}
+									<a
+										href="https://www.hclbcommunities.com/privacy-policy.pdf"
+										className="text-blue-800 underline"
+									>
+										Privacy Policy
+									</a>
+									.
+								</p>
 							</div>
 						</FieldSet>
 					</div>

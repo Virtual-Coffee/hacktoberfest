@@ -5,7 +5,7 @@ export type FormKey =
 
 export type FormValues = Record<string, string | string[] | boolean | undefined>
 
-export type AlertType = 'error' | 'warning' | 'success' | 'info'
+export type AlertType = 'error' | 'warning' | 'success' | 'info' | 'important'
 
 export type FieldType =
 	| 'Text'
@@ -14,6 +14,7 @@ export type FieldType =
 	| 'Single select'
 	| 'Multiple select'
 	| 'Checkbox'
+	| 'Agreement'
 	| 'alert'
 	| 'lookup'
 
@@ -21,6 +22,7 @@ export type FormField = {
 	name: string
 	type: FieldType
 	label?: string
+	label_html?: ReactNode
 	help?: string
 	required?: boolean
 	inputType?: string
@@ -49,22 +51,19 @@ export const profile: FormField[] = [
 	},
 	{
 		name: 'PreferredTimeZone',
+		// Free text until there's a full time zone list (and a migration for
+		// free-text values already saved on profiles).
 		type: 'Text',
-		label: 'Preferred Time Zone',
+		label: 'Preferred time zone',
 		required: true,
 		help: 'Required',
 	},
 	{
 		name: 'GitHubUsername',
 		type: 'Text',
-		label: 'GitHub Username',
+		label: 'GitHub username',
 		required: true,
 		help: 'Required',
-	},
-	{
-		name: 'TwitterUsername',
-		type: 'Text',
-		label: 'Twitter Username',
 	},
 	{
 		name: 'Pronouns',
@@ -75,40 +74,72 @@ export const profile: FormField[] = [
 		name: 'IsMember',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
-		label: 'Are you a current Virtual Coffee Member?',
+		label: 'Are you a current Virtual Coffee member?',
 		required: true,
-		help: 'You must be a VC member to participate in our Virtual Coffee Hacktoberfest Initiative as a Contributor or Mentor.',
-	},
-	{
-		name: 'AllowSocialSharing',
-		type: 'Single select',
-		possibleValues: ['Yes', 'No'],
-		label:
-			'Are you comfortable with Virtual Coffee highlighting (with consent) your project/contributions on Social Media? (Twitter, Instagram)',
+		help: "If you're not a current Virtual Coffee member, that's okay! We still welcome your participation. As part of the partnership between HCLB Communities and Virtual Coffee, you'll be added to the Virtual Coffee Slack to facilitate your participation.",
 	},
 ]
 
 export const contributors: FormField[] = [
 	{
-		name: 'OssExperience',
-		label: 'What is your experience with Open Source Contribution?',
+		name: 'Partner',
+		label: 'Which OSWeave partner(s) are you associated with?',
+		type: 'Multiple select',
+		help: 'Check all that apply',
+		possibleValues: ['HCLB Communities Cohort', 'Virtual Coffee'],
+		required: true,
+		// TODO: Add other partners
+	},
+	{
+		name: 'PartnerNote',
+		type: 'alert',
+		alertType: 'info',
+		title: 'Join or become a partner organization',
+		body: (
+			<p>
+				You should be an existing member or employee of the selected partner.
+				Become a partner organization at{' '}
+				<a
+					href="https://www.hclbcommunities.com/contact"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					https://www.hclbcommunities.com/contact
+				</a>
+				. Individuals can learn more about joining one of our partners at{' '}
+				<a
+					href="https://www.hclbcommunities.com/osweave"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					https://www.hclbcommunities.com/osweave
+				</a>
+				.
+			</p>
+		),
+	},
+	{
+		name: 'OsExperience',
+		label: 'What is your experience with open-source contribution?',
 		type: 'Single select',
 		possibleValues: [
-			"I've never contributed to OSS before",
+			"I've never contributed to open source before",
 			"I've done a few contributions before, but I'm no expert",
-			"I've done many open source contributions before, very familiar with the process",
+			"I've done many open-source contributions before and I'm very familiar with the process",
 		],
 	},
 	{
 		name: 'Reasons',
 		label:
-			'What are your reasons for wanting to contribute to Hacktober month?',
+			'What are your reasons for wanting to contribute to open source via OSWeave?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
 			'Helping others/giving back',
-			'Learning new skills/stacks',
-			'Improving my GitHub contributions/resume',
+			'Learning new skills/tech stacks',
+			'Improving my GitHub contributions/résumé',
 			'Working on a good cause',
 			'Finding community',
 			'Improving social/communication skills',
@@ -121,7 +152,7 @@ export const contributors: FormField[] = [
 	{
 		name: 'Availability',
 		label:
-			'How many hours do you think you can dedicate to open source contributions for the month?',
+			'How many hours do you think you can dedicate to open-source contributions for the month?',
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 	},
@@ -129,20 +160,21 @@ export const contributors: FormField[] = [
 	{
 		name: 'Skills',
 		label:
-			'What skills/talents/interests would you be willing to practice in your OSS contributions?',
+			'What skills/talents/interests would you be willing to practice in your open-source contributions?',
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
-			'User Testing',
-			'Documentation',
-			'Front End Development',
-			'Back End Development',
-			'API/Business Logic',
-			'Reporting and Analysis',
-			'Project Management/Planning',
-			'Unit Testing',
-			'Git Flow and Automation',
 			'Accessibility',
+			'AI configuration',
+			'API/Business logic',
+			'Back end development',
+			'Documentation',
+			'Front end development',
+			'Git flow and automation',
+			'Project management/planning',
+			'Reporting and analysis',
+			'Unit testing',
+			'User testing',
 		],
 		otherFieldName: 'SkillsOther',
 	},
@@ -154,9 +186,9 @@ export const contributors: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
 	{
@@ -165,29 +197,80 @@ export const contributors: FormField[] = [
 		label: 'Please indicate your interest in any of the following activities:',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Pair Programming Sessions',
-			'Code Review Sessions',
-			'Git/GitHub Flow Coaching',
+			'Pair programming sessions',
+			'Code review sessions',
+			'Git/GitHub flow coaching',
 		],
 	},
 	{
 		name: 'RequestedMentor',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
-		label: 'I would like to be paired with a mentor for Hacktoberfest',
+		label: 'I would like to receive mentorship for OSWeave',
 	},
 	{
-		name: 'Note',
+		name: 'MentorNote',
 		type: 'alert',
-		alertType: 'info',
-		title: 'Please note:',
+		alertType: 'important',
+		title: 'Setting mentorship expectations',
 		body: (
 			<p>
-				Although we would love to support everyone in their Open Source journey,
-				we're still a very small team with limited resources. We will do our
-				best to pair you with a mentor, but we can't guarantee it.
+				We would love to support everyone in their open-source journey! We ask
+				you to recognize that we're a very small team with limited resources.
+				Mentorship will be provided on a best-effort basis as ad-hoc
+				troubleshooting and drop-in office hours.
 			</p>
 		),
+	},
+	{
+		name: 'CodeOfPractice',
+		type: 'Agreement',
+		label: 'Code of Practice for Contributors',
+		label_html: (
+			<p>
+				By checking the box, I agree to follow the{' '}
+				<a
+					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForContributors"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					OSWeave Code of Practice for Contributors
+				</a>
+				.
+			</p>
+		),
+		required: true,
+		help: 'The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source.',
+	},
+	{
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 
@@ -195,11 +278,10 @@ export const mentors: FormField[] = [
 	{
 		name: 'Availability',
 		label:
-			'How many hours do you think you can dedicate to open source contributions for the month?',
+			'How many hours do you think you can dedicate to mentorship for the month?',
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 	},
-
 	{
 		name: 'CommunicationPreferences',
 		type: 'Multiple select',
@@ -207,12 +289,11 @@ export const mentors: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
-
 	{
 		name: 'Skills',
 		label:
@@ -220,37 +301,48 @@ export const mentors: FormField[] = [
 		type: 'Multiple select',
 		help: 'Check all that apply',
 		possibleValues: [
-			'User Testing',
-			'Documentation',
-			'Front End Development',
-			'Back End Development',
-			'API/Business Logic',
-			'Reporting and Analysis',
-			'Project Management/Planning',
-			'Unit Testing',
-			'Git flow and automation',
 			'Accessibility',
+			'AI configuration',
+			'API/Business logic',
+			'Back end development',
+			'Documentation',
+			'Front end development',
+			'Git flow and automation',
+			'Project management/planning',
+			'Reporting and analysis',
+			'Unit testing',
+			'User testing',
 		],
 		otherFieldName: 'SkillsOther',
 	},
 	{
-		name: 'MentorshipStyles',
-		type: 'Multiple select',
-		label: 'What type of mentorship do you prefer?',
-		help: 'Check all that apply',
-		possibleValues: [
-			'One-on-One',
-			'General (Will answer questions in the slack channel, offer open office hours for OSS questions, etc.)',
-			"Project-based (I'm willing to work as a mentor to those working on my OSS project)",
-		],
-	},
-
-	{
-		name: 'HowManyMentees',
-		type: 'Single select',
-		possibleValues: ['1', '2-3', '4-5'],
-		label:
-			'How many One-to-one mentees would you feel comfortable working with?',
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 
@@ -258,7 +350,7 @@ export const repos: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
-		label: 'Repository Name',
+		label: 'Repository name',
 		help: 'Required',
 		required: true,
 	},
@@ -282,7 +374,7 @@ export const nonPrContributions: FormField[] = [
 	{
 		name: 'RepoName',
 		type: 'Text',
-		label: 'Repository Name',
+		label: 'Repository name',
 	},
 	{
 		name: 'RepoUrl',
@@ -293,20 +385,13 @@ export const nonPrContributions: FormField[] = [
 		name: 'ContributionDescription',
 		type: 'Long text',
 		label:
-			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open source event, writing a detailed issue.',
+			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open-source event, writing a detailed issue, etc.',
 		help: 'Required',
 		required: true,
 	},
 ]
 
 export const maintainers: FormField[] = [
-	// {
-	// 	name: 'Projects',
-	// 	type: 'SubForm',
-	// 	formKey: 'repos',
-	// 	multiple: true,
-	// },
-
 	{
 		name: 'Projects',
 		type: 'Long text',
@@ -322,8 +407,8 @@ export const maintainers: FormField[] = [
 		body: (
 			<>
 				<p>
-					All projects and repositories are evaluated by Virtual Coffee staff
-					before being shared with our members.{' '}
+					All projects and repositories are evaluated by Virtual Coffee and HCLB
+					Communities before being shared with our members.{' '}
 				</p>
 				<p>
 					Please take a look at our{' '}
@@ -333,13 +418,13 @@ export const maintainers: FormField[] = [
 					>
 						Maintainer's Checklist
 					</a>{' '}
-					to ensure your project has everything it needs to support Open Source
-					Contributions.
+					to ensure your project has everything it needs to support open-source
+					contributions.
 				</p>
 				<p>
 					If your project needs some work to meet these requirements, please
 					still fill out this form, and we may be able to support your efforts
-					to prepare for Hacktoberfest!
+					to prepare for OSWeave!
 				</p>
 			</>
 		),
@@ -354,14 +439,14 @@ export const maintainers: FormField[] = [
 			"I'm in the process of updating my project",
 			'I would like some help updating my project ',
 		],
-		label: 'Are your projects ready for Open Source Contributors?',
+		label: 'Are your projects ready for open-source contributors?',
 	},
 	{
 		name: 'HowManyHours',
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 		label:
-			'How many hours do you think you can dedicate to reviewing PRs contributed by open source contributors during Hacktoberfest?',
+			'How many hours do you think you can dedicate to reviewing PRs during this fall?',
 	},
 	{
 		name: 'CommunicationPreferences',
@@ -370,25 +455,28 @@ export const maintainers: FormField[] = [
 			'What is your preferred method(s) of communication for collaboration?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'Directly through Github issues',
-			'Direct messaging (Async) e.g. Slack, WhatsApp',
-			'Email',
-			'Voice/Video chat via Zoom/Discord/Skype/WhatsApp/Hangouts (you get it)',
+			'Directly through GitHub Issues, Pull Requests, and Discussions',
+			'Direct messaging via Slack or Discord',
+			'Video chat via Zoom or Discord',
 		],
 	},
 	{
 		name: 'HelpNeeded',
 		type: 'Multiple select',
-		label: 'What areas do you feel like you need/want help on the most?',
+		label: 'What areas do you feel like you need/want help in the most?',
 		help: 'Check all that apply',
 		possibleValues: [
-			'User Testing',
+			'Accessibility',
+			'AI configuration',
+			'API/Business logic',
+			'Back end development',
 			'Documentation',
-			'Front End Development',
-			'Back End Development',
-			'Project Management/Planning',
-			'Unit Testing',
+			'Front end development',
 			'Git flow and automation',
+			'Project management/planning',
+			'Reporting and analysis',
+			'Unit testing',
+			'User testing',
 		],
 		otherFieldName: 'HelpNeededOther',
 	},
@@ -419,11 +507,115 @@ export const maintainers: FormField[] = [
 			'How much do you want to prioritize your efforts as a project maintainer?',
 	},
 	{
+		name: 'AICode',
+		type: 'Single select',
+		possibleValues: ['Yes', 'No'],
+		required: true,
+		help: 'Required',
+		label:
+			'Are you willing to accept contributions that contain AI-generated code?',
+	},
+	{
 		name: 'MentoringContributors',
 		type: 'Single select',
 		possibleValues: ['Yes', 'No'],
 		label:
 			'Are you interested in mentoring your contributors (pair programming sessions, code review sessions, etc.)?',
+	},
+	{
+		name: 'MaintainerCategory',
+		type: 'Single select',
+		required: true,
+		help: 'Required',
+		possibleValues: [
+			'Independent maintainer',
+			'Small nonprofit (annual revenue below $500,000)',
+			'Large nonprofit',
+			'For-profit company',
+		],
+		label: 'Which of the following best describes you as a maintainer?',
+	},
+	{
+		type: 'alert',
+		alertType: 'info',
+		name: 'MaintainerNote',
+		title: 'Please note:',
+		// ! TODO: Have Dominic review this message
+		body: (
+			<>
+				<p>
+					If you're a maintainer for a large nonprofit or a for-profit company,
+					HCLB Communities will be in touch regarding paid partnership
+					opportunities.
+				</p>
+				<p>
+					We consider independent maintainers to be individuals working on their
+					own projects, without a dedicated legal entity or paid employees. They
+					may or may not derive a personal income from the project.
+				</p>
+				<p>
+					We consider non-profits to be any entity organized in a non-profit
+					fashion, either using a recognized non-profit structure or with any
+					governance structure that doesn't provide for the distribution of
+					profits to owners and/or members.
+				</p>
+				<p>
+					We'll assess each maintainer on the spirit of these rules, not the
+					letter. If you look like a duck and quack like a duck, but are
+					technically a goose, we'll probably call you a duck.
+				</p>
+			</>
+		),
+	},
+	{
+		name: 'CodeOfPractice',
+		type: 'Agreement',
+		label: 'Code of Practice for Maintainers',
+		label_html: (
+			<p>
+				By checking the box, I agree to follow the{' '}
+				<a
+					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForMaintainers"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					OSWeave Code of Practice for Maintainers
+				</a>
+				.
+			</p>
+		),
+		required: true,
+		help: 'The OSWeave Codes of Practice are designed to foster quality contributions and healthy collaboration in open source.',
+	},
+	{
+		name: 'CodeOfConduct',
+		type: 'Agreement',
+		label: 'Code of Conduct',
+		label_html: (
+			<p>
+				By checking the box, I agree to abide by the{' '}
+				<a
+					href="https://virtualcoffee.io/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					Virtual Coffee Code of Conduct
+				</a>{' '}
+				and the{' '}
+				<a
+					href="https://www.hclbcommunities.com/code-of-conduct"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="text-blue-800 underline"
+				>
+					HCLB Communities Code of Conduct
+				</a>
+				.
+			</p>
+		),
+		required: true,
 	},
 ]
 

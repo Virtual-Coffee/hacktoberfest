@@ -8,7 +8,7 @@ import {
 } from '@/util/data'
 import { auth } from '@/lib/auth'
 import { buildFormSchema, zodIssuesToFieldErrors } from '@/util/formSchema'
-import type { FormKey } from '@/data/forms'
+import type { FormKey, FormValues } from '@/data/forms'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type FormApiOptions = {
@@ -76,9 +76,10 @@ export function createFormApiHandler({
 					return
 				}
 
-				// `agree` is consent, not a response: saveSubmission records it as
-				// agreedToCocAt rather than storing it among the answers.
-				const { agree: _agree, ...values } = parsed.data
+				// The schema is built from untyped field declarations, so its
+				// parsed output is `Record<string, unknown>`; narrow it to the
+				// shape the data layer persists.
+				const values = parsed.data as FormValues
 
 				const profile = includeProfile
 					? await updateProfile(userId, values)

@@ -3,6 +3,7 @@ import {
 	ExclamationTriangleIcon,
 	CheckCircleIcon,
 	InformationCircleIcon,
+	ChatBubbleLeftIcon,
 } from '@heroicons/react/24/solid'
 import type { ReactNode } from 'react'
 import type { AlertType } from '@/data/forms'
@@ -13,7 +14,6 @@ type AlertStyle = {
 	Icon: typeof XCircleIcon
 	iconColor: string
 	titleColor: string
-	bodyColor?: string
 }
 
 type AlertProps = {
@@ -28,7 +28,6 @@ const alertTypes: Record<AlertType, AlertStyle> = {
 		Icon: XCircleIcon,
 		iconColor: 'text-red-400',
 		titleColor: 'text-red-800',
-		bodyColor: 'text-red-700',
 	},
 	warning: {
 		bodyBg: 'bg-yellow-50',
@@ -41,14 +40,18 @@ const alertTypes: Record<AlertType, AlertStyle> = {
 		Icon: CheckCircleIcon,
 		iconColor: 'text-green-400',
 		titleColor: 'text-green-800',
-		bodyColor: 'text-green-700',
 	},
 	info: {
 		bodyBg: 'bg-blue-50',
 		Icon: InformationCircleIcon,
 		iconColor: 'text-blue-400',
 		titleColor: 'text-blue-800',
-		bodyColor: 'text-blue-700',
+	},
+	important: {
+		bodyBg: 'bg-purple-50',
+		Icon: ChatBubbleLeftIcon,
+		iconColor: 'text-purple-400',
+		titleColor: 'text-purple-800',
 	},
 }
 
@@ -81,8 +84,7 @@ export default function Alert({
 
 					<div
 						className={classNames(
-							'mt-2 space-y-2 text-sm',
-							typeStyles.bodyColor
+							'me-3 mt-2 space-y-2 text-sm font-medium text-gray-700'
 						)}
 					>
 						{children}
@@ -96,6 +98,14 @@ export default function Alert({
 export function InfoAlert({ title, children }: AlertProps) {
 	return (
 		<Alert title={title} alertType="info">
+			{children}
+		</Alert>
+	)
+}
+
+export function ImportantAlert({ title, children }: AlertProps) {
+	return (
+		<Alert title={title} alertType="important">
 			{children}
 		</Alert>
 	)
