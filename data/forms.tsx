@@ -424,7 +424,7 @@ export const maintainers: FormField[] = [
 				<p>
 					If your project needs some work to meet these requirements, please
 					still fill out this form, and we may be able to support your efforts
-					to prepare for Hacktoberfest!
+					to prepare for OSWeave!
 				</p>
 			</>
 		),
@@ -446,7 +446,7 @@ export const maintainers: FormField[] = [
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 		label:
-			'How many hours do you think you can dedicate to reviewing PRs during Hacktoberfest?',
+			'How many hours do you think you can dedicate to reviewing PRs during this fall?',
 	},
 	{
 		name: 'CommunicationPreferences',
