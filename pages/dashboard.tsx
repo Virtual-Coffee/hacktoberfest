@@ -73,10 +73,10 @@ export default function Page() {
 	}
 
 	return (
-		<Layout title="VC Hacktoberfest Dashboard">
+		<Layout title="OSWeave Participant Dashboard">
 			<Container>
 				<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-					Virtual Coffee Hacktoberfest Dashboard
+					OSWeave Participant Dashboard
 				</h1>
 				<p className="mt-4 mb-8 text-lg leading-6 text-gray-500">
 					Keep track of signups etc.
@@ -86,7 +86,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Contributor"
-								description="Members interested in contributing to Open Source and completing the Hacktoberfest Challenge"
+								description="Members interested in making quality contributions to Open Source"
 							/>
 							<CardHeaderActions>
 								{contributorsSubmission.status === 'pending' ? (
@@ -117,12 +117,11 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Are you interested in participating in Hacktoberfest (or Open
-									Source in general), but don't know where to start? Or are you
-									an experienced developer looking to complete Hacktoberfest as
-									part of the Virtual Coffee Community? We'd love to help! Come
-									join our Hacktoberfest Initiative and get the support you need
-									to complete the challenge.
+									Are you part of Virtual Coffee, or one of our participating communities 
+									and companies, who wants to contribute to open source but doesn't know 
+									where to start? Or have you contributed to open source before and want 
+									to keep making quality contributions? We'd love to help! Come join OSWeave 
+									and get the support you need.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
@@ -199,7 +198,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Maintainer"
-								description="OSS maintainers to partner with in order to provide a welcoming environment to our Contributors as they start their open source journey"
+								description="Open Source maintainers partnering with OSWeave to source quality contributions to their projects"
 							/>
 							<CardHeaderActions>
 								{maintainersSubmission.status === 'pending' ? (
@@ -230,11 +229,9 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Are you an open source maintainer who is interested in
-									participating in Hacktoberfest? We're looking for some OSS
-									maintainers to partner with in order to provide a welcoming
-									environment to our contributors as they start or continue
-									their open source journey.
+									Do you have an open-source project and are looking for contributors? 
+									OSWeave connects you with contributors who are ready to make quality, 
+									sustainable contributions to your project.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
@@ -279,7 +276,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Mentor"
-								description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
+								description="Members interested in providing high-impact help to enable early-career contributors to make quality contributions"
 							/>
 							<CardHeaderActions>
 								{mentorsSubmission.status === 'pending' ? (
@@ -300,10 +297,10 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Have a few pull requests under your belt and are looking for
-									ways to give back to the community? Virtual Coffee's
-									Hacktoberfest Initiative is a great place to provide
-									high-impact help to a few early-career contributors.
+									Have a few pull requests under your belt and want to give back? 
+									Join our pool of OSWeave mentors. Help out open-source contributors 
+									in Slack, or hold your own open office hours, whatever fits your 
+									schedule.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
