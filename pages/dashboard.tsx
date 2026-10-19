@@ -117,10 +117,11 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Are you part of Virtual Coffee, or one of our participating communities 
-									and companies, who wants to contribute to open source but doesn't know 
-									where to start? Or have you contributed to open source before and want 
-									to keep making quality contributions? We'd love to help! Come join OSWeave 
+									Are you part of Virtual Coffee, or one of our participating
+									communities and companies, who wants to contribute to open
+									source but doesn't know where to start? Or have you
+									contributed to open source before and want to keep making
+									quality contributions? We'd love to help! Come join OSWeave
 									and get the support you need.
 								</CardListItemValue>
 							</CardListItem>
@@ -229,9 +230,10 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Do you have an open-source project and are looking for contributors? 
-									OSWeave connects you with contributors who are ready to make quality, 
-									sustainable contributions to your project.
+									Do you have an open-source project and are looking for
+									contributors? OSWeave connects you with contributors who are
+									ready to make quality, sustainable contributions to your
+									project.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
@@ -297,10 +299,10 @@ export default function Page() {
 							<CardListItem>
 								<CardListItemKey>About</CardListItemKey>
 								<CardListItemValue>
-									Have a few pull requests under your belt and want to give back? 
-									Join our pool of OSWeave mentors. Help out open-source contributors 
-									in Slack, or hold your own open office hours, whatever fits your 
-									schedule.
+									Have a few pull requests under your belt and want to give
+									back? Join our pool of OSWeave mentors. Help out open-source
+									contributors in Slack, or hold your own open office hours,
+									whatever fits your schedule.
 								</CardListItemValue>
 							</CardListItem>
 							<CardListItem>
