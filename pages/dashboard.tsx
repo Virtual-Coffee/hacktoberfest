@@ -278,7 +278,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Mentor"
-								description="Members interested in providing high-impact help to enable early-career contributors to make quality contributions"
+								description="Members interested in providing high-impact help to enable early-career contributors to succeed."
 							/>
 							<CardHeaderActions>
 								{mentorsSubmission.status === 'pending' ? (
