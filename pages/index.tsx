@@ -72,7 +72,7 @@ export default function Page() {
 	return (
 		<Layout>
 			<Head>
-				<title>Virtual Coffee Hacktoberfest Initiative</title>
+				<title>HCLB x Virtual Coffee: OSWeave</title>
 				<meta
 					name="description"
 					content={`Virtual Coffee is gearing up for Hacktoberfest ${currentYear} and we want you to join us!`}
@@ -85,20 +85,10 @@ export default function Page() {
 					<span className="text-orange-500"> Hacktoberfest Initiative</span>
 				</h2>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					Virtual Coffee is gearing up for{' '}
-					<a
-						href="https://hacktoberfest.com"
-						className="text-orange-500 underline"
-					>
-						Hacktoberfest {currentYear}
-					</a>{' '}
-					and we want our Virtual Coffee members to join us!
+					HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative.
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					Our plan is to harness the power in our community to help developers
-					become excited about contributing to Open Source Software, and to
-					contribute to some of our favorite Open Source repositories along the
-					way.
+					Weaving together tech communities, companies and maintainers to nurture quality contributions to open source projects in the age of AI.
 				</p>
 			</div>
 
