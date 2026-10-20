@@ -86,7 +86,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Contributor"
-								description="Members interested in making quality contributions to Open Source"
+								description="Members interested in making quality contributions to open source"
 							/>
 							<CardHeaderActions>
 								{contributorsSubmission.status === 'pending' ? (
