@@ -199,7 +199,7 @@ export default function Page() {
 						<CardHeader>
 							<CardHeaderHeader
 								title="Maintainer"
-								description="Open Source maintainers partnering with OSWeave to source quality contributions to their projects"
+								description="Open-source maintainers partnering with OSWeave to source quality contributions to their projects"
 							/>
 							<CardHeaderActions>
 								{maintainersSubmission.status === 'pending' ? (
