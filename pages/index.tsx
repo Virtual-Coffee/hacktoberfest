@@ -325,7 +325,29 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									Members of our partner communities can participate as
+									contributors and mentors. Open source project maintainers can
+									apply to participate whether or not they are connected to any
+									of our existing partners. Companies can partner with HCLB
+									Communities to bring their people and/or open source projects
+									into the initiative.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									We{' '}
+									<strong>don&apos;t accept unsolicited contributions</strong>{' '}
+									from people who are not members or employees of participating
+									communities or companies.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									If you represent a community or a company and want to take
+									part, please{' '}
+									<a
+										href="https://www.hclbcommunities.com/contact"
+										className="text-orange-500 underline"
+									>
+										contact HCLB Communities
+									</a>
+									.
 								</p>
 							</dd>
 
