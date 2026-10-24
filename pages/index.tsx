@@ -72,10 +72,10 @@ export default function Page() {
 	return (
 		<Layout>
 			<Head>
-				<title>Virtual Coffee Hacktoberfest Initiative</title>
+				<title>HCLB x Virtual Coffee: OSWeave</title>
 				<meta
 					name="description"
-					content={`Virtual Coffee is gearing up for Hacktoberfest ${currentYear} and we want you to join us!`}
+					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative."
 				/>
 			</Head>
 			<div className="text-center">
