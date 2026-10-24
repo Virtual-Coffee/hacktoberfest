@@ -290,7 +290,33 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									As a maintainer, you get access to serious contributors who
+									want to make high-quality contributions to open source
+									projects, sourced from within our carefully chosen partner
+									communities and companies.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									As a community, your members get to participate in this
+									exciting new open source initiative and the chance to earn a
+									T-shirt reward. Your community can also access the benefits
+									HCLB Communities offer to their community partners. For more
+									details, read the{' '}
+									<a
+										href="https://www.hclbcommunities.com/community-partnerships"
+										className="text-orange-500 underline"
+									>
+										Become a Community Partner
+									</a>{' '}
+									page on the HCLB Communities website.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									As a company, you can get a benefits package tailored to your
+									requirements, such as brand visibility opportunities, the
+									option for your people to participate as contributors with
+									your company getting public recognition of its
+									employees&apos; contributions, or the opportunity to
+									participate in events that introduce your product to
+									participants.
 								</p>
 							</dd>
 
