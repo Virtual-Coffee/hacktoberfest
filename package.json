@@ -10,9 +10,9 @@
 	"homepage": "https://github.com/Virtual-Coffee/hacktoberfest",
 	"main": "",
 	"engines": {
-		"node": ">=24.21.0"
+		"node": ">=24.22.0"
 	},
-	"packageManager": "pnpm@12.11.2",
+	"packageManager": "pnpm@12.14.0",
 	"scripts": {
 		"dev": "netlify dev",
 		"dev:next": "next",
@@ -28,32 +28,32 @@
 	"contributors": [],
 	"license": "CC-BY-3.0",
 	"dependencies": {
-		"@better-auth/drizzle-adapter": "^1.7.7",
+		"@better-auth/drizzle-adapter": "^1.7.11",
 		"@headlessui/react": "^2.2.10",
 		"@heroicons/react": "^2.2.0",
 		"@json2csv/formatters": "^7.0.8",
 		"@json2csv/plainjs": "^7.0.8",
 		"@netlify/database": "^2.0.1",
 		"@tailwindcss/forms": "^0.5.11",
-		"@tanstack/react-query": "^5.104.1",
-		"@tanstack/react-table": "^9.2.8",
-		"better-auth": "^1.7.7",
+		"@tanstack/react-query": "^5.104.4",
+		"@tanstack/react-table": "^9.3.1",
+		"better-auth": "^1.7.11",
 		"better-auth-devtools": "^1.1.0",
 		"drizzle-orm": "^1.0.0-rc.5-ab785fc",
-		"next": "^16.4.0",
-		"react": "^19.3.0",
-		"react-dom": "^19.3.0",
-		"zod": "^4.6.5"
+		"next": "^16.4.2",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"zod": "^4.6.7"
 	},
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.3.3",
 		"@types/node": "^24.19.2",
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
-		"auth": "^1.7.7",
+		"auth": "^1.7.11",
 		"drizzle-kit": "^1.0.0-rc.5-ab785fc",
-		"netlify-cli": "^27.12.0",
-		"postcss": "^8.5.29",
+		"netlify-cli": "^27.13.0",
+		"postcss": "^8.5.31",
 		"prettier": "^3.9.10",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^7.0.2"

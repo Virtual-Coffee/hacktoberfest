@@ -72,10 +72,10 @@ export default function Page() {
 	return (
 		<Layout>
 			<Head>
-				<title>Virtual Coffee Hacktoberfest Initiative</title>
+				<title>HCLB x Virtual Coffee: OSWeave</title>
 				<meta
 					name="description"
-					content={`Virtual Coffee is gearing up for Hacktoberfest ${currentYear} and we want you to join us!`}
+					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative."
 				/>
 			</Head>
 			<div className="text-center">
@@ -290,7 +290,33 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									As a maintainer, you get access to serious contributors who
+									want to make high-quality contributions to open source
+									projects, sourced from within our carefully chosen partner
+									communities and companies.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									As a community, your members get to participate in this
+									exciting new open source initiative and the chance to earn a
+									T-shirt reward. Your community can also access the benefits
+									HCLB Communities offer to their community partners. For more
+									details, read the{' '}
+									<a
+										href="https://www.hclbcommunities.com/community-partnerships"
+										className="text-orange-500 underline"
+									>
+										Become a Community Partner
+									</a>{' '}
+									page on the HCLB Communities website.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									As a company, you can get a benefits package tailored to your
+									requirements, such as brand visibility opportunities, the
+									option for your people to participate as contributors with
+									your company getting public recognition of its
+									employees&apos; contributions, or the opportunity to
+									participate in events that introduce your product to
+									participants.
 								</p>
 							</dd>
 
@@ -299,7 +325,29 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
 								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
+									Members of our partner communities can participate as
+									contributors and mentors. Open source project maintainers can
+									apply to participate whether or not they are connected to any
+									of our existing partners. Companies can partner with HCLB
+									Communities to bring their people and/or open source projects
+									into the initiative.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									We{' '}
+									<strong>don&apos;t accept unsolicited contributions</strong>{' '}
+									from people who are not members or employees of participating
+									communities or companies.
+								</p>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									If you represent a community or a company and want to take
+									part, please{' '}
+									<a
+										href="https://www.hclbcommunities.com/contact"
+										className="text-orange-500 underline"
+									>
+										contact HCLB Communities
+									</a>
+									.
 								</p>
 							</dd>
 
