@@ -13,11 +13,10 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Become a Hacktoberfest Mentor
+				Become an OSWeave Mentor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Thank you for expressing your interest in mentoring a Virtual Coffee
-				member participating the Virtual Coffee Hacktoberfest Initiative. We
+				Thank you for expressing your interest in joining our pool of OSWeave mentors. We
 				would really appreciate it if you took the time to fill out this short
 				questionnaire.
 			</p>
@@ -73,8 +72,8 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Become a Hacktoberfest Mentor"
-				description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
+				title="Become an OSWeave Mentor"
+				description="OSweave is a great place to provide high-impact help to enable early-career contributors to make quality contributions."
 			>
 				<SignIn />
 			</FormLayout>
@@ -95,8 +94,8 @@ export default function Page() {
 
 	return (
 		<FormLayout
-			title="Become a Hacktoberfest Mentor"
-			description="Virtual Coffee's Hacktoberfest Initiative is a great place to provide high-impact help to a few early-career contributors."
+			title="Become a OSWeave Mentor"
+			description="OSWeave is a great place to provide high-impact help to enable early-career contributors to make quality contributions."
 		>
 			<Form
 				session={session}
