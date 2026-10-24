@@ -17,7 +17,6 @@ export const FORM_LABELS: Record<FormKey, string> = {
 	contributors: 'Contributors',
 	maintainers: 'Maintainers',
 	mentors: 'Mentors',
-	nonPrContributions: 'Non-PR',
 }
 
 /** Spelled out, for page headings and stat cards. */
@@ -25,7 +24,6 @@ export const FORM_HEADINGS: Record<FormKey, string> = {
 	contributors: 'Contributors',
 	maintainers: 'Maintainers',
 	mentors: 'Mentors',
-	nonPrContributions: 'Non-PR contributions',
 }
 
 export function isFormKey(value: unknown): value is FormKey {

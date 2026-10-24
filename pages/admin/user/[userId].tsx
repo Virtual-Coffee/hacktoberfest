@@ -35,7 +35,6 @@ const SECTION_TITLES: Record<FormKey, string> = {
 	contributors: 'Contributor',
 	maintainers: 'Maintainer',
 	mentors: 'Mentor',
-	nonPrContributions: 'Non-PR contributions',
 }
 
 function StatusBadge({ submitted }: { submitted: boolean }) {

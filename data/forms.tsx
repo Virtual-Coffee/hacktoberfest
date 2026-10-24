@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 export type FormKey =
-	'contributors' | 'maintainers' | 'mentors' | 'nonPrContributions'
+	'contributors' | 'maintainers' | 'mentors'
 
 export type FormValues = Record<string, string | string[] | boolean | undefined>
 
@@ -278,27 +278,6 @@ export const repos: FormField[] = [
 	},
 ]
 
-export const nonPrContributions: FormField[] = [
-	{
-		name: 'RepoName',
-		type: 'Text',
-		label: 'Repository Name',
-	},
-	{
-		name: 'RepoUrl',
-		type: 'URL',
-		label: 'Repository URL',
-	},
-	{
-		name: 'ContributionDescription',
-		type: 'Long text',
-		label:
-			'Tell us about your contribution. If you made multiple contributions, please submit a separate form for each one so they get counted! Examples of meaningful, non-code contributions: content that supports or helps an open source project, a substantial PR review, triaging 3 or more issues, facilitating an open source event, writing a detailed issue.',
-		help: 'Required',
-		required: true,
-	},
-]
-
 export const maintainers: FormField[] = [
 	// {
 	// 	name: 'Projects',
@@ -431,5 +410,4 @@ export const forms = {
 	contributors,
 	maintainers,
 	mentors,
-	nonPrContributions,
 } satisfies Record<FormKey, FormField[]>

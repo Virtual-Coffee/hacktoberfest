@@ -60,19 +60,17 @@ export default function Page() {
 	const rows = submissions.data?.submissions
 	const yearCounts = counts.data?.counts ?? []
 	const selected = yearCounts.find((row) => row.year === year)
-	const noun =
-		formKey === 'nonPrContributions' ? 'contributions' : 'submissions'
 
 	return (
 		<AdminGate
 			title={`${FORM_HEADINGS[formKey]} | Admin | Virtual Coffee Hacktoberfest`}
-			description={`${FORM_HEADINGS[formKey]} ${noun} for ${year}.`}
+			description={`${FORM_HEADINGS[formKey]} submissions for ${year}.`}
 		>
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
 				{FORM_HEADINGS[formKey]}
 			</h1>
 			<p className="mt-3 mb-6 text-lg leading-6 text-gray-500">
-				{rows ? `${rows.length} ${noun} for ${year}.` : ` `}
+				{rows ? `${rows.length} submissions for ${year}.` : ` `}
 			</p>
 
 			<div className="border-b border-gray-200 flex justify-between items-end flex-wrap gap-3">
@@ -108,7 +106,7 @@ export default function Page() {
 				<AdminError onRetry={() => submissions.refetch()} />
 			) : submissions.isPending ? (
 				<div className="mt-6 px-6 py-12 text-center text-sm text-gray-500">
-					Loading {noun}…
+					Loading submissions…
 				</div>
 			) : (
 				<SubmissionsTable formKey={formKey} year={year} rows={rows} />
