@@ -508,15 +508,12 @@ function createInitialState({
 	state.fields.Name = profile?.Name || session?.user?.name || undefined
 	state.fields['GitHubUsername'] =
 		profile?.['GitHubUsername'] || session?.user?.githubLogin || undefined
-	state.fields['TwitterUsername'] =
-		profile?.['TwitterUsername'] || session?.user?.twitterUsername || undefined
 	state.fields['PreferredTimeZone'] =
 		profile?.['PreferredTimeZone'] || undefined
 	state.fields.Pronouns = profile?.Pronouns || undefined
 	state.fields.Email = profile?.Email || session?.user?.email || undefined
 
 	state.fields.IsMember = profile?.IsMember || undefined
-	state.fields.AllowSocialSharing = profile?.AllowSocialSharing || undefined
 
 	if (previousFormSubmission) {
 		state.fields = {

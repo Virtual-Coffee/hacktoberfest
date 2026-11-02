@@ -33,11 +33,13 @@ const toBoolean = (value: FormValues[string]) =>
 /**
  * Projects a profile row onto the field names data/forms.tsx uses.
  *
- * IsMember and AllowSocialSharing are stored as real booleans but render
- * through the Single select branch, which only understands strings -- hence
- * the Yes/No mapping. (Under Airtable these were typed boolean while the form
- * sent strings, which is why those two radios never pre-selected on a return
- * visit.)
+ * IsMember is stored as a real boolean but renders through the Single select
+ * branch, which only understands strings -- hence the Yes/No mapping. (Under
+ * Airtable it was typed boolean while the form sent strings, which is why the
+ * radio never pre-selected on a return visit.)
+ *
+ * twitterUsername and allowSocialSharing are no longer form fields, so they
+ * are neither read nor written here.
  */
 export function profileToFormValues(row: MemberProfileRow): FormValues {
 	return {
@@ -45,10 +47,8 @@ export function profileToFormValues(row: MemberProfileRow): FormValues {
 		Email: row.contactEmail ?? undefined,
 		PreferredTimeZone: row.preferredTimeZone ?? undefined,
 		GitHubUsername: row.githubUsername ?? undefined,
-		TwitterUsername: row.twitterUsername ?? undefined,
 		Pronouns: row.pronouns ?? undefined,
 		IsMember: yesNo(row.isMember),
-		AllowSocialSharing: yesNo(row.allowSocialSharing),
 	}
 }
 
@@ -113,10 +113,8 @@ export async function updateProfile(
 			preferredTimeZone:
 				(values.PreferredTimeZone as string | undefined) ?? null,
 			githubUsername: (values.GitHubUsername as string | undefined) ?? null,
-			twitterUsername: (values.TwitterUsername as string | undefined) ?? null,
 			pronouns: (values.Pronouns as string | undefined) ?? null,
 			isMember: toBoolean(values.IsMember) ?? null,
-			allowSocialSharing: toBoolean(values.AllowSocialSharing) ?? null,
 		})
 		.where(eq(memberProfile.userId, userId))
 		.returning()
