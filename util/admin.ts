@@ -5,7 +5,6 @@ import {
 	maintainerSubmission,
 	memberProfile,
 	mentorSubmission,
-	nonPrContribution,
 	user,
 } from '@/db/schema'
 import { FORM_KEYS } from '@/util/adminForms'
@@ -25,7 +24,6 @@ const TABLES = {
 	contributors: contributorSubmission,
 	maintainers: maintainerSubmission,
 	mentors: mentorSubmission,
-	nonPrContributions: nonPrContribution,
 } satisfies Record<FormKey, unknown>
 
 /**
@@ -131,7 +129,6 @@ export async function countsByYear(): Promise<YearCounts[]> {
 		contributors: 0,
 		maintainers: 0,
 		mentors: 0,
-		nonPrContributions: 0,
 	})
 
 	for (const { formKey, rows } of perForm) {
