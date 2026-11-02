@@ -5,7 +5,6 @@ import {
 	maintainerSubmission,
 	memberProfile,
 	mentorSubmission,
-	nonPrContribution,
 } from '@/db/schema'
 import type { MemberProfileRow } from '@/db/schema'
 import type { FormKey, FormValues } from '@/data/forms'
@@ -15,19 +14,13 @@ const TABLES = {
 	contributors: contributorSubmission,
 	maintainers: maintainerSubmission,
 	mentors: mentorSubmission,
-	nonPrContributions: nonPrContribution,
 } satisfies Record<FormKey, unknown>
 
-/**
- * The three role forms hold one row per member per year, so a save is an
- * upsert. Non-PR contributions are append-only: the form asks members to
- * submit one entry per contribution and the dashboard counts the rows.
- */
+/** Every form holds one row per member per year, so a save is an upsert. */
 const UPSERT_PER_YEAR: Record<FormKey, boolean> = {
 	contributors: true,
 	maintainers: true,
 	mentors: true,
-	nonPrContributions: false,
 }
 
 /** 'Yes'/'No' is what the Single select fields in data/forms.tsx render. */
