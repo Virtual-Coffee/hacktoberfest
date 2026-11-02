@@ -8,3 +8,7 @@
 		cursor: pointer;
 	}
 }
+
+@theme { 
+  --color-purple-brand: #490080;
+}
