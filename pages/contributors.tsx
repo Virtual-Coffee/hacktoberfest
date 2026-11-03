@@ -17,12 +17,13 @@ const intro = (
 	<>
 		<div className="text-center">
 			<h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-				Become a Hacktoberfest Contributor
+				Become an OSWeave Contributor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you interested in participating in Hacktoberfest (or open source in
-				general), but don't know where to start? Or are you an experienced
-				developer looking to do this as part of the Virtual Coffee Community?
+				Are you part of Virtual Coffee, or one of our participating communities and companies, 
+				who wants to contribute to open source but doesn't know where to start? Or have you 
+				contributed to open source before and want to keep making quality contributions? We'd love to help! 
+				Come join OSWeave and get the support you need.
 			</p>
 		</div>
 	</>
@@ -44,14 +45,7 @@ const successView = (
 				</h1>
 				<div className="text-lg leading-6 text-gray-500">
 					<p className="mt-4">
-						You'll hear from a Virtual Coffee member soon with next steps.
-					</p>
-					<p className="mt-4">
-						In the meantime, make sure you've{' '}
-						<a href="https://hacktoberfest.com/">
-							signed up for Hacktoberfest on DigitalOcean
-						</a>
-						!
+						You'll hear from a Virtual Coffee or HCLB Communities member soon with next steps.
 					</p>
 					<p className="mt-4">
 						<Button size="lg" href="/dashboard">
@@ -89,8 +83,8 @@ export default function Page() {
 	if (sessionStatus === 'unauthenticated') {
 		return (
 			<FormLayout
-				title="Become a Hacktoberfest Contributor"
-				description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+				title="Become an OSWeave Contributor"
+				description="Are you part of Virtual Coffee, or one of our participating communities and companies, who wants to contribute to open source but doesn't know where to start?"
 			>
 				<SignIn />
 			</FormLayout>
@@ -133,8 +127,8 @@ export default function Page() {
 
 	return (
 		<FormLayout
-			title="Become a Hacktoberfest Contributor"
-			description="Are you interested in participating in Hacktoberfest, but don't know where to start?"
+			title="Become an OSWeave Contributor"
+			description="Are you part of Virtual Coffee, or one of our participating communities and companies, who wants to contribute to open source but doesn't know where to start?"
 		>
 			<Form
 				session={session}
