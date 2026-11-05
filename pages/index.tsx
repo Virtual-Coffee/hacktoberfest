@@ -369,32 +369,43 @@ export default function Page() {
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-9">
-								What type of support will there be?
-							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
-								<p className="text-base leading-6 text-gray-500">
-									Content coming soon...
-								</p>
-								{/* <p className="text-base leading-6 text-gray-500">
-									Because not everyone will need the same level or type of
-									support, we're working to accommodate as many needs as
-									possible. This could include 1:1 mentorship, access to private
-									Slack channels, a group coding session, a review of the
-									project you're using for Hacktoberfest, or general community
-									support. We're also here to cheer you on throughout the month,
-									whether on social media, through our events, or Slack.
-								</p> */}
-							</dd>
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-11">
 								How many roles can I take on?
 							</dt>
-							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-12">
+							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
 								<p className="text-base leading-6 text-gray-500">
 									The short answer is as many as you want! If you want to be a
 									maintainer, mentor, and contributor, you can. But we know that
 									this can be really time consuming, so we ask that you
 									carefully consider how much you can take on, especially as a
 									mentor and maintainer who will be supporting others.
+								</p>
+							</dd>
+							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-11">
+								What type of support will there be?
+							</dt>
+							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-12">
+								<p className="text-base leading-6 text-gray-500">
+									Everyone who takes part in OSWeave will be invited to join the
+									Virtual Coffee Slack, where you can:
+								</p>
+								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-500">
+									<li>
+										Post questions in our <code>#help-and-pairing</code>{' '}
+										channel
+									</li>
+									<li>
+										Connect with other contributors and maintainers in our{' '}
+										<code>#open-source</code> channel
+									</li>
+									<li>
+										Pair program over Zoom by using our always-open{' '}
+										<code>#co-working-room</code> channel
+									</li>
+								</ul>
+								<p className="mt-4 text-base leading-6 text-gray-500">
+									Virtual Coffee and HCLB Communities will also run a program
+									of events and mentorship opportunities as part of OSWeave.
+									Details will be shared as they are confirmed.
 								</p>
 							</dd>
 						</dl>
