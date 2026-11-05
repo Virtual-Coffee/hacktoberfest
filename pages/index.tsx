@@ -403,9 +403,9 @@ export default function Page() {
 									</li>
 								</ul>
 								<p className="mt-4 text-base leading-6 text-gray-500">
-									Virtual Coffee and HCLB Communities will also run events
-									during OSWeave. Event details will be shared as they are
-									confirmed.
+									Virtual Coffee and HCLB Communities will also run a program
+									of events and mentorship opportunities as part of OSWeave.
+									Details will be shared as they are confirmed.
 								</p>
 							</dd>
 						</dl>
