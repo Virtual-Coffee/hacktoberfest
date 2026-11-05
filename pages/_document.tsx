@@ -5,6 +5,7 @@ import Document, {
 	Main,
 	NextScript,
 } from 'next/document'
+import favicon from '@/assets/osweave/favicon.ico'
 
 class MyDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext) {
@@ -17,6 +18,7 @@ class MyDocument extends Document {
 			<Html lang="en">
 				<Head>
 					<meta charSet="UTF-8" />
+					<link rel="icon" type="image/x-icon" href={favicon.src} />
 				</Head>
 				<body>
 					<Main />
