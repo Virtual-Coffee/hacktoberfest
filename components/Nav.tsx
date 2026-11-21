@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import hclbSquare from '@/assets/osweave/hclb-square.svg'
 import { signOut, useSessionStatus } from '@/lib/auth-client'
 import type { SessionStatus } from '@/lib/auth-client'
 import {
@@ -96,15 +97,15 @@ export default function Nav() {
 						<Container>
 							<div className="flex justify-between h-16">
 								<div className="flex">
-									<div className="shrink-0 flex items-center">
+									<div className="shrink-0 flex items-center gap-3">
 										<img
-											className="block lg:hidden h-8 w-auto"
-											src="https://virtualcoffee.io/assets/images/virtual-coffee-mug.svg"
-											alt="Virtual Coffee"
+											className="h-8 w-auto"
+											src={hclbSquare.src}
+											alt="HCLB Communities"
 										/>
 										<img
-											className="hidden lg:block h-8 w-auto"
-											src="https://virtualcoffee.io/assets/images/virtual-coffee-full.svg"
+											className="h-8 w-auto"
+											src="https://virtualcoffee.io/assets/images/virtual-coffee-mug.svg"
 											alt="Virtual Coffee"
 										/>
 									</div>
