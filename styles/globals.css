@@ -9,6 +9,24 @@
 	}
 }
 
-@theme { 
-  --color-purple-brand: #490080;
+/*
+ * OSWeave palette. Namespaced so default Tailwind colors stay available.
+ * Purple core: large or bold text on white. Purple dark: small text on white. Purple light: text on black.
+ * Magenta core: large or bold text on black. Magenta dark: text on white. Magenta light: small text on black.
+ * Turquoise core: text on black. Turquoise dark: text on white.
+ */
+@theme {
+	--color-osweave-white: #fbf7ff;
+	--color-osweave-black: #0f001a;
+
+	--color-osweave-purple-core: #9300ff;
+	--color-osweave-purple-dark: #490080;
+	--color-osweave-purple-light: #d7a0ff;
+
+	--color-osweave-magenta-core: #ff00e9;
+	--color-osweave-magenta-dark: #4d0046;
+	--color-osweave-magenta-light: #ffa0f7;
+
+	--color-osweave-turquoise-core: #00e9ff;
+	--color-osweave-turquoise-dark: #00464d;
 }
