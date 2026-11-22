@@ -41,6 +41,16 @@ corepack enable
 corepack prepare
 ```
 
+#### Installing Netlify CLI
+
+After you've successfully installed `node` and `pnpm`, run the following command to install Netlify CLI directly from your terminal:
+
+```sh
+pnpm install -g netlify-cli
+```
+
+When the installer prompts `Choose which packages to build`, you only need to select `netlify-cli`.
+
 #### Setting up your `.env` file
 
 Use the following command to create a `.env.local` file. Then open the new file (`.env.local`) and fill in the values -- every variable is documented inline in the example file.
