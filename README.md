@@ -1,4 +1,4 @@
-# Virtual Coffee Hacktoberfest Initiative (vchi)
+# Virtual Coffee's Infrastructure for OSWeave
 
 ## Local development setup
 
