@@ -67,3 +67,16 @@
 	--color-on-brand: var(--color-osweave-white);
 	--color-focus: var(--color-osweave-purple-dark);
 }
+
+/*
+ * Inline text link. Underlined so links aren't identified by color alone
+ * (WCAG 1.4.1). brand is >= 5.2:1 on white, gray-50 and every Alert background.
+ */
+@utility link {
+	color: var(--color-brand);
+	text-decoration-line: underline;
+
+	&:hover {
+		color: var(--color-brand-hover);
+	}
+}

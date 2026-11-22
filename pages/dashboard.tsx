@@ -188,7 +188,7 @@ export default function Page() {
 										<li>
 											<a
 												href="https://virtualcoffee.io/resources/developer-resources/open-source/maintainer-guide#repository-checklist"
-												className="font-medium underline text-blue-700 hover:text-blue-600"
+												className="link font-medium"
 											>
 												Maintainer's Checklist
 											</a>

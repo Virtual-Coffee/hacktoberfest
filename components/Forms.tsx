@@ -716,7 +716,7 @@ export default function Form({
 									out in their{' '}
 									<a
 										href="https://www.hclbcommunities.com/privacy-policy.pdf"
-										className="text-blue-800 underline"
+										className="link"
 									>
 										Privacy Policy
 									</a>
