@@ -425,7 +425,7 @@ export const maintainers: FormField[] = [
 		type: 'Single select',
 		possibleValues: ['1-3', '4-9', '10+'],
 		label:
-			'How many hours do you think you can dedicate to reviewing PRs during this fall?',
+			'How many hours do you think you can dedicate to reviewing PRs per month?',
 	},
 	{
 		name: 'CommunicationPreferences',
@@ -545,6 +545,12 @@ export const maintainers: FormField[] = [
 				</p>
 			</>
 		),
+	},
+	{
+		name: 'AdditionalProjectContacts',
+		type: 'Long text',
+		label: 'Additional project contacts',
+		help: 'Optional. If there are additional individuals at your organization who maintain your open source projects and should be included in OSWeave, list each one with a name, email, and role.',
 	},
 	{
 		name: 'CodeOfPractice',
