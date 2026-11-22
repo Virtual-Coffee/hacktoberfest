@@ -45,13 +45,13 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 				</ul>
 				<div className="rounded-md shadow-sm">
 					{choice.button.disabled ? (
-						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-gray-50  bg-gray-500">
+						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-gray-50 bg-gray-500">
 							{choice.button.text}
 						</span>
 					) : (
 						<Link
 							href={choice.button.link}
-							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
+							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition duration-150 ease-in-out text-on-brand bg-brand hover:bg-brand-hover`}
 							aria-describedby="tier-standard"
 						>
 							{choice.button.text}

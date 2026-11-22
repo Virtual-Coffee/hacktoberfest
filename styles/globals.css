@@ -7,6 +7,26 @@
 	button:not(:disabled) {
 		cursor: pointer;
 	}
+
+	/* Site-wide keyboard focus indicator (replaces the browser default). */
+	:focus-visible {
+		outline: 2px solid var(--color-focus);
+		outline-offset: 2px;
+	}
+
+	/*
+	 * @tailwindcss/forms hard-codes a blue-600 focus ring. `:root` raises
+	 * specificity so these win over the plugin's rules in the same layer.
+	 */
+	:root input:focus,
+	:root select:focus,
+	:root textarea:focus {
+		--tw-ring-color: var(--color-focus);
+	}
+
+	:root input:where([type='file']):focus {
+		outline: 2px solid var(--color-focus);
+	}
 }
 
 /*
@@ -29,4 +49,21 @@
 
 	--color-osweave-turquoise-core: #00e9ff;
 	--color-osweave-turquoise-dark: #00464d;
+}
+
+/*
+ * Semantic tokens. Use these in components instead of raw palette names so
+ * every pairing below stays WCAG 2.2 AA-checked in one place.
+ * Ratios measured against white (#fff) and osweave-white (#fbf7ff):
+ *   brand on white / on-brand on brand ........ 5.4:1  (AA normal text, 4.5)
+ *   brand-hover on white / on-brand on hover .. 12.5:1
+ *   focus ring on white ....................... 12.5:1 (AA non-text, 3)
+ * If you change a value, re-check contrast before merging.
+ */
+@theme inline {
+	--color-brand: var(--color-osweave-purple-core);
+	--color-brand-hover: var(--color-osweave-purple-dark);
+	--color-brand-subtle: var(--color-osweave-white);
+	--color-on-brand: var(--color-osweave-white);
+	--color-focus: var(--color-osweave-purple-dark);
 }

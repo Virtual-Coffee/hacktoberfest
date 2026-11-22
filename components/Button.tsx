@@ -3,11 +3,11 @@ import type { MouseEventHandler, ReactNode } from 'react'
 import classNames from '@/util/classNames'
 
 const defaultClassName =
-	'inline-block border border-transparent leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out'
+	'inline-block border border-transparent leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition duration-150 ease-in-out'
 
 const colors = {
-	primary: 'text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500',
-	utility: 'text-orange-600 hover:text-orange-500 bg-gray-50 hover:bg-gray-50',
+	primary: 'text-on-brand bg-brand hover:bg-brand-hover',
+	utility: 'text-brand hover:text-brand-hover bg-brand-subtle',
 }
 
 const sizes = {

@@ -193,7 +193,7 @@ export default function Page() {
 									OSWeave is a project from{' '}
 									<a
 										href="https://www.hclbcommunities.com/"
-										className="text-orange-500 underline"
+										className="text-brand underline hover:text-brand-hover"
 									>
 										HCLB Communities
 									</a>
@@ -264,14 +264,14 @@ export default function Page() {
 									OSWeave,{' '}
 									<a
 										href="/contributors"
-										className="text-orange-500 underline"
+										className="text-brand underline hover:text-brand-hover"
 									>
 										sign up
 									</a>{' '}
 									and have (or create) a{' '}
 									<a
 										href="https://github.com/"
-										className="text-orange-500 underline"
+										className="text-brand underline hover:text-brand-hover"
 									>
 										GitHub account
 									</a>
@@ -297,7 +297,7 @@ export default function Page() {
 									details, read the{' '}
 									<a
 										href="https://www.hclbcommunities.com/community-partnerships"
-										className="text-orange-500 underline"
+										className="text-brand underline hover:text-brand-hover"
 									>
 										Become a Community Partner
 									</a>{' '}
@@ -336,7 +336,7 @@ export default function Page() {
 									part, please{' '}
 									<a
 										href="https://www.hclbcommunities.com/contact"
-										className="text-orange-500 underline"
+										className="text-brand underline hover:text-brand-hover"
 									>
 										contact HCLB Communities
 									</a>
