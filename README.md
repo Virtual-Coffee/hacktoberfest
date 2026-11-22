@@ -18,7 +18,7 @@ cd hacktoberfest
 
 ### 3. Install dependencies
 
-This repo requires `node`, `pnpm`, and the [Netlify CLI](https://www.netlify.com/products/dev/) to get started.
+This repo requires `node`, `pnpm`, and [Netlify CLI](https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/#installation) to get started.
 
 #### Installing `node`
 
