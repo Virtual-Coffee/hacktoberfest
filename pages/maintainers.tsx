@@ -116,9 +116,9 @@ export default function Page() {
 		)
 	}
 
-	if (!previousFormSubmission.data && signupsPaused) {
-		return <SignupsPausedNotice />
-	}
+	// if (!previousFormSubmission.data && signupsPaused) {
+	// 	return <SignupsPausedNotice />
+	// }
 
 	return (
 		<FormLayout
