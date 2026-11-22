@@ -16,9 +16,9 @@ const intro = (
 				Become an OSWeave Mentor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Thank you for expressing your interest in joining our pool of OSWeave mentors. We
-				would really appreciate it if you took the time to fill out this short
-				questionnaire.
+				Thank you for expressing your interest in joining our pool of OSWeave
+				mentors. We would really appreciate it if you took the time to fill out
+				this short questionnaire.
 			</p>
 		</div>
 	</>

@@ -20,10 +20,11 @@ const intro = (
 				Become an OSWeave Contributor
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Are you part of Virtual Coffee, or one of our participating communities and companies, 
-				who wants to contribute to open source but doesn't know where to start? Or have you 
-				contributed to open source before and want to keep making quality contributions? We'd love to help! 
-				Come join OSWeave and get the support you need.
+				Are you part of Virtual Coffee, or one of our participating communities
+				and companies, who wants to contribute to open source but doesn't know
+				where to start? Or have you contributed to open source before and want
+				to keep making quality contributions? We'd love to help! Come join
+				OSWeave and get the support you need.
 			</p>
 		</div>
 	</>
@@ -45,7 +46,8 @@ const successView = (
 				</h1>
 				<div className="text-lg leading-6 text-gray-500">
 					<p className="mt-4">
-						You'll hear from a Virtual Coffee or HCLB Communities member soon with next steps.
+						You'll hear from a Virtual Coffee or HCLB Communities member soon
+						with next steps.
 					</p>
 					<p className="mt-4">
 						<Button size="lg" href="/dashboard">

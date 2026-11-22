@@ -22,8 +22,9 @@ const intro = (
 				Calling All Maintainers
 			</h1>
 			<p className="mt-4 text-lg leading-6 text-gray-500">
-				Do you have an open-source project and are looking for contributors? OSWeave connects you with 
-				contributors who are ready to make quality, sustainable contributions to your project.
+				Do you have an open-source project and are looking for contributors?
+				OSWeave connects you with contributors who are ready to make quality,
+				sustainable contributions to your project.
 			</p>
 		</div>
 	</>
@@ -40,7 +41,8 @@ const successView = (
 				</h1>
 				<div className="text-lg leading-6 text-gray-500">
 					<p className="mt-4">
-						You'll hear from a Virtual Coffee or HCLB Communities member soon with next steps.
+						You'll hear from a Virtual Coffee or HCLB Communities member soon
+						with next steps.
 					</p>
 					<p className="mt-4">
 						<Button size="lg" href="/dashboard">

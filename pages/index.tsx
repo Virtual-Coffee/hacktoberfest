@@ -29,7 +29,7 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 		{
 			header: 'Maintainers',
 			intro:
-				"Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.",
+				'Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.',
 			items: [
 				'Find contributors for your project',
 				'Grow your community',
@@ -85,10 +85,13 @@ export default function Page() {
 					<span className="text-osweave-purple-dark"> OSWeave</span>
 				</h2>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative.
+					HCLB Communities are partnering with Virtual Coffee for a pilot scheme
+					in Fall 2026 for this exciting new open source initiative.
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					Weaving together tech communities, companies and maintainers to nurture quality contributions to open source projects in the age of AI.
+					Weaving together tech communities, companies and maintainers to
+					nurture quality contributions to open source projects in the age of
+					AI.
 				</p>
 			</div>
 
@@ -100,7 +103,7 @@ export default function Page() {
 					<div className="text-base leading-6 text-gray-500">
 						*Choose as many roles as you like.
 					</div>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
+					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
 						))}
@@ -170,14 +173,15 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
 								<p className="text-base leading-6 text-gray-500">
-									HCLB Communities are a community ecosystem startup building 
-									online communities and events for founders, techies and startup 
-									people. They are a tech company with a human touch, here to build 
-									online communities that nurture genuine connection between real 
-									people, and brands that speak to the values of human creativity 
-									and community, and to enable others to do the same. They are also 
-									currently working behind the scenes on internal software to power 
-									their programs, much of which will be open sourced in due course.
+									HCLB Communities are a community ecosystem startup building
+									online communities and events for founders, techies and
+									startup people. They are a tech company with a human touch,
+									here to build online communities that nurture genuine
+									connection between real people, and brands that speak to the
+									values of human creativity and community, and to enable others
+									to do the same. They are also currently working behind the
+									scenes on internal software to power their programs, much of
+									which will be open sourced in due course.
 								</p>
 							</dd>
 
@@ -199,24 +203,24 @@ export default function Page() {
 									contributors and maintainers from selected partners, and we
 									give T-shirt rewards for contributions. Participation is
 									controlled to avoid a flood of low-effort contributions. This
-									means contributors join only through participating
-									communities and corporate partners. The Fall 2026 event is a pilot that
-									HCLB Communities and Virtual Coffee are running together. We are also
-									inviting other carefully chosen partners to join.
+									means contributors join only through participating communities
+									and corporate partners. The Fall 2026 event is a pilot that
+									HCLB Communities and Virtual Coffee are running together. We
+									are also inviting other carefully chosen partners to join.
 								</p>
 							</dd>
 
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
-								What are the roles of HCLB Communities and Virtual Coffee in OSWeave?
+								What are the roles of HCLB Communities and Virtual Coffee in
+								OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
 								<p className="text-base leading-6 text-gray-500">
-									HCLB Communities is the overall operator of OSWeave and responsible
-									for the program design, coordinating the project, and the future
-									development of OSWeave after the Fall 2026 pilot project. They will
-									also be sending out T-shirt rewards to participants (the requirements
-									will be announced later).
-
+									HCLB Communities is the overall operator of OSWeave and
+									responsible for the program design, coordinating the project,
+									and the future development of OSWeave after the Fall 2026
+									pilot project. They will also be sending out T-shirt rewards
+									to participants (the requirements will be announced later).
 								</p>
 								<p className="mt-4 text-base leading-6 text-gray-500">
 									Virtual Coffee is participating in OSWeave as the
@@ -248,16 +252,16 @@ export default function Page() {
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
 								<p className="text-base leading-6 text-gray-500">
-									A contributor is anyone who gives their time or skills to
-									help an open source project. This can include writing code,
-									but it doesn't have to. Designing graphics, writing blog
-									posts, and helping with community engagement are all
-									examples of non-code contributions, and there are many
-									other ways to contribute too. The most common path is
-									submitting a pull request on GitHub, though contributors
-									usually cannot merge their own changes. Issues in open
-									source repositories are a good place to find work that
-									matches your interests. To get started with OSWeave,{' '}
+									A contributor is anyone who gives their time or skills to help
+									an open source project. This can include writing code, but it
+									doesn't have to. Designing graphics, writing blog posts, and
+									helping with community engagement are all examples of non-code
+									contributions, and there are many other ways to contribute
+									too. The most common path is submitting a pull request on
+									GitHub, though contributors usually cannot merge their own
+									changes. Issues in open source repositories are a good place
+									to find work that matches your interests. To get started with
+									OSWeave,{' '}
 									<a
 										href="/contributors"
 										className="text-orange-500 underline"
@@ -303,10 +307,9 @@ export default function Page() {
 									As a company, you can get a benefits package tailored to your
 									requirements, such as brand visibility opportunities, the
 									option for your people to participate as contributors with
-									your company getting public recognition of its
-									employees&apos; contributions, or the opportunity to
-									participate in events that introduce your product to
-									participants.
+									your company getting public recognition of its employees&apos;
+									contributions, or the opportunity to participate in events
+									that introduce your product to participants.
 								</p>
 							</dd>
 
@@ -348,8 +351,8 @@ export default function Page() {
 								<p className="text-base leading-6 text-gray-500">
 									Participation is free for all eligible contributors and
 									independent maintainers. Organizations can participate as
-									maintainer for free if they meet OSWeave&apos;s definition of a
-									small non-profit, which covers most organizations that
+									maintainer for free if they meet OSWeave&apos;s definition of
+									a small non-profit, which covers most organizations that
 									don&apos;t distribute profits to owners and have an annual
 									revenue of less than $500,000. HCLB Communities will reach out
 									to maintainers who sign up with organization projects to
@@ -380,8 +383,7 @@ export default function Page() {
 								</p>
 								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-500">
 									<li>
-										Post questions in our <code>#help-and-pairing</code>{' '}
-										channel
+										Post questions in our <code>#help-and-pairing</code> channel
 									</li>
 									<li>
 										Connect with other contributors and maintainers in our{' '}
@@ -393,8 +395,8 @@ export default function Page() {
 									</li>
 								</ul>
 								<p className="mt-4 text-base leading-6 text-gray-500">
-									Virtual Coffee and HCLB Communities will also run a program
-									of events and mentorship opportunities as part of OSWeave.
+									Virtual Coffee and HCLB Communities will also run a program of
+									events and mentorship opportunities as part of OSWeave.
 									Details will be shared as they are confirmed.
 								</p>
 							</dd>
