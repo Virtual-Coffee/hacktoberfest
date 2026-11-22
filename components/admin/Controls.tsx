@@ -32,7 +32,7 @@ export function YearSelect({
 				id="admin-year"
 				value={year}
 				onChange={(event) => onChange(Number(event.target.value))}
-				className="border border-gray-300 rounded-md pl-3 pr-10 py-1.5 text-sm text-gray-900 bg-white"
+				className="border border-gray-500 rounded-md pl-3 pr-10 py-1.5 text-sm text-gray-900 bg-white"
 			>
 				{options.map((option) => (
 					<option key={option} value={option}>

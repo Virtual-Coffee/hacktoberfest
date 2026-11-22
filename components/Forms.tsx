@@ -173,7 +173,7 @@ export function Field({
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<textarea
 						rows={8}
-						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+						className="shadow-xs focus:ring-focus focus:border-focus block w-full sm:text-sm border border-gray-500 rounded-md"
 						name={field.name}
 						required={!!field.required}
 						id={field.name}
