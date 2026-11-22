@@ -43,7 +43,7 @@ corepack prepare
 
 #### Setting up your `.env` file
 
-Use the following command to create a local `.env.local` file. Then open the new file (`.env.local`) and fill in the values -- every variable is documented inline in the example file.
+Use the following command to create a `.env.local` file. Then open the new file (`.env.local`) and fill in the values -- every variable is documented inline in the example file.
 
 ```sh
 cp .env.local.example .env.local
@@ -68,7 +68,7 @@ netlify login
 netlify link
 ```
 
-At this point you're ready to roll! Run the following command to get rolling!
+At this point you're ready to roll! Run the following command to get started!
 
 ```sh
 pnpm dev
@@ -92,7 +92,9 @@ It runs `netlify dev`, which starts Next **and** the local PostgreSQL database, 
 
 Use ctrl-c to quit the server when you're done.
 
-> **Use `pnpm dev`, not `next` directly.** The local database only starts alongside the Netlify dev server, so `pnpm dev:next` will boot the site and then fail on the first query. If you see an error saying no database connection is available, this is why.
+> [!WARNING]
+> **Use `pnpm dev`, not `next` directly.**
+> The local database only starts alongside the Netlify dev server, so `pnpm dev:next` will boot the site and then fail on the first query. If you see an error saying no database connection is available, this is why.
 
 Before your first run, apply the migrations:
 
