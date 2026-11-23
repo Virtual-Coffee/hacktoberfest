@@ -37,7 +37,7 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 			],
 			button: newSubmissionsClosed
 				? {
-						text: 'All Full!',
+						text: 'All full!',
 						disabled: true,
 						link: '/maintainers',
 					}

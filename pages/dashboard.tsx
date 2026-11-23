@@ -96,7 +96,7 @@ export default function Page() {
 											'inline-block border border-transparent leading-6 font-medium rounded-md '
 										)}
 									>
-										All Full!
+										All full!
 									</span>
 								) : (
 									<Button size="md" href="/contributors">
@@ -162,7 +162,7 @@ export default function Page() {
 											'inline-block border border-transparent leading-6 font-medium rounded-md '
 										)}
 									>
-										All Full!
+										All full!
 									</span>
 								) : (
 									<Button size="md" href="/maintainers">
