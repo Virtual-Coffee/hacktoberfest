@@ -31,4 +31,4 @@ export function useNewSubmissionsClosed() {
 // reason as NEXT_PUBLIC_HACKTOBERFEST_YEAR: inlined at build time and read by
 // the same client pages. Flip it back to unset/"false" and redeploy to
 // reopen sign ups -- no code change required.
-export const signupsPaused = process.env.NEXT_PUBLIC_SIGNUPS_PAUSED === 'false'
+export const signupsPaused = process.env.NEXT_PUBLIC_SIGNUPS_PAUSED === 'true'
