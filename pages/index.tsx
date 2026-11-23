@@ -75,7 +75,7 @@ export default function Page() {
 				<title>HCLB x Virtual Coffee: OSWeave</title>
 				<meta
 					name="description"
-					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative."
+					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Winter 2026 for this exciting new open source initiative."
 				/>
 			</Head>
 			<div className="text-center">
@@ -85,7 +85,7 @@ export default function Page() {
 					<span className="text-osweave-purple-dark"> OSWeave</span>
 				</h2>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative.
+					HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Winter 2026 for this exciting new open source initiative.
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 					Weaving together tech communities, companies and maintainers to nurture quality contributions to open source projects in the age of AI.
@@ -134,7 +134,7 @@ export default function Page() {
 							of HCLB Communities and a Monthly Challenge Team Lead at Virtual
 							Coffee. It is a new initiative that nurtures quality contributions
 							to open source in a way that is sustainable in the age of AI. This
-							fall, we will run our traditional event as part of the OSWeave
+							winter, we will run our traditional event as part of the OSWeave
 							pilot, working with HCLB as the infrastructure partner.
 						</p>
 					</div>
@@ -200,7 +200,7 @@ export default function Page() {
 									give T-shirt rewards for contributions. Participation is
 									controlled to avoid a flood of low-effort contributions. This
 									means contributors join only through participating
-									communities and corporate partners. The Fall 2026 event is a pilot that
+									communities and corporate partners. The Winter 2026 event is a pilot that
 									HCLB Communities and Virtual Coffee are running together. We are also
 									inviting other carefully chosen partners to join.
 								</p>
@@ -213,7 +213,7 @@ export default function Page() {
 								<p className="text-base leading-6 text-gray-500">
 									HCLB Communities is the overall operator of OSWeave and responsible
 									for the program design, coordinating the project, and the future
-									development of OSWeave after the Fall 2026 pilot project. They will
+									development of OSWeave after the Winter 2026 pilot project. They will
 									also be sending out T-shirt rewards to participants (the requirements
 									will be announced later).
 
@@ -221,7 +221,7 @@ export default function Page() {
 								<p className="mt-4 text-base leading-6 text-gray-500">
 									Virtual Coffee is participating in OSWeave as the
 									Infrastructure Partner, which means we are responsible for the
-									sign-up and community infrastructure required to run the Fall
+									sign-up and community infrastructure required to run the Winter
 									2026 pilot project. We are also participating as a Community
 									Partner, meaning Virtual Coffee members will be participating
 									as contributors.
