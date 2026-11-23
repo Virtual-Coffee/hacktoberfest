@@ -75,7 +75,7 @@ export default function Page() {
 				<title>HCLB x Virtual Coffee: OSWeave</title>
 				<meta
 					name="description"
-					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative."
+					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Winter 2026 for this exciting new open source initiative."
 				/>
 			</Head>
 			<div className="text-center pb-8">
@@ -86,7 +86,7 @@ export default function Page() {
 				</h2>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 					HCLB Communities are partnering with Virtual Coffee for a pilot scheme
-					in Fall 2026 for this exciting new open source initiative.
+					in Winter 2026 for this exciting new open source initiative.
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 					Weaving together tech communities, companies and maintainers to
@@ -137,7 +137,7 @@ export default function Page() {
 							of HCLB Communities and a Monthly Challenge Team Lead at Virtual
 							Coffee. It is a new initiative that nurtures quality contributions
 							to open source in a way that is sustainable in the age of AI. This
-							fall, we will run our traditional event as part of the OSWeave
+							winter, we will run our traditional event as part of the OSWeave
 							pilot, working with HCLB as the infrastructure partner.
 						</p>
 					</div>
@@ -212,7 +212,7 @@ export default function Page() {
 								OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
-								<p className="text-base leading-6 text-gray-600">
+								<p className="text-base leading-6 text-gray-500">
 									HCLB Communities is the overall operator of OSWeave and
 									responsible for the program design, coordinating the project,
 									and the future development of OSWeave after the Fall 2026
@@ -222,10 +222,10 @@ export default function Page() {
 								<p className="mt-4 text-base leading-6 text-gray-600">
 									Virtual Coffee is participating in OSWeave as the
 									Infrastructure Partner, which means we are responsible for the
-									sign-up and community infrastructure required to run the Fall
-									2026 pilot project. We are also participating as a Community
-									Partner, meaning Virtual Coffee members will be participating
-									as contributors.
+									sign-up and community infrastructure required to run the
+									Winter 2026 pilot project. We are also participating as a
+									Community Partner, meaning Virtual Coffee members will be
+									participating as contributors.
 								</p>
 							</dd>
 
