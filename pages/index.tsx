@@ -201,7 +201,7 @@ export default function Page() {
 									give T-shirt rewards for contributions. Participation is
 									controlled to avoid a flood of low-effort contributions. This
 									means contributors join only through participating communities
-									and corporate partners. The Fall 2026 event is a pilot that
+									and corporate partners. The Winter 2026 event is a pilot that
 									HCLB Communities and Virtual Coffee are running together. We
 									are also inviting other carefully chosen partners to join.
 								</p>
@@ -212,10 +212,10 @@ export default function Page() {
 								OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									HCLB Communities is the overall operator of OSWeave and
 									responsible for the program design, coordinating the project,
-									and the future development of OSWeave after the Fall 2026
+									and the future development of OSWeave after the Winter 2026
 									pilot project. They will also be sending out T-shirt rewards
 									to participants (the requirements will be announced later).
 								</p>
