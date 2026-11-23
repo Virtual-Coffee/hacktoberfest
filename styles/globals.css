@@ -27,6 +27,12 @@
 	:root input:where([type='file']):focus {
 		outline: 2px solid var(--color-focus);
 	}
+
+	/* Highlighted text: osweave-black on purple-light (10:1). */
+	::selection {
+		background-color: var(--color-osweave-purple-light);
+		color: var(--color-osweave-black);
+	}
 }
 
 /*
@@ -57,6 +63,8 @@
 	--color-osweave-turquoise-dark: #00464d;
 	/* Midpoint of turquoise core and dark; icon accent (3.4:1 on gray-50). */
 	--color-osweave-turquoise-mid: #0098a6;
+	/* 15% turquoise-core on white; badge background (turquoise-dark text 9.7:1). */
+	--color-osweave-turquoise-tint: #d9fbff;
 }
 
 /*

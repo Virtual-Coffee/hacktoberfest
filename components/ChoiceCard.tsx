@@ -13,7 +13,7 @@ export type Choice = {
 
 export default function ChoiceCard({ choice }: { choice: Choice }) {
 	return (
-		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden border-t-4 border-button">
 			<div className="flex-1 px-6 py-8 bg-white sm:p-10 sm:pb-6">
 				<div className="mt-4 flex items-baseline text-3xl leading-none font-extrabold">
 					{choice.header}

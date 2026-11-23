@@ -151,7 +151,7 @@ export default function Page() {
 					</h2>
 					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10">
 						<dl className="md:grid md:grid-cols-2 md:gap-x-8">
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-1">
 								What is Virtual Coffee?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-2">
@@ -168,7 +168,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-1">
 								What is HCLB Communities?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
@@ -185,7 +185,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-3">
 								What is OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
@@ -207,7 +207,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-3">
 								What are the roles of HCLB Communities and Virtual Coffee in
 								OSWeave?
 							</dt>
@@ -229,7 +229,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-5">
 								What is a Maintainer?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-6">
@@ -244,7 +244,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-5">
 								What is a Contributor and what do I need to get started?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
@@ -270,7 +270,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-7">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-7">
 								Why should I partner with OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
@@ -304,7 +304,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-7">
 								Who can participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
@@ -335,7 +335,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-9">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-9">
 								Does it cost anything to participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
@@ -352,7 +352,7 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-9">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-9">
 								How many roles can I take on?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
@@ -364,7 +364,7 @@ export default function Page() {
 									mentor and maintainer who will be supporting others.
 								</p>
 							</dd>
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-11">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-11">
 								What type of support will there be?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-12">
@@ -374,15 +374,25 @@ export default function Page() {
 								</p>
 								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-600">
 									<li>
-										Post questions in our <code>#help-and-pairing</code> channel
+										Post questions in our{' '}
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#help-and-pairing
+										</code>{' '}
+										channel
 									</li>
 									<li>
 										Connect with other contributors and maintainers in our{' '}
-										<code>#open-source</code> channel
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#open-source
+										</code>{' '}
+										channel
 									</li>
 									<li>
 										Pair program over Zoom by using our always-open{' '}
-										<code>#co-working-room</code> channel
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#co-working-room
+										</code>{' '}
+										channel
 									</li>
 								</ul>
 								<p className="mt-4 text-base leading-6 text-gray-600">
