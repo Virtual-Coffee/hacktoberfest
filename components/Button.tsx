@@ -3,11 +3,12 @@ import type { MouseEventHandler, ReactNode } from 'react'
 import classNames from '@/util/classNames'
 
 const defaultClassName =
-	'inline-block border border-transparent leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition duration-150 ease-in-out'
+	'inline-block border leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition-colors duration-300 ease-out disabled:pointer-events-none disabled:opacity-50'
 
 const colors = {
-	primary: 'text-on-brand bg-brand hover:bg-brand-hover',
-	utility: 'text-brand hover:text-brand-hover bg-brand-subtle',
+	primary: 'text-on-brand bg-button hover:bg-brand-hover border-transparent',
+	secondary:
+		'text-button hover:text-brand-hover bg-brand-subtle border-button hover:border-brand-hover',
 }
 
 const sizes = {
@@ -24,6 +25,7 @@ type ButtonProps = {
 	className?: string
 	children?: ReactNode
 	type?: 'button' | 'submit' | 'reset'
+	disabled?: boolean
 	onClick?: MouseEventHandler<HTMLElement>
 }
 

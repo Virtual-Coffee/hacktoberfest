@@ -21,7 +21,7 @@ export default function AdminError({ onRetry }: { onRetry: () => void }) {
 				Something went wrong on our end -- this is not a permissions problem,
 				your admin access is fine.
 			</p>
-			<Button type="button" onClick={onRetry} size="sm" color="utility">
+			<Button type="button" onClick={onRetry} size="sm" color="secondary">
 				Try again
 			</Button>
 		</ErrorAlert>

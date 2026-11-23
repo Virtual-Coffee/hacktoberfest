@@ -41,6 +41,8 @@
 
 	--color-osweave-purple-core: #9300ff;
 	--color-osweave-purple-dark: #490080;
+	/* Midpoint of core and dark; button background. */
+	--color-osweave-purple-mid: #6e00c0;
 	--color-osweave-purple-light: #d7a0ff;
 
 	--color-osweave-magenta-core: #ff00e9;
@@ -56,6 +58,7 @@
  * every pairing below stays WCAG 2.2 AA-checked in one place.
  * Ratios measured against white (#fff) and osweave-white (#fbf7ff):
  *   brand on white / on-brand on brand ........ 5.4:1  (AA normal text, 4.5)
+ *   on-brand on button ........................ 8.2:1
  *   brand-hover on white / on-brand on hover .. 12.5:1
  *   focus ring on white ....................... 12.5:1 (AA non-text, 3)
  * If you change a value, re-check contrast before merging.
@@ -63,6 +66,7 @@
 @theme inline {
 	--color-brand: var(--color-osweave-purple-core);
 	--color-brand-hover: var(--color-osweave-purple-dark);
+	--color-button: var(--color-osweave-purple-mid);
 	--color-brand-subtle: var(--color-osweave-white);
 	--color-on-brand: var(--color-osweave-white);
 	--color-focus: var(--color-osweave-purple-dark);

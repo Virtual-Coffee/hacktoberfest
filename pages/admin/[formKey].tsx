@@ -85,7 +85,7 @@ export default function Page() {
 						href={`/api/admin/export/${formKey}?year=${year}`}
 						external
 						size="sm"
-						color="utility"
+						color="secondary"
 					>
 						Export CSV
 					</Button>

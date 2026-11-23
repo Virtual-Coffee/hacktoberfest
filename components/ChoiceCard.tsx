@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Button from '@/components/Button'
 
 export type Choice = {
 	header: string
@@ -49,13 +49,9 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 							{choice.button.text}
 						</span>
 					) : (
-						<Link
-							href={choice.button.link}
-							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition duration-150 ease-in-out text-on-brand bg-brand hover:bg-brand-hover`}
-							aria-describedby="tier-standard"
-						>
+						<Button href={choice.button.link} className="w-full text-center">
 							{choice.button.text}
-						</Link>
+						</Button>
 					)}
 				</div>
 			</div>

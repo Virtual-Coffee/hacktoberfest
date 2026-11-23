@@ -1,3 +1,4 @@
+import Button from '@/components/Button'
 import { useMemo, useState } from 'react'
 import { useTable } from '@tanstack/react-table'
 import type { PaginationState } from '@tanstack/react-table'
@@ -151,22 +152,24 @@ export default function SubmissionsTable({
 					of <span className="font-medium text-gray-900">{total}</span>
 				</p>
 				<div className="flex gap-2">
-					<button
+					<Button
 						type="button"
+						size="sm"
+						color="secondary"
 						onClick={() => table.previousPage()}
 						disabled={!table.getCanPreviousPage()}
-						className="border border-gray-300 rounded-md px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:text-gray-400 disabled:hover:bg-white"
 					>
 						Previous
-					</button>
-					<button
+					</Button>
+					<Button
 						type="button"
+						size="sm"
+						color="secondary"
 						onClick={() => table.nextPage()}
 						disabled={!table.getCanNextPage()}
-						className="border border-gray-300 rounded-md px-3 py-1.5 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:text-gray-400 disabled:hover:bg-white"
 					>
 						Next
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>
