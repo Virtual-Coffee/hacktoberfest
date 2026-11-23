@@ -90,7 +90,7 @@ export default function Nav() {
 			</noscript>
 			<Disclosure
 				as="nav"
-				className="bg-white border-b border-gray-200 sticky top-0 z-10"
+				className="bg-surface-tint border-b border-osweave-purple-light sticky top-0 z-10"
 			>
 				{({ open }) => (
 					<>
@@ -132,8 +132,8 @@ export default function Nav() {
 													key={name}
 													className={classNames(
 														current
-															? 'border-indigo-500 text-gray-900'
-															: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+															? 'border-brand text-gray-900'
+															: 'border-transparent text-gray-600 hover:border-osweave-purple-light hover:text-gray-900',
 														'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
 													)}
 													aria-current={current ? 'page' : undefined}
@@ -155,7 +155,7 @@ export default function Nav() {
 										{sessionStatus === 'authenticated' && (
 											<Menu as="div">
 												<div>
-													<MenuButton className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+													<MenuButton className="max-w-xs flex items-center text-sm rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-focus">
 														<span className="sr-only">Open user menu</span>
 														{session?.user?.image ? (
 															<img
@@ -200,7 +200,7 @@ export default function Nav() {
 								</div>
 								<div className="-mr-2 flex items-center sm:hidden">
 									{/* Mobile menu button */}
-									<DisclosureButton className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+									<DisclosureButton className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-white focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-focus">
 										<span className="sr-only">Open main menu</span>
 										{open ? (
 											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -236,8 +236,8 @@ export default function Nav() {
 											key={name}
 											className={classNames(
 												current
-													? 'bg-indigo-50 border-indigo-500 text-indigo-700'
-													: 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
+													? 'bg-brand-subtle border-brand text-brand-hover'
+													: 'border-transparent text-gray-600 hover:bg-white hover:border-osweave-purple-light hover:text-gray-900',
 												'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
 											)}
 											aria-current={current ? 'page' : undefined}
@@ -250,12 +250,12 @@ export default function Nav() {
 							</div>
 							{sessionStatus === 'loading' && <div>Loading</div>}
 							{sessionStatus === 'unauthenticated' && (
-								<div className="px-3 py-4 border-t border-gray-200">
+								<div className="px-3 py-4 border-t border-osweave-purple-light">
 									<GitHubSignInButton />
 								</div>
 							)}
 							{sessionStatus === 'authenticated' && (
-								<div className="pt-4 pb-3 border-t border-gray-200">
+								<div className="pt-4 pb-3 border-t border-osweave-purple-light">
 									<div className="flex items-center px-4">
 										<div className="shrink-0">
 											{session?.user?.image ? (
@@ -283,7 +283,7 @@ export default function Nav() {
 												<Link
 													href={href}
 													key={name}
-													className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+													className="block px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-white"
 													{...rest}
 												>
 													{name}

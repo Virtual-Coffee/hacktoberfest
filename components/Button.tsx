@@ -3,11 +3,15 @@ import type { MouseEventHandler, ReactNode } from 'react'
 import classNames from '@/util/classNames'
 
 const defaultClassName =
-	'inline-block border border-transparent leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out'
+	'inline-block border leading-6 font-medium rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus transition-colors duration-300 ease-out disabled:pointer-events-none disabled:opacity-50'
 
 const colors = {
-	primary: 'text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500',
-	utility: 'text-orange-600 hover:text-orange-500 bg-gray-50 hover:bg-gray-50',
+	primary: 'text-on-brand bg-button hover:bg-brand-hover border-transparent',
+	secondary:
+		'text-button hover:text-brand-hover bg-brand-subtle border-button hover:border-brand-hover',
+	// Status label for an unavailable action. Always renders a non-interactive
+	// <span>, so it never looks clickable while doing nothing.
+	disabled: 'text-gray-600 dashed-outline',
 }
 
 const sizes = {
@@ -24,6 +28,7 @@ type ButtonProps = {
 	className?: string
 	children?: ReactNode
 	type?: 'button' | 'submit' | 'reset'
+	disabled?: boolean
 	onClick?: MouseEventHandler<HTMLElement>
 }
 
@@ -41,6 +46,10 @@ export default function Button({
 		colors[color],
 		providedClassname
 	)
+
+	if (color === 'disabled') {
+		return <span className={className}>{props.children}</span>
+	}
 
 	if (href) {
 		if (external) {

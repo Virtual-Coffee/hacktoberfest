@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Button from '@/components/Button'
 
 export type Choice = {
 	header: string
@@ -13,7 +13,7 @@ export type Choice = {
 
 export default function ChoiceCard({ choice }: { choice: Choice }) {
 	return (
-		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+		<div className="flex flex-col rounded-lg shadow-lg overflow-hidden border-t-4 border-button">
 			<div className="flex-1 px-6 py-8 bg-white sm:p-10 sm:pb-6">
 				<div className="mt-4 flex items-baseline text-3xl leading-none font-extrabold">
 					{choice.header}
@@ -26,7 +26,7 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 						<li className="flex items-start" key={item}>
 							<div className="shrink-0">
 								<svg
-									className="h-6 w-6 text-green-500"
+									className="h-6 w-6 text-osweave-turquoise-mid"
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
@@ -43,19 +43,18 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 						</li>
 					))}
 				</ul>
-				<div className="rounded-md shadow-sm">
+				<div>
 					{choice.button.disabled ? (
-						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-gray-50  bg-gray-500">
+						<Button color="disabled" className="w-full text-center">
 							{choice.button.text}
-						</span>
+						</Button>
 					) : (
-						<Link
+						<Button
 							href={choice.button.link}
-							className={`flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md focus:outline-hidden focus:shadow-outline transition duration-150 ease-in-out text-orange-50 hover:text-white bg-orange-600 hover:bg-orange-500`}
-							aria-describedby="tier-standard"
+							className="w-full text-center shadow-sm"
 						>
 							{choice.button.text}
-						</Link>
+						</Button>
 					)}
 				</div>
 			</div>

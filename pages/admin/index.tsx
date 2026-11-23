@@ -75,7 +75,7 @@ export default function Page() {
 						<div className="mt-3">
 							<Link
 								href={`/admin/${formKey}?year=${year}`}
-								className="text-sm font-medium text-orange-600 hover:text-orange-500"
+								className="link text-sm font-medium"
 							>
 								View submissions →
 							</Link>

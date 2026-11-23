@@ -1,6 +1,6 @@
-# Virtual Coffee Hacktoberfest Initiative (vchi)
+# Virtual Coffee's Infrastructure for OSWeave
 
-## Local Development Setup
+## Local development setup
 
 Steps to run the site locally for development or curiosity
 
@@ -12,21 +12,21 @@ Follow [these steps](https://docs.github.com/en/free-pro-team@latest/github/gett
 
 If you have just run `git clone ...` , the next step would be to move into the cloned repo:
 
-```shell
+```sh
 cd hacktoberfest
 ```
 
 ### 3. Install dependencies
 
-This repo requires `node`, `pnpm`, and the [Netlify CLI](https://www.netlify.com/products/dev/) to get started.
+This repo requires `node`, `pnpm`, and [Netlify CLI](https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/#installation) to get started.
 
-#### Installing `node`:
+#### Installing `node`
 
 The best way to install `node` is to [download the installer](https://nodejs.org/en/) from their site. This repo requires `node` version `24` or newer (see `.nvmrc`), which is the current [LTS version](https://nodejs.org/en/about/previous-releases).
 
 If you already have a different version of `node` installed, but don't want to update globally, you can install [a package called `nvm`](https://github.com/nvm-sh/nvm), which will allow you to easily switch `node` versions. Once you have `nvm` installed (or if you already have it installed), you can run `nvm use` in the main directory and it will install the proper version of `node`.
 
-#### Installing `pnpm`:
+#### Installing `pnpm`
 
 `pnpm` is a package manager that is used to install the rest of our dependencies.
 
@@ -34,43 +34,53 @@ Read more about `pnpm` [on their docs site](https://pnpm.io/motivation).
 
 The best way to install `pnpm` for this project is by using [Corepack](https://nodejs.org/api/corepack.html), a new feature bundled with Node.
 
-Install pnpm via corepack with the following commands:
+Install `pnpm` via Corepack with the following commands:
 
 ```sh
 corepack enable
 corepack prepare
 ```
 
-#### Setting up your .env
+#### Installing Netlify CLI
 
-Use the following command to create a local `.env.local` file. Then open the new file (`.env.local`) and fill in the values -- every variable is documented inline in the example file.
+After you've successfully installed `node` and `pnpm`, run the following command to install Netlify CLI directly from your terminal:
 
-```shell
+```sh
+pnpm install -g netlify-cli
+```
+
+When the installer prompts `Choose which packages to build`, you only need to select `netlify-cli`.
+
+#### Setting up your `.env` file
+
+Use the following command to create a `.env.local` file. Then open the new file (`.env.local`) and fill in the values -- every variable is documented inline in the example file.
+
+```sh
 cp .env.local.example .env.local
 ```
 
 The only value you need of your own is a secret: generate one with `openssl rand -base64 32` and put it in `BETTER_AUTH_SECRET`. You sign in with the Auth DevTools panel -- see [Authentication](#authentication).
 
-Leave `VC_GITHUB_ORG` unset if you are not a Virtual Coffee org member -- the admin-role lookup is then skipped entirely and everything else works normally.
+Leave `VC_GITHUB_ORG` unset if you are not a Virtual Coffee org member -- the admin role lookup is then skipped entirely and everything else works normally.
 
 #### Installing package dependencies
 
-Once you have `node`, `pnpm`, and the Netlify CLI installed, you're ready to install the local dependencies! Run the following command:
+Once you have `node`, `pnpm`, and Netlify CLI installed, you're ready to install the local dependencies! Run the following command:
 
-```shell
+```sh
 pnpm install
 ```
 
 Then link your checkout to the Netlify project, which is what lets the CLI start a local database for you:
 
-```shell
+```sh
 netlify login
 netlify link
 ```
 
-At this point you're ready to roll! Run the following command to get rolling!
+At this point you're ready to roll! Run the following command to get started!
 
-```shell
+```sh
 pnpm dev
 ```
 
@@ -82,21 +92,23 @@ The following commands are available for your use. Most of the time you'll only 
 
 ### `pnpm dev`
 
-```shell
+```sh
 pnpm dev
 ```
 
 This is the only command you need to do normal local development.
 
-It runs `netlify dev`, which starts Next **and** the local Postgres database, then serves both at http://localhost:8888. Any changes you make should re-build the site and re-load your browser.
+It runs `netlify dev`, which starts Next **and** the local PostgreSQL database, then serves both at <http://localhost:8888>. Any changes you make should rebuild the site and reload your browser.
 
 Use ctrl-c to quit the server when you're done.
 
-> **Use `pnpm dev`, not `next` directly.** The local database only starts alongside the Netlify dev server, so `pnpm dev:next` will boot the site and then fail on the first query. If you see an error saying no database connection is available, this is why.
+> [!WARNING]
+> **Use `pnpm dev`, not `next` directly.**
+> The local database only starts alongside the Netlify dev server, so `pnpm dev:next` will boot the site and then fail on the first query. If you see an error saying no database connection is available, this is why.
 
 Before your first run, apply the migrations:
 
-```shell
+```sh
 netlify database migrations apply
 ```
 
@@ -106,7 +118,7 @@ The schema lives in `db/schema/`. `auth.ts` is generated by the Better Auth CLI 
 
 Netlify owns migration state and applies `netlify/database/migrations` on deploy, so drizzle-kit is only ever used to author SQL -- never run `drizzle-kit migrate` or `push` against this project.
 
-```shell
+```sh
 # 1. edit db/schema/app.ts, then generate the SQL
 pnpm db:generate
 
@@ -149,7 +161,7 @@ Set these in the Netlify UI with the **Functions** scope, so they reach the func
 
 Because previews get these secrets and a fork of production's data, the Netlify site's **Sensitive variable policy** requires approval before building pull requests from unrecognized authors. Approve a fork's deploy only after reading its changes.
 
-## Uses:
+## Uses
 
 - [NextJS](https://nextjs.org/docs/)
 - [TypeScript](https://www.typescriptlang.org/)

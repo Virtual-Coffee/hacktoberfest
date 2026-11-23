@@ -162,7 +162,7 @@ export function Field({
 						type={field.type === 'URL' ? 'url' : field.inputType || 'text'}
 						required={!!field.required}
 						id={field.name}
-						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+						className="shadow-xs focus:ring-focus focus:border-focus block w-full sm:text-sm border-gray-500 rounded-md"
 						defaultValue={asString(values[field.name])}
 					/>
 				</FieldGroup>
@@ -173,7 +173,7 @@ export function Field({
 				<FieldGroup id={field.name} label={`${field.label}:`} help={field.help}>
 					<textarea
 						rows={8}
-						className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+						className="shadow-xs focus:ring-focus focus:border-focus block w-full sm:text-sm border border-gray-500 rounded-md"
 						name={field.name}
 						required={!!field.required}
 						id={field.name}
@@ -281,7 +281,7 @@ export function CheckboxList({
 							name={`${id}[]`}
 							value={item}
 							type="checkbox"
-							className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+							className="form-checkbox h-4 w-4 mr-3 text-brand focus:ring-focus transition duration-150 ease-in-out"
 							defaultChecked={defaultValues && defaultValues.includes(item)}
 						/>
 						<span className="block leading-5 text-gray-700">{item}</span>
@@ -296,7 +296,7 @@ export function CheckboxList({
 								value="Other"
 								type="checkbox"
 								defaultChecked={!!defaultOtherValue}
-								className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+								className="form-checkbox h-4 w-4 mr-3 text-brand focus:ring-focus transition duration-150 ease-in-out"
 							/>
 							<span className="block leading-5 text-gray-700">Other</span>
 						</label>
@@ -310,7 +310,7 @@ export function CheckboxList({
 									type="text"
 									aria-label="Other"
 									defaultValue={defaultOtherValue}
-									className="shadow-xs focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+									className="shadow-xs focus:ring-focus focus:border-focus block w-full sm:text-sm border-gray-500 rounded-md"
 								/>
 							</div>
 						</DisclosurePanel>
@@ -355,7 +355,7 @@ export function Checkbox({
 						value={value}
 						type="checkbox"
 						required={required}
-						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						className="form-checkbox h-4 w-4 mr-3 text-brand focus:ring-focus transition duration-150 ease-in-out"
 						defaultChecked={defaultValues && defaultValues.includes(value)}
 					/>
 					<span className="block leading-5 text-gray-700">{label_html}</span>
@@ -399,7 +399,7 @@ export function Agreement({
 						value={value}
 						type="checkbox"
 						required={required}
-						className="form-checkbox h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+						className="form-checkbox h-4 w-4 mr-3 text-brand focus:ring-focus transition duration-150 ease-in-out"
 						defaultChecked={defaultValues && defaultValues.includes(value)}
 					/>
 					<span className="block leading-5 text-gray-700">
@@ -440,7 +440,7 @@ export function RadioList({
 							name={id}
 							value={item}
 							type="radio"
-							className="form-radio h-4 w-4 mr-3 text-indigo-600 transition duration-150 ease-in-out"
+							className="form-radio h-4 w-4 mr-3 text-brand focus:ring-focus transition duration-150 ease-in-out"
 							defaultChecked={defaultValue === item}
 						/>
 						<span className="block leading-5 text-gray-700">{item}</span>
@@ -716,7 +716,7 @@ export default function Form({
 									out in their{' '}
 									<a
 										href="https://www.hclbcommunities.com/privacy-policy.pdf"
-										className="text-blue-800 underline"
+										className="link"
 									>
 										Privacy Policy
 									</a>

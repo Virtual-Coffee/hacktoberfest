@@ -32,7 +32,7 @@ export function YearSelect({
 				id="admin-year"
 				value={year}
 				onChange={(event) => onChange(Number(event.target.value))}
-				className="border border-gray-300 rounded-md pl-3 pr-10 py-1.5 text-sm text-gray-900 bg-white"
+				className="border border-gray-500 rounded-md pl-3 pr-10 py-1.5 text-sm text-gray-900 bg-white"
 			>
 				{options.map((option) => (
 					<option key={option} value={option}>
@@ -66,7 +66,7 @@ export function FormTabs({
 						className={classNames(
 							'flex items-center border-b-2 px-1 pb-3 text-sm font-medium',
 							current
-								? 'border-indigo-500 text-gray-900'
+								? 'border-brand text-gray-900'
 								: 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
 						)}
 					>
@@ -76,7 +76,7 @@ export function FormTabs({
 								className={classNames(
 									'ml-2 rounded-full px-2 py-0.5 text-xs font-semibold',
 									current
-										? 'bg-indigo-100 text-indigo-800'
+										? 'bg-brand-subtle text-brand-hover'
 										: 'bg-gray-100 text-gray-700'
 								)}
 							>

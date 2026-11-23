@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 
-export type FormKey =
-	'contributors' | 'maintainers' | 'mentors'
+export type FormKey = 'contributors' | 'maintainers' | 'mentors'
 
 export type FormValues = Record<string, string | string[] | boolean | undefined>
 
@@ -103,7 +102,7 @@ export const contributors: FormField[] = [
 					href="https://www.hclbcommunities.com/contact"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					https://www.hclbcommunities.com/contact
 				</a>
@@ -112,7 +111,7 @@ export const contributors: FormField[] = [
 					href="https://www.hclbcommunities.com/osweave"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					https://www.hclbcommunities.com/osweave
 				</a>
@@ -233,7 +232,7 @@ export const contributors: FormField[] = [
 					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForContributors"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					OSWeave Code of Practice for Contributors
 				</a>
@@ -254,7 +253,7 @@ export const contributors: FormField[] = [
 					href="https://virtualcoffee.io/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					Virtual Coffee Code of Conduct
 				</a>{' '}
@@ -263,7 +262,7 @@ export const contributors: FormField[] = [
 					href="https://www.hclbcommunities.com/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					HCLB Communities Code of Conduct
 				</a>
@@ -326,7 +325,7 @@ export const mentors: FormField[] = [
 					href="https://virtualcoffee.io/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					Virtual Coffee Code of Conduct
 				</a>{' '}
@@ -335,7 +334,7 @@ export const mentors: FormField[] = [
 					href="https://www.hclbcommunities.com/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					HCLB Communities Code of Conduct
 				</a>
@@ -393,7 +392,7 @@ export const maintainers: FormField[] = [
 					Please take a look at our{' '}
 					<a
 						href="https://virtualcoffee.io/resources/open-source/maintainer-guide"
-						className="font-medium underline text-yellow-700 hover:text-yellow-600"
+						className="font-medium underline text-yellow-700 hover:text-yellow-800"
 					>
 						Maintainer's Checklist
 					</a>{' '}
@@ -563,7 +562,7 @@ export const maintainers: FormField[] = [
 					href="https://www.hclbcommunities.com/osweave#codeOfPracticeForMaintainers"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					OSWeave Code of Practice for Maintainers
 				</a>
@@ -584,7 +583,7 @@ export const maintainers: FormField[] = [
 					href="https://virtualcoffee.io/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					Virtual Coffee Code of Conduct
 				</a>{' '}
@@ -593,7 +592,7 @@ export const maintainers: FormField[] = [
 					href="https://www.hclbcommunities.com/code-of-conduct"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-blue-800 underline"
+					className="link"
 				>
 					HCLB Communities Code of Conduct
 				</a>

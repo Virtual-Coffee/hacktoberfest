@@ -29,7 +29,7 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 		{
 			header: 'Maintainers',
 			intro:
-				"Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.",
+				'Do you have an open-source project and are looking for contributors? OSWeave connects you with contributors who are ready to make quality, sustainable contributions to your project.',
 			items: [
 				'Find contributors for your project',
 				'Grow your community',
@@ -37,7 +37,7 @@ const getChoices = function (newSubmissionsClosed: boolean): Choice[] {
 			],
 			button: newSubmissionsClosed
 				? {
-						text: 'All Full!',
+						text: 'All full!',
 						disabled: true,
 						link: '/maintainers',
 					}
@@ -78,29 +78,32 @@ export default function Page() {
 					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Winter 2026 for this exciting new open source initiative."
 				/>
 			</Head>
-			<div className="text-center">
+			<div className="text-center pb-8">
 				<h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
 					HCLB x Virtual Coffee:
 					<br className="xl:hidden" />
 					<span className="text-osweave-purple-dark"> OSWeave</span>
 				</h2>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Winter 2026 for this exciting new open source initiative.
+					HCLB Communities are partnering with Virtual Coffee for a pilot scheme
+					in Winter 2026 for this exciting new open source initiative.
 				</p>
 				<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-					Weaving together tech communities, companies and maintainers to nurture quality contributions to open source projects in the age of AI.
+					Weaving together tech communities, companies and maintainers to
+					nurture quality contributions to open source projects in the age of
+					AI.
 				</p>
 			</div>
 
-			<div className="py-8">
+			<div className="mt-8 py-8 bg-surface-tint">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Join us for OSWeave:
+						Join us for OSWeave
 					</h2>
-					<div className="text-base leading-6 text-gray-500">
-						*Choose as many roles as you like.
+					<div className="text-base leading-6 text-gray-600">
+						Choose as many roles as you like.
 					</div>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4  lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
 						))}
@@ -108,12 +111,12 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="" id="vchi-to-osweave">
+			<div className="pt-8" id="vchi-to-osweave">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						From VCHI to OSWeave
 					</h2>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10 space-y-4">
 						<p className="text-base leading-6 text-gray-500">
 							Virtual Coffee took part in Hacktoberfest every October from 2021
 							to 2025, through the Virtual Coffee Hacktoberfest Initiative
@@ -141,18 +144,18 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="" id="questions">
+			<div className="-mb-10 mt-8 bg-surface-tint" id="questions">
 				<div className="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Questions:
+						Questions
 					</h2>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10">
 						<dl className="md:grid md:grid-cols-2 md:gap-x-8">
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-1">
 								What is Virtual Coffee?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-2">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Virtual Coffee is a supportive community of developers at all
 									stages of the journey. Our mission is to be a welcoming tech
 									community that allows room for growth and mentorship at all
@@ -165,32 +168,30 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-1">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-1">
 								What is HCLB Communities?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
-								<p className="text-base leading-6 text-gray-500">
-									HCLB Communities are a community ecosystem startup building 
-									online communities and events for founders, techies and startup 
-									people. They are a tech company with a human touch, here to build 
-									online communities that nurture genuine connection between real 
-									people, and brands that speak to the values of human creativity 
-									and community, and to enable others to do the same. They are also 
-									currently working behind the scenes on internal software to power 
-									their programs, much of which will be open sourced in due course.
+								<p className="text-base leading-6 text-gray-600">
+									HCLB Communities are a community ecosystem startup building
+									online communities and events for founders, techies and
+									startup people. They are a tech company with a human touch,
+									here to build online communities that nurture genuine
+									connection between real people, and brands that speak to the
+									values of human creativity and community, and to enable others
+									to do the same. They are also currently working behind the
+									scenes on internal software to power their programs, much of
+									which will be open sourced in due course.
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-3">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-3">
 								What is OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									OSWeave is a project from{' '}
-									<a
-										href="https://www.hclbcommunities.com/"
-										className="text-orange-500 underline"
-									>
+									<a href="https://www.hclbcommunities.com/" className="link">
 										HCLB Communities
 									</a>
 									. It brings together tech communities, companies, and
@@ -199,40 +200,40 @@ export default function Page() {
 									contributors and maintainers from selected partners, and we
 									give T-shirt rewards for contributions. Participation is
 									controlled to avoid a flood of low-effort contributions. This
-									means contributors join only through participating
-									communities and corporate partners. The Winter 2026 event is a pilot that
-									HCLB Communities and Virtual Coffee are running together. We are also
-									inviting other carefully chosen partners to join.
+									means contributors join only through participating communities
+									and corporate partners. The Winter 2026 event is a pilot that
+									HCLB Communities and Virtual Coffee are running together. We
+									are also inviting other carefully chosen partners to join.
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-3">
-								What are the roles of HCLB Communities and Virtual Coffee in OSWeave?
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-3">
+								What are the roles of HCLB Communities and Virtual Coffee in
+								OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
-								<p className="text-base leading-6 text-gray-500">
-									HCLB Communities is the overall operator of OSWeave and responsible
-									for the program design, coordinating the project, and the future
-									development of OSWeave after the Winter 2026 pilot project. They will
-									also be sending out T-shirt rewards to participants (the requirements
-									will be announced later).
-
+								<p className="text-base leading-6 text-gray-600">
+									HCLB Communities is the overall operator of OSWeave and
+									responsible for the program design, coordinating the project,
+									and the future development of OSWeave after the Winter 2026
+									pilot project. They will also be sending out T-shirt rewards
+									to participants (the requirements will be announced later).
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									Virtual Coffee is participating in OSWeave as the
 									Infrastructure Partner, which means we are responsible for the
-									sign-up and community infrastructure required to run the Winter
-									2026 pilot project. We are also participating as a Community
-									Partner, meaning Virtual Coffee members will be participating
-									as contributors.
+									sign-up and community infrastructure required to run the
+									Winter 2026 pilot project. We are also participating as a
+									Community Partner, meaning Virtual Coffee members will be
+									participating as contributors.
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-5">
 								What is a Maintainer?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-6">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Maintainers are the owners of the open source project. They
 									keep track of the work, review incoming PR requests and
 									issues, and make sure things get merged. They keep the project
@@ -243,49 +244,43 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-5">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-5">
 								What is a Contributor and what do I need to get started?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
-								<p className="text-base leading-6 text-gray-500">
-									A contributor is anyone who gives their time or skills to
-									help an open source project. This can include writing code,
-									but it doesn't have to. Designing graphics, writing blog
-									posts, and helping with community engagement are all
-									examples of non-code contributions, and there are many
-									other ways to contribute too. The most common path is
-									submitting a pull request on GitHub, though contributors
-									usually cannot merge their own changes. Issues in open
-									source repositories are a good place to find work that
-									matches your interests. To get started with OSWeave,{' '}
-									<a
-										href="/contributors"
-										className="text-orange-500 underline"
-									>
+								<p className="text-base leading-6 text-gray-600">
+									A contributor is anyone who gives their time or skills to help
+									an open source project. This can include writing code, but it
+									doesn't have to. Designing graphics, writing blog posts, and
+									helping with community engagement are all examples of non-code
+									contributions, and there are many other ways to contribute
+									too. The most common path is submitting a pull request on
+									GitHub, though contributors usually cannot merge their own
+									changes. Issues in open source repositories are a good place
+									to find work that matches your interests. To get started with
+									OSWeave,{' '}
+									<a href="/contributors" className="link">
 										sign up
 									</a>{' '}
 									and have (or create) a{' '}
-									<a
-										href="https://github.com/"
-										className="text-orange-500 underline"
-									>
+									<a href="https://github.com/" className="link">
 										GitHub account
 									</a>
 									.
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-7">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-7">
 								Why should I partner with OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									As a maintainer, you get access to serious contributors who
 									want to make high-quality contributions to open source
 									projects, sourced from within our carefully chosen partner
 									communities and companies.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									As a community, your members get to participate in this
 									exciting new open source initiative and the chance to earn a
 									T-shirt reward. Your community can also access the benefits
@@ -293,28 +288,27 @@ export default function Page() {
 									details, read the{' '}
 									<a
 										href="https://www.hclbcommunities.com/community-partnerships"
-										className="text-orange-500 underline"
+										className="link"
 									>
 										Become a Community Partner
 									</a>{' '}
 									page on the HCLB Communities website.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									As a company, you can get a benefits package tailored to your
 									requirements, such as brand visibility opportunities, the
 									option for your people to participate as contributors with
-									your company getting public recognition of its
-									employees&apos; contributions, or the opportunity to
-									participate in events that introduce your product to
-									participants.
+									your company getting public recognition of its employees&apos;
+									contributions, or the opportunity to participate in events
+									that introduce your product to participants.
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-7">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-7">
 								Who can participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Members of our partner communities can participate as
 									contributors and mentors. Open source project maintainers can
 									apply to participate whether or not they are connected to any
@@ -322,18 +316,18 @@ export default function Page() {
 									Communities to bring their people and/or open source projects
 									into the initiative.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									We{' '}
 									<strong>don&apos;t accept unsolicited contributions</strong>{' '}
 									from people who are not members or employees of participating
 									communities or companies.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									If you represent a community or a company and want to take
 									part, please{' '}
 									<a
 										href="https://www.hclbcommunities.com/contact"
-										className="text-orange-500 underline"
+										className="link"
 									>
 										contact HCLB Communities
 									</a>
@@ -341,15 +335,15 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-9">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-9">
 								Does it cost anything to participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Participation is free for all eligible contributors and
 									independent maintainers. Organizations can participate as
-									maintainer for free if they meet OSWeave&apos;s definition of a
-									small non-profit, which covers most organizations that
+									maintainer for free if they meet OSWeave&apos;s definition of
+									a small non-profit, which covers most organizations that
 									don&apos;t distribute profits to owners and have an annual
 									revenue of less than $500,000. HCLB Communities will reach out
 									to maintainers who sign up with organization projects to
@@ -358,11 +352,11 @@ export default function Page() {
 								</p>
 							</dd>
 
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-2 md:row-start-9">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-2 md:row-start-9">
 								How many roles can I take on?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									The short answer is as many as you want! If you want to be a
 									maintainer, mentor, and contributor, you can. But we know that
 									this can be really time consuming, so we ask that you
@@ -370,31 +364,40 @@ export default function Page() {
 									mentor and maintainer who will be supporting others.
 								</p>
 							</dd>
-							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-11">
+							<dt className="text-lg leading-6 font-medium text-osweave-purple-dark md:col-start-1 md:row-start-11">
 								What type of support will there be?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-12">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Everyone who takes part in OSWeave will be invited to join the
 									Virtual Coffee Slack, where you can:
 								</p>
-								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-500">
+								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-600">
 									<li>
-										Post questions in our <code>#help-and-pairing</code>{' '}
+										Post questions in our{' '}
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#help-and-pairing
+										</code>{' '}
 										channel
 									</li>
 									<li>
 										Connect with other contributors and maintainers in our{' '}
-										<code>#open-source</code> channel
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#open-source
+										</code>{' '}
+										channel
 									</li>
 									<li>
 										Pair program over Zoom by using our always-open{' '}
-										<code>#co-working-room</code> channel
+										<code className="rounded-md bg-osweave-turquoise-tint px-1.5 py-0.5 text-sm text-osweave-turquoise-dark">
+											#co-working-room
+										</code>{' '}
+										channel
 									</li>
 								</ul>
-								<p className="mt-4 text-base leading-6 text-gray-500">
-									Virtual Coffee and HCLB Communities will also run a program
-									of events and mentorship opportunities as part of OSWeave.
+								<p className="mt-4 text-base leading-6 text-gray-600">
+									Virtual Coffee and HCLB Communities will also run a program of
+									events and mentorship opportunities as part of OSWeave.
 									Details will be shared as they are confirmed.
 								</p>
 							</dd>

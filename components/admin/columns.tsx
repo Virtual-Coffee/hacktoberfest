@@ -64,7 +64,7 @@ export function buildColumns(formKey: FormKey, year: number) {
 			cell: ({ row }) => (
 				<Link
 					href={`/admin/user/${encodeURIComponent(row.original.userId)}?year=${year}&from=${formKey}`}
-					className="font-medium text-gray-900 hover:text-orange-600"
+					className="font-medium text-gray-900 hover:text-brand"
 				>
 					{row.original.name ?? EM_DASH}
 				</Link>
