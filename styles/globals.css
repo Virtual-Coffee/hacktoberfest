@@ -61,7 +61,7 @@
 
 	--color-osweave-turquoise-core: #00e9ff;
 	--color-osweave-turquoise-dark: #00464d;
-	/* Midpoint of turquoise core and dark; icon accent (3.4:1 on gray-50). */
+	/* Midpoint of turquoise core and dark; icon accent (3.3:1 on gray-50). */
 	--color-osweave-turquoise-mid: #0098a6;
 	/* 15% turquoise-core on white; badge background (turquoise-dark text 9.7:1). */
 	--color-osweave-turquoise-tint: #d9fbff;
