@@ -49,10 +49,14 @@
 
 	--color-osweave-magenta-core: #ff00e9;
 	--color-osweave-magenta-dark: #4d0046;
+	/* Midpoint of magenta core and dark; divider accent. */
+	--color-osweave-magenta-mid: #a60098;
 	--color-osweave-magenta-light: #ffa0f7;
 
 	--color-osweave-turquoise-core: #00e9ff;
 	--color-osweave-turquoise-dark: #00464d;
+	/* Midpoint of turquoise core and dark; icon accent (3.4:1 on gray-50). */
+	--color-osweave-turquoise-mid: #0098a6;
 }
 
 /*

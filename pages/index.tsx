@@ -78,7 +78,7 @@ export default function Page() {
 					content="HCLB Communities are partnering with Virtual Coffee for a pilot scheme in Fall 2026 for this exciting new open source initiative."
 				/>
 			</Head>
-			<div className="text-center">
+			<div className="text-center pb-8">
 				<h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
 					HCLB x Virtual Coffee:
 					<br className="xl:hidden" />
@@ -98,12 +98,12 @@ export default function Page() {
 			<div className="mt-8 py-8 bg-surface-tint">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Join us for OSWeave:
+						Join us for OSWeave
 					</h2>
 					<div className="text-base leading-6 text-gray-600">
 						*Choose as many roles as you like.
 					</div>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
 							<ChoiceCard key={choice.header} choice={choice} />
 						))}
@@ -116,7 +116,7 @@ export default function Page() {
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						From VCHI to OSWeave
 					</h2>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10 space-y-4">
 						<p className="text-base leading-6 text-gray-500">
 							Virtual Coffee took part in Hacktoberfest every October from 2021
 							to 2025, through the Virtual Coffee Hacktoberfest Initiative
@@ -147,9 +147,9 @@ export default function Page() {
 			<div className="-mb-10 mt-8 bg-surface-tint" id="questions">
 				<div className="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
-						Questions:
+						Questions
 					</h2>
-					<div className="mt-6 border-t-2 border-gray-100 pt-10">
+					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10">
 						<dl className="md:grid md:grid-cols-2 md:gap-x-8">
 							<dt className="text-lg leading-6 font-medium text-gray-900 md:col-start-1 md:row-start-1">
 								What is Virtual Coffee?

@@ -26,7 +26,7 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 						<li className="flex items-start" key={item}>
 							<div className="shrink-0">
 								<svg
-									className="h-6 w-6 text-green-500"
+									className="h-6 w-6 text-osweave-turquoise-mid"
 									fill="none"
 									viewBox="0 0 24 24"
 									stroke="currentColor"
