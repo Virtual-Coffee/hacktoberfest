@@ -95,12 +95,12 @@ export default function Page() {
 				</p>
 			</div>
 
-			<div className="py-8">
+			<div className="mt-8 py-8 bg-surface-tint">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Join us for OSWeave:
 					</h2>
-					<div className="text-base leading-6 text-gray-500">
+					<div className="text-base leading-6 text-gray-600">
 						*Choose as many roles as you like.
 					</div>
 					<div className="mt-6 border-t-2 border-gray-100 pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
@@ -111,7 +111,7 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="" id="vchi-to-osweave">
+			<div className="pt-8" id="vchi-to-osweave">
 				<div className="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-screen-xl lg:px-8 py-6">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						From VCHI to OSWeave
@@ -144,7 +144,7 @@ export default function Page() {
 				</div>
 			</div>
 
-			<div className="" id="questions">
+			<div className="-mb-10 mt-8 bg-surface-tint" id="questions">
 				<div className="max-w-screen-xl mx-auto pt-12 pb-16 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:pt-20 lg:pb-28 lg:px-8">
 					<h2 className="text-3xl leading-9 font-extrabold text-gray-900">
 						Questions:
@@ -155,7 +155,7 @@ export default function Page() {
 								What is Virtual Coffee?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-2">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Virtual Coffee is a supportive community of developers at all
 									stages of the journey. Our mission is to be a welcoming tech
 									community that allows room for growth and mentorship at all
@@ -172,7 +172,7 @@ export default function Page() {
 								What is HCLB Communities?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-2">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									HCLB Communities are a community ecosystem startup building
 									online communities and events for founders, techies and
 									startup people. They are a tech company with a human touch,
@@ -189,12 +189,9 @@ export default function Page() {
 								What is OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-4">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									OSWeave is a project from{' '}
-									<a
-										href="https://www.hclbcommunities.com/"
-										className="link"
-									>
+									<a href="https://www.hclbcommunities.com/" className="link">
 										HCLB Communities
 									</a>
 									. It brings together tech communities, companies, and
@@ -215,14 +212,14 @@ export default function Page() {
 								OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-4">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									HCLB Communities is the overall operator of OSWeave and
 									responsible for the program design, coordinating the project,
 									and the future development of OSWeave after the Fall 2026
 									pilot project. They will also be sending out T-shirt rewards
 									to participants (the requirements will be announced later).
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									Virtual Coffee is participating in OSWeave as the
 									Infrastructure Partner, which means we are responsible for the
 									sign-up and community infrastructure required to run the Fall
@@ -236,7 +233,7 @@ export default function Page() {
 								What is a Maintainer?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-6">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Maintainers are the owners of the open source project. They
 									keep track of the work, review incoming PR requests and
 									issues, and make sure things get merged. They keep the project
@@ -251,7 +248,7 @@ export default function Page() {
 								What is a Contributor and what do I need to get started?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-6">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									A contributor is anyone who gives their time or skills to help
 									an open source project. This can include writing code, but it
 									doesn't have to. Designing graphics, writing blog posts, and
@@ -262,17 +259,11 @@ export default function Page() {
 									changes. Issues in open source repositories are a good place
 									to find work that matches your interests. To get started with
 									OSWeave,{' '}
-									<a
-										href="/contributors"
-										className="link"
-									>
+									<a href="/contributors" className="link">
 										sign up
 									</a>{' '}
 									and have (or create) a{' '}
-									<a
-										href="https://github.com/"
-										className="link"
-									>
+									<a href="https://github.com/" className="link">
 										GitHub account
 									</a>
 									.
@@ -283,13 +274,13 @@ export default function Page() {
 								Why should I partner with OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-8">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									As a maintainer, you get access to serious contributors who
 									want to make high-quality contributions to open source
 									projects, sourced from within our carefully chosen partner
 									communities and companies.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									As a community, your members get to participate in this
 									exciting new open source initiative and the chance to earn a
 									T-shirt reward. Your community can also access the benefits
@@ -303,7 +294,7 @@ export default function Page() {
 									</a>{' '}
 									page on the HCLB Communities website.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									As a company, you can get a benefits package tailored to your
 									requirements, such as brand visibility opportunities, the
 									option for your people to participate as contributors with
@@ -317,7 +308,7 @@ export default function Page() {
 								Who can participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-8">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Members of our partner communities can participate as
 									contributors and mentors. Open source project maintainers can
 									apply to participate whether or not they are connected to any
@@ -325,13 +316,13 @@ export default function Page() {
 									Communities to bring their people and/or open source projects
 									into the initiative.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									We{' '}
 									<strong>don&apos;t accept unsolicited contributions</strong>{' '}
 									from people who are not members or employees of participating
 									communities or companies.
 								</p>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									If you represent a community or a company and want to take
 									part, please{' '}
 									<a
@@ -348,7 +339,7 @@ export default function Page() {
 								Does it cost anything to participate in OSWeave?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-10">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Participation is free for all eligible contributors and
 									independent maintainers. Organizations can participate as
 									maintainer for free if they meet OSWeave&apos;s definition of
@@ -365,7 +356,7 @@ export default function Page() {
 								How many roles can I take on?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-2 md:row-start-10">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									The short answer is as many as you want! If you want to be a
 									maintainer, mentor, and contributor, you can. But we know that
 									this can be really time consuming, so we ask that you
@@ -377,11 +368,11 @@ export default function Page() {
 								What type of support will there be?
 							</dt>
 							<dd className="mt-2 mb-8 md:col-start-1 md:row-start-12">
-								<p className="text-base leading-6 text-gray-500">
+								<p className="text-base leading-6 text-gray-600">
 									Everyone who takes part in OSWeave will be invited to join the
 									Virtual Coffee Slack, where you can:
 								</p>
-								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-500">
+								<ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-6 text-gray-600">
 									<li>
 										Post questions in our <code>#help-and-pairing</code> channel
 									</li>
@@ -394,7 +385,7 @@ export default function Page() {
 										<code>#co-working-room</code> channel
 									</li>
 								</ul>
-								<p className="mt-4 text-base leading-6 text-gray-500">
+								<p className="mt-4 text-base leading-6 text-gray-600">
 									Virtual Coffee and HCLB Communities will also run a program of
 									events and mentorship opportunities as part of OSWeave.
 									Details will be shared as they are confirmed.

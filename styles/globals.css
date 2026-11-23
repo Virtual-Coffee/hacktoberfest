@@ -44,6 +44,8 @@
 	/* Midpoint of core and dark; button background. */
 	--color-osweave-purple-mid: #6e00c0;
 	--color-osweave-purple-light: #d7a0ff;
+	/* 20% purple-light on white; tinted section and nav background. */
+	--color-osweave-purple-tint: #f7ecff;
 
 	--color-osweave-magenta-core: #ff00e9;
 	--color-osweave-magenta-dark: #4d0046;
@@ -61,6 +63,8 @@
  *   on-brand on button ........................ 8.2:1
  *   brand-hover on white / on-brand on hover .. 12.5:1
  *   focus ring on white ....................... 12.5:1 (AA non-text, 3)
+ *   on surface-tint: gray-600 6.6:1, brand link 5.0:1, gray-900 15.5:1.
+ *     gray-500 is only 4.2:1 there, so use gray-600 or darker for text.
  * If you change a value, re-check contrast before merging.
  */
 @theme inline {
@@ -70,6 +74,7 @@
 	--color-brand-subtle: var(--color-osweave-white);
 	--color-on-brand: var(--color-osweave-white);
 	--color-focus: var(--color-osweave-purple-dark);
+	--color-surface-tint: var(--color-osweave-purple-tint);
 }
 
 /*
