@@ -101,7 +101,7 @@ export default function Page() {
 						Join us for OSWeave
 					</h2>
 					<div className="text-base leading-6 text-gray-600">
-						*Choose as many roles as you like.
+						Choose as many roles as you like.
 					</div>
 					<div className="mt-6 border-t-2 border-osweave-magenta-mid pt-10 space-y-4 lg:grid lg:grid-cols-3 lg:gap-5 lg:space-y-0">
 						{choices.map((choice) => (
