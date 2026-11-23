@@ -22,7 +22,6 @@ import {
 } from '@/util/api'
 import { useQuery } from '@tanstack/react-query'
 import SignIn from '@/components/SignIn'
-import classNames from '@/util/classNames'
 import { useNewSubmissionsClosed } from '@/util/globals'
 
 export default function Page() {
@@ -89,15 +88,9 @@ export default function Page() {
 										Update your submission
 									</Button>
 								) : newSubmissionsClosed ? (
-									<span
-										className={classNames(
-											'text-orange-600 bg-gray-50 ',
-											'text-base px-5 py-3',
-											'inline-block border border-transparent leading-6 font-medium rounded-md '
-										)}
-									>
+									<Button size="md" color="disabled">
 										All full!
-									</span>
+									</Button>
 								) : (
 									<Button size="md" href="/contributors">
 										I Want to Hack!
@@ -155,15 +148,9 @@ export default function Page() {
 										Update your submission
 									</Button>
 								) : newSubmissionsClosed ? (
-									<span
-										className={classNames(
-											'text-orange-600 bg-gray-50 ',
-											'text-base px-5 py-3',
-											'inline-block border border-transparent leading-6 font-medium rounded-md '
-										)}
-									>
+									<Button size="md" color="disabled">
 										All full!
-									</span>
+									</Button>
 								) : (
 									<Button size="md" href="/maintainers">
 										I Have Issues!

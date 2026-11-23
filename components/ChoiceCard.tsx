@@ -43,13 +43,16 @@ export default function ChoiceCard({ choice }: { choice: Choice }) {
 						</li>
 					))}
 				</ul>
-				<div className="rounded-md shadow-sm">
+				<div>
 					{choice.button.disabled ? (
-						<span className="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-gray-50 bg-gray-500">
+						<Button color="disabled" className="w-full text-center">
 							{choice.button.text}
-						</span>
+						</Button>
 					) : (
-						<Button href={choice.button.link} className="w-full text-center">
+						<Button
+							href={choice.button.link}
+							className="w-full text-center shadow-sm"
+						>
 							{choice.button.text}
 						</Button>
 					)}

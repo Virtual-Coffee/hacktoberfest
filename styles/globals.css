@@ -89,3 +89,15 @@
 		color: var(--color-brand-hover);
 	}
 }
+
+/*
+ * Dashed outline with custom dash length (CSS `border-style: dashed` can't set
+ * it). Drawn as an SVG background: 2px stroke (4px centered on the edge, half
+ * clipped), 10px dashes / 6px gaps, 6px radius to match rounded-md.
+ * Stroke is gray-300 (#d1d5dc). Decorative only, so no contrast requirement.
+ */
+@utility dashed-outline {
+	border-color: transparent;
+	background-origin: border-box;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23d1d5dc' stroke-width='4' stroke-dasharray='10 6' stroke-linecap='butt'/%3e%3c/svg%3e");
+}

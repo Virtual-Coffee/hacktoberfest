@@ -9,6 +9,9 @@ const colors = {
 	primary: 'text-on-brand bg-button hover:bg-brand-hover border-transparent',
 	secondary:
 		'text-button hover:text-brand-hover bg-brand-subtle border-button hover:border-brand-hover',
+	// Status label for an unavailable action. Always renders a non-interactive
+	// <span>, so it never looks clickable while doing nothing.
+	disabled: 'text-gray-600 dashed-outline',
 }
 
 const sizes = {
@@ -43,6 +46,10 @@ export default function Button({
 		colors[color],
 		providedClassname
 	)
+
+	if (color === 'disabled') {
+		return <span className={className}>{props.children}</span>
+	}
 
 	if (href) {
 		if (external) {
